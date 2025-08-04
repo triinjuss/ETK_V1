@@ -1,0 +1,3712 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minu Plaan - Uus Kujundus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #046C63; /* Roheline */
+            --primary-light: #e4f2f1; /* Hele roheline */
+            --accent-color: #f7923a; /* Oranž */
+            --accent-light: #fff0e1; /* Hele oranž */
+            --secondary-color: #f8f9fa; /* Neutraalne hele taust */
+            --text-color: #293439; /* Tumehall */
+            --text-color-light: #63737c; /* Keskmine hall */
+            --border-color: #e7eaee; /* Hele piire */
+            --card-bg: #fff;
+            --star-color-active: #FDBE61; /* Hele oranž */
+            --highlight-bg: #e4f2f1; 
+            --highlight-text: #046C63;
+            --highlight-border: #9CD8DA;
+            --counselor-bg: #f8fafc; 
+            --counselor-border-color: #e7eaee;
+            --counselor-time-bg: #ebf3fa; /* Sinine taustavärv ajagraafiku jaoks */
+            --font-family: 'Inter', sans-serif;
+            --skill-tag-bg: #e4f2f1; /* Hele roheline */
+            --skill-tag-text: #046C63; /* Tume roheline */
+            --skill-tag-develop-bg: #fff0e1; /* Hele oranž taust */
+            --skill-tag-develop-text: #af4025; /* Tume oranž/punane */
+            --modal-info-bg: #f8fafc;
+            --blue-button-color: #0070f3;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.03);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03);
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .main-header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .logo-nav { 
+            display: flex; 
+            align-items: center; 
+            gap: 32px; 
+        }
+        
+        .logo { 
+            font-weight: 700; 
+            color: var(--text-color);
+            font-size: 18px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 12px;
+            width: 300px;
+            transition: var(--transition);
+            background-color: var(--secondary-color);
+        }
+        
+        .search-container:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
+        }
+
+        .search-container input { 
+            border: none; 
+            outline: none; 
+            padding: 5px; 
+            font-size: 0.9rem; 
+            width: 100%;
+            font-family: var(--font-family);
+            background-color: transparent;
+        }
+        
+        .user-actions { display: flex; align-items: center; gap: 20px; }
+
+        .profile-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: var(--font-family);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .profile-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .sub-nav-bar-container { 
+            border-bottom: 1px solid var(--border-color); 
+            background-color: var(--card-bg); 
+        }
+        
+        .sub-nav-bar { 
+            display: flex; 
+            align-items: center; 
+            height: 50px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 24px;
+        }
+        
+        .back-link { 
+            font-size: 14px; 
+            color: var(--text-color-light); 
+            text-decoration: none; 
+            margin-right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--text-color);
+        }
+        
+        .main-nav { 
+            display: flex; 
+            gap: 32px; 
+            height: 100%; 
+        }
+        
+        .main-nav a { 
+            text-decoration: none; 
+            color: var(--text-color-light);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex; 
+            align-items: center; 
+            height: 100%; 
+            border-bottom: 2px solid transparent; 
+            padding: 0 4px; 
+            transition: var(--transition);
+        }
+        
+        .main-nav a.active, 
+        .main-nav a:hover { 
+            color: var(--primary-color); 
+            border-bottom-color: var(--primary-color); 
+        }
+
+        .page-container { 
+            max-width: 1200px; 
+            margin: 32px auto; 
+            padding: 0 24px; 
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        
+        .main-column { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 32px; 
+        }
+        
+        .sidebar-column { 
+            display: flex; 
+            flex-direction: column;
+            gap: 32px;
+        }
+        
+        .card { 
+            background-color: var(--card-bg); 
+            border-radius: 12px; 
+            padding: 24px; 
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color); 
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .profile-card {
+            padding: 24px;
+            gap: 16px;
+        }
+        
+        .service-item-card { 
+            padding: 24px;
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px;
+        }
+        
+        .profile-card-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .profile-card-content p {
+            margin: 0 0 24px 0;
+            color: var(--text-color-light);
+            line-height: 1.6;
+        }
+        
+        .profile-card-footer {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn { 
+            padding: 10px 18px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: 500; 
+            text-align: center; 
+            border: 1px solid transparent; 
+            text-decoration: none; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px;
+            font-size: 14px;
+            transition: var(--transition);
+            font-family: var(--font-family);
+        }
+        
+        .btn:disabled {
+            background-color: #f1f1f1;
+            color: #aaa;
+            cursor: not-allowed;
+            border-color: #f1f1f1;
+        }
+        
+        .btn-primary { 
+            background-color: var(--primary-color); 
+            color: white; 
+        }
+        
+        .btn-primary:hover:not(:disabled) { 
+            background-color: #035750; 
+        }
+        
+        .btn-accent { 
+            background-color: var(--accent-color); 
+            color: white; 
+        }
+        
+        .btn-accent:hover {
+            background-color: #e68530;
+        }
+        
+        .btn-secondary { 
+            background-color: var(--card-bg); 
+            color: var(--text-color); 
+            border-color: var(--border-color); 
+        }
+        
+        .btn-secondary:hover:not(:disabled) {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-small { 
+            padding: 6px 12px; 
+            font-size: 13px; 
+        }
+        
+        .btn-full-width {
+            width: 100%;
+        }
+
+        /* Nõustaja kaardi stiilid */
+        .counselor-card {
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .counselor-avatar {
+            width: 100px;
+            height: 100px;
+            background-color: #e9f5f4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .counselor-avatar-icon {
+            color: var(--primary-color);
+            width: 45px;
+            height: 45px;
+        }
+
+        .counselor-name {
+            color: var(--text-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 5px;
+        }
+
+        .counselor-title {
+            color: var(--text-color-light);
+            font-size: 0.95rem;
+            margin: 0 0 25px;
+        }
+
+        .contact-reasons-wrapper {
+            width: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        
+        .contact-reasons {
+            list-style: none;
+            text-align: left;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-reasons li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .contact-reasons li::before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .counselor-contact {
+            width: 100%;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-color-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-icon {
+            color: var(--primary-color);
+            width: 18px;
+        }
+
+        .contact-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        
+        .contact-button:hover {
+            background-color: #035750;
+        }
+        
+        /* Minu Profiil kaardi stiilid */
+        .my-profile-card {
+            flex-grow: 1;
+        }
+        
+        .my-profile-card h3 {
+             margin-bottom: 20px;
+             font-size: 1.25rem;
+             font-weight: 600;
+        }
+        
+        .profile-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-box {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .stat-box .label {
+            font-size: 0.85rem;
+            color: var(--text-color-light);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        
+        .stat-box .label .sub-label {
+            display: block;
+            font-weight: 400;
+        }
+        
+        .stat-box .value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        
+        .stat-box.full-width {
+            grid-column: 1 / -1;
+            position: relative;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-bar {
+            width: 84%;
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        .profile-tips h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .profile-tips-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .profile-tips-list li {
+            padding: 6px 0 6px 24px;
+            position: relative;
+        }
+        
+        .profile-tips-list li::before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .profile-action {
+            margin-top: auto;
+        }
+        
+        .ai-icon-link {
+            width: 32px;
+            height: 32px;
+            background-color: var(--highlight-bg);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 1px solid var(--highlight-border);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        
+        .ai-icon-link:hover {
+            background-color: var(--border-color);
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        
+        .card > .ai-icon-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        /* Services card styles */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px; 
+        }
+        
+        .service-item-content { 
+            flex-grow: 1; 
+        }
+        
+        .service-item-card h4 { 
+            margin: 0 0 8px 0; 
+        }
+        
+        .service-item-card h4 a { 
+            color: var(--primary-color); 
+            text-decoration: none; 
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .service-item-card p { 
+            margin: 0 0 16px 0; 
+            font-size: 0.9rem; 
+            color: var(--text-color-light); 
+            line-height: 1.6; 
+        }
+        
+        /* Töösoovid kaardi stiilid */
+        .job-wishes-card .card-header {
+            padding-bottom: 0;
+        }
+        
+        .job-wishes-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .job-wish-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .job-wish-details {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--primary-light);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+        
+        .job-wish-icon {
+            color: var(--primary-color);
+        }
+        
+        .job-wish-title {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        
+        .job-wish-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .job-count {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+        }
+        
+        .job-count b {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        .job-wish-manage-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            color: var(--text-color-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .job-wish-manage-btn:hover {
+            color: var(--text-color);
+        }
+        
+        .add-wish-btn {
+            margin: 8px 0 24px;
+        }
+
+        .short-term-section {
+            margin-top: auto;
+            padding: 16px;
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .short-term-text {
+            color: var(--highlight-text);
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        .card-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px; 
+        }
+        
+        .card-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .card-header h2, 
+        .card-header h3 { 
+            margin: 0; 
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .card-subtitle { 
+            font-size: 0.9rem; 
+            color: var(--text-color-light); 
+            margin-top: -10px; 
+            margin-bottom: 20px; 
+        }
+        
+        .self-assessment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .assessment-question { 
+            font-weight: 500; 
+            font-size: 1.1rem; 
+            margin-bottom: 20px; 
+        }
+        
+        .star-rating { 
+            display: flex; 
+            flex-direction: row-reverse; 
+            gap: 5px; 
+            justify-content: flex-end; 
+        }
+        
+        .star-rating input { 
+            display: none; 
+        }
+        
+        .star-rating label { 
+            font-size: 2.5rem; 
+            color: var(--border-color); 
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .star-rating input:checked ~ label, 
+        .star-rating label:hover, 
+        .star-rating label:hover ~ label { 
+            color: var(--star-color-active); 
+        }
+        
+        .rating-labels { 
+            display: flex; 
+            justify-content: space-between; 
+            max-width: 250px; 
+            margin-top: 10px; 
+            font-size: 0.9rem; 
+            color: var(--text-color-light);
+        }
+        
+        .justification-group { 
+            margin-top: 25px; 
+        }
+        
+        .justification-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .justification-group textarea { 
+            width: 100%; 
+            min-height: 160px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            padding: 12px; 
+            resize: vertical; 
+            box-sizing: border-box;
+            font-family: var(--font-family);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .justification-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
+        }
+        
+        .plan-block textarea { 
+            width: 100%; 
+            min-height: 400px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            padding: 12px; 
+            font-size: 0.95rem; 
+            resize: vertical; 
+            box-sizing: border-box;
+            font-family: var(--font-family);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+        
+        .plan-block textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
+        }
+        
+        .main-goal-input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            font-size: 0.95rem; 
+            font-family: var(--font-family);
+            transition: var(--transition);
+        }
+        
+        .main-goal-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
+        }
+        
+        .add-task-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 16px;
+        }
+        
+        .add-task-form { 
+            display: flex; 
+            gap: 10px; 
+        }
+        
+        .add-task-form input { 
+            flex-grow: 1; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            padding: 12px; 
+            font-family: var(--font-family);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .add-task-form input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
+        }
+        
+        .add-task-form .btn-add { 
+            background-color: var(--primary-color); 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            padding: 0 18px; 
+            font-size: 1.5rem; 
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .add-task-form .btn-add:hover {
+            background-color: #035750;
+        }
+        
+        .checklist .checklist-item { 
+            display: flex; 
+            align-items: center; 
+            padding: 12px 0; 
+            border-bottom: 1px solid var(--border-color); 
+        }
+        
+        .checklist input[type="checkbox"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+        
+        .checklist .task-label { 
+            flex-grow: 1;
+            font-size: 14px;
+        }
+        
+        .checklist .task-date { 
+            color: var(--text-color-light); 
+            font-size: 0.9rem;
+            margin-left: 12px;
+        }
+        
+        .checklist .checklist-item.completed .task-label { 
+            text-decoration: line-through; 
+            color: var(--text-color-light); 
+        }
+        
+        .checklist .checklist-item.completed .task-date { 
+            color: var(--primary-color); 
+        }
+        
+        /* New unified plan card styles */
+        .plan-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .plan-block {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+        .plan-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        .plan-block-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .plan-block .card-subtitle {
+            margin-top: 0;
+        }
+        .plan-block .main-goal-input {
+            margin-bottom: 0;
+        }
+        .plan-block .add-task-container {
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+        .plan-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+            padding: 24px;
+            background: var(--secondary-color);
+            border-radius: 12px;
+        }
+        .plan-right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        @media (max-width: 992px) {
+            .plan-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .info-icon {
+            display: inline-flex;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--text-color-light);
+            color: var(--text-color-light);
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .info-icon:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevent body scroll */
+            background-color: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(3px);
+        }
+        
+        .modal-overlay.show { 
+            display: flex; 
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            width: 90%;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh; /* Set max height */
+            border: 1px solid var(--border-color);
+        }
+        
+        #smart-goal-modal .modal-content,
+        #ai-formulated-goal-modal .modal-content,
+        #ai-job-offers-modal .modal-content,
+        #ai-wish-analysis-modal .modal-content,
+        #ai-profile-analysis-modal .modal-content,
+        #ai-services-modal .modal-content,
+        #self-assessment-ai-modal .modal-content,
+        #strengths-ai-modal .modal-content,
+        #ai-suggestions-modal .modal-content,
+        #skills-tests-modal .modal-content { 
+            max-width: 960px; 
+        }
+        
+        #add-task-modal .modal-content,
+        #ai-activity-suggestion-modal .modal-content { 
+            max-width: 680px; 
+            max-height: auto; 
+        }
+        
+        #ai-activity-modal .modal-content { 
+            max-width: 600px; 
+            max-height: auto; 
+        }
+
+
+        .modal-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+        
+        .modal-header h2, 
+        .modal-header h3 { 
+            margin: 0; 
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 24px 32px;
+            overflow-y: auto; /* Enable vertical scroll for the body */
+            flex-grow: 1;
+        }
+
+        .modal-close {
+            color: var(--text-color-light);
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover { 
+            color: var(--text-color); 
+        }
+
+        .modal-intro {
+            background-color: var(--modal-info-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border: 1px solid var(--border-color);
+        }
+
+        .smart-section { 
+            display: flex; 
+            gap: 24px; 
+            margin-bottom: 32px; 
+        }
+        
+        .smart-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .smart-details h3 { 
+            margin: 0 0 6px 0; 
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .smart-details p { 
+            margin: 0 0 15px 0; 
+            color: var(--text-color-light); 
+            font-size: 0.9rem; 
+        }
+        
+        .smart-question { 
+            margin-bottom: 12px; 
+            font-size: 0.95rem; 
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .smart-question::before { 
+            content: '>'; 
+            color: var(--primary-color); 
+            position: absolute;
+            left: 0;
+            font-weight: bold; 
+        }
+        
+        .modal-form-group { 
+            margin-bottom: 24px; 
+        }
+        
+        .modal-form-group label { 
+            display: block; 
+            font-weight: 500; 
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .modal-input, .modal-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+            transition: var(--transition);
+        }
+        
+        .modal-input:focus, .modal-textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
+        }
+        
+        .date-input-container { 
+            position: relative; 
+        }
+        
+        .date-input-container .modal-input { 
+            padding-right: 40px; 
+        }
+        
+        .date-input-container .calendar-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: var(--text-color-light);
+            cursor: pointer;
+        }
+        
+        .modal-textarea { 
+            min-height: 100px; 
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .modal-footer { 
+            text-align: right; 
+            border-top: 1px solid var(--border-color); 
+            padding: 20px 30px; 
+            display: flex; 
+            justify-content: flex-end; 
+            gap: 12px; 
+            flex-shrink: 0; 
+        }
+        
+        /* Activity Modal Styles */
+        .activity-progress-container { 
+            margin: 20px 0; 
+        }
+        
+        .activity-progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .activity-progress-bar .progress {
+            height: 100%;
+            width: 45%;
+            background: linear-gradient(90deg, var(--accent-color) 0%, var(--primary-color) 100%);
+        }
+        
+        .activity-progress-bar .progress-text {
+            position: absolute;
+            right: 15px;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .activity-list { 
+            list-style: none; 
+            padding: 0; 
+            margin-top: 24px; 
+            font-size: 14px;
+        }
+        
+        .activity-list li { 
+            padding: 10px 0; 
+            border-bottom: 1px solid var(--secondary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .activity-list li:last-child { 
+            border-bottom: none; 
+        }
+        
+        .activity-list span { 
+            color: var(--text-color-light); 
+            margin-right: 12px;
+            font-weight: 500;
+        }
+        
+        .advisor-recommendation {
+            background-color: var(--modal-info-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .advisor-recommendation .icon { 
+            font-size: 1.5rem; 
+            color: var(--accent-color); 
+        }
+        
+        .advisor-recommendation strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+        
+        /* AI Services Modal Specific Styles */
+        #ai-services-modal .modal-body,
+        #ai-job-offers-modal .modal-body,
+        #ai-wish-analysis-modal .modal-body,
+        #skills-tests-modal .modal-body {
+            background-color: var(--secondary-color);
+        }
+        #ai-services-modal .modal-body > p,
+        #ai-job-offers-modal .modal-body > p {
+            margin-bottom: 24px;
+        }
+        .recommendation-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .info-box {
+            background-color: var(--primary-light);
+            border: 1px solid var(--highlight-border);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .info-box p {
+            margin: 0;
+            color: var(--highlight-text);
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        .info-box a {
+            color: var(--highlight-text);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        .service-recommendation {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .service-recommendation:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .service-recommendation:first-child {
+            padding-top: 0;
+        }
+        .service-details h4 {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .service-meta {
+            font-size: 0.8rem;
+            color: var(--text-color-light);
+            display: flex;
+            gap: 16px;
+        }
+        .event-recommendation {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .event-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .event-icon svg {
+            color: var(--primary-color);
+        }
+        .event-details h4 {
+            margin: 0 0 2px 0;
+            font-weight: 600;
+        }
+        .event-details p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+        }
+        .event-actions {
+            text-align: right;
+        }
+        .event-actions .btn {
+            margin-bottom: 4px;
+        }
+        .event-actions .date {
+            font-size: 0.8rem;
+            color: var(--text-color-light);
+        }
+        .articles-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .articles-list li {
+            margin-bottom: 8px;
+        }
+        .articles-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .articles-list a:hover {
+            text-decoration: underline;
+        }
+        .articles-footer {
+            margin-top: 16px;
+            text-align: right;
+        }
+
+        /* AI Job Offers Modal */
+        .job-offer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+         .job-offer-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .job-offer-item:first-child {
+            padding-top: 0;
+        }
+        .job-offer-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .job-offer-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .job-offer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .job-offer-title h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .job-offer-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .new-tag {
+            background-color: var(--accent-light);
+            color: var(--accent-color);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+        .job-offer-details {
+            display: flex;
+            gap: 24px;
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            padding-left: 52px; /* Align with title */
+        }
+        .job-offer-footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .btn-save {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-color-light);
+        }
+        .btn-save:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Wish Analysis Modal */
+        #ai-wish-analysis-modal .modal-body {
+            padding: 0;
+        }
+        .analysis-gigs-container {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr;
+            align-items: stretch;
+            gap: 0;
+        }
+        .analysis-sidebar {
+            background-color: var(--card-bg);
+            padding: 24px;
+            height: 100%;
+            border-right: 1px solid var(--border-color);
+        }
+        .analysis-sidebar .card-header {
+            padding: 0;
+            border-bottom: none;
+            margin-bottom: 24px;
+        }
+        .analysis-sidebar .card-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+        }
+        .ai-badge {
+            font-size: 0.9rem;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .analysis-body {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .analysis-section .title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .analysis-section .value {
+            font-size: 1rem;
+            color: var(--text-color-light);
+        }
+        .analysis-info-box {
+            background-color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .analysis-info-box h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+        }
+        .analysis-info-box p, .analysis-info-box ul {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            margin: 0 0 16px 0;
+            padding-left: 1rem;
+        }
+        .analysis-info-box ul li {
+            margin-bottom: 8px;
+        }
+        .analysis-info-box .btn {
+            width: 100%;
+        }
+
+        .gigs-container {
+            padding: 24px;
+        }
+        .gigs-container .gigs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .gigs-container h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .gig-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: var(--transition);
+        }
+        .gig-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .gig-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        .gig-card p {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            margin: 0;
+            flex-grow: 1;
+        }
+        .gig-card h5 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 8px 0 0 0;
+        }
+        .gig-card .skills-tags .skill-tag {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            background-color: var(--secondary-color);
+            color: var(--text-color-light);
+        }
+        .gig-card .btn {
+            margin-top: auto;
+        }
+        
+        /* NEW: Job Offers in Modal */
+        .job-offers-container {
+            margin-top: 40px;
+        }
+        .job-offers-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .job-offers-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .job-offers-header .btn-secondary {
+            border: none;
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .job-offer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .job-offer-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: var(--transition);
+        }
+        .job-offer-card:hover {
+            border-color: var(--highlight-border);
+            box-shadow: var(--shadow-sm);
+        }
+        .job-offer-main {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .job-offer-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .job-offer-info {
+            flex-grow: 1;
+        }
+        .job-offer-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+        }
+        .job-offer-info > span {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            display: block;
+            margin-bottom: 12px;
+        }
+        .job-offer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .job-offer-tag {
+            background-color: var(--secondary-color);
+            color: var(--text-color-light);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 16px;
+        }
+        .job-offer-match {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .job-offer-match.high { background-color: #dcfce7; color: #166534; }
+        .job-offer-match.medium { background-color: #fef9c3; color: #713f12; }
+        .job-offer-match.low { background-color: #fee2e2; color: #991b1b; }
+
+        .job-offer-description {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            margin: 16px 0;
+            padding-left: 56px;
+        }
+        .job-offer-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 56px;
+        }
+        .job-offer-footer .added-time {
+            font-size: 0.85rem;
+            color: var(--text-color-light);
+        }
+        .job-offer-footer .actions {
+            display: flex;
+            gap: 12px;
+        }
+
+
+        /* Profile Analysis Modal NEW DESIGN */
+        #ai-profile-analysis-modal .modal-content { max-width: 900px; }
+        #ai-profile-analysis-modal .modal-body { background-color: var(--secondary-color); padding: 24px; }
+        #ai-profile-analysis-modal .modal-intro {
+            text-align: center;
+            background-color: transparent;
+            border: none;
+            padding: 0 16px 16px 16px;
+            margin-bottom: 24px;
+        }
+        #ai-profile-analysis-modal .modal-intro h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        #ai-profile-analysis-modal .modal-intro p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-color-light);
+        }
+        .profile-analysis-container {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 24px;
+            align-items: flex-start;
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .profile-strength-visual {
+            flex-shrink: 0;
+            text-align: center;
+            padding-top: 16px;
+        }
+        .profile-strength-circle {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin: 0 auto 16px;
+        }
+        .profile-strength-circle svg {
+            transform: rotate(-90deg);
+        }
+        .profile-strength-circle .bg {
+            stroke: var(--border-color);
+        }
+        .profile-strength-circle .progress {
+            stroke: var(--primary-color);
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        .profile-strength-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .profile-strength-text .score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        .profile-strength-text .label {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+        }
+        .profile-strength-visual p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-color-light);
+        }
+        .profile-analysis-content {
+            flex-grow: 1;
+        }
+        .profile-analysis-section h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 24px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .suggestion-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .suggestion-list li {
+            padding: 0;
+            margin: 0;
+        }
+        .suggestion-list .suggestion-text strong {
+            display: block;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .suggestion-list .suggestion-text span {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            line-height: 1.5;
+        }
+        #ai-profile-analysis-modal .modal-footer {
+            background-color: var(--secondary-color);
+            border-top: none;
+            padding-top: 24px;
+        }
+        
+        /* Self-assessment AI Modal - NEW DESIGN */
+        #self-assessment-ai-modal .modal-content {
+            max-width: 860px;
+        }
+        #self-assessment-ai-modal .modal-body {
+            padding: 40px 60px;
+            background-color: var(--secondary-color);
+        }
+        #self-assessment-ai-modal .modal-header {
+            border-bottom: none;
+            padding: 0 0 24px 0;
+            text-align: center;
+            display: block;
+            background-color: transparent;
+        }
+        #self-assessment-ai-modal .modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        #self-assessment-ai-modal .modal-header p {
+            max-width: 80%;
+            margin: 0 auto;
+            color: var(--text-color-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .assessment-step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+        .assessment-step-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            transition: var(--transition);
+        }
+        .assessment-step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .assessment-step-card h4 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .assessment-step-card p {
+            margin: 0;
+            color: var(--text-color-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .assessment-step-card p a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .assessment-step-card p a:hover {
+            text-decoration: underline;
+        }
+        #self-assessment-ai-modal .modal-footer {
+            padding: 24px 60px;
+            background-color: var(--secondary-color);
+            border-top: 1px solid var(--border-color);
+            justify-content: center;
+        }
+        
+        /* Strengths AI Modal */
+        #strengths-ai-modal .modal-content {
+            max-width: 800px;
+        }
+        .plan-form-section {
+            margin-bottom: 24px;
+        }
+        .plan-form-section label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+        .plan-form-section label svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary-color);
+        }
+        .plan-form-section textarea {
+            min-height: 120px;
+        }
+        .ai-helper-box {
+            background-color: var(--primary-light);
+            border: 1px solid var(--highlight-border);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .ai-helper-box p {
+            margin: 0;
+            color: var(--highlight-text);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        /* AI Suggestions Modal */
+        #ai-suggestions-modal .modal-body {
+            background-color: var(--secondary-color);
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .comparison-column h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .text-content-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            min-height: 300px; /* Or adjust as needed */
+        }
+        #original-text-display {
+             color: var(--text-color-light);
+        }
+        .ai-version-column h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 16px 0 8px 0;
+        }
+        .ai-version-column h5:first-child {
+            margin-top: 0;
+        }
+        .ai-version-column ul {
+            padding-left: 20px;
+            margin: 0 0 1em 0;
+            color: var(--text-color);
+        }
+         .ai-version-column ul li {
+            margin-bottom: 8px;
+         }
+        .keyword-highlight {
+            background-color: var(--primary-light);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        .ai-explanation-box {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            margin-top: 24px; /* Added space */
+        }
+        .ai-explanation-box strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* NEW SMART GOAL MODAL STYLES */
+        #smart-goal-modal .modal-input-field {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: var(--text-color-light);
+            margin-top: 8px;
+        }
+        
+        #smart-goal-modal .modal-input-field:before {
+            content: 'Näiteks: ';
+            font-weight: 500;
+            color: var(--text-color-light);
+        }
+        
+        #smart-goal-modal .ai-goal-helper {
+            background-color: var(--primary-light);
+            border: 1px solid var(--highlight-border);
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        #smart-goal-modal .ai-goal-helper p {
+            margin: 0;
+            color: var(--highlight-text);
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        #smart-goal-modal .ai-goal-helper .btn {
+            padding: 10px 20px;
+        }
+        
+        #smart-goal-modal .modal-footer {
+            background-color: white;
+        }
+
+        /* AI Formulated Goal Modal Styles */
+        #ai-formulated-goal-modal .modal-body, .main-goal-display {
+            background-color: var(--secondary-color);
+            padding: 32px;
+        }
+
+        #ai-formulated-goal-modal .formulated-goal-card, .main-goal-display .formulated-goal-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        #ai-formulated-goal-modal .formulated-goal-card .goal-text, .main-goal-display .formulated-goal-card .goal-text {
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 24px;
+            color: var(--text-color);
+        }
+
+        .highlight-s { background-color: #e0f2fe; color: #0c4a6e; padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+        .highlight-m { background-color: #dcfce7; color: #14532d; padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+        .highlight-a { background-color: #fef9c3; color: #713f12; padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+        .highlight-r { background-color: #fee2e2; color: #7f1d1d; padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+        .highlight-t { background-color: #f3e8ff; color: #581c87; padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+        
+        .goal-legend h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .legend-color-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+        .legend-color-box.s { background-color: #e0f2fe; }
+        .legend-color-box.m { background-color: #dcfce7; }
+        .legend-color-box.a { background-color: #fef9c3; }
+        .legend-color-box.r { background-color: #fee2e2; }
+        .legend-color-box.t { background-color: #f3e8ff; }
+
+        /* AI Activity Suggestion Modal Styles */
+        .ai-suggestion-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .ai-suggestion-item {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .ai-suggestion-item:hover {
+            border-color: var(--highlight-border);
+            box-shadow: var(--shadow-sm);
+        }
+        .ai-suggestion-item label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .ai-suggestion-item input[type="checkbox"] {
+            margin-top: 5px;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            accent-color: var(--primary-color);
+        }
+        .suggestion-content strong {
+            display: block;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .suggestion-content span {
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            line-height: 1.5;
+        }
+
+        /* New Skills Card v2 */
+        .skills-card-v2 .card-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .skills-card-v2 .card-header .btn-small {
+            padding: 8px 16px;
+        }
+        .skills-card-v2 .skills-card-body {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column layout */
+            gap: 0; /* No gap between columns */
+            margin-top: 16px;
+        }
+        .skills-list-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .skill-item {
+            display: grid;
+            grid-template-columns: 150px 1fr 120px;
+            align-items: center;
+            gap: 16px;
+        }
+        .skill-name {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-color);
+            text-align: right;
+        }
+        .skill-level-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .skill-level-bar {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
+        .skill-slider {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: transparent;
+            outline: none;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+        .skill-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--primary-color);
+            border: 3px solid var(--card-bg);
+            border-radius: 4px; /* Square thumb */
+            cursor: pointer;
+            margin-top: -5px; /* Adjust for square thumb */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
+        }
+        .skill-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border: 3px solid var(--card-bg);
+            border-radius: 4px; /* Square thumb */
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .skill-slider:hover::-webkit-slider-thumb {
+            transform: scale(1.1);
+        }
+        .skill-level-bar.strong { background-color: var(--primary-color); }
+        .skill-level-bar.medium { background-color: #FDBE61; }
+        .skill-level-bar.develop { background-color: var(--accent-color); }
+
+        .skill-level-label {
+            font-size: 13px;
+            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-align: center;
+            transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
+        .skill-level-label.strong { color: #022c28; background-color: #d2e8e6; }
+        .skill-level-label.medium { color: #713f12; background-color: #fef9c3; }
+        .skill-level-label.develop { color: #7f1d1d; background-color: #fee2e2; }
+
+        .add-skill-btn {
+            margin-top: 20px;
+        }
+
+        /* Skills Tests Modal */
+        #skills-tests-modal .modal-body {
+            padding: 24px;
+        }
+        .test-results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .test-result-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .test-result-details {
+            flex-grow: 1;
+        }
+        .test-result-details h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+        }
+        .test-result-details p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+        }
+        .test-result-actions {
+            text-align: right;
+        }
+        .test-result-actions .btn {
+            margin-bottom: 4px;
+        }
+        .test-result-actions .date {
+            font-size: 0.85rem;
+            color: var(--text-color-light);
+        }
+
+
+        @media (max-width: 1100px) {
+            .analysis-gigs-container {
+                grid-template-columns: 1fr;
+            }
+             .analysis-sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+        }
+        @media (max-width: 992px) { 
+            .main-grid, 
+            .self-assessment-grid { 
+                grid-template-columns: 1fr; 
+            } 
+            .sidebar-column { 
+                grid-row: auto; 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid, .gigs-container .gigs-grid, .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-analysis-container {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+            .suggestion-list {
+                grid-template-columns: 1fr;
+            }
+            .contact-items {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .job-offer-main {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .job-offer-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            #self-assessment-ai-modal .assessment-step-list {
+                grid-template-columns: 1fr;
+            }
+        }
+         @media (max-width: 576px) {
+            .skill-item {
+                grid-template-columns: 1fr;
+                text-align: left;
+                gap: 8px;
+            }
+            .skill-name {
+                text-align: left;
+            }
+            .test-result-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .test-result-actions {
+                width: 100%;
+                text-align: left;
+                margin-top: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="logo-nav">
+                <span class="logo">Eesti Töötukassa</span>
+                <a href="#">Juhendid ja abimaterjalid</a>
+            </div>
+            <div class="search-container"><input type="text" placeholder="Otsi kodulehe sisust"></div>
+            <div class="user-actions"><button class="profile-button"><span>Kaisa Karu</span><span>▼</span></button></div>
+        </div>
+    </header>
+    <div class="sub-nav-bar-container">
+        <div class="sub-nav-bar">
+            <a href="#" class="back-link">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Tagasi Infoportaali
+            </a>
+            <nav class="main-nav">
+                <a href="#">Minu töötukassa</a>
+                <a href="#">Arvelevõtmine</a>
+                <a href="#" class="active">Minu plaan</a>
+                <a href="#">Toetused ja hüvitised</a>
+                <a href="#">Tööotsingud</a>
+                <a href="#">Töövõime</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="main-grid">
+            <div class="main-column">
+                <!-- 1. Uuendatud profiili kaart -->
+                <div class="card profile-card">
+                    <a href="#" id="open-ai-modal" class="ai-icon-link" title="AI Soovitus">AI</a>
+                    <div class="profile-card-content">
+                        <h3>Tere, Kaisa!</h3>
+                        <p>Märkame sinu aktiivsust – oled õigel teel! Astu järgmine samm ja leia endale sobiv koolitus, et saaksime sinu profiili veelgi paremini täiendada.</p>
+                    </div>
+                    <div class="profile-card-footer">
+                        <a href="#" class="btn btn-primary">Vaata koolitusi</a>
+                        <a href="#" class="btn btn-secondary">Hiljem</a>
+                    </div>
+                </div>
+
+                <!-- Soovituslikud teenused -->
+                <div class="card services-card">
+                    <a href="#" id="open-ai-services-modal" class="ai-icon-link" title="AI Soovitus">AI</a>
+                    <div class="card-header">
+                        <h3>Soovituslikud teenused</h3>
+                    </div>
+                    <div class="services-grid">
+                        <div class="service-item-card card">
+                            <div class="service-item-content">
+                                <h4><a href="#">Karjäärinõustamine</a></h4>
+                                <p>Saa tuge oma karjääri planeerimisel, tööotsingute oskuste arendamisel ja tööeluks valmistumisel.</p>
+                            </div>
+                            <a href="#" class="btn btn-primary btn-small">Broneeri aeg</a>
+                        </div>
+                        <div class="service-item-card card">
+                            <div class="service-item-content">
+                                <h4><a href="#">Tööalane koolitus</a></h4>
+                                <p>Täienda oma teadmisi või õpi uus amet, et parandada oma võimalusi tööturul.</p>
+                            </div>
+                            <a href="#" class="btn btn-primary btn-small">Registreeru</a>
+                        </div>
+                        <div class="service-item-card card">
+                            <div class="service-item-content">
+                                <h4><a href="#">Tööprakika</a></h4>
+                                <p>Omanda praktiline kogemus, täienda oma oskusi ja suurenda võimalusi tööle asumiseks.</p>
+                            </div>
+                            <a href="#" class="btn btn-primary btn-small">Võta ühendust nõustajaga</a>
+                        </div>
+                        <div class="service-item-card card">
+                           <div class="service-item-content">
+                                <h4><a href="#">Veebiseminar noortele "Enesejuhtimine"</a></h4>
+                                <p>Õpi paremini seadma eesmärke, juhtima oma aega ja suurendama enesekindlust, et teha teadlikke karjääriotsuseid.</p>
+                           </div>
+                           <a href="#" class="btn btn-primary btn-small">Registreeru</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Uus Töösoovid kaart -->
+                <div class="card job-wishes-card">
+                    <div class="card-header">
+                        <h3>Minu töösoovid</h3>
+                        <a href="#" id="open-ai-wish-analysis-modal" class="ai-icon-link" title="AI Töösoovide analüüs">AI</a>
+                    </div>
+                    <ul class="job-wishes-list">
+                        <li class="job-wish-item">
+                            <div class="job-wish-details">
+                                <svg class="job-wish-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                                <span class="job-wish-title">IT projektijuht</span>
+                            </div>
+                            <div class="job-wish-actions">
+                                <span class="job-count">Pakkumisi: <b>0</b></span>
+                                <button class="job-wish-manage-btn" title="Muuda">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                </button>
+                            </div>
+                        </li>
+                        <li class="job-wish-item">
+                            <div class="job-wish-details">
+                                <svg class="job-wish-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                                <span class="job-wish-title">Vanemanalüütik</span>
+                            </div>
+                             <div class="job-wish-actions">
+                                <span class="job-count">Pakkumisi: <b>1</b></span>
+                                <button class="job-wish-manage-btn" title="Muuda">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="btn btn-secondary btn-full-width add-wish-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        Lisa töösoov
+                    </button>
+                    <div class="short-term-section">
+                        <p class="short-term-text">Tööpakkumised ja tööampsud</p>
+                        <a href="#" class="btn btn-primary">Vaata lähemalt</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sidebar-column">
+                <!-- Nõustaja kaart -->
+                <div class="card counselor-card">
+                    <div class="counselor-avatar">
+                        <svg class="counselor-avatar-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="counselor-name">Mari Maasikas</h3>
+                    <p class="counselor-title">Töökeskne nõustaja</p>
+                    
+                    <div class="contact-reasons-wrapper">
+                        <ul class="contact-reasons">
+                            <li>Kui tööotsing tekitab segadust</li>
+                            <li>Kui motivatsioon on langenud</li>
+                            <li>Kui vajad abi CV või kandideerimisega</li>
+                            <li>Kui otsid sobivat koolitust või teenust</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="counselor-contact">
+                        <a href="tel:7773000" class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                            </svg>
+                            7773000
+                        </a>
+                        <a href="mailto:mari.maasikas@tootukassa.ee" class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            mari.maasikas@tootukassa.ee
+                        </a>
+                        
+                        <button class="contact-button">Võta ühendust</button>
+                    </div>
+                </div>
+
+                <!-- Minu Profiil kaart -->
+                <div class="card my-profile-card">
+                    <a href="#" id="open-ai-profile-analysis-modal" class="ai-icon-link" title="AI Profiili analüüs">AI</a>
+                    <h3>Minu profiil</h3>
+                    <div class="profile-stats-grid">
+                        <div class="stat-box">
+                            <div class="label">CV staatus</div>
+                            <div class="value">Aktiivne</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="label">CV vastamisi <span class="sub-label">(1 kuu jooksul)</span></div>
+                            <div class="value">2</div>
+                        </div>
+                        <div class="stat-box full-width">
+                            <div class="label">CV valmidus</div>
+                            <div class="value">84%</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-tips">
+                        <h4>Soovitused & nipid</h4>
+                        <ul class="profile-tips-list">
+                            <li>Lisa konkreetseid saavutusi ja tulemusi (nt. "suurendasin projekti efektiivsust 25%")</li>
+                            <li>Täienda tehniliste oskuste sektsiooni (puudu: DevOps, CI/CD)</li>
+                            <li>Uuenda ja lühenda kokkuvõtet, keskendudes IT projektijuhtimisele</li>
+                        </ul>
+                    </div>
+                    <div class="profile-action" style="margin-top: 24px;">
+                        <button class="btn btn-primary">Muuda CV-d</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card self-assessment-card" style="margin-top: 32px;">
+            <a href="#" id="open-self-assessment-ai-modal" class="ai-icon-link" title="AI Soovitus">AI</a>
+            <div class="card-header" style="border: none; flex-wrap: wrap;"><h3>Enesehinnang</h3> <p class="card-subtitle" style="width: 100%; margin: 5px 0 0 0;">Teie antud enesehinnang aitab nõustajal Teie tööotsinguid paremini juhendada.</p></div>
+            <div class="self-assessment-grid">
+                <div class="rating-column">
+                    <h4 class="assessment-question">Leian töö järgmise 3 kuu jooksul</h4>
+                    <div style="display: flex; flex-direction: row-reverse; justify-content: flex-end;">
+                        <div class="star-rating">
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1">★</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2">★</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3">★</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4">★</label>
+                            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5">★</label>
+                            <input type="radio" id="star6" name="rating" value="6"><label for="star6" title="6">★</label>
+                            <input type="radio" id="star7" name="rating" value="7"><label for="star7" title="7">★</label>
+                            <input type="radio" id="star8" name="rating" value="8" checked><label for="star8" title="8">★</label>
+                            <input type="radio" id="star9" name="rating" value="9"><label for="star9" title="9">★</label>
+                            <input type="radio" id="star10" name="rating" value="10"><label for="star10" title="10">★</label>
+                        </div>
+                    </div>
+                    <div class="rating-labels" style="max-width: 400px;"><span>Ei ole üldse kindel</span><span>Täiesti kindel</span></div>
+                </div>
+                <div class="justification-column">
+                    <div class="justification-group" style="margin-top:0;">
+                        <label for="justification">Soovi korral põhjendage oma hinnangut</label>
+                        <textarea id="justification" placeholder="Kirjuta siia..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Minu plaan -->
+        <div class="card" style="margin-top: 32px;">
+            <div class="card-header">
+                <h2 style="font-size: 1.75rem; font-weight: 600;">Minu plaan</h2>
+            </div>
+            <div class="plan-container">
+                <div class="plan-grid">
+                    <div class="plan-block" style="background-color: white; border-radius: 12px; padding: 24px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+                        <div class="plan-block-header">
+                            <h3>Minu tugevused, oskused ja ootused</h3>
+                            <a href="#" id="open-strengths-ai-modal" class="ai-icon-link" title="AI Soovitus">AI</a>
+                        </div>
+                        <p class="card-subtitle">Sõnasta lühidalt oma oskused ja soovid, et saaksime sulle leida parima võimaliku töökoha.</p>
+                        <textarea id="skills-and-expectations-textarea" style="min-height: 480px;">Olen viimased 7 aastat töötanud IT-projektijuhina, vastutades tarkvaraarendusprojektide elluviimise eest. Minu tugevused on meeskonna juhtimine, suhtlemisoskus ja probleemide lahendamine. Olen motiveeritud töötama keskkonnas, mis toetab innovatsiooni ja pakub võimalusi isiklikuks arenguks. Eelistan hübriidtööd.
+
+Minu tehnilised oskused:
+- Projektijuhtimise metoodikad (Agile, Scrum, Kanban)
+- JIRA, Confluence, Asana, Trello
+- MS Project (algteadmised)
+- SQL (algtase)
+
+Ootused järgmisele ametikohale:
+- Võimalus juhtida ja arendada meeskonda
+- Rahvusvahelised projektid
+- Paindlik töökorraldus
+- Konkurentsivõimeline töötasu (3200-4000€)
+- Karjäärivõimalused ettevõttes</textarea>
+                    </div>
+                    
+                    <div class="plan-right-column">
+                        <div class="plan-block" style="background-color: white; border-radius: 12px; padding: 24px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+                            <div class="plan-block-header">
+                                <h3>Minu tööalane eesmärk</h3>
+                                <div class="card-header-actions">
+                                    <a href="#" class="ai-icon-link" id="open-smart-modal-trigger">AI</a>
+                                </div>
+                            </div>
+                            <input type="text" class="main-goal-input" value="Leida vanemprojektijuhi ametikoht IT-sektoris järgmise 3 kuu jooksul">
+                        </div>
+
+                        <div class="plan-block" style="background-color: white; border-radius: 12px; padding: 24px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+                            <div class="plan-block-header">
+                                <h3>Minu tegevused</h3>
+                                <a href="#" id="open-ai-activity-suggestion-modal" class="ai-icon-link" title="AI tegevuste soovitused">AI</a>
+                            </div>
+                            <div class="add-task-container">
+                                <div class="add-task-form">
+                                    <input type="text" id="quick-task-input" placeholder="Lisa uus tegevus...">
+                                    <button class="btn-add" id="quick-add-task-btn">+</button>
+                                </div>
+                            </div>
+                            <div class="checklist">
+                                <div class="checklist-item completed"><input type="checkbox" id="task3" checked><label for="task3" class="task-label">Uuri IT-sektori trende</label><span class="task-date">15.07.2025</span></div>
+                                <div class="checklist-item"><input type="checkbox" id="task1"><label for="task1" class="task-label">Täienda CV-d ja motivatsioonikirja</label><span class="task-date">30.07.2025</span></div>
+                                <div class="checklist-item"><input type="checkbox" id="task4"><label for="task4" class="task-label">Kandideeri vähemalt kahele ametikohale nädalas</label><span class="task-date">05.08.2025</span></div>
+                                <div class="checklist-item"><input type="checkbox" id="task5"><label for="task5" class="task-label">Võta ühendust 3 endise kolleegiga võrgustiku laiendamiseks</label><span class="task-date">12.08.2025</span></div>
+                                <div class="checklist-item"><input type="checkbox" id="task6"><label for="task6" class="task-label">Osale vähemalt ühel IT-projektijuhtimise veebiseminaril</label><span class="task-date">20.08.2025</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer" style="text-align: right; border-top: 1px solid var(--border-color); padding-top: 24px; margin-top: 24px;">
+                <button class="btn btn-primary">Salvesta plaan</button>
+            </div>
+        </div>
+        
+        <!-- UUS Oskuste kaart -->
+        <div class="card skills-card-v2" style="margin-top: 32px;">
+            <div class="card-header">
+                <h3>Minu oskused</h3>
+                <div class="card-header-actions">
+                    <button id="open-skills-tests-modal" class="btn btn-secondary btn-small">Minu testid</button>
+                </div>
+            </div>
+            <div class="skills-card-body">
+                <div class="skills-list-section">
+                    <div class="skill-item">
+                        <span class="skill-name">Projektijuhtimine</span>
+                        <div class="skill-level-bar-container">
+                            <div class="skill-level-bar" style="width: 90%;"></div>
+                            <input type="range" min="0" max="100" value="90" class="skill-slider">
+                        </div>
+                        <span class="skill-level-label">Väga tugev</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Meeskonnatöö</span>
+                        <div class="skill-level-bar-container">
+                            <div class="skill-level-bar" style="width: 85%;"></div>
+                             <input type="range" min="0" max="100" value="85" class="skill-slider">
+                        </div>
+                        <span class="skill-level-label">Väga tugev</span>
+                    </div>
+                     <div class="skill-item">
+                        <span class="skill-name">Kliendisuhted</span>
+                        <div class="skill-level-bar-container">
+                            <div class="skill-level-bar" style="width: 80%;"></div>
+                            <input type="range" min="0" max="100" value="80" class="skill-slider">
+                        </div>
+                        <span class="skill-level-label">Tugev</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Scrum</span>
+                        <div class="skill-level-bar-container">
+                            <div class="skill-level-bar" style="width: 65%;"></div>
+                            <input type="range" min="0" max="100" value="65" class="skill-slider">
+                        </div>
+                        <span class="skill-level-label">Keskmine</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Probleemilahendus</span>
+                        <div class="skill-level-bar-container">
+                            <div class="skill-level-bar" style="width: 60%;"></div>
+                            <input type="range" min="0" max="100" value="60" class="skill-slider">
+                        </div>
+                        <span class="skill-level-label">Keskmine</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Microsoft Project</span>
+                        <div class="skill-level-bar-container">
+                            <div class="skill-level-bar" style="width: 30%;"></div>
+                            <input type="range" min="0" max="100" value="30" class="skill-slider">
+                        </div>
+                        <span class="skill-level-label">Arendamist vajav</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Agile sertifikaat</span>
+                        <div class="skill-level-bar-container">
+                            <div class="skill-level-bar" style="width: 15%;"></div>
+                            <input type="range" min="0" max="100" value="15" class="skill-slider">
+                        </div>
+                        <span class="skill-level-label">Arendamist vajav</span>
+                    </div>
+                     <div class="skill-item">
+                        <span class="skill-name">DevOps põhimõtted</span>
+                        <div class="skill-level-bar-container">
+                            <div class="skill-level-bar" style="width: 10%;"></div>
+                            <input type="range" min="0" max="100" value="10" class="skill-slider">
+                        </div>
+                        <span class="skill-level-label">Arendamist vajav</span>
+                    </div>
+                    <button class="btn btn-secondary btn-full-width add-skill-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        Lisa oskus
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- AI Profile Analysis Modal -->
+    <div id="ai-profile-analysis-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header" style="border-bottom: none;">
+                 <span class="modal-close" data-modal-id="ai-profile-analysis-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-intro">
+                    <h3>Sinu profiili analüüs</h3>
+                    <p>Sinu eesmärkide „IT projektijuht“ või „Vanemanalüütik“ alusel analüüsisime sinu profiili tugevust ja pakkusime välja tegevusi, mis aitavad sul soovitud rollile lähemale jõuda.</p>
+                </div>
+                <div class="profile-analysis-container">
+                    <div class="profile-strength-visual">
+                        <div class="profile-strength-circle" id="profile-strength-circle-container">
+                             <svg width="150" height="150" viewBox="0 0 120 120">
+                                <circle class="bg" cx="60" cy="60" r="54" fill="none" stroke-width="12" />
+                                <circle class="progress" cx="60" cy="60" r="54" fill="none" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="74.644" />
+                            </svg>
+                            <div class="profile-strength-text">
+                                <div class="score">78%</div>
+                                <div class="label">Profiili tugevus</div>
+                            </div>
+                        </div>
+                        <p>Sinu profiil on tugev, kuid mõne täiendusega saad selle veelgi paremaks muuta!</p>
+                    </div>
+                    <div class="profile-analysis-content">
+                        <div class="profile-analysis-section">
+                            <h4>Soovitused profiili täiendamiseks</h4>
+                            <ul class="suggestion-list">
+                                <li>
+                                    <div class="suggestion-text">
+                                        <strong>Lisa mõõdetavaid tulemusi</strong>
+                                        <span>Kirjelda tulemusi arvudes: nt „juhtisin 7 projekti paralleelselt“, „vähendasin kulusid 12%“.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="suggestion-text">
+                                        <strong>Lisa puuduvad võtmeoskused</strong>
+                                        <span>Rolli jaoks olulised oskused: Agile, Scrum, DevOps, CI/CD, UML, SQL, stakeholder management.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="suggestion-text">
+                                        <strong>Uuenda professionaalset kokkuvõtet</strong>
+                                        <span>Lühike ja sihitud kokkuvõte aitab sul silma paista. Nt „10+ a kogemust tarkvaraarenduse juhtimisel, tugev analüütiline mõtlemine“.</span>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="suggestion-text">
+                                        <strong>Selgita rollide vastutust</strong>
+                                        <span>Kirjelda oma rolli detailselt: „vastutasin eelarve ja ajakava eest“, „koordineerisin meeskonda 3 riigis“.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="suggestion-text">
+                                        <strong>Tugevda tehniliste tööriistade loetelu</strong>
+                                        <span>Tööandjad ootavad kokkupuudet konkreetsete tööriistadega: JIRA, Confluence, MS Project, Power BI, Tableau.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="suggestion-text">
+                                        <strong>Lisa tulemuspõhiseid projekte</strong>
+                                        <span>Too esile projektid, millel oli mõju: „rakendasime uue CRM-süsteemi 6 kuuga“, „analüüsi põhjal muudeti äriprotsessi“.</span>
+                                    </div>
+                                </li>
+                                 <li>
+                                    <div class="suggestion-text">
+                                        <strong>Täpsusta ärivaldkondade kogemust</strong>
+                                        <span>Kirjelda, millistes sektorites oled töötanud (nt pangandus, telekom, avalik sektor). See loob parema pildi sobivusest.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="suggestion-text">
+                                        <strong>Kinnita teadmisi sertifikaatidega</strong>
+                                        <span>Kui sul on sertifikaate (nt PMP, PRINCE2, CBAP, ITIL), lisa need kindlasti.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="ai-profile-analysis-modal">Hiljem</button>
+                <button class="btn btn-primary">Muuda CV-d</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI Wish Analysis Modal -->
+    <div id="ai-wish-analysis-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                 <h3>Soovitatud töökohad ja tööampsud</h3>
+                 <span class="modal-close" data-modal-id="ai-wish-analysis-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="analysis-gigs-container">
+                    <div class="analysis-sidebar">
+                        <div class="card-header">
+                            <h3>Tööpakkumiste analüüs</h3>
+                        </div>
+                        <div class="analysis-body">
+                            <div class="analysis-section">
+                                <div class="title">Praegune töösoov</div>
+                                <div class="value">IT Projektijuht</div>
+                            </div>
+                            <div class="analysis-section analysis-info-box">
+                                <h5>Täpsustatud töösoovid</h5>
+                                <p>Sinu profiili põhjal soovitame järgmisi töösoove, mis võiksid sulle sobida:</p>
+                                <ul>
+                                    <li><strong>IT Projektijuht</strong> (praegune) - 18 aktiivset tööpakkumist</li>
+                                    <li><strong>Scrum Master</strong> - sobivus 87%, 12 aktiivset tööpakkumist</li>
+                                    <li><strong>Tootejuht (IT)</strong> - sobivus 76%, 9 aktiivset tööpakkumist</li>
+                                </ul>
+                                <button class="btn btn-primary">Lisa uus töösoov</button>
+                            </div>
+                            <div class="analysis-section analysis-info-box">
+                                <h5>Palgaanalüüs</h5>
+                                <p>IT projektijuhtide keskmine palk sinu piirkonnas on 2800-3500€. Sinu kogemustega spetsialistid teenivad keskmiselt 3200€.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gigs-container">
+                        <h3>Sinu profiili põhjal sobivad lühiajalised tööpakkumised</h3>
+                        <div class="gigs-grid">
+                            <div class="gig-card">
+                                <h4>Lühiajaline IT projektijuhtimise töö</h4>
+                                <p>3-kuuline projekt e-poe arendamisel, meeskonna koordineerimine ja aruandlus. Kaugtöö võimalus.</p>
+                                <h5>Vajalikud oskused:</h5>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">Projektijuhtimine</span>
+                                    <span class="skill-tag">Agile</span>
+                                    <span class="skill-tag">Jira</span>
+                                </div>
+                                <a href="#" class="btn btn-primary">Vaata lähemalt</a>
+                            </div>
+                            <div class="gig-card">
+                                <h4>React komponendi arendus</h4>
+                                <p>Olemasolevale veebirakendusele uue interaktiivse registreerimisvormi loomine.</p>
+                                <h5>Vajalikud oskused:</h5>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">HTML/CSS</span>
+                                </div>
+                                <a href="#" class="btn btn-primary">Vaata lähemalt</a>
+                            </div>
+                            <div class="gig-card">
+                                <h4>Mobiilirakenduse kasutajakogemuse disain</h4>
+                                <p>Uue äpi "onboarding" protsessi ja peamiste vaadete prototüüpimine Figmas.</p>
+                                <h5>Vajalikud oskused:</h5>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">Figma</span>
+                                    <span class="skill-tag">UI/UX Disain</span>
+                                    <span class="skill-tag">Prototüüpimine</span>
+                                </div>
+                                <a href="#" class="btn btn-primary">Vaata lähemalt</a>
+                            </div>
+                            <div class="gig-card">
+                                <h4>Uue tarkvaraversiooni manuaalne testimine</h4>
+                                <p>Raamatupidamistarkvara uue mooduli läbiklõpsamine ja vigade raporteerimine.</p>
+                                <h5>Vajalikud oskused:</h5>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">QA</span>
+                                    <span class="skill-tag">Manuaalne testimine</span>
+                                    <span class="skill-tag">Detailitäpsus</span>
+                                </div>
+                                <a href="#" class="btn btn-primary">Vaata lähemalt</a>
+                            </div>
+                        </div>
+
+                        <!-- NEW: Job Offers Section -->
+                        <div class="job-offers-container">
+                            <div class="job-offers-header">
+                                <h3>Sobivad tööpakkumised</h3>
+                                <button class="btn btn-secondary">Vaata kõiki</button>
+                            </div>
+                            <div class="job-offer-list">
+                                <!-- Offer 1 -->
+                                <div class="job-offer-card">
+                                    <div class="job-offer-main">
+                                        <div class="job-offer-logo">T</div>
+                                        <div class="job-offer-info">
+                                            <h4>IT Projektijuht</h4>
+                                            <span>TechNordic OÜ • Tallinn</span>
+                                        </div>
+                                        <div class="job-offer-match high">95% sobivus</div>
+                                    </div>
+                                    <div class="job-offer-tags" style="padding-left: 56px; margin-top: 12px;">
+                                        <span class="job-offer-tag">Tallinn, Kesklinn</span>
+                                        <span class="job-offer-tag">3000-4000€</span>
+                                        <span class="job-offer-tag">Täistööaeg</span>
+                                        <span class="job-offer-tag">Hübriid (3 p. kontoris)</span>
+                                    </div>
+                                    <div class="job-offer-description">
+                                        <p>Otsime kogenud IT projektijuhti digitaalsete toodete arendusmeeskonda. Sobid ideaalselt, kui sul on kogemus rahvusvaheliste projektide juhtimisega, tugev tehniline taust ja suhtlemisoskus.</p>
+                                    </div>
+                                    <div class="job-offer-footer">
+                                        <span class="added-time">Lisatud 2 päeva tagasi</span>
+                                        <div class="actions">
+                                            <button class="btn btn-secondary btn-small">Salvesta</button>
+                                            <button class="btn btn-primary btn-small">Kandideeri</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Offer 2 -->
+                                <div class="job-offer-card">
+                                    <div class="job-offer-main">
+                                        <div class="job-offer-logo" style="background-color: #e3f2fd; color: #1e88e5;">N</div>
+                                        <div class="job-offer-info">
+                                            <h4>Vanemprojektijuht</h4>
+                                            <span>NordicSoft AS • Tallinn</span>
+                                        </div>
+                                        <div class="job-offer-match medium">88% sobivus</div>
+                                    </div>
+                                     <div class="job-offer-tags" style="padding-left: 56px; margin-top: 12px;">
+                                        <span class="job-offer-tag">Tallinn</span>
+                                        <span class="job-offer-tag">3500-4500€</span>
+                                        <span class="job-offer-tag">Täistööaeg</span>
+                                        <span class="job-offer-tag">Kontoris</span>
+                                    </div>
+                                    <div class="job-offer-description">
+                                        <p>NordicSoft otsib vanemprojektijuhti, kes vastutaks meie suurimate klientide projektide eest. Eeldame vähemalt 5-aastast projektijuhtimise kogemust IT-valdkonnas ja tugevat meeskonnatöö oskust.</p>
+                                    </div>
+                                    <div class="job-offer-footer">
+                                        <span class="added-time">Lisatud 3 päeva tagasi</span>
+                                        <div class="actions">
+                                            <button class="btn btn-secondary btn-small">Salvesta</button>
+                                            <button class="btn btn-primary btn-small">Kandideeri</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Offer 3 -->
+                                <div class="job-offer-card">
+                                    <div class="job-offer-main">
+                                        <div class="job-offer-logo" style="background-color: #ede7f6; color: #5e35b1;">D</div>
+                                        <div class="job-offer-info">
+                                            <h4>Digitaalsete projektide juht</h4>
+                                            <span>DigiTarkus OÜ • Kaugtöö</span>
+                                        </div>
+                                        <div class="job-offer-match low">75% sobivus</div>
+                                    </div>
+                                     <div class="job-offer-tags" style="padding-left: 56px; margin-top: 12px;">
+                                        <span class="job-offer-tag">Kaugtöö</span>
+                                        <span class="job-offer-tag">2800-3500€</span>
+                                        <span class="job-offer-tag">Täistööaeg</span>
+                                        <span class="job-offer-tag">100% kaugtöö</span>
+                                    </div>
+                                    <div class="job-offer-description">
+                                        <p>Pakume võimalust juhtida innovaatiliste digilahenduste arendust täielikult kaugtöö vormis. Otsime projektijuhti, kes suudab hallata mitmeid projekte korraga ja omab tugevat digitaalset suhtlemisoskust.</p>
+                                    </div>
+                                    <div class="job-offer-footer">
+                                        <span class="added-time">Lisatud 5 päeva tagasi</span>
+                                        <div class="actions">
+                                            <button class="btn btn-secondary btn-small">Salvesta</button>
+                                            <button class="btn btn-primary btn-small">Kandideeri</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Offer 4 -->
+                                <div class="job-offer-card">
+                                    <div class="job-offer-main">
+                                        <div class="job-offer-logo" style="background-color: #fff0e1; color: #af4025;">A</div>
+                                        <div class="job-offer-info">
+                                            <h4>Tehniline projektijuht</h4>
+                                            <span>AgileWorks OÜ • Tartu</span>
+                                        </div>
+                                        <div class="job-offer-match medium">82% sobivus</div>
+                                    </div>
+                                     <div class="job-offer-tags" style="padding-left: 56px; margin-top: 12px;">
+                                        <span class="job-offer-tag">Tartu</span>
+                                        <span class="job-offer-tag">3300-4200€</span>
+                                        <span class="job-offer-tag">Täistööaeg</span>
+                                        <span class="job-offer-tag">Hübriid</span>
+                                    </div>
+                                    <div class="job-offer-description">
+                                        <p>Otsime oma Tartu kontorisse tehnilist projektijuhti, kes ei karda käsi külge panna ka tehnilistes küsimustes. Vajalik on varasem kogemus tarkvaraarenduse elutsükliga.</p>
+                                    </div>
+                                    <div class="job-offer-footer">
+                                        <span class="added-time">Lisatud eile</span>
+                                        <div class="actions">
+                                            <button class="btn btn-secondary btn-small">Salvesta</button>
+                                            <button class="btn btn-primary btn-small">Kandideeri</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- AI Services Modal -->
+    <div id="ai-services-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: white;">
+                <h3>Personaalsed soovitused</h3>
+                <span class="modal-close" data-modal-id="ai-services-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Analüüsisime sinu profiili ja töösoove ning leidsime sulle sobivaimad teenused:</p>
+                
+                <div class="info-box">
+                    <p><strong>Tööandjal on võimalik sinu töölevõtmisel taotleda palgatoetust</strong><br>
+                    Kuna vastad palgatoetuse tingimustele, võib tööandja sinu tööle võtmisel saada Töötukassalt toetust. See suurendab sinu konkurentsivõimet tööturul. <a href="#">Loe lisaks</a></p>
+                </div>
+
+                <div class="recommendation-box">
+                    <div class="service-recommendation">
+                        <div class="service-details">
+                            <h4>Veebitöötuba "Kuidas ennast mõjuvalt tutvustada?"</h4>
+                            <div class="service-meta">
+                                <span>TOIMUMISE AEG: <strong>19.08.2025</strong></span>
+                                <span>SIHTRÜHM: <strong>Tööotsijale</strong></span>
+                                <span>KOHT: <strong>Veebitöötuba</strong></span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-small">Loe lähemalt</a>
+                    </div>
+                    <div class="service-recommendation">
+                        <div class="service-details">
+                            <h4>Veebiloeng "Kuidas tööotsingutes edukas olla?"</h4>
+                            <div class="service-meta">
+                                <span>TOIMUMISE AEG: <strong>26.08.2025</strong></span>
+                                <span>SIHTRÜHM: <strong>Tööotsijale</strong></span>
+                                <span>KOHT: <strong>Veebiloeng</strong></span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-small">Loe lähemalt</a>
+                    </div>
+                    <div class="service-recommendation">
+                        <div class="service-details">
+                            <h4>Infotund "Ettevõtlusega alustamine, töötukassa ettevõtlusetoetuse taotlemise tingimused"</h4>
+                            <div class="service-meta">
+                                <span>TOIMUMISE AEG: <strong>28.08.2025</strong></span>
+                                <span>SIHTRÜHM: <strong>Tööotsijale</strong></span>
+                                <span>KOHT: <strong>Veebiseminar</strong></span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-small">Loe lähemalt</a>
+                    </div>
+                </div>
+
+                <div class="recommendation-box event-recommendation">
+                    <div class="event-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+                    </div>
+                    <div class="event-details">
+                         <h4>IT-sektori värbamispäev</h4>
+                         <p>Kohtu otse IT-ettevõtete värbajatega, kes otsivad projektijuhte ja tehnilisi juhte.</p>
+                    </div>
+                    <div class="event-actions">
+                        <a href="#" class="btn btn-primary">Registreeru</a>
+                        <div class="date">15.08.2025</div>
+                    </div>
+                </div>
+                
+                <div class="recommendation-box">
+                    <h4>Uued artiklid ja sündmused</h4>
+                    <ul class="articles-list">
+                        <li><a href="#">"IT projektijuhtimise trendid 2025" - uus artikkel</a></li>
+                        <li><a href="#">Veebinaari salvestus: "Kuidas olla edukas tööintervjuul IT valdkonnas"</a></li>
+                        <li><a href="#">Online koolitus: "Agile ja Scrum põhitõed" - registreerimine avatud</a></li>
+                    </ul>
+                    <div class="articles-footer">
+                        <a href="#" class="btn btn-primary">Vaata kõiki koolitusi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kaisa soovituse modaalaken -->
+    <div id="ai-activity-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 28px; height: 28px; color: var(--primary-color);">
+                    <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.09-4-4-7.5 7.51L3.5 18.49z"/>
+                </svg>
+                <h3>Minu aktiivsus</h3>
+                <span class="modal-close" data-modal-id="ai-activity-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Sinu iganädalane aktiivsusindeks aitab sul püsida tööotsingutel kursil. Eesmärk on 100 punkti nädalas.</p>
+                <div class="activity-progress-container">
+                    <div class="activity-progress-bar">
+                        <div class="progress"></div>
+                        <span class="progress-text">45 / 100</span>
+                    </div>
+                </div>
+                
+                <h4>Sinu viimased tegevused:</h4>
+                <ul class="activity-list">
+                    <li><span>31.07</span> Kandideerisid kohale Müügikonsultant (+10p)</li>
+                    <li><span>30.07</span> Lisasid uue oskuse Müügitarkvara X (+5p)</li>
+                </ul>
+
+                <div class="advisor-recommendation">
+                    <div class="icon">💡</div>
+                    <div>
+                        <strong>Virtuaalnõustaja soovitab:</strong>
+                        <p style="margin: 5px 0 0 0;">Oled teinud head tööd! Et jõuda selle nädala 100 punktini, lisa veel üks tegevus. Näiteks: helista konkreetsele tööandjale, küsi infot vaba töökoha kohta või saada uus kandideerimisavaldus. Iga selline samm annab punkte ja aitab sul tööd leida.
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: flex-start;">
+                <button class="btn btn-primary">+ Lisa tegevus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="add-task-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                 <h3>Lisa uus tegevus</h3>
+                 <span class="modal-close" data-modal-id="add-task-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-form-group">
+                    <label for="task-description">Tegevuse kirjeldus</label>
+                    <textarea id="task-description" class="modal-textarea" placeholder="Nt 'Uuenda LinkedIn profiili'"></textarea>
+                </div>
+                <div class="modal-form-group">
+                    <label for="task-due-date">Tähtaeg</label>
+                    <div class="date-input-container">
+                        <input type="text" id="task-due-date" class="modal-input" placeholder="29.07.2025">
+                        <span class="calendar-icon">📅</span>
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label for="task-outcome">Oodatav tulemus (valikuline)</label>
+                    <input type="text" id="task-outcome" class="modal-input" placeholder="Nt 'Profiil on 100% täidetud'">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="add-task-modal">Tühista</button>
+                <button class="btn btn-primary">Salvesta tegevus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SMART Modal -->
+    <div id="smart-goal-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Minu tööalase eesmärgi sõnastamine</h3>
+                <span class="modal-close" data-modal-id="smart-goal-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-intro">SMART kriteeriumitele vastav tööalane eesmärk annab sulle selge teekonna ja suurendab oluliselt edu võimalusi. See aitab hoida fookust, kasutada aega efektiivselt ning mõõta progressi konkreetsete verstapostide abil.</div>
+                
+                <!-- Specific -->
+                <div class="smart-section">
+                    <div class="smart-icon">S</div>
+                    <div class="smart-details">
+                        <h3>Konkreetsus (Specific)</h3>
+                        <p>Määratle täpselt, mida soovid saavutada</p>
+                        <div class="smart-question">Millist tööd ma otsin, millises valdkonnas või rollis?</div>
+                        <div class="smart-question">Millises piirkonnas või ettevõtetes soovin töötada?</div>
+                        <label for="specific-goal" class="modal-form-group">Minu konkreetne eesmärk:</label>
+                        <div class="modal-input-field">Vanemprojektijuhi ametikoht IT-sektoris</div>
+                    </div>
+                </div>
+                <!-- Measurable -->
+                <div class="smart-section">
+                    <div class="smart-icon" style="background-color: #3b8ea5;">M</div>
+                    <div class="smart-details">
+                        <h3>Mõõdetavus (Measurable)</h3>
+                        <p>Määratle, kuidas saad progressi mõõta</p>
+                        <div class="smart-question">Kui mitu kandideerimist või kontakti (nt tööportaal, otsekontakt, võrgustik) kavatsen teha nädalas?</div>
+                        <div class="smart-question">Mitmele tööintervjuule tahan pääseda järgmise kuu jooksul?</div>
+                        <label for="measurable-goal" class="modal-form-group">Kuidas ma mõõdan progressi:</label>
+                        <div class="modal-input-field">Kandideerin vähemalt 5 töökohale nädalas ja saavutan 2 intervjuud kuus</div>
+                    </div>
+                </div>
+                <!-- Achievable -->
+                <div class="smart-section">
+                    <div class="smart-icon" style="background-color: #f7923a;">A</div>
+                    <div class="smart-details">
+                        <h3>Saavutatavus (Achievable)</h3>
+                        <p>Veendu, et eesmärk on realistlik</p>
+                        <div class="smart-question">Kas minu kogemused ja oskused vastavad soovitud ametikoha nõuetele?</div>
+                        <div class="smart-question">Mida saan ise teha (nt CV uuendamine, kontaktide loomine, koolituse läbimine), et suurendada töö leidmise tõenäosust?</div>
+                        <label for="achievable-goal" class="modal-form-group">Kuidas tagada eesmärgi saavutatavus:</label>
+                        <div class="modal-input-field">Läbin Agile projektijuhtimise koolituse ja uuendan oma CV-d vastavalt sihtpositsiooni nõuetele</div>
+                    </div>
+                </div>
+                <!-- Relevant -->
+                <div class="smart-section">
+                    <div class="smart-icon" style="background-color: #c94c4c;">R</div>
+                    <div class="smart-details">
+                        <h3>Asjakohasus (Relevant)</h3>
+                        <p>Selgita, miks see eesmärk on sulle oluline</p>
+                        <div class="smart-question">Kuidas aitab see töökoht mul oma karjäärieesmärke saavutada?</div>
+                        <div class="smart-question">Kas see töö sobib minu väärtuste, tugevuste ja huvidega?</div>
+                        <label for="relevant-goal" class="modal-form-group">Eesmärgi olulisus minu jaoks:</label>
+                        <div class="modal-input-field">See ametikoht vastab minu tehnilistele oskustele ja</div>
+                    </div>
+                </div>
+                 <!-- Time-bound -->
+                 <div class="smart-section">
+                    <div class="smart-icon" style="background-color: #5b5f97;">T</div>
+                    <div class="smart-details">
+                        <h3>Ajaliselt määratletud (Time-bound)</h3>
+                        <p>Sea kindel tähtaeg eesmärgi saavutamiseks</p>
+                        <div class="smart-question">Millise tähtaja jooksul soovin tööle asuda?</div>
+                        <div class="smart-question">Mis kuupäevaks tahan olla läbinud vähemalt ühe tööintervjuu?</div>
+                        <label for="time-bound-goal" class="modal-form-group">Minu eesmärgi tähtaeg:</label>
+                        <div class="modal-input-field">Soovin alustada uuel töökohal hiljemalt 15. oktoobril</div>
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label for="summary-goal" style="font-weight: 500;">Kokkuvõttev tööalane eesmärk:</label>
+                    <textarea id="summary-goal" class="modal-textarea" placeholder="Kirjuta siia oma lõplik SMART eesmärk, mis ühendab kõiki eelnevaid vastuseid"></textarea>
+                </div>
+                <div class="ai-goal-helper">
+                    <p>Kas soovid, et AI aitaks sul eelnevate vastuste põhjal eesmärgi sõnastada?</p>
+                    <button class="btn btn-primary" id="ai-formulate-goal-btn">Jah, aita mind!</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Salvesta eesmärk</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI Formulated Goal Modal -->
+    <div id="ai-formulated-goal-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>AI sõnastatud eesmärk</h3>
+                <span class="modal-close" data-modal-id="ai-formulated-goal-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="formulated-goal-card">
+                    <p class="goal-text">
+                        Minu eesmärk on leida <span class="highlight-s">IT-projektijuhi ametikoht IT-sektoris</span>, mis vastab minu tehnilistele oskustele ja karjäärieesmärkidele <span class="highlight-r">(asjakohane)</span>. Selleks uuendan oma CV-d ja läbin <span class="highlight-a">Agile projektijuhtimise koolituse</span>, kandideerides iganädalaselt <span class="highlight-m">vähemalt 5-le tööpakkumisele</span>, et saavutada kuu jooksul <span class="highlight-m">vähemalt kaks intervjuud</span>. Soovin alustada uuel töökohal hiljemalt <span class="highlight-t">15. oktoobriks</span>.
+                    </p>
+                    <div class="goal-legend">
+                        <h4>Kuidas ma selle eesmärgi koostasin:</h4>
+                        <div class="legend-items">
+                            <span class="legend-item"><span class="legend-color-box s"></span>S - Konkreetne</span>
+                            <span class="legend-item"><span class="legend-color-box m"></span>M - Mõõdetav</span>
+                            <span class="legend-item"><span class="legend-color-box a"></span>A - Saavutatav</span>
+                            <span class="legend-item"><span class="legend-color-box r"></span>R - Asjakohane</span>
+                            <span class="legend-item"><span class="legend-color-box t"></span>T - Ajaliselt määratletud</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="ai-formulated-goal-modal">Loobu</button>
+                <button class="btn btn-primary">Salvesta eesmärk</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Self-assessment AI modal - NEW DESIGN -->
+    <div id="self-assessment-ai-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" data-modal-id="self-assessment-ai-modal">&times;</span>
+            <div class="modal-header">
+                <h3>Teeme koos väikese plaani!</h3>
+                <p>On täiesti tavaline, et tööotsingute ajal tekib ebakindlust. Siin on kolm lihtsat soovitust, mis aitavad sul enesekindlust tõsta ja edasi liikuda.</p>
+            </div>
+            <div class="modal-body">
+                <div class="assessment-step-list">
+                    <div class="assessment-step-card">
+                        <h4>Alusta tugevustest</h4>
+                        <p>Oled juba lisanud oma profiilile <b>5 oskust</b> ja salvestanud <b>2 töösoovi</b>. See on suurepärane algus!</p>
+                    </div>
+                    <div class="assessment-step-card">
+                        <h4>Sea väike eesmärk</h4>
+                        <p>Proovi midagi lihtsat: <b>leia sel nädalal 1 huvitav koolitus.</b> See aitab tõsta enesekindlust ja täiendada profiili.</p>
+                    </div>
+                    <div class="assessment-step-card">
+                        <h4>Saa personaalne soovitus</h4>
+                        <p>Leidsin sulle kiire artikli: <a href="#">"3 nippi, kuidas oma projektijuhi CV-d esile tõsta"</a>. Lugemine võtab vaid 5 min.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="self-assessment-ai-modal">Proovin hiljem</button>
+                <button class="btn btn-primary">Olen nõus, alustame!</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AI Suggestions Modal -->
+    <div id="ai-suggestions-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Siin on minu soovitused</h3>
+                <span class="modal-close" data-modal-id="ai-suggestions-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="comparison-grid">
+                    <div class="comparison-column">
+                        <h4>Sinu sisestatud tekst</h4>
+                        <div class="text-content-box" id="original-text-display">
+                            <!-- Original text from main textarea will be populated here by JS -->
+                        </div>
+                    </div>
+                    <div class="comparison-column ai-version-column">
+                        <h4>AI täiustatud versioon</h4>
+                        <div class="text-content-box" id="ai-version-display">
+                            <!-- AI version text will be populated here by JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="ai-explanation-box">
+                    <strong>Mida ma tegin?</strong>
+                    <p>Struktureerisin sinu teksti ümber, et see oleks värbajale kiiremini ja kergemini loetav. Lisasin juurde ka kaks olulist märksõna (<span class="keyword-highlight">Eelarvestamine</span> ja <span class="keyword-highlight">Riskijuhtimine</span>), mida tööandjad IT-projektijuhtide puhul sageli otsivad.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="ai-suggestions-modal">Jäta esialgne</button>
+                <button class="btn btn-primary">Võta see versioon kasutusele</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Activity Suggestion Modal -->
+    <div id="ai-activity-suggestion-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>AI soovitab: Sinu personaalne tegevuskava</h3>
+                <span class="modal-close" data-modal-id="ai-activity-suggestion-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-intro" style="background-color: var(--primary-light); border-color: var(--highlight-border); color: var(--highlight-text);">
+                    Olen analüüsinud sinu profiili, eesmärki "leida vanemprojektijuhi ametikoht" ja arendamist vajavaid oskusi. Nende andmete põhjal pakun välja järgmised tegevused, mis aitavad sul eesmärgini jõuda. Vali endale sobivad.
+                </div>
+                <ul class="ai-suggestion-list">
+                    <li class="ai-suggestion-item">
+                        <label>
+                            <input type="checkbox" name="ai-task" checked>
+                            <div class="suggestion-content">
+                                <strong>Valmista ette intervjuu vastused STAR-meetodil</strong>
+                                <span>Põhjus: Sinu kogemus on tugev, kuid intervjuul pead seda tõestama. Valmista ette 3 näidet oma suurimatest projektidest, kasutades STAR-meetodit (olukord, ülesanne, tegevus, tulemus).</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="ai-suggestion-item">
+                        <label>
+                            <input type="checkbox" name="ai-task" checked>
+                            <div class="suggestion-content">
+                                <strong>Lõpeta 1-tunnine "DevOps Fundamentals" kursus</strong>
+                                <span>Põhjus: Märkisid, et DevOps on arendamist vajav oskus. Lühikursus annab sulle enesekindlust ja teadmisi, mida CV-sse lisada ja intervjuul mainida.</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="ai-suggestion-item">
+                        <label>
+                            <input type="checkbox" name="ai-task">
+                            <div class="suggestion-content">
+                                <strong>Võta ühendust 2 IT-värbajaga LinkedInis</strong>
+                                <span>Põhjus: Passiivne kandideerimine ei pruugi olla piisav. Otsi 2 värbajat, kes on spetsialiseerunud IT-sektorile, ja palu neilt 15-minutilist informatiivset vestlust turuolukorra kohta.</span>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="ai-suggestion-item">
+                        <label>
+                            <input type="checkbox" name="ai-task" checked>
+                            <div class="suggestion-content">
+                                <strong>Kohanda oma CV-d vastavalt 3 tööpakkumisele</strong>
+                                <span>Põhjus: Üks CV ei sobi kõigile. Vali 3 meelepärast vanemprojektijuhi pakkumist ja kohanda oma CV-d ja motivatsioonikirja igaühe jaoks eraldi, kasutades kuulutuses olevaid märksõnu.</span>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="ai-activity-suggestion-modal">Loobu</button>
+                <button class="btn btn-primary">Lisa minu tegevuste hulka</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Tests Modal -->
+    <div id="skills-tests-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: white;">
+                <h3>Minu testid</h3>
+                <span class="modal-close" data-modal-id="skills-tests-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="info-box" style="margin-bottom: 24px;">
+                    <p>Siin näed oma täidetud testide tulemusi. Testid aitavad sul paremini mõista oma tugevusi ja leida sobivaid karjäärisuundi. Uute testide tegemiseks mine <a href="#">testide lehele</a>.</p>
+                </div>
+                <div class="test-results-list">
+                    <div class="test-result-item">
+                        <div class="test-result-details">
+                            <h4>Karjäärivaliku test</h4>
+                            <p>Aitab selgitada sinu huvisid ja soovitab sobivaid ameteid.</p>
+                        </div>
+                        <div class="test-result-actions">
+                            <button class="btn btn-primary btn-small">Vaata tulemusi</button>
+                            <div class="date">Täidetud: 12.06.2025</div>
+                        </div>
+                    </div>
+                    <div class="test-result-item">
+                        <div class="test-result-details">
+                            <h4>Numbrilise võimekuse test</h4>
+                            <p>Mõõdab sinu oskust tõlgendada andmeid ja teha arvutusi.</p>
+                        </div>
+                        <div class="test-result-actions">
+                            <button class="btn btn-primary btn-small">Vaata tulemusi</button>
+                            <div class="date">Täidetud: 03.05.2025</div>
+                        </div>
+                    </div>
+                    <div class="test-result-item">
+                        <div class="test-result-details">
+                            <h4>Isiksusetest</h4>
+                            <p>Annab ülevaate sinu isikuomadustest ja soovitusi töökeskkonna valikuks.</p>
+                        </div>
+                         <div class="test-result-actions">
+                            <button class="btn btn-secondary btn-small">Tee testi</button>
+                            <div class="date">Täitmata</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color: var(--secondary-color); border-top: none; padding-top: 16px;">
+                <button class="btn btn-secondary" data-modal-id="skills-tests-modal">Sulge</button>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Modal openers
+        const openSmartModalBtn = document.getElementById('open-smart-modal');
+        const openSmartModalTrigger = document.getElementById('open-smart-modal-trigger');
+        const quickAddTaskBtn = document.getElementById('quick-add-task-btn');
+        const openAiModalBtn = document.getElementById('open-ai-modal');
+        const openAiServicesModalBtn = document.getElementById('open-ai-services-modal');
+        const openAiWishAnalysisModalBtn = document.getElementById('open-ai-wish-analysis-modal');
+        const openAiProfileAnalysisModalBtn = document.getElementById('open-ai-profile-analysis-modal');
+        const openSelfAssessmentAiModalBtn = document.getElementById('open-self-assessment-ai-modal');
+        const openStrengthsAiModalBtn = document.getElementById('open-strengths-ai-modal');
+        const aiFormulateGoalBtn = document.getElementById('ai-formulate-goal-btn');
+        const openAiActivitySuggestionBtn = document.getElementById('open-ai-activity-suggestion-modal');
+        const openSkillsTestsModalBtn = document.getElementById('open-skills-tests-modal');
+
+
+        // Modals
+        const smartModal = document.getElementById('smart-goal-modal');
+        const aiFormulatedGoalModal = document.getElementById('ai-formulated-goal-modal');
+        const taskModal = document.getElementById('add-task-modal');
+        const aiModal = document.getElementById('ai-activity-modal');
+        const aiServicesModal = document.getElementById('ai-services-modal');
+        const aiWishAnalysisModal = document.getElementById('ai-wish-analysis-modal');
+        const aiProfileAnalysisModal = document.getElementById('ai-profile-analysis-modal');
+        const selfAssessmentAiModal = document.getElementById('self-assessment-ai-modal');
+        const aiSuggestionsModal = document.getElementById('ai-suggestions-modal');
+        const aiActivitySuggestionModal = document.getElementById('ai-activity-suggestion-modal');
+        const skillsTestsModal = document.getElementById('skills-tests-modal');
+        
+        // Inputs & Displays
+        const quickTaskInput = document.getElementById('quick-task-input');
+        const taskDescriptionInput = document.getElementById('task-description');
+        const originalTextDisplay = document.getElementById('original-text-display');
+        const aiVersionDisplay = document.getElementById('ai-version-display');
+
+
+        // All close buttons
+        const closeButtons = document.querySelectorAll('.modal-close');
+        const cancelButtons = document.querySelectorAll('.btn-secondary[data-modal-id]');
+
+        function openModal(modal) {
+            if (modal) modal.classList.add('show');
+        }
+
+        function closeModal(modal) {
+            if (modal) modal.classList.remove('show');
+        }
+
+        if (openSkillsTestsModalBtn) {
+            openSkillsTestsModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(skillsTestsModal);
+            });
+        }
+
+        const openSmartModal = (e) => {
+            e.preventDefault();
+            openModal(smartModal);
+        };
+
+        if (openSmartModalBtn) openSmartModalBtn.addEventListener('click', openSmartModal);
+        if (openSmartModalTrigger) openSmartModalTrigger.addEventListener('click', openSmartModal);
+
+        if (aiFormulateGoalBtn) {
+            aiFormulateGoalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(smartModal);
+                openModal(aiFormulatedGoalModal);
+            });
+        }
+        
+        if (openAiActivitySuggestionBtn) {
+            openAiActivitySuggestionBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(aiActivitySuggestionModal);
+            });
+        }
+
+        if (quickAddTaskBtn) {
+            quickAddTaskBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (quickTaskInput.value) {
+                    taskDescriptionInput.value = quickTaskInput.value;
+                }
+                openModal(taskModal);
+            });
+        }
+
+        if (openAiModalBtn) {
+            openAiModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(aiModal);
+            });
+        }
+        
+        if (openAiServicesModalBtn) {
+            openAiServicesModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(aiServicesModal);
+            });
+        }
+
+        if (openAiWishAnalysisModalBtn) {
+            openAiWishAnalysisModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(aiWishAnalysisModal);
+            });
+        }
+
+        if (openAiProfileAnalysisModalBtn) {
+            openAiProfileAnalysisModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(aiProfileAnalysisModal);
+            });
+        }
+
+        if (openSelfAssessmentAiModalBtn) {
+            openSelfAssessmentAiModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(selfAssessmentAiModal);
+            });
+        }
+        
+        if (openStrengthsAiModalBtn) {
+            openStrengthsAiModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Text for the left column is the content of the main textarea
+                const skillsTextarea = document.getElementById('skills-and-expectations-textarea');
+                if (skillsTextarea && originalTextDisplay) {
+                    originalTextDisplay.innerHTML = skillsTextarea.value.replace(/\n/g, '<br>');
+                }
+                
+                // The AI-improved version for the right column
+                const aiVersionText = `<h5>Professionaalne kokkuvõte</h5>
+<p>7-aastase kogemusega tulemusele orienteeritud IT-projektijuht, kellel on laialdane kogemus tarkvaraarendusprojektide edukal elluviimisel. Tõestatud oskused meeskonna juhtimises, agiilsete metoodikate rakendamises ja sidusrühmade vahelise kommunikatsiooni tagamises. Otsin väljakutset innovaatilises ja arengut toetavas ettevõttes, eelistades hübriidtöö vormi.</p>
+
+<h5>Põhioskused</h5>
+<ul>
+    <li><b>Juhtimisoskused:</b> Meeskonna juhtimine, motiveerimine, arendamine</li>
+    <li><b>Projektijuhtimine:</b> <span class="keyword-highlight">Eelarvestamine</span>, <span class="keyword-highlight">Riskijuhtimine</span>, aruandlus</li>
+    <li><b>Metoodikad:</b> Agile, Scrum, Kanban</li>
+    <li><b>Tööriistad:</b> JIRA, Confluence, Trello, Asana, MS Project</li>
+    <li><b>Tehnilised oskused:</b> SQL (algteadmised)</li>
+</ul>
+
+<h5>Eesmärgid ja ootused</h5>
+<ul>
+    <li>Rakendada ja arendada oma juhtimisoskusi rahvusvahelistes projektides.</li>
+    <li>Panustada ettevõtte kasvu läbi efektiivse projektide teostuse.</li>
+    <li>Karjääriarengu võimalus ja konkurentsivõimeline palk (3200-4000€).</li>
+</ul>`;
+
+                if (aiVersionDisplay) {
+                    aiVersionDisplay.innerHTML = aiVersionText;
+                }
+
+                openModal(aiSuggestionsModal);
+            });
+        }
+        
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modalToClose = button.closest('.modal-overlay');
+                closeModal(modalToClose);
+            });
+        });
+        
+        cancelButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modalId = button.getAttribute('data-modal-id');
+                const modalToClose = document.getElementById(modalId);
+                 closeModal(modalToClose);
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target.classList.contains('modal-overlay')) {
+                closeModal(event.target);
+            }
+        });
+        
+        // --- Interactive Skills Sliders ---
+        const skillItems = document.querySelectorAll('.skills-card-v2 .skill-item');
+
+        const updateSkillDisplay = (skillItem) => {
+            const slider = skillItem.querySelector('.skill-slider');
+            const bar = skillItem.querySelector('.skill-level-bar');
+            const label = skillItem.querySelector('.skill-level-label');
+            const value = parseInt(slider.value, 10);
+
+            // Update bar width
+            bar.style.width = value + '%';
+
+            // Update label and colors
+            let levelClass = '';
+            let levelText = '';
+
+            if (value <= 33) {
+                levelClass = 'develop';
+                levelText = 'Arendamist vajav';
+            } else if (value <= 66) {
+                levelClass = 'medium';
+                levelText = 'Keskmine';
+            } else if (value <= 85) {
+                levelClass = 'strong';
+                levelText = 'Tugev';
+            } else {
+                levelClass = 'strong';
+                levelText = 'Väga tugev';
+            }
+            
+            bar.className = 'skill-level-bar ' + levelClass;
+            label.className = 'skill-level-label ' + levelClass;
+            label.textContent = levelText;
+        };
+        
+        skillItems.forEach(item => {
+            const slider = item.querySelector('.skill-slider');
+            
+            // Initial setup
+            updateSkillDisplay(item);
+
+            // Add event listener
+            slider.addEventListener('input', () => {
+                updateSkillDisplay(item);
+            });
+        });
+    });
+</script>
+</body>
+</html>
