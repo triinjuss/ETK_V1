@@ -188,16 +188,10 @@
             align-items: start;
         }
         
-        .main-column { 
+        .main-column, .sidebar-column { 
             display: flex; 
             flex-direction: column; 
             gap: 32px; 
-        }
-        
-        .sidebar-column { 
-            display: flex; 
-            flex-direction: column;
-            gap: 32px;
         }
         
         .card { 
@@ -217,12 +211,7 @@
             box-shadow: var(--shadow-lg);
         }
         
-        .profile-card {
-            padding: 24px;
-            gap: 16px;
-        }
-        
-        .service-item-card { 
+        .profile-card, .service-item-card { 
             padding: 24px;
             display: flex; 
             flex-direction: column; 
@@ -247,13 +236,12 @@
             gap: 12px;
         }
 
-        .btn { 
+        .btn-primary, .btn-accent, .btn-secondary {
             padding: 10px 18px; 
             border-radius: 8px; 
             cursor: pointer; 
             font-weight: 500; 
             text-align: center; 
-            border: 1px solid transparent; 
             text-decoration: none; 
             display: inline-flex; 
             align-items: center; 
@@ -262,13 +250,7 @@
             font-size: 14px;
             transition: var(--transition);
             font-family: var(--font-family);
-        }
-        
-        .btn:disabled {
-            background-color: #f1f1f1;
-            color: #aaa;
-            cursor: not-allowed;
-            border-color: #f1f1f1;
+            border: 1px solid transparent;
         }
         
         .btn-primary { 
@@ -297,6 +279,13 @@
         
         .btn-secondary:hover:not(:disabled) {
             background-color: var(--secondary-color);
+        }
+        
+        .btn:disabled {
+            background-color: #f1f1f1;
+            color: #aaa;
+            cursor: not-allowed;
+            border-color: #f1f1f1;
         }
         
         .btn-small { 
@@ -331,17 +320,20 @@
             height: 45px;
         }
 
-        .counselor-name {
+        .counselor-name, .counselor-title {
             color: var(--text-color);
-            font-size: 1.25rem;
             font-weight: 600;
             margin: 0 0 5px;
         }
 
+        .counselor-name {
+            font-size: 1.25rem;
+        }
+
         .counselor-title {
-            color: var(--text-color-light);
             font-size: 0.95rem;
-            margin: 0 0 25px;
+            color: var(--text-color-light);
+            margin-bottom: 25px;
         }
 
         .contact-reasons-wrapper {
@@ -353,21 +345,21 @@
             margin-bottom: 20px;
         }
         
-        .contact-reasons {
+        .contact-reasons, .profile-tips-list, .activity-list, .articles-list, .ai-suggestion-list, .job-wishes-list, .assessment-step-list, .suggestion-list {
             list-style: none;
             text-align: left;
             margin: 0;
             padding: 0;
         }
 
-        .contact-reasons li {
+        .contact-reasons li, .profile-tips-list li {
             padding: 8px 0 8px 28px;
             position: relative;
             color: var(--text-color);
             font-size: 0.9rem;
         }
 
-        .contact-reasons li::before {
+        .contact-reasons li::before, .profile-tips-list li::before {
             content: '✓';
             color: var(--primary-color);
             position: absolute;
@@ -748,56 +740,45 @@
             font-size: 14px;
         }
         
-        .justification-group textarea { 
+        .justification-group textarea, 
+        .plan-block textarea,
+        .main-goal-input,
+        .add-task-form input { 
             width: 100%; 
-            min-height: 160px; 
             border: 1px solid var(--border-color); 
             border-radius: 8px; 
             padding: 12px; 
-            resize: vertical; 
             box-sizing: border-box;
             font-family: var(--font-family);
-            font-size: 14px;
             transition: var(--transition);
         }
-        
-        .justification-group textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
+
+        .justification-group textarea { 
+            min-height: 160px; 
+            resize: vertical; 
+            font-size: 14px;
         }
         
         .plan-block textarea { 
-            width: 100%; 
             min-height: 400px; 
-            border: 1px solid var(--border-color); 
-            border-radius: 8px; 
-            padding: 12px; 
             font-size: 0.95rem; 
             resize: vertical; 
-            box-sizing: border-box;
-            font-family: var(--font-family);
             line-height: 1.6;
-            transition: var(--transition);
-        }
-        
-        .plan-block textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
         }
         
         .main-goal-input { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid var(--border-color); 
-            border-radius: 8px; 
             font-size: 0.95rem; 
-            font-family: var(--font-family);
-            transition: var(--transition);
+        }
+
+        .add-task-form input { 
+            flex-grow: 1; 
+            font-size: 14px;
         }
         
-        .main-goal-input:focus {
+        .justification-group textarea:focus,
+        .plan-block textarea:focus,
+        .main-goal-input:focus,
+        .add-task-form input:focus {
             border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
@@ -813,22 +794,6 @@
         .add-task-form { 
             display: flex; 
             gap: 10px; 
-        }
-        
-        .add-task-form input { 
-            flex-grow: 1; 
-            border: 1px solid var(--border-color); 
-            border-radius: 8px; 
-            padding: 12px; 
-            font-family: var(--font-family);
-            font-size: 14px;
-            transition: var(--transition);
-        }
-        
-        .add-task-form input:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(4, 108, 99, 0.1);
         }
         
         .add-task-form .btn-add { 
@@ -1004,13 +969,9 @@
         }
         
         #add-task-modal .modal-content,
-        #ai-activity-suggestion-modal .modal-content { 
-            max-width: 680px; 
-            max-height: auto; 
-        }
-        
+        #ai-activity-suggestion-modal .modal-content,
         #ai-activity-modal .modal-content { 
-            max-width: 600px; 
+            max-width: 680px; 
             max-height: auto; 
         }
 
