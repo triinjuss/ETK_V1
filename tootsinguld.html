@@ -7,33 +7,61 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="main-header">
+    <header class="main-header">
         <div class="top-bar">
             <div class="logo-nav">
-                <div class="logo">ETK</div>
-                <nav class="main-nav">
-                    <a href="index.html">Juhendid ja abimaterjalid</a>
-                </nav>
+                <span class="logo">ETK</span>
+                <a href="#" class="help-link">Juhendid ja abimaterjalid</a>
             </div>
             <div class="search-container">
                 <input type="text" placeholder="Otsi kodulehe sisust">
+                <svg class="search-icon" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
             </div>
             <div class="user-actions">
-                <button class="profile-button">Kaisa Karu ▼</button>
+                <button class="profile-button">
+                    <span class="user-name">Kaisa Karu</span>
+                    <svg class="dropdown-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
             </div>
         </div>
-    </div>
+    </header>
 
     <div class="sub-nav-bar-container">
         <div class="sub-nav-bar">
-            <a href="index.html" class="back-link">← Tagasi infoportaali</a>
-            <nav class="main-nav">
-                <a href="#" style="color: var(--text-color-light);">Minu töötukassa</a>
-                <a href="#" style="color: var(--text-color-light);">Arvetelkumindamine</a>
-                <a href="#" style="color: var(--text-color-light);">Nõustamised</a>
-                <a href="#" style="color: var(--text-color-light);">Toetused ja hüvitised</a>
-                <a href="#" class="active">Tööotsingud</a>
-                <a href="#" style="color: var(--text-color-light);">Töövõime</a>
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Tagasi Infoportaali
+            </a>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="#" class="nav-item">
+                    Minu töötukassa
+                </a>
+                <a href="#" class="nav-item">
+                    Arvelevõtmine
+                </a>
+                <a href="index.html" class="nav-item">
+                    Minu plaan
+                </a>
+                <a href="#" class="nav-item">
+                    Toetused ja hüvitised
+                </a>
+                <a href="#" class="nav-item active">
+                    Tööotsingud
+                </a>
+                <a href="#" class="nav-item">
+                    Töövõime
+                </a>
             </nav>
         </div>
     </div>
@@ -52,7 +80,7 @@
                 <div class="stat-number">0</div>
             </div>
             <div class="stat-card card">
-                <h3>Muudu jäetud kandideerimist</h3>
+                <h3>Meelde jäetud kandideerimist</h3>
                 <div class="stat-number">0</div>
             </div>
             <div class="stat-card card">
@@ -74,7 +102,7 @@
                     </div>
                     
                     <div class="cv-profile">
-                        <div class="cv-avatar">👤</div>
+                        
                         <div class="cv-info">
                             <h3>Tere Kaisa!</h3>
                             <div class="cv-details">
@@ -95,11 +123,11 @@
                             <div class="cv-stat-value">0</div>
                         </div>
                         <div class="cv-progress">
-                            <div class="cv-progress-label">CV valmidus 81%</div>
+                            <div class="cv-progress-label">CV valmidus 84%</div>
                             <div class="cv-progress-bar">
                                 <div class="cv-progress-fill"></div>
                             </div>
-                            <div class="cv-progress-text">81%</div>
+                            <div class="cv-progress-text">84%</div>
                         </div>
                     </div>
                 </div>
@@ -112,43 +140,43 @@
                     </div>
                     
                     <p style="color: var(--text-color-light); margin-bottom: 20px;">
-                        Al kuvatut tahelet on välja toodud Teie viimati muudetud tööotsingud. Tööotsingute märkmiku 
-                        täitmiseks nupu "Ava tööotsingute märkmiк".
+                        All kuvatud tabelis on välja toodud Sinu viimati muudetud tööotsingud. Tööotsingute märkmiku
+                        täitmiseks vajutage nupul "Ava tööotsingute märkmiк".
                     </p>
                     
                     <div style="background: var(--secondary-color); padding: 20px; border-radius: 8px;">
-                        <h4 style="margin: 0 0 15px; font-size: 1rem;">Ametikohd</h4>
+                        <h4 style="margin: 0 0 15px; font-size: 1rem;">Ametikoht</h4>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <span style="font-weight: 500;">Töökogemuss</span>
-                            <span style="color: var(--text-color-light);">Viimane muutmised</span>
+                            <span style="font-weight: 500;">Tööandja</span>
+                            <span style="color: var(--text-color-light);">Viimane muutmine</span>
                         </div>
                         
                         <div class="activity-table-container">
                             <table class="activity-table">
                                 <tbody>
                                     <tr>
-                                        <td class="activity-type">Töökapagas</td>
-                                        <td class="activity-org">Kunnesaare Haigla Sihtasutus</td>
+                                        <td class="activity-type">IT tugi</td>
+                                        <td class="activity-org">Toila Haigla Sihtasutus</td>
                                         <td class="activity-date">14.10.2024</td>
                                     </tr>
                                     <tr>
-                                        <td class="activity-type">Töötsering</td>
-                                        <td class="activity-org">Medida OU</td>
+                                        <td class="activity-type">Projektijuht</td>
+                                        <td class="activity-org">Medida OÜ</td>
                                         <td class="activity-date">09.05.2024</td>
                                     </tr>
                                     <tr>
-                                        <td class="activity-type">Töötsering</td>
-                                        <td class="activity-org">OU Goopa</td>
+                                        <td class="activity-type">Andmesisestaja</td>
+                                        <td class="activity-org">OÜ Lilleke</td>
                                         <td class="activity-date">09.05.2024</td>
                                     </tr>
                                     <tr>
-                                        <td class="activity-type">Laenandilepingu assistant</td>
-                                        <td class="activity-org">Kuressaare Ida-Niidu Lasteaed</td>
+                                        <td class="activity-type">Õpetaja</td>
+                                        <td class="activity-org">Kuressaare Lasteaed</td>
                                         <td class="activity-date">02.04.2024</td>
                                     </tr>
                                     <tr>
-                                        <td class="activity-type">Töötsering</td>
-                                        <td class="activity-org">Osaduring Arenseburg</td>
+                                        <td class="activity-type">Vanemanalüütik</td>
+                                        <td class="activity-org">OÜ Arenseburg</td>
                                         <td class="activity-date">02.04.2024</td>
                                     </tr>
                                 </tbody>
@@ -169,16 +197,27 @@
                     <ul class="job-wishes-list">
                         <li class="job-wish-item">
                             <div class="job-wish-details">
-                                <div class="job-wish-icon">💼</div>
-                                <div class="job-wish-title">Projektijuht</div>
+                                
+                                <div class="job-wish-title"> IT projektijuht</div>
+                            
                             </div>
                             <div class="job-wish-actions">
                                 <div class="job-count">
-                                    <b>42</b> töökohta
+                                    <b>0</b> töökohta
                                 </div>
-                                <button class="job-wish-manage-btn">⚙️</button>
+                                <button class="job-wish-manage-btn"></button>
                             </div>
                         </li>
+                        <li class="job-wish-item">
+                            <div class="job-wish-details">
+                                <div class="job-wish-title"> Andmeanalüütik</div>
+                            </div>
+                            <div class="job-wish-actions">
+                                <div class="job-count">
+                                    <b>1</b> töökohta
+                                </div>
+                                <button class="job-wish-manage-btn"></button>
+                            </div>
                     </ul>
                     
                     <button class="btn btn-primary btn-full-width add-wish-btn">+ Lisa töösoov</button>
@@ -195,25 +234,25 @@
                         <h3>Teenused</h3>
                     </div>
                     <div class="services-grid">
-                        <div class="service-item-card">
+                        <div class="service-item-card card">
                             <div class="service-item-content">
                                 <h4><a href="#">Karjäärinõustamine</a></h4>
                                 <p>Professionaalne abi karjääri planeerimisel ja tööturul orienteerumisel.</p>
                             </div>
                         </div>
-                        <div class="service-item-card">
+                        <div class="service-item-card card">
                             <div class="service-item-content">
-                                <h4><a href="#">Tööinterview treening</a></h4>
+                                <h4><a href="#">Tööintervjuu treening</a></h4>
                                 <p>Harjutame koos, kuidas edukalt läbida töövestlusi.</p>
                             </div>
                         </div>
-                        <div class="service-item-card">
+                        <div class="service-item-card card">
                             <div class="service-item-content">
                                 <h4><a href="#">CV koostamine</a></h4>
                                 <p>Aitame luua efektiivsed ja mõjuvad CV-d ja kaaskirjad.</p>
                             </div>
                         </div>
-                        <div class="service-item-card">
+                        <div class="service-item-card card">
                             <div class="service-item-content">
                                 <h4><a href="#">Oskuste hindamine</a></h4>
                                 <p>Selgitame välja teie tugevused ja arendusvaldkonnad.</p>
