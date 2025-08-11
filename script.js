@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const aiFormulateGoalBtn = document.getElementById('ai-formulate-goal-btn');
     const openAiActivitySuggestionBtn = document.getElementById('open-ai-activity-suggestion-modal');
     const openSkillsTestsModalBtn = document.getElementById('open-skills-tests-modal');
+    const addWishBtn = document.querySelector('.add-wish-btn');
 
     // Modals
     const smartModal = document.getElementById('smart-goal-modal');
@@ -53,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const aiSuggestionsModal = document.getElementById('ai-suggestions-modal');
     const aiActivitySuggestionModal = document.getElementById('ai-activity-suggestion-modal');
     const skillsTestsModal = document.getElementById('skills-tests-modal');
+    const addJobWishModal = document.getElementById('add-job-wish-modal');
     
     // Inputs & Displays
     const quickTaskInput = document.getElementById('quick-task-input');
@@ -109,6 +111,159 @@ document.addEventListener('DOMContentLoaded', function() {
                 taskDescriptionInput.value = quickTaskInput.value;
             }
             openModal(taskModal);
+        });
+    }
+
+    if (addWishBtn) {
+        addWishBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(addJobWishModal);
+        });
+    }
+
+    // Job title autocomplete functionality
+    const jobTitleInput = document.getElementById('job-title');
+    const jobTitleDropdown = document.getElementById('job-title-dropdown');
+    
+    // Sample job titles for autocomplete
+    const jobTitles = [
+        'projektijuht',
+        'IT projektijuht',
+        'projekteerija',
+        'ehituse projektijuht',
+        'reklaami projektijuht',
+        'projektijuht (ehitus)',
+        'projektijuht (IT)',
+        'vanem projektijuht',
+        'projektijuhi assistent',
+        'projektijuhtimise spetsialist',
+        'projekti koordinaator',
+        'projektijuhtimise nõustaja',
+        'projektijuhtimise juht',
+        'projektijuhtimise analüütik',
+        'projektijuhtimise direktor'
+    ];
+
+    let selectedIndex = -1;
+
+    function filterJobTitles(query) {
+        if (!query.trim()) return [];
+        return jobTitles.filter(title => 
+            title.toLowerCase().includes(query.toLowerCase())
+        ); // Show all matching suggestions
+    }
+
+    function showDropdown(suggestions) {
+        if (suggestions.length === 0) {
+            hideDropdown();
+            return;
+        }
+
+        jobTitleDropdown.innerHTML = '';
+        suggestions.forEach((title, index) => {
+            const item = document.createElement('div');
+            item.className = 'autocomplete-item';
+            item.textContent = title;
+            item.addEventListener('click', () => {
+                selectJobTitle(title);
+            });
+            jobTitleDropdown.appendChild(item);
+        });
+
+        jobTitleDropdown.classList.add('show');
+        selectedIndex = -1;
+        
+        // Adjust modal position to accommodate dropdown
+        adjustModalForDropdown(true);
+    }
+
+    function hideDropdown() {
+        jobTitleDropdown.classList.remove('show');
+        selectedIndex = -1;
+        
+        // Reset modal position when dropdown is hidden
+        adjustModalForDropdown(false);
+    }
+
+    function selectJobTitle(title) {
+        jobTitleInput.value = title;
+        hideDropdown();
+        jobTitleInput.focus();
+    }
+
+    function highlightItem(index) {
+        const items = jobTitleDropdown.querySelectorAll('.autocomplete-item');
+        items.forEach((item, i) => {
+            item.classList.toggle('highlighted', i === index);
+        });
+    }
+
+    function adjustModalForDropdown(isVisible) {
+        const modal = document.getElementById('add-job-wish-modal');
+        const modalContent = modal?.querySelector('.modal-content');
+        
+        if (modalContent) {
+            if (isVisible) {
+                // Show 5 suggestions max before scrolling
+                const maxVisibleSuggestions = 5;
+                const suggestionHeight = 45; // approximate height per suggestion
+                const baseModalHeight = 400; // base modal height
+                const dropdownHeight = maxVisibleSuggestions * suggestionHeight;
+                const totalHeight = baseModalHeight + dropdownHeight;
+                
+                // Add class and set dynamic height for 5 suggestions
+                modalContent.classList.add('dropdown-open');
+                modalContent.style.minHeight = `${Math.min(totalHeight, window.innerHeight * 0.9)}px`;
+                modalContent.style.transform = 'translateY(-15%)';
+            } else {
+                // Remove class and reset height
+                modalContent.classList.remove('dropdown-open');
+                modalContent.style.minHeight = '';
+                modalContent.style.transform = '';
+            }
+        }
+    }
+
+    if (jobTitleInput && jobTitleDropdown) {
+        jobTitleInput.addEventListener('input', (e) => {
+            const query = e.target.value;
+            const suggestions = filterJobTitles(query);
+            showDropdown(suggestions);
+        });
+
+        jobTitleInput.addEventListener('keydown', (e) => {
+            const items = jobTitleDropdown.querySelectorAll('.autocomplete-item');
+            
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+                highlightItem(selectedIndex);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                selectedIndex = Math.max(selectedIndex - 1, -1);
+                highlightItem(selectedIndex);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (selectedIndex >= 0 && items[selectedIndex]) {
+                    selectJobTitle(items[selectedIndex].textContent);
+                }
+            } else if (e.key === 'Escape') {
+                hideDropdown();
+            }
+        });
+
+        jobTitleInput.addEventListener('blur', (e) => {
+            // Delay hiding to allow click on dropdown items
+            setTimeout(() => {
+                hideDropdown();
+            }, 200);
+        });
+
+        jobTitleInput.addEventListener('focus', (e) => {
+            if (e.target.value.trim()) {
+                const suggestions = filterJobTitles(e.target.value);
+                showDropdown(suggestions);
+            }
         });
     }
 

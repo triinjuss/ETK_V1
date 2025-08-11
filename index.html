@@ -1220,72 +1220,30 @@ Ootused järgmisele ametikohale:
     <div id="add-job-wish-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Lisa töösoov</h3>
+                <h3>Töösoovi lisamine</h3>
                 <span class="modal-close" data-modal-id="add-job-wish-modal">&times;</span>
             </div>
             <div class="modal-body">
-                <div class="modal-intro">
-                    <p>Töösoovi sisestamine on lihtne samm, mis avab ukse paljude sobilike töökuulutuste leidmiseks. Kui sisestada oma soovitud asukoht ja palganõue, saame pakkuda täpsemaid ja paremini sobivaid pakkumisi.</p>
-                </div>
-                
-                <!--<div class="modal-form-group">
-                    <label for="job-title">Ametikoht või valdkond *</label>
-                    <input type="text" id="job-title" class="modal-input" placeholder="Nt. Projektijuht, Andmeanalüütik">
-                </div>
-                
-                <div class="modal-form-group">
-                    <label for="job-location">Asukoht</label>
-                    <select id="job-location" class="modal-select">
-                        <option value="">Vali asukoht</option>
-                        <option value="tallinn">Tallinn</option>
-                        <option value="tartu">Tartu</option>
-                        <option value="parnu">Pärnu</option>
-                        <option value="narva">Narva</option>
-                        <option value="kogu-eesti">Kogu Eesti</option>
-                        <option value="valismaa">Välismaa</option>
-                    </select>
-                </div>
-                
-                <div class="modal-form-group">
-                    <label for="work-type">Töö liik</label>
-                    <select id="work-type" class="modal-select">
-                        <option value="">Vali töö liik</option>
-                        <option value="taidet">Täidet</option>
-                        <option value="osalist">Osalist</option>
-                        <option value="ajutine">Ajutine</option>
-                        <option value="praktika">Praktika</option>
-                    </select>
-                </div>
-                
-                <div class="modal-form-group">
-                    <label for="salary-expectation">Palganõue (bruto kuus)</label>
-                    <div class="salary-input-container">
-                        <input type="number" id="salary-expectation" class="modal-input" placeholder="2500">
-                        <span class="currency">€</span>
+                <div class="form-group">
+                    <label for="job-title">
+                        Soovitud ametikoht
+                        <span class="required">*</span>
+                        <span class="info-icon" data-tooltip="Ametinimetuste lisamine näitab, millist tööd sa otsid, ning selle põhjal saab süsteem pakkuda valdkonnale vastavaid tööpakkumisi ja koolitusi, mis toetavad konkreetsete tööülesannete jaoks vajalikke oskusi. See aitab keskenduda töökohtadele, mis vastavad sinu taustale ja huvidele.">?</span>
+                    </label>
+                    <div class="input-group">
+                        <div class="autocomplete-container">
+                            <input type="text" id="job-title" placeholder="Sisesta ametinimetus" autocomplete="off" />
+                            <div class="autocomplete-dropdown" id="job-title-dropdown">
+                                <!-- Suggestions will be populated here -->
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-small">Lisa</button>
                     </div>
                 </div>
-                
-                <div class="modal-form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="remote-work">
-                        <span class="checkmark"></span>
-                        Kaugtöö võimalus
-                    </label>
-                </div>
-                
-                <div class="modal-form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="flexible-schedule">
-                        <span class="checkmark"></span>
-                        Paindlik graafik
-                    </label>
-                </div>
             </div>
-            -->
-                <div class="modal-form
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-modal-id="add-job-wish-modal">Tühista</button>
-                <button class="btn btn-primary">Salvesta töösoov</button>
+                <button class="btn btn-secondary" data-modal-id="add-job-wish-modal">Loobu</button>
+                <button class="btn btn-primary">Edasi</button>
             </div>
         </div>
     </div>
