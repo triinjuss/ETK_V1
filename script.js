@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (mobileMenuToggle && mainNav) {
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenuToggle.classList.toggle('active');
+            mainNav.classList.toggle('mobile-open');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !mainNav.contains(event.target)) {
+                mobileMenuToggle.classList.remove('active');
+                mainNav.classList.remove('mobile-open');
+            }
+        });
+
+        // Close menu when clicking on a nav item
+        const navItems = mainNav.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                mobileMenuToggle.classList.remove('active');
+                mainNav.classList.remove('mobile-open');
+            });
+        });
+    }
+
     // Modal openers
     const openSmartModalBtn = document.getElementById('open-smart-modal');
     const openSmartModalTrigger = document.getElementById('open-smart-modal-trigger');

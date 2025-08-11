@@ -38,13 +38,34 @@
                 </svg>
                 Tagasi Infoportaali
             </a>
-            <nav class="main-nav">
-                <a href="#">Minu töötukassa</a>
-                <a href="#">Arvelevõtmine</a>
-                <a href="#" class="active">Minu plaan</a>
-                <a href="#">Toetused ja hüvitised</a>
-                <a href="tootsinguld.html">Tööotsingud</a>
-                <a href="#">Töövõime</a>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="#" class="nav-item">
+                    Minu töötukassa
+                </a>
+                <a href="#" class="nav-item">
+                    Arvelevõtmine
+                </a>
+                <a href="#" class="nav-item active">
+                    Minu plaan
+                </a>
+                <a href="#" class="nav-item">
+                    Toetused ja hüvitised
+                </a>
+
+                <a href="tootsinguld.html" class="nav-item">
+
+                <a href="#" class="nav-item">
+
+                    Tööotsingud
+                </a>
+                <a href="#" class="nav-item">
+                    Töövõime
+                </a>
             </nav>
         </div>
     </div>
@@ -138,6 +159,7 @@
                     <button class="btn btn-secondary btn-full-width add-wish-btn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                         Lisa töösoov
+                        <span class="info-icon" data-tooltip="Töösoovi sisestamine on lihtne samm, mis avab ukse palju sihipärasematele soovitustele. Kui süsteem teab, millist tööd otsid, millises piirkonnas, millise koormusega ja millise palgaga, saab see pakkuda sulle ainult neid tööpakkumisi, mis päriselt sobivad. Nii ei pea sa raiskama aega valedele kuulutustele – sind ootavad juba need, mis vastavad su sihtidele.">?</span>
                     </button>
                     <div class="short-term-section">
                         <p class="short-term-text">Tööpakkumised ja tööampsud</p>
@@ -1190,6 +1212,80 @@ Ootused järgmisele ametikohale:
             </div>
             <div class="modal-footer" style="background-color: var(--secondary-color); border-top: none; padding-top: 16px;">
                 <button class="btn btn-secondary" data-modal-id="skills-tests-modal">Sulge</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Job Wish Modal -->
+    <div id="add-job-wish-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Lisa töösoov</h3>
+                <span class="modal-close" data-modal-id="add-job-wish-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-intro">
+                    <p>Töösoovi sisestamine on lihtne samm, mis avab ukse paljude sobilike töökuulutuste leidmiseks. Kui sisestada oma soovitud asukoht ja palganõue, saame pakkuda täpsemaid ja paremini sobivaid pakkumisi.</p>
+                </div>
+                
+                <!--<div class="modal-form-group">
+                    <label for="job-title">Ametikoht või valdkond *</label>
+                    <input type="text" id="job-title" class="modal-input" placeholder="Nt. Projektijuht, Andmeanalüütik">
+                </div>
+                
+                <div class="modal-form-group">
+                    <label for="job-location">Asukoht</label>
+                    <select id="job-location" class="modal-select">
+                        <option value="">Vali asukoht</option>
+                        <option value="tallinn">Tallinn</option>
+                        <option value="tartu">Tartu</option>
+                        <option value="parnu">Pärnu</option>
+                        <option value="narva">Narva</option>
+                        <option value="kogu-eesti">Kogu Eesti</option>
+                        <option value="valismaa">Välismaa</option>
+                    </select>
+                </div>
+                
+                <div class="modal-form-group">
+                    <label for="work-type">Töö liik</label>
+                    <select id="work-type" class="modal-select">
+                        <option value="">Vali töö liik</option>
+                        <option value="taidet">Täidet</option>
+                        <option value="osalist">Osalist</option>
+                        <option value="ajutine">Ajutine</option>
+                        <option value="praktika">Praktika</option>
+                    </select>
+                </div>
+                
+                <div class="modal-form-group">
+                    <label for="salary-expectation">Palganõue (bruto kuus)</label>
+                    <div class="salary-input-container">
+                        <input type="number" id="salary-expectation" class="modal-input" placeholder="2500">
+                        <span class="currency">€</span>
+                    </div>
+                </div>
+                
+                <div class="modal-form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remote-work">
+                        <span class="checkmark"></span>
+                        Kaugtöö võimalus
+                    </label>
+                </div>
+                
+                <div class="modal-form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="flexible-schedule">
+                        <span class="checkmark"></span>
+                        Paindlik graafik
+                    </label>
+                </div>
+            </div>
+            -->
+                <div class="modal-form
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="add-job-wish-modal">Tühista</button>
+                <button class="btn btn-primary">Salvesta töösoov</button>
             </div>
         </div>
     </div>
