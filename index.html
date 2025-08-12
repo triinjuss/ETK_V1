@@ -1466,6 +1466,297 @@ Ootused järgmisele ametikohale:
         </div>
     </div>
 
+    <!-- Career Dashboard Modal -->
+    <div id="career-dashboard-modal" class="modal-overlay">
+        <div class="modal-content modal-content-large career-dashboard-modal">
+            <div class="modal-header">
+                <h3>Karjääri Töölaud</h3>
+                <span class="modal-close" data-modal-id="career-dashboard-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="dashboard-container">
+                    <main class="main-content">
+                        <div class="card">
+                            <h2>Asukoha ülevaade</h2>
+                            <div class="map-container">
+                                <img src="kelia kaart.jpg" alt="Keila kaart" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px;">
+                            </div>
+                        </div>
+                        <div class="card job-description-card">
+                            <h2 id="job-overview-title">Projektijuhi turuülevaade (Keila)</h2>
+                            <p id="job-overview-content">
+                                Keilas ei ole projektijuhtide järele hetkel suurt tööjõupuudust, kuid tööpakkumisi lisandub aeg-ajalt. Tööjõubaromeetri andmetel on konkurents keskmine.
+                                <br><br>
+                                Viimaste tööpakkumiste põhjal on reklaamimüügi projektijuhi brutopalk Harjumaal vahemikus <span class="highlight">1550–2100 eurot</span>. Soovitame kaaluda kandideerimist ka seotud valdkondadesse, näiteks <span class="highlight">müügijuhi</span> või <span class="highlight">turundusspetsialisti</span> ametikohale, et suurendada sobivate tööpakkumiste arvu.
+                            </p>
+                            <span class="source-link">
+                                <a href="https://www.tootukassa.ee/et/baromeeter/kaart" target="_blank" rel="noopener noreferrer">Andmed pärinevad tööjõubaromeetrist</a>
+                            </span>
+                        </div>
+                    </main>
+
+                    <aside class="sidebar">
+                        <div class="card">
+                            <h2>Sarnased ametid Sinu oskustega</h2>
+                            <div class="tags-list">
+                                <span class="tag">Tootejuht</span>
+                                <span class="tag">Ärianalüütik</span>
+                                <span class="tag">Scrum Master</span>
+                                <span class="tag">IT-konsultant</span>
+                                <span class="tag">Väljalaskejuht</span>
+                                <span class="tag">Programmijuht</span>
+                            </div>
+                        </div>
+                        <button style="margin-top: 16px; padding: 12px 16px; background-color: var(--primary-color); color: white; border: none; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background-color 0.2s; width: 100%;" onclick="">Lisa töösoov</button>
+                        <div class="card">
+                            <h2>Nutikad soovitused</h2>
+                            <div class="advice-list">
+                                <div class="advice-item">
+                                    <p><strong>Otsige kaugtööd.</strong> See amet sobib selleks suurepäraselt ja avardab Teie võimalusi üle Eesti.</p>
+                                </div>
+                                <div class="advice-item">
+                                    <p><strong>Vaadake suuremate keskuste poole.</strong> Tallinnas ja Tartus on tehnoloogiaettevõtete kontsentratsioon veelgi suurem.</p>
+                                </div>
+                                <div class="advice-item">
+                                    <p><strong>Rakendage oskusi teistes sektorites.</strong> Teie kogemus on väärtuslik ka finants- või tootmisvaldkonnas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button style="margin-top: 16px; padding: 12px 16px; background-color: var(--primary-color); color: white; border: none; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background-color 0.2s; width: 100%;" onclick="openJobListingsModal()">Vaata soovitatud tööpakkumisi</button>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Listings Modal -->
+    <div id="jobListingsModal" class="job-listings-modal-overlay" style="display: none;">
+        <div class="job-listings-modal-content">
+            <header class="job-listings-modal-header">
+                <h2>⭐ Soovitatud töökohad</h2>
+                <button class="job-listings-close-btn" onclick="closeJobListingsModal()">✕</button>
+            </header>
+
+            <div class="job-listings-container">
+                <!-- Job 1: Tootejuht -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">P</div>
+                            <div>
+                                <h3>Tootejuht</h3>
+                                <p>Pipedrive OÜ • Tartu</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">98% sobivus</div>
+                    </div>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Tartu, Kesklinn</span>
+                        <span class="detail-tag">💰 3500-5000€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                        <span class="detail-tag">🏠 Hübriid (2 p. kontoris)</span>
+                    </div>
+                    <p class="job-card-description">Otsime kirglikku tootejuhti, kes aitaks kujundada meie müügitarkvara tulevikku. Vajalik varasem tootejuhtimise kogemus SaaS valdkonnas.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 1 päev tagasi</span>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="openJobFeedbackModal()">Ei sobi</button>
+                            <button class="btn btn-outline">Salvesta</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 2: Ärianalüütik -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">S</div>
+                            <div>
+                                <h3>Ärianalüütik</h3>
+                                <p>Swedbank AS • Tallinn</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">95% sobivus</div>
+                    </div>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Tallinn, Liivalaia</span>
+                        <span class="detail-tag">💰 2800-4200€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                        <span class="detail-tag">🏠 Paindlik</span>
+                    </div>
+                    <p class="job-card-description">Liitu meie andme- ja analüütikatiimiga, et tõlkida ärivajadused tehnilisteks lahendusteks. Ootame sinult tugevat SQL-i oskust.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 3 päeva tagasi</span>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="openJobFeedbackModal()">Ei sobi</button>
+                            <button class="btn btn-outline">Salvesta</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 3: Scrum Master -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">T</div>
+                            <div>
+                                <h3>Scrum Master</h3>
+                                <p>Telia Eesti AS • Pärnu</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">92% sobivus</div>
+                    </div>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Pärnu</span>
+                        <span class="detail-tag">💰 3000-4000€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                        <span class="detail-tag">🏠 Kaugtöö võimalus</span>
+                    </div>
+                    <p class="job-card-description">Sinu ülesanne on toetada ja juhendada meie agiilset arendusmeeskonda, eemaldada takistused ja tagada sujuv töövoog.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 5 päeva tagasi</span>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="openJobFeedbackModal()">Ei sobi</button>
+                            <button class="btn btn-outline">Salvesta</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Job 4: IT-konsultant -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">W</div>
+                            <div>
+                                <h3>IT-konsultant</h3>
+                                <p>Wunder Kraut OÜ • Tallinn</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">88% sobivus</div>
+                    </div>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Tallinn, Ülemiste</span>
+                        <span class="detail-tag">💰 3200-4500€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                    </div>
+                    <p class="job-card-description">Nõusta meie kliente digitaalsete lahenduste ja tehnoloogiate valikul. Oluline on hea suhtlemisoskus ja lai silmaring IT-maastikul.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 2 päeva tagasi</span>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="openJobFeedbackModal()">Ei sobi</button>
+                            <button class="btn btn-outline">Salvesta</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 5: Väljalaskejuht -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">L</div>
+                            <div>
+                                <h3>Väljalaskejuht</h3>
+                                <p>LHV Pank • Tartu</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">85% sobivus</div>
+                    </div>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Tartu</span>
+                        <span class="detail-tag">💰 3300-4800€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                        <span class="detail-tag">🏠 Hübriid</span>
+                    </div>
+                    <p class="job-card-description">Vastutad meie tarkvara väljalaskeprotsesside planeerimise, koordineerimise ja haldamise eest. Vajalik DevOps põhimõtete tundmine.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 6 päeva tagasi</span>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="openJobFeedbackModal()">Ei sobi</button>
+                            <button class="btn btn-outline">Salvesta</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 6: Programmijuht -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">R</div>
+                            <div>
+                                <h3>Programmijuht</h3>
+                                <p>Riigi Infosüsteemi Amet • Viljandi</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">82% sobivus</div>
+                    </div>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Viljandi</span>
+                        <span class="detail-tag">💰 4000-5500€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                    </div>
+                    <p class="job-card-description">Juhi strateegiliselt olulisi riiklikke IT-projekte. Sinu vastutada on mitme seotud projekti koordineerimine ja eesmärkide saavutamine.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 1 nädal tagasi</span>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="openJobFeedbackModal()">Ei sobi</button>
+                            <button class="btn btn-outline">Salvesta</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 7: IT Projektijuht -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">B</div>
+                            <div>
+                                <h3>IT Projektijuht</h3>
+                                <p>Bolt Technology OÜ • Tallinn</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">96% sobivus</div>
+                    </div>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Tallinn, Kesklinn</span>
+                        <span class="detail-tag">💰 3800-5200€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                        <span class="detail-tag">🏠 Hübriid (3 p. kontoris)</span>
+                    </div>
+                    <p class="job-card-description">Otsime kogenud IT-projektijuhti digitaalsete toodete arendusmeeskonda. Sobid ideaalselt, kui sul on rahvusvaheliste projektide juhtimise kogemus.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 4 päeva tagasi</span>
+                        <div class="action-buttons">
+                            <button class="btn btn-outline" onclick="openJobFeedbackModal()">Ei sobi</button>
+                            <button class="btn btn-outline">Salvesta</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Feedback Modal -->
+    <div id="jobFeedbackModal" class="job-feedback-modal-overlay" style="display: none;">
+        <div class="job-feedback-modal-content">
+            <h2>Pakkumisest loobumine</h2>
+            <p>Palun põhjenda, miks see tööpakkumine Sulle ei sobi. Pärast põhjenduse esitamist eemaldatakse see pakkumine Sulle soovitatud tööpakkumiste hulgast ja Sind ei kuvata enam antud töökohale potentsiaalse kandidaadina.</p>
+            
+            <textarea placeholder="Kirjuta siia..." class="feedback-textarea"></textarea>
+            
+            <div class="feedback-buttons">
+                <button class="btn btn-outline" onclick="closeJobFeedbackModal()">Loobu</button>
+                <button class="btn btn-primary" onclick="submitJobFeedback()">Salvesta</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -750,7 +750,7 @@ window.handleJobSave = function() {
         console.log('Job details modal closed');
     }
     
-    // Get job information to pass to career dashboard
+    // Get job information to update career dashboard
     const jobDetailsTitle = document.getElementById('job-details-title');
     const locationInput = document.getElementById('location-input');
     
@@ -759,21 +759,35 @@ window.handleJobSave = function() {
     
     console.log('Job saved:', jobTitle, 'Location:', location);
     
-    // Update the saved job title in current page
-    const savedJobTitle = document.getElementById('saved-job-title');
-    if (savedJobTitle && jobDetailsTitle) {
-        savedJobTitle.textContent = jobDetailsTitle.textContent;
-        console.log('Job title updated:', jobDetailsTitle.textContent);
+    // Update career dashboard content with job-specific data
+    updateCareerDashboardContent(jobTitle, location);
+    
+    // Open the career dashboard modal
+    const careerDashboardModal = document.getElementById('career-dashboard-modal');
+    if (careerDashboardModal) {
+        window.openModal(careerDashboardModal);
+        console.log('Career dashboard modal opened');
+    }
+};
+
+// Function to update career dashboard content with job-specific data
+function updateCareerDashboardContent(jobTitle, location) {
+    const titleElement = document.getElementById('job-overview-title');
+    const contentElement = document.getElementById('job-overview-content');
+    
+    if (titleElement) {
+        titleElement.textContent = `${jobTitle} turuülevaade (${location})`;
     }
     
-    // Create URL with job parameters
-    const dashboardUrl = `career-dashboard.html?job=${encodeURIComponent(jobTitle)}&location=${encodeURIComponent(location)}`;
-    
-    console.log('Opening career dashboard with URL:', dashboardUrl);
-    
-    // Open the career dashboard in a new tab with job-specific data
-    window.open(dashboardUrl, '_blank');
-};
+    if (contentElement) {
+        // Keep the existing content for now, but this could be dynamic based on job/location
+        contentElement.innerHTML = `
+            ${location}s ei ole projektijuhtide järele hetkel suurt tööjõupuudust, kuid tööpakkumisi lisandub aeg-ajalt. Tööjõubaromeetri andmetel on konkurents keskmine.
+            <br><br>
+            Viimaste tööpakkumiste põhjal on reklaamimüügi projektijuhi brutopalk Harjumaal vahemikus <span class="highlight">1550–2100 eurot</span>. Soovitame kaaluda kandideerimist ka seotud valdkondadesse, näiteks <span class="highlight">müügijuhi</span> või <span class="highlight">turundusspetsialisti</span> ametikohale, et suurendada sobivate tööpakkumiste arvu.
+        `;
+    }
+}
 
 function initRealGoogleMap() {
     // This function is for when you have a real Google Maps API key
@@ -867,3 +881,98 @@ function initRealGoogleMap() {
         infoWindow.open(map, marker);
     });
 }
+
+// Job Listings Modal Functions
+function openJobListingsModal() {
+    // First close the career dashboard modal if it's open using the proper modal system
+    const careerModal = document.getElementById('career-dashboard-modal');
+    if (careerModal) {
+        window.closeModal(careerModal);
+    }
+    
+    // Then open the job listings modal
+    const modal = document.getElementById('jobListingsModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+function closeJobListingsModal() {
+    const modal = document.getElementById('jobListingsModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+}
+
+// Close modal when clicking outside the modal content
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('jobListingsModal');
+    if (modal && event.target === modal) {
+        closeJobListingsModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeJobListingsModal();
+        closeJobFeedbackModal();
+    }
+});
+
+// Job Feedback Modal Functions
+function openJobFeedbackModal() {
+    const modal = document.getElementById('jobFeedbackModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Focus on the textarea
+        const textarea = modal.querySelector('.feedback-textarea');
+        if (textarea) {
+            setTimeout(() => textarea.focus(), 100);
+        }
+    }
+}
+
+function closeJobFeedbackModal() {
+    const modal = document.getElementById('jobFeedbackModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        
+        // Clear the textarea
+        const textarea = modal.querySelector('.feedback-textarea');
+        if (textarea) {
+            textarea.value = '';
+        }
+    }
+}
+
+function submitJobFeedback() {
+    const textarea = document.querySelector('#jobFeedbackModal .feedback-textarea');
+    const feedback = textarea ? textarea.value.trim() : '';
+    
+    if (feedback) {
+        // Here you would normally send the feedback to your server
+        console.log('Job feedback submitted:', feedback);
+        
+        // Close the modal
+        closeJobFeedbackModal();
+        
+        // Optionally show a success message
+        alert('Tagasiside salvestatud. Pakkumine eemaldatud soovitustest.');
+    } else {
+        alert('Palun sisesta tagasiside.');
+    }
+}
+
+// Close feedback modal when clicking outside
+document.addEventListener('click', function(event) {
+    const feedbackModal = document.getElementById('jobFeedbackModal');
+    if (feedbackModal && event.target === feedbackModal) {
+        closeJobFeedbackModal();
+    }
+});
