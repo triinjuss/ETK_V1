@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const aiActivitySuggestionModal = document.getElementById('ai-activity-suggestion-modal');
     const skillsTestsModal = document.getElementById('skills-tests-modal');
     const addJobWishModal = document.getElementById('add-job-wish-modal');
+    const jobDetailsModal = document.getElementById('job-details-modal');
     
     // Inputs & Displays
     const quickTaskInput = document.getElementById('quick-task-input');
@@ -73,6 +74,39 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeModal(modal) {
         if (modal) modal.classList.remove('show');
     }
+
+    // Simple function to open job details modal
+    window.openJobDetailsModal = function(jobTitle) {
+        const jobDetailsTitle = document.getElementById('job-details-title');
+        const jobDetailsModal = document.getElementById('job-details-modal');
+        
+        if (jobDetailsTitle && jobTitle) {
+            jobDetailsTitle.textContent = jobTitle;
+        }
+        if (jobDetailsModal) {
+            openModal(jobDetailsModal);
+        }
+        return false;
+    };
+
+    // Function to handle "Edasi" button in add job wish modal
+    window.handleAddJobWishEdasi = function() {
+        const jobTitleInput = document.getElementById('job-title');
+        const addJobWishModal = document.getElementById('add-job-wish-modal');
+        
+        if (jobTitleInput && jobTitleInput.value.trim()) {
+            const selectedJobTitle = jobTitleInput.value.trim();
+            // Close the add job wish modal
+            if (addJobWishModal) {
+                closeModal(addJobWishModal);
+            }
+            // Open the job details modal with the selected job
+            openJobDetailsModal(selectedJobTitle);
+        } else {
+            alert('Palun sisestage töösoov enne edasi liikumist.');
+        }
+        return false;
+    };
 
     if (openSkillsTestsModalBtn) {
         openSkillsTestsModalBtn.addEventListener('click', (e) => {
@@ -118,6 +152,25 @@ document.addEventListener('DOMContentLoaded', function() {
         addWishBtn.addEventListener('click', (e) => {
             e.preventDefault();
             openModal(addJobWishModal);
+        });
+    }
+
+    // Job Details Modal functionality
+    const jobDetailsCancelBtn = document.getElementById('job-details-cancel');
+    const jobDetailsSaveBtn = document.getElementById('job-details-save');
+
+    if (jobDetailsCancelBtn) {
+        jobDetailsCancelBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal(jobDetailsModal);
+        });
+    }
+
+    if (jobDetailsSaveBtn) {
+        jobDetailsSaveBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Here you can add form validation and saving logic
+            closeModal(jobDetailsModal);
         });
     }
 
@@ -352,6 +405,136 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show all available jobs as suggestions
             const allSuggestions = jobTitles.filter(job => !selectedJobs.includes(job));
             showDropdown(allSuggestions);
+        });
+    }
+
+    // Estonian cities/locations autocomplete functionality
+    const workplaceLocationInput = document.getElementById('workplace-location');
+    const workplaceLocationDropdown = document.getElementById('workplace-location-dropdown');
+    
+    // Estonian cities and regions
+    const estonianLocations = [
+        'Tallinn',
+        'Tartu',
+        'Narva',
+        'Pärnu',
+        'Kohtla-Järve',
+        'Viljandi',
+        'Rakvere',
+        'Maardu',
+        'Kuressaare',
+        'Sillamäe',
+        'Võru',
+        'Jõhvi',
+        'Haapsalu',
+        'Keila',
+        'Paide',
+        'Elva',
+        'Tapa',
+        'Valga',
+        'Põlva',
+        'Jõgeva',
+        'Rapla',
+        'Kella linn',
+        'Harju maakond',
+        'Tartu maakond',
+        'Ida-Viru maakond',
+        'Pärnu maakond',
+        'Lääne-Viru maakond',
+        'Viljandi maakond',
+        'Rapla maakond',
+        'Võru maakond',
+        'Saare maakond',
+        'Jõgeva maakond',
+        'Järva maakond',
+        'Valga maakond',
+        'Põlva maakond',
+        'Lääne maakond',
+        'Hiiu maakond'
+    ];
+
+    let selectedLocationIndex = -1;
+
+    function filterLocations(query) {
+        if (!query.trim()) return [];
+        return estonianLocations.filter(location => 
+            location.toLowerCase().includes(query.toLowerCase())
+        ).slice(0, 10); // Show max 10 suggestions
+    }
+
+    function showLocationDropdown(suggestions) {
+        if (suggestions.length === 0) {
+            hideLocationDropdown();
+            return;
+        }
+
+        workplaceLocationDropdown.innerHTML = '';
+        suggestions.forEach((location, index) => {
+            const item = document.createElement('div');
+            item.className = 'autocomplete-item';
+            item.textContent = location;
+            item.addEventListener('click', () => {
+                selectLocation(location);
+            });
+            workplaceLocationDropdown.appendChild(item);
+        });
+
+        workplaceLocationDropdown.classList.add('show');
+        selectedLocationIndex = -1;
+    }
+
+    function hideLocationDropdown() {
+        workplaceLocationDropdown.classList.remove('show');
+        selectedLocationIndex = -1;
+    }
+
+    function selectLocation(location) {
+        workplaceLocationInput.value = location;
+        hideLocationDropdown();
+    }
+
+    if (workplaceLocationInput && workplaceLocationDropdown) {
+        workplaceLocationInput.addEventListener('keydown', (e) => {
+            const items = workplaceLocationDropdown.querySelectorAll('.autocomplete-item');
+            
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                selectedLocationIndex = Math.min(selectedLocationIndex + 1, items.length - 1);
+                updateLocationSelection(items);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                selectedLocationIndex = Math.max(selectedLocationIndex - 1, -1);
+                updateLocationSelection(items);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (selectedLocationIndex >= 0 && items[selectedLocationIndex]) {
+                    selectLocation(items[selectedLocationIndex].textContent);
+                } else {
+                    // Show all suggestions when Enter is pressed
+                    const query = workplaceLocationInput.value;
+                    const suggestions = filterLocations(query);
+                    showLocationDropdown(suggestions);
+                }
+            } else if (e.key === 'Escape') {
+                hideLocationDropdown();
+            }
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!workplaceLocationInput.contains(e.target) && !workplaceLocationDropdown.contains(e.target)) {
+                hideLocationDropdown();
+            }
+        });
+    }
+
+    function updateLocationSelection(items) {
+        items.forEach((item, index) => {
+            if (index === selectedLocationIndex) {
+                item.classList.add('selected');
+            } else {
+                item.classList.remove('selected');
+            }
         });
     }
 

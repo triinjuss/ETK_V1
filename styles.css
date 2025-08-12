@@ -3155,6 +3155,43 @@
             color: white;
         }
 
+        /* Location tag styling */
+        .selected-location-tag {
+            margin-top: 8px;
+        }
+
+        .location-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid #ced4da;
+        }
+
+        .location-tag .remove-tag {
+            background: none;
+            border: none;
+            color: #495057;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+
+        .location-tag .remove-tag:hover {
+            background-color: rgba(73, 80, 87, 0.1);
+        }
+
         .btn-link {
             background: none;
             border: none;
@@ -3242,5 +3279,289 @@
                 max-width: 90vw;
                 font-size: 12px;
                 padding: 12px 16px;
+            }
+        }
+
+        /* Job Details Modal Styles */
+        #job-details-modal .modal-content {
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .modal-content-large {
+            max-width: 900px !important;
+        }
+
+        .modal-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .job-details-layout {
+            padding: 0;
+        }
+
+        .job-details-left {
+            width: 100%;
+        }
+
+        /* Job Offers Info Card */
+        .job-offers-info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .job-offers-info-card h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .job-offers-number {
+            background: var(--primary-color);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Form Sections */
+        .form-section {
+            margin-bottom: 24px;
+        }
+
+        .form-section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .form-section label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .required {
+            color: #e53e3e;
+            margin-left: 2px;
+        }
+
+        /* Checkbox Styles */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-label {
+            display: flex !important;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 400 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+            content: "✓";
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Radio Button Styles */
+        .radio-group {
+            display: flex;
+            gap: 24px;
+        }
+
+        .radio-label {
+            display: flex !important;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 400 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .radio-label input[type="radio"] {
+            display: none;
+        }
+
+        .radio-checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .radio-label input[type="radio"]:checked + .radio-checkmark {
+            border-color: var(--primary-color);
+        }
+
+        .radio-label input[type="radio"]:checked + .radio-checkmark::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+
+        /* Input Fields */
+        .form-section input[type="text"],
+        .form-section input[type="number"],
+        .form-section textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: var(--font-family);
+            transition: var(--transition);
+        }
+
+        .form-section input:focus,
+        .form-section textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(4, 108, 99, 0.1);
+        }
+
+        /* Salary Input */
+        .salary-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .salary-input-group input {
+            max-width: 120px;
+        }
+
+        .currency {
+            font-size: 14px;
+            color: var(--text-color-light);
+            font-weight: 500;
+        }
+
+        /* Character Count */
+        .character-count {
+            font-size: 12px;
+            color: var(--text-color-light);
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        /* Job Wish Actions */
+        .job-wish-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .job-details-btn {
+            font-size: 12px;
+            padding: 6px 12px;
+            position: relative;
+            z-index: 999999 !important;
+            pointer-events: auto !important;
+            background: var(--primary-color) !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        .job-details-btn:hover {
+            background: var(--accent-color) !important;
+        }
+
+        .job-wish-selectable {
+            cursor: pointer;
+        }
+
+        .job-wish-selectable:hover {
+            background-color: var(--highlight-bg);
+        }
+
+        /* Ensure buttons in job-wish-items are clickable */
+        .job-wish-selectable .job-details-btn {
+            position: relative;
+            z-index: 999999 !important;
+            pointer-events: auto !important;
+        }
+
+        .job-wish-selectable:hover .job-details-btn {
+            pointer-events: auto !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #job-details-modal .modal-content {
+                width: 95%;
+                margin: 20px auto;
+                max-height: calc(100vh - 40px);
+                overflow-y: auto;
+            }
+
+            .job-offers-info-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .salary-input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .modal-header-actions {
+                flex-wrap: wrap;
             }
         }

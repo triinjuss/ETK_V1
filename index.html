@@ -1254,7 +1254,146 @@ Ootused järgmisele ametikohale:
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-modal-id="add-job-wish-modal">Loobu</button>
-                <button class="btn btn-primary">Edasi</button>
+                <button class="btn btn-primary" id="add-job-wish-edasi" onclick="handleAddJobWishEdasi()">Edasi</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Job Details Modal -->
+    <div id="job-details-modal" class="modal-overlay">
+        <div class="modal-content modal-content-large">
+            <div class="modal-header">
+                <h3 id="job-details-title">Reklaamimudija projektijuht</h3>
+                <div class="modal-header-actions">
+                    <button class="btn btn-secondary btn-small">Muuda</button>
+                    <span class="modal-close" data-modal-id="job-details-modal">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="job-details-layout">
+                    <div class="job-details-left">
+                        <!-- Töösoovi ja CV-ga sobivad tööpakkumised card -->
+                        <div class="job-offers-info-card">
+                            <h4>Töösoovi ja CV-ga sobivad tööpakkumised:</h4>
+                            <div class="job-offers-number">1</div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>Kust soovite leida tööd? <span class="required">*</span></h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Eestist
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Välismaalt
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <label for="workplace-location">Eesti asukoha täpsustus <span class="required">*</span></label>
+                            <div class="autocomplete-container">
+                                <input type="text" id="workplace-location" placeholder="Kella linn" autocomplete="off" />
+                                <div class="autocomplete-dropdown" id="workplace-location-dropdown">
+                                    <!-- Location suggestions will be populated here -->
+                                </div>
+                            </div>
+                            <div class="selected-location-tag">
+                                <span class="location-tag">
+                                    Kella linn
+                                    <span class="remove-tag">×</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Tööaeg <span class="required">*</span></h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Täistööaeg
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    osalise tööaeg
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Valmis töötama ka vahetutes <span class="required">*</span></h4>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="evening-work" value="yes" checked>
+                                    <span class="radio-checkmark"></span>
+                                    Jah
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="evening-work" value="no">
+                                    <span class="radio-checkmark"></span>
+                                    Ei
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Valmis töötama ka öösiti<span class="required">*</span></h4>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="night-work" value="yes">
+                                    <span class="radio-checkmark"></span>
+                                    Jah
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="night-work" value="no" checked>
+                                    <span class="radio-checkmark"></span>
+                                    Ei
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <label for="salary">Palgasoov (alates) <span class="required">*</span></label>
+                            <div class="salary-input-group">
+                                <input type="number" id="salary" value="1400" />
+                                <span class="currency">EUR (bruto)</span>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <label for="additional-info">Lisainfo</label>
+                            <textarea id="additional-info" placeholder="Sõitun ühistranspordiga kellaajadest" rows="4"></textarea>
+                            <div class="character-count">37/4000</div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Soovin sobitava tööpakkumise e-postile <span class="required">*</span></h4>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="email-notifications" value="yes" checked>
+                                    <span class="radio-checkmark"></span>
+                                    Jah
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="email-notifications" value="no">
+                                    <span class="radio-checkmark"></span>
+                                    Ei
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="job-details-cancel">Loobu</button>
+                <button class="btn btn-primary" id="job-details-save">Salvesta</button>
             </div>
         </div>
     </div>
