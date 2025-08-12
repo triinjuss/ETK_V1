@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const aiFormulateGoalBtn = document.getElementById('ai-formulate-goal-btn');
     const openAiActivitySuggestionBtn = document.getElementById('open-ai-activity-suggestion-modal');
     const openSkillsTestsModalBtn = document.getElementById('open-skills-tests-modal');
+    const addWishBtn = document.querySelector('.add-wish-btn');
 
     // Modals
     const smartModal = document.getElementById('smart-goal-modal');
@@ -53,6 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const aiSuggestionsModal = document.getElementById('ai-suggestions-modal');
     const aiActivitySuggestionModal = document.getElementById('ai-activity-suggestion-modal');
     const skillsTestsModal = document.getElementById('skills-tests-modal');
+    const addJobWishModal = document.getElementById('add-job-wish-modal');
+    const jobDetailsModal = document.getElementById('job-details-modal');
     
     // Inputs & Displays
     const quickTaskInput = document.getElementById('quick-task-input');
@@ -68,9 +71,45 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal) modal.classList.add('show');
     }
 
-    function closeModal(modal) {
+    window.closeModal = function(modal) {
         if (modal) modal.classList.remove('show');
-    }
+    };
+
+    // Make closeModal available globally for the handleJobSave function
+    window.openModal = openModal;
+
+    // Simple function to open job details modal
+    window.openJobDetailsModal = function(jobTitle) {
+        const jobDetailsTitle = document.getElementById('job-details-title');
+        const jobDetailsModal = document.getElementById('job-details-modal');
+        
+        if (jobDetailsTitle && jobTitle) {
+            jobDetailsTitle.textContent = jobTitle;
+        }
+        if (jobDetailsModal) {
+            openModal(jobDetailsModal);
+        }
+        return false;
+    };
+
+    // Function to handle "Edasi" button in add job wish modal
+    window.handleAddJobWishEdasi = function() {
+        const jobTitleInput = document.getElementById('job-title');
+        const addJobWishModal = document.getElementById('add-job-wish-modal');
+        
+        if (jobTitleInput && jobTitleInput.value.trim()) {
+            const selectedJobTitle = jobTitleInput.value.trim();
+            // Close the add job wish modal
+            if (addJobWishModal) {
+                closeModal(addJobWishModal);
+            }
+            // Open the job details modal with the selected job
+            openJobDetailsModal(selectedJobTitle);
+        } else {
+            alert('Palun sisestage töösoov enne edasi liikumist.');
+        }
+        return false;
+    };
 
     if (openSkillsTestsModalBtn) {
         openSkillsTestsModalBtn.addEventListener('click', (e) => {
@@ -109,6 +148,421 @@ document.addEventListener('DOMContentLoaded', function() {
                 taskDescriptionInput.value = quickTaskInput.value;
             }
             openModal(taskModal);
+        });
+    }
+
+    if (addWishBtn) {
+        addWishBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(addJobWishModal);
+        });
+    }
+
+    // Job Details Modal functionality
+    const jobDetailsCancelBtn = document.getElementById('job-details-cancel');
+    const jobDetailsSaveBtn = document.getElementById('job-details-save');
+
+    console.log('Job details save button found:', jobDetailsSaveBtn); // Debug log
+    console.log('Job details cancel button found:', jobDetailsCancelBtn); // Debug log
+
+    if (jobDetailsCancelBtn) {
+        jobDetailsCancelBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Get modal element directly
+            const jobDetailsModal = document.getElementById('job-details-modal');
+            if (jobDetailsModal) {
+                closeModal(jobDetailsModal);
+            }
+        });
+    }
+
+    if (jobDetailsSaveBtn) {
+        jobDetailsSaveBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Save button clicked'); // Debug log
+            
+            // Get modal element directly
+            const jobDetailsModal = document.getElementById('job-details-modal');
+            
+            // Here you can add form validation and saving logic
+            if (jobDetailsModal) {
+                closeModal(jobDetailsModal);
+            }
+            
+            // Show success modal with map
+            const savedJobTitle = document.getElementById('saved-job-title');
+            const jobDetailsTitle = document.getElementById('job-details-title');
+            
+            if (savedJobTitle && jobDetailsTitle) {
+                savedJobTitle.textContent = jobDetailsTitle.textContent;
+            }
+            
+            // Use the new function that initializes the map
+            openJobSavedModal();
+        });
+    }
+
+    // Job title autocomplete functionality
+    const jobTitleInput = document.getElementById('job-title');
+    const jobTitleDropdown = document.getElementById('job-title-dropdown');
+    const similarJobsContainer = document.getElementById('similar-jobs-container');
+    const similarJobsTags = document.getElementById('similar-jobs-tags');
+    const addMoreJobsBtn = document.getElementById('add-more-jobs');
+    
+    // Sample job titles for autocomplete
+    const jobTitles = [
+        'projektijuht',
+        'IT projektijuht',
+        'projekteerija',
+        'ehituse projektijuht',
+        'reklaami projektijuht',
+        'projektijuht (ehitus)',
+        'projektijuht (IT)',
+        'vanem projektijuht',
+        'projektijuhi assistent',
+        'projektijuhtimise spetsialist',
+        'projekti koordinaator',
+        'projektijuhtimise nõustaja',
+        'projektijuhtimise juht',
+        'projektijuhtimise analüütik',
+        'projektijuhtimise direktor'
+    ];
+
+    // Similar jobs mapping
+    const similarJobsMap = {
+        'projektijuht': ['muu projektijuht', 'äriteeinduse juht', 'ehituse projektijuht'],
+        'IT projektijuht': ['muu projektijuht', 'tehniline projektijuht', 'tarkvara projektijuht'],
+        'projekteerija': ['tehniline projekteerija', 'arhitekt projekteerija', 'ehitusprojekteerija'],
+        'ehituse projektijuht': ['ehitise projektijuht', 'ehitusjuht', 'objektijuht'],
+        'reklaami projektijuht': ['turunduse projektijuht', 'kampaania juht', 'kommunikatsioonijuht'],
+        'projektijuht (ehitus)': ['ehituse projektijuht', 'ehitusjuht', 'objektijuht'],
+        'projektijuht (IT)': ['IT projektijuht', 'tarkvara projektijuht', 'tehniline projektijuht'],
+        'vanem projektijuht': ['projektijuht', 'juhtiv projektijuht', 'projektide juht'],
+        'projektijuhi assistent': ['projektijuht', 'projekti koordinaator', 'projektijuhtimise spetsialist'],
+        'projektijuhtimise spetsialist': ['projektijuht', 'projekti koordinaator', 'projektijuhi assistent'],
+        'projekti koordinaator': ['projektijuht', 'projektijuhtimise spetsialist', 'projektijuhi assistent'],
+        'projektijuhtimise nõustaja': ['projektijuht', 'projektijuhtimise konsultant', 'projektijuhtimise ekspert'],
+        'projektijuhtimise juht': ['vanem projektijuht', 'projektijuht', 'projektide direktor'],
+        'projektijuhtimise analüütik': ['projektijuht', 'ärianalüütik', 'projektijuhtimise spetsialist'],
+        'projektijuhtimise direktor': ['projektijuhtimise juht', 'vanem projektijuht', 'projektide direktor']
+    };
+
+    let selectedJobs = [];
+
+    let selectedIndex = -1;
+
+    function filterJobTitles(query) {
+        if (!query.trim()) return [];
+        return jobTitles.filter(title => 
+            title.toLowerCase().includes(query.toLowerCase())
+        ); // Show all matching suggestions
+    }
+
+    function showDropdown(suggestions) {
+        if (suggestions.length === 0) {
+            hideDropdown();
+            return;
+        }
+
+        jobTitleDropdown.innerHTML = '';
+        suggestions.forEach((title, index) => {
+            const item = document.createElement('div');
+            item.className = 'autocomplete-item';
+            item.textContent = title;
+            item.addEventListener('click', () => {
+                selectJobTitle(title);
+            });
+            jobTitleDropdown.appendChild(item);
+        });
+
+        jobTitleDropdown.classList.add('show');
+        selectedIndex = -1;
+        
+        // Adjust modal position to accommodate dropdown
+        adjustModalForDropdown(true);
+    }
+
+    function hideDropdown() {
+        jobTitleDropdown.classList.remove('show');
+        selectedIndex = -1;
+        
+        // Reset modal position when dropdown is hidden
+        adjustModalForDropdown(false);
+    }
+
+    function selectJobTitle(title) {
+        jobTitleInput.value = title;
+        hideDropdown();
+        jobTitleInput.focus();
+        
+        // Show similar jobs if available
+        showSimilarJobs(title);
+    }
+
+    function showSimilarJobs(selectedJob) {
+        const similarJobs = similarJobsMap[selectedJob];
+        if (similarJobs && similarJobs.length > 0) {
+            // Only include the similar jobs, NOT the selected job itself
+            selectedJobs = [...similarJobs];
+            
+            // Render the tags
+            renderJobTags();
+            
+            // Show the container
+            similarJobsContainer.style.display = 'block';
+        } else {
+            similarJobsContainer.style.display = 'none';
+        }
+    }
+
+    function renderJobTags() {
+        similarJobsTags.innerHTML = '';
+        selectedJobs.forEach((job, index) => {
+            const tag = document.createElement('div');
+            tag.className = 'job-tag';
+            tag.innerHTML = `
+                <span>${job}</span>
+                <button type="button" class="remove-tag" data-job="${job}" data-index="${index}">×</button>
+            `;
+            similarJobsTags.appendChild(tag);
+        });
+    }
+
+    function removeJobTag(jobToRemove) {
+        selectedJobs = selectedJobs.filter(job => job !== jobToRemove);
+        renderJobTags();
+        
+        // Hide container if no jobs left
+        if (selectedJobs.length === 0) {
+            similarJobsContainer.style.display = 'none';
+        }
+    }
+
+    function highlightItem(index) {
+        const items = jobTitleDropdown.querySelectorAll('.autocomplete-item');
+        items.forEach((item, i) => {
+            item.classList.toggle('highlighted', i === index);
+        });
+    }
+
+    function adjustModalForDropdown(isVisible) {
+        const modal = document.getElementById('add-job-wish-modal');
+        const modalContent = modal?.querySelector('.modal-content');
+        
+        if (modalContent) {
+            if (isVisible) {
+                // Show 5 suggestions max before scrolling
+                const maxVisibleSuggestions = 5;
+                const suggestionHeight = 45; // approximate height per suggestion
+                const baseModalHeight = 400; // base modal height
+                const dropdownHeight = maxVisibleSuggestions * suggestionHeight;
+                const totalHeight = baseModalHeight + dropdownHeight;
+                
+                // Add class and set dynamic height for 5 suggestions
+                modalContent.classList.add('dropdown-open');
+                modalContent.style.minHeight = `${Math.min(totalHeight, window.innerHeight * 0.9)}px`;
+                modalContent.style.transform = 'translateY(-15%)';
+            } else {
+                // Remove class and reset height
+                modalContent.classList.remove('dropdown-open');
+                modalContent.style.minHeight = '';
+                modalContent.style.transform = '';
+            }
+        }
+    }
+
+    if (jobTitleInput && jobTitleDropdown) {
+        jobTitleInput.addEventListener('input', (e) => {
+            const query = e.target.value;
+            const suggestions = filterJobTitles(query);
+            showDropdown(suggestions);
+        });
+
+        jobTitleInput.addEventListener('keydown', (e) => {
+            const items = jobTitleDropdown.querySelectorAll('.autocomplete-item');
+            
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+                highlightItem(selectedIndex);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                selectedIndex = Math.max(selectedIndex - 1, -1);
+                highlightItem(selectedIndex);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (selectedIndex >= 0 && items[selectedIndex]) {
+                    selectJobTitle(items[selectedIndex].textContent);
+                }
+            } else if (e.key === 'Escape') {
+                hideDropdown();
+            }
+        });
+
+        jobTitleInput.addEventListener('blur', (e) => {
+            // Delay hiding to allow click on dropdown items
+            setTimeout(() => {
+                hideDropdown();
+            }, 200);
+        });
+
+        jobTitleInput.addEventListener('focus', (e) => {
+            if (e.target.value.trim()) {
+                const suggestions = filterJobTitles(e.target.value);
+                showDropdown(suggestions);
+            }
+        });
+    }
+
+    // Event listeners for similar jobs functionality
+    if (similarJobsTags) {
+        similarJobsTags.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tag')) {
+                const jobToRemove = e.target.getAttribute('data-job');
+                removeJobTag(jobToRemove);
+            }
+        });
+    }
+
+    if (addMoreJobsBtn) {
+        addMoreJobsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Clear the input and show dropdown for adding more jobs
+            jobTitleInput.value = '';
+            jobTitleInput.focus();
+            // Show all available jobs as suggestions
+            const allSuggestions = jobTitles.filter(job => !selectedJobs.includes(job));
+            showDropdown(allSuggestions);
+        });
+    }
+
+    // Estonian cities/locations autocomplete functionality
+    const workplaceLocationInput = document.getElementById('workplace-location');
+    const workplaceLocationDropdown = document.getElementById('workplace-location-dropdown');
+    
+    // Estonian cities and regions
+    const estonianLocations = [
+        'Tallinn',
+        'Tartu',
+        'Narva',
+        'Pärnu',
+        'Kohtla-Järve',
+        'Viljandi',
+        'Rakvere',
+        'Maardu',
+        'Kuressaare',
+        'Sillamäe',
+        'Võru',
+        'Jõhvi',
+        'Haapsalu',
+        'Keila',
+        'Paide',
+        'Elva',
+        'Tapa',
+        'Valga',
+        'Põlva',
+        'Jõgeva',
+        'Rapla',
+        'Kella linn',
+        'Harju maakond',
+        'Tartu maakond',
+        'Ida-Viru maakond',
+        'Pärnu maakond',
+        'Lääne-Viru maakond',
+        'Viljandi maakond',
+        'Rapla maakond',
+        'Võru maakond',
+        'Saare maakond',
+        'Jõgeva maakond',
+        'Järva maakond',
+        'Valga maakond',
+        'Põlva maakond',
+        'Lääne maakond',
+        'Hiiu maakond'
+    ];
+
+    let selectedLocationIndex = -1;
+
+    function filterLocations(query) {
+        if (!query.trim()) return [];
+        return estonianLocations.filter(location => 
+            location.toLowerCase().includes(query.toLowerCase())
+        ).slice(0, 10); // Show max 10 suggestions
+    }
+
+    function showLocationDropdown(suggestions) {
+        if (suggestions.length === 0) {
+            hideLocationDropdown();
+            return;
+        }
+
+        workplaceLocationDropdown.innerHTML = '';
+        suggestions.forEach((location, index) => {
+            const item = document.createElement('div');
+            item.className = 'autocomplete-item';
+            item.textContent = location;
+            item.addEventListener('click', () => {
+                selectLocation(location);
+            });
+            workplaceLocationDropdown.appendChild(item);
+        });
+
+        workplaceLocationDropdown.classList.add('show');
+        selectedLocationIndex = -1;
+    }
+
+    function hideLocationDropdown() {
+        workplaceLocationDropdown.classList.remove('show');
+        selectedLocationIndex = -1;
+    }
+
+    function selectLocation(location) {
+        workplaceLocationInput.value = location;
+        hideLocationDropdown();
+    }
+
+    if (workplaceLocationInput && workplaceLocationDropdown) {
+        workplaceLocationInput.addEventListener('keydown', (e) => {
+            const items = workplaceLocationDropdown.querySelectorAll('.autocomplete-item');
+            
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                selectedLocationIndex = Math.min(selectedLocationIndex + 1, items.length - 1);
+                updateLocationSelection(items);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                selectedLocationIndex = Math.max(selectedLocationIndex - 1, -1);
+                updateLocationSelection(items);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (selectedLocationIndex >= 0 && items[selectedLocationIndex]) {
+                    selectLocation(items[selectedLocationIndex].textContent);
+                } else {
+                    // Show all suggestions when Enter is pressed
+                    const query = workplaceLocationInput.value;
+                    const suggestions = filterLocations(query);
+                    showLocationDropdown(suggestions);
+                }
+            } else if (e.key === 'Escape') {
+                hideLocationDropdown();
+            }
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!workplaceLocationInput.contains(e.target) && !workplaceLocationDropdown.contains(e.target)) {
+                hideLocationDropdown();
+            }
+        });
+    }
+
+    function updateLocationSelection(items) {
+        items.forEach((item, index) => {
+            if (index === selectedLocationIndex) {
+                item.classList.add('selected');
+            } else {
+                item.classList.remove('selected');
+            }
         });
     }
 
@@ -252,4 +706,164 @@ document.addEventListener('DOMContentLoaded', function() {
             updateSkillDisplay(item);
         });
     });
+
+    // Ensure save button functionality is attached after DOM load
+    setTimeout(() => {
+        const saveBtn = document.getElementById('job-details-save');
+        console.log('Delayed save button check:', saveBtn);
+        if (saveBtn && !saveBtn.hasAttribute('data-listener-attached')) {
+            saveBtn.setAttribute('data-listener-attached', 'true');
+            saveBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Save button clicked (delayed handler)');
+                
+                const jobDetailsModal = document.getElementById('job-details-modal');
+                if (jobDetailsModal) {
+                    closeModal(jobDetailsModal);
+                }
+                
+                const savedJobTitle = document.getElementById('saved-job-title');
+                const jobDetailsTitle = document.getElementById('job-details-title');
+                
+                if (savedJobTitle && jobDetailsTitle) {
+                    savedJobTitle.textContent = jobDetailsTitle.textContent;
+                }
+                
+                openJobSavedModal();
+            });
+        }
+    }, 500);
 });
+
+// Google Maps initialization
+let map;
+let marker;
+
+// Global function to handle job save
+window.handleJobSave = function() {
+    console.log('handleJobSave function called');
+    
+    // Close the job details modal
+    const jobDetailsModal = document.getElementById('job-details-modal');
+    if (jobDetailsModal) {
+        window.closeModal(jobDetailsModal);
+        console.log('Job details modal closed');
+    }
+    
+    // Get job information to pass to career dashboard
+    const jobDetailsTitle = document.getElementById('job-details-title');
+    const locationInput = document.getElementById('location-input');
+    
+    const jobTitle = jobDetailsTitle ? jobDetailsTitle.textContent : 'Projektijuht';
+    const location = locationInput ? locationInput.value || 'Keila' : 'Keila';
+    
+    console.log('Job saved:', jobTitle, 'Location:', location);
+    
+    // Update the saved job title in current page
+    const savedJobTitle = document.getElementById('saved-job-title');
+    if (savedJobTitle && jobDetailsTitle) {
+        savedJobTitle.textContent = jobDetailsTitle.textContent;
+        console.log('Job title updated:', jobDetailsTitle.textContent);
+    }
+    
+    // Create URL with job parameters
+    const dashboardUrl = `career-dashboard.html?job=${encodeURIComponent(jobTitle)}&location=${encodeURIComponent(location)}`;
+    
+    console.log('Opening career dashboard with URL:', dashboardUrl);
+    
+    // Open the career dashboard in a new tab with job-specific data
+    window.open(dashboardUrl, '_blank');
+};
+
+function initRealGoogleMap() {
+    // This function is for when you have a real Google Maps API key
+    // Keila coordinates
+    const keilaLocation = { lat: 59.3047, lng: 24.4128 };
+    
+    // Initialize map
+    map = new google.maps.Map(document.getElementById("google-map"), {
+        zoom: 12,
+        center: keilaLocation,
+        styles: [
+            {
+                "featureType": "all",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "weight": "2.00"
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#9c9c9c"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#eeeeee"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#c8d7d4"
+                    }
+                ]
+            }
+        ],
+        disableDefaultUI: true,
+        zoomControl: true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.RIGHT_BOTTOM
+        }
+    });
+
+    // Add custom marker
+    marker = new google.maps.Marker({
+        position: keilaLocation,
+        map: map,
+        title: "Keila linn",
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 8,
+            fillColor: "#046c63",
+            fillOpacity: 1,
+            strokeWeight: 2,
+            strokeColor: "#ffffff"
+        }
+    });
+
+    // Add info window
+    const infoWindow = new google.maps.InfoWindow({
+        content: `
+            <div style="font-family: Inter, sans-serif; padding: 8px;">
+                <h6 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #333;">Keila linn</h6>
+                <p style="margin: 0; font-size: 12px; color: #666;">Harju maakond, Eesti</p>
+            </div>
+        `
+    });
+
+    marker.addListener("click", () => {
+        infoWindow.open(map, marker);
+    });
+}

@@ -6,6 +6,74 @@
     <title>Minu Plaan - Uus Kujundus</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Demo Google Maps implementation (no API key needed)
+        window.initMap = function() {
+            console.log('Initializing demo Google Maps');
+            
+            // Create a styled demo map that looks like Google Maps
+            const mapContainer = document.getElementById('google-map');
+            console.log('Map container found:', mapContainer);
+            console.log('Map container dimensions:', mapContainer ? `${mapContainer.offsetWidth}x${mapContainer.offsetHeight}` : 'N/A');
+            console.log('Map container style:', mapContainer ? mapContainer.style.cssText : 'N/A');
+            
+            if (mapContainer) {
+                console.log('Setting innerHTML for map container');
+                mapContainer.innerHTML = `
+                    <div style="
+                        width: 100%; 
+                        height: 100%; 
+                        background: linear-gradient(135deg, #e8f5e8 0%, #c8d7d4 100%);
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: Inter, sans-serif;
+                        border-radius: 8px;
+                        min-height: 280px;
+                    ">
+                        <div style="
+                            background: rgba(255,255,255,0.9);
+                            padding: 20px;
+                            border-radius: 8px;
+                            text-align: center;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        ">
+                            <div style="
+                                width: 12px;
+                                height: 12px;
+                                background: #046c63;
+                                border-radius: 50%;
+                                margin: 0 auto 8px auto;
+                                border: 2px solid white;
+                                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                            "></div>
+                            <h6 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #333;">Keila linn</h6>
+                            <p style="margin: 0; font-size: 12px; color: #666;">Demo kaart</p>
+                        </div>
+                    </div>
+                `;
+                console.log('Demo map HTML set successfully');
+                console.log('Map container after update:', mapContainer.innerHTML.length, 'characters');
+                return true;
+            } else {
+                console.log('Map container not found!');
+                return false;
+            }
+        }
+        
+        // Test function to manually open success modal with map
+        window.testMapModal = function() {
+            console.log('Testing map modal');
+            const modal = document.getElementById('job-saved-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    window.initMap();
+                }, 200);
+            }
+        }
+    </script>
 </head>
 <body>
     <header class="main-header">
@@ -159,6 +227,7 @@
                     <button class="btn btn-secondary btn-full-width add-wish-btn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                         Lisa töösoov
+                        <span class="info-icon" data-tooltip="Töösoovi sisestamine on lihtne samm, mis avab ukse palju sihipärasematele soovitustele. Kui süsteem teab, millist tööd otsid, millises piirkonnas, millise koormusega ja millise palgaga, saab see pakkuda sulle ainult neid tööpakkumisi, mis päriselt sobivad. Nii ei pea sa raiskama aega valedele kuulutustele – sind ootavad juba need, mis vastavad su sihtidele.">?</span>
                     </button>
                     <div class="short-term-section">
                         <p class="short-term-text">Tööpakkumised ja tööampsud</p>
@@ -1211,6 +1280,188 @@ Ootused järgmisele ametikohale:
             </div>
             <div class="modal-footer" style="background-color: var(--secondary-color); border-top: none; padding-top: 16px;">
                 <button class="btn btn-secondary" data-modal-id="skills-tests-modal">Sulge</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Job Wish Modal -->
+    <div id="add-job-wish-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Töösoovi lisamine</h3>
+                <span class="modal-close" data-modal-id="add-job-wish-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="job-title">
+                        Soovitud ametikoht
+                        <span class="required">*</span>
+                        <span class="info-icon" data-tooltip="Ametinimetuste lisamine näitab, millist tööd sa otsid, ning selle põhjal saab süsteem pakkuda valdkonnale vastavaid tööpakkumisi ja koolitusi, mis toetavad konkreetsete tööülesannete jaoks vajalikke oskusi. See aitab keskenduda töökohtadele, mis vastavad sinu taustale ja huvidele.">?</span>
+                    </label>
+                    <div class="input-group">
+                        <div class="autocomplete-container">
+                            <input type="text" id="job-title" placeholder="Sisesta ametinimetus" autocomplete="off" />
+                            <div class="autocomplete-dropdown" id="job-title-dropdown">
+                                <!-- Suggestions will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Similar job recommendations -->
+                    <div id="similar-jobs-container" class="similar-jobs-container" style="display: none;">
+                        <div class="similar-jobs-info">
+                            <span class="info-icon" data-tooltip="Leidsime teie töösooviga sarnaseid ametikohti. Palun vaadake need üle ja märkisõna kõrval olevale ristile, või lisage uusi. Süsteem otsib teile tööpakkumisi just nende märksõnade põhjal.">?</span>
+                            <span class="similar-jobs-text">Leidsime teie töösooviga sarnaseid ametikohti. Palun vaadake need üle ja märkisõna kõrval olevale ristile, või lisage uusi. Süsteem otsib teile tööpakkumisi just nende märksõnade põhjal.</span>
+                        </div>
+                        <div id="similar-jobs-tags" class="similar-jobs-tags">
+                            <!-- Similar job tags will be populated here -->
+                        </div>
+                        <button type="button" class="btn btn-link" id="add-more-jobs">Lisa veel ametiialasid</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="add-job-wish-modal">Loobu</button>
+                <button class="btn btn-primary" id="add-job-wish-edasi" onclick="handleAddJobWishEdasi()">Edasi</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Job Details Modal -->
+    <div id="job-details-modal" class="modal-overlay">
+        <div class="modal-content modal-content-large">
+            <div class="modal-header">
+                <h3 id="job-details-title">Reklaamimudija projektijuht</h3>
+                <div class="modal-header-actions">
+                    <button class="btn btn-secondary btn-small">Muuda</button>
+                    <span class="modal-close" data-modal-id="job-details-modal">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="job-details-layout">
+                    <div class="job-details-left">
+                        <!-- Töösoovi ja CV-ga sobivad tööpakkumised card -->
+                        <div class="job-offers-info-card">
+                            <h4>Töösoovi ja CV-ga sobivad tööpakkumised:</h4>
+                            <div class="job-offers-number">1</div>
+                        </div>
+                        
+                        <div class="form-section">
+                            <h4>Kust soovite leida tööd? <span class="required">*</span></h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Eestist
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Välismaalt
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <label for="workplace-location">Eesti asukoha täpsustus <span class="required">*</span></label>
+                            <div class="autocomplete-container">
+                                <input type="text" id="workplace-location" placeholder="Kella linn" autocomplete="off" />
+                                <div class="autocomplete-dropdown" id="workplace-location-dropdown">
+                                    <!-- Location suggestions will be populated here -->
+                                </div>
+                            </div>
+                            <div class="selected-location-tag">
+                                <span class="location-tag">
+                                    Kella linn
+                                    <span class="remove-tag">×</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Tööaeg <span class="required">*</span></h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Täistööaeg
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    osalise tööaeg
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Valmis töötama ka vahetutes <span class="required">*</span></h4>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="evening-work" value="yes" checked>
+                                    <span class="radio-checkmark"></span>
+                                    Jah
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="evening-work" value="no">
+                                    <span class="radio-checkmark"></span>
+                                    Ei
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Valmis töötama ka öösiti<span class="required">*</span></h4>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="night-work" value="yes">
+                                    <span class="radio-checkmark"></span>
+                                    Jah
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="night-work" value="no" checked>
+                                    <span class="radio-checkmark"></span>
+                                    Ei
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <label for="salary">Palgasoov (alates) <span class="required">*</span></label>
+                            <div class="salary-input-group">
+                                <input type="number" id="salary" value="1400" />
+                                <span class="currency">EUR (bruto)</span>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <label for="additional-info">Lisainfo</label>
+                            <textarea id="additional-info" placeholder="Sõitun ühistranspordiga kellaajadest" rows="4"></textarea>
+                            <div class="character-count">37/4000</div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Soovin sobitava tööpakkumise e-postile <span class="required">*</span></h4>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="email-notifications" value="yes" checked>
+                                    <span class="radio-checkmark"></span>
+                                    Jah
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="email-notifications" value="no">
+                                    <span class="radio-checkmark"></span>
+                                    Ei
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="job-details-cancel">Loobu</button>
+                <button class="btn btn-primary" id="job-details-save" onclick="handleJobSave()">Salvesta</button>
             </div>
         </div>
     </div>
