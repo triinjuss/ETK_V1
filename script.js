@@ -918,5 +918,61 @@ document.addEventListener('click', function(event) {
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeJobListingsModal();
+        closeJobFeedbackModal();
+    }
+});
+
+// Job Feedback Modal Functions
+function openJobFeedbackModal() {
+    const modal = document.getElementById('jobFeedbackModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Focus on the textarea
+        const textarea = modal.querySelector('.feedback-textarea');
+        if (textarea) {
+            setTimeout(() => textarea.focus(), 100);
+        }
+    }
+}
+
+function closeJobFeedbackModal() {
+    const modal = document.getElementById('jobFeedbackModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        
+        // Clear the textarea
+        const textarea = modal.querySelector('.feedback-textarea');
+        if (textarea) {
+            textarea.value = '';
+        }
+    }
+}
+
+function submitJobFeedback() {
+    const textarea = document.querySelector('#jobFeedbackModal .feedback-textarea');
+    const feedback = textarea ? textarea.value.trim() : '';
+    
+    if (feedback) {
+        // Here you would normally send the feedback to your server
+        console.log('Job feedback submitted:', feedback);
+        
+        // Close the modal
+        closeJobFeedbackModal();
+        
+        // Optionally show a success message
+        alert('Tagasiside salvestatud. Pakkumine eemaldatud soovitustest.');
+    } else {
+        alert('Palun sisesta tagasiside.');
+    }
+}
+
+// Close feedback modal when clicking outside
+document.addEventListener('click', function(event) {
+    const feedbackModal = document.getElementById('jobFeedbackModal');
+    if (feedbackModal && event.target === feedbackModal) {
+        closeJobFeedbackModal();
     }
 });
