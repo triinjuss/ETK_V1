@@ -776,7 +776,7 @@ function updateCareerDashboardContent(jobTitle, location) {
     const contentElement = document.getElementById('job-overview-content');
     
     if (titleElement) {
-        titleElement.textContent = `${jobTitle} turuülevaade (${location})`;
+        titleElement.textContent = `${jobTitle} tööturu ülevaade (${location})`;
     }
     
     if (contentElement) {
