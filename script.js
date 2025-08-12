@@ -124,6 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Job title autocomplete functionality
     const jobTitleInput = document.getElementById('job-title');
     const jobTitleDropdown = document.getElementById('job-title-dropdown');
+    const similarJobsContainer = document.getElementById('similar-jobs-container');
+    const similarJobsTags = document.getElementById('similar-jobs-tags');
+    const addMoreJobsBtn = document.getElementById('add-more-jobs');
     
     // Sample job titles for autocomplete
     const jobTitles = [
@@ -143,6 +146,27 @@ document.addEventListener('DOMContentLoaded', function() {
         'projektijuhtimise analüütik',
         'projektijuhtimise direktor'
     ];
+
+    // Similar jobs mapping
+    const similarJobsMap = {
+        'projektijuht': ['muu projektijuht', 'äriteeinduse juht', 'ehituse projektijuht'],
+        'IT projektijuht': ['muu projektijuht', 'tehniline projektijuht', 'tarkvara projektijuht'],
+        'projekteerija': ['tehniline projekteerija', 'arhitekt projekteerija', 'ehitusprojekteerija'],
+        'ehituse projektijuht': ['ehitise projektijuht', 'ehitusjuht', 'objektijuht'],
+        'reklaami projektijuht': ['turunduse projektijuht', 'kampaania juht', 'kommunikatsioonijuht'],
+        'projektijuht (ehitus)': ['ehituse projektijuht', 'ehitusjuht', 'objektijuht'],
+        'projektijuht (IT)': ['IT projektijuht', 'tarkvara projektijuht', 'tehniline projektijuht'],
+        'vanem projektijuht': ['projektijuht', 'juhtiv projektijuht', 'projektide juht'],
+        'projektijuhi assistent': ['projektijuht', 'projekti koordinaator', 'projektijuhtimise spetsialist'],
+        'projektijuhtimise spetsialist': ['projektijuht', 'projekti koordinaator', 'projektijuhi assistent'],
+        'projekti koordinaator': ['projektijuht', 'projektijuhtimise spetsialist', 'projektijuhi assistent'],
+        'projektijuhtimise nõustaja': ['projektijuht', 'projektijuhtimise konsultant', 'projektijuhtimise ekspert'],
+        'projektijuhtimise juht': ['vanem projektijuht', 'projektijuht', 'projektide direktor'],
+        'projektijuhtimise analüütik': ['projektijuht', 'ärianalüütik', 'projektijuhtimise spetsialist'],
+        'projektijuhtimise direktor': ['projektijuhtimise juht', 'vanem projektijuht', 'projektide direktor']
+    };
+
+    let selectedJobs = [];
 
     let selectedIndex = -1;
 
@@ -189,6 +213,48 @@ document.addEventListener('DOMContentLoaded', function() {
         jobTitleInput.value = title;
         hideDropdown();
         jobTitleInput.focus();
+        
+        // Show similar jobs if available
+        showSimilarJobs(title);
+    }
+
+    function showSimilarJobs(selectedJob) {
+        const similarJobs = similarJobsMap[selectedJob];
+        if (similarJobs && similarJobs.length > 0) {
+            // Only include the similar jobs, NOT the selected job itself
+            selectedJobs = [...similarJobs];
+            
+            // Render the tags
+            renderJobTags();
+            
+            // Show the container
+            similarJobsContainer.style.display = 'block';
+        } else {
+            similarJobsContainer.style.display = 'none';
+        }
+    }
+
+    function renderJobTags() {
+        similarJobsTags.innerHTML = '';
+        selectedJobs.forEach((job, index) => {
+            const tag = document.createElement('div');
+            tag.className = 'job-tag';
+            tag.innerHTML = `
+                <span>${job}</span>
+                <button type="button" class="remove-tag" data-job="${job}" data-index="${index}">×</button>
+            `;
+            similarJobsTags.appendChild(tag);
+        });
+    }
+
+    function removeJobTag(jobToRemove) {
+        selectedJobs = selectedJobs.filter(job => job !== jobToRemove);
+        renderJobTags();
+        
+        // Hide container if no jobs left
+        if (selectedJobs.length === 0) {
+            similarJobsContainer.style.display = 'none';
+        }
     }
 
     function highlightItem(index) {
@@ -264,6 +330,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 const suggestions = filterJobTitles(e.target.value);
                 showDropdown(suggestions);
             }
+        });
+    }
+
+    // Event listeners for similar jobs functionality
+    if (similarJobsTags) {
+        similarJobsTags.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tag')) {
+                const jobToRemove = e.target.getAttribute('data-job');
+                removeJobTag(jobToRemove);
+            }
+        });
+    }
+
+    if (addMoreJobsBtn) {
+        addMoreJobsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Clear the input and show dropdown for adding more jobs
+            jobTitleInput.value = '';
+            jobTitleInput.focus();
+            // Show all available jobs as suggestions
+            const allSuggestions = jobTitles.filter(job => !selectedJobs.includes(job));
+            showDropdown(allSuggestions);
         });
     }
 

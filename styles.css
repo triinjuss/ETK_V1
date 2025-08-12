@@ -3093,6 +3093,82 @@
             white-space: nowrap;
         }
 
+        /* Similar jobs recommendations */
+        .similar-jobs-container {
+            margin-top: 20px;
+            padding: 16px;
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .similar-jobs-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .similar-jobs-text {
+            font-size: 13px;
+            color: var(--text-color-light);
+            line-height: 1.4;
+        }
+
+        .similar-jobs-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .job-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .job-tag .remove-tag {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+
+        .job-tag .remove-tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-link {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 0;
+        }
+
+        .btn-link:hover {
+            color: var(--text-color);
+        }
+
         /* Modal specific info icon */
         #add-job-wish-modal .info-icon {
             display: inline-flex;

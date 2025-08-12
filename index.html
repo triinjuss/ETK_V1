@@ -1237,7 +1237,18 @@ Ootused järgmisele ametikohale:
                                 <!-- Suggestions will be populated here -->
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-small">Lisa</button>
+                    </div>
+                    
+                    <!-- Similar job recommendations -->
+                    <div id="similar-jobs-container" class="similar-jobs-container" style="display: none;">
+                        <div class="similar-jobs-info">
+                            <span class="info-icon" data-tooltip="Leidsime teie töösooviga sarnaseid ametikohti. Palun vaadake need üle ja märkisõna kõrval olevale ristile, või lisage uusi. Süsteem otsib teile tööpakkumisi just nende märksõnade põhjal.">?</span>
+                            <span class="similar-jobs-text">Leidsime teie töösooviga sarnaseid ametikohti. Palun vaadake need üle ja märkisõna kõrval olevale ristile, või lisage uusi. Süsteem otsib teile tööpakkumisi just nende märksõnade põhjal.</span>
+                        </div>
+                        <div id="similar-jobs-tags" class="similar-jobs-tags">
+                            <!-- Similar job tags will be populated here -->
+                        </div>
+                        <button type="button" class="btn btn-link" id="add-more-jobs">Lisa veel ametiialasid</button>
                     </div>
                 </div>
             </div>
