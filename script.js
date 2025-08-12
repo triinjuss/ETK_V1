@@ -750,7 +750,7 @@ window.handleJobSave = function() {
         console.log('Job details modal closed');
     }
     
-    // Get job information to pass to career dashboard
+    // Get job information to update career dashboard
     const jobDetailsTitle = document.getElementById('job-details-title');
     const locationInput = document.getElementById('location-input');
     
@@ -759,21 +759,35 @@ window.handleJobSave = function() {
     
     console.log('Job saved:', jobTitle, 'Location:', location);
     
-    // Update the saved job title in current page
-    const savedJobTitle = document.getElementById('saved-job-title');
-    if (savedJobTitle && jobDetailsTitle) {
-        savedJobTitle.textContent = jobDetailsTitle.textContent;
-        console.log('Job title updated:', jobDetailsTitle.textContent);
+    // Update career dashboard content with job-specific data
+    updateCareerDashboardContent(jobTitle, location);
+    
+    // Open the career dashboard modal
+    const careerDashboardModal = document.getElementById('career-dashboard-modal');
+    if (careerDashboardModal) {
+        window.openModal(careerDashboardModal);
+        console.log('Career dashboard modal opened');
+    }
+};
+
+// Function to update career dashboard content with job-specific data
+function updateCareerDashboardContent(jobTitle, location) {
+    const titleElement = document.getElementById('job-overview-title');
+    const contentElement = document.getElementById('job-overview-content');
+    
+    if (titleElement) {
+        titleElement.textContent = `${jobTitle} turuülevaade (${location})`;
     }
     
-    // Create URL with job parameters
-    const dashboardUrl = `career-dashboard.html?job=${encodeURIComponent(jobTitle)}&location=${encodeURIComponent(location)}`;
-    
-    console.log('Opening career dashboard with URL:', dashboardUrl);
-    
-    // Open the career dashboard in a new tab with job-specific data
-    window.open(dashboardUrl, '_blank');
-};
+    if (contentElement) {
+        // Keep the existing content for now, but this could be dynamic based on job/location
+        contentElement.innerHTML = `
+            ${location}s ei ole projektijuhtide järele hetkel suurt tööjõupuudust, kuid tööpakkumisi lisandub aeg-ajalt. Tööjõubaromeetri andmetel on konkurents keskmine.
+            <br><br>
+            Viimaste tööpakkumiste põhjal on reklaamimüügi projektijuhi brutopalk Harjumaal vahemikus <span class="highlight">1550–2100 eurot</span>. Soovitame kaaluda kandideerimist ka seotud valdkondadesse, näiteks <span class="highlight">müügijuhi</span> või <span class="highlight">turundusspetsialisti</span> ametikohale, et suurendada sobivate tööpakkumiste arvu.
+        `;
+    }
+}
 
 function initRealGoogleMap() {
     // This function is for when you have a real Google Maps API key

@@ -167,3 +167,68 @@ body {
 .text-secondary {
     color: var(--text-secondary);
 }
+
+/* Map Placeholder Styles */
+.map-placeholder {
+    width: 100% !important;
+    height: 350px !important;
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8d7d4 100%) !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.map-pin {
+    width: 20px !important;
+    height: 20px !important;
+    background-color: var(--primary-color) !important;
+    border-radius: 50% 50% 50% 0 !important;
+    transform: rotate(-45deg) !important;
+    border: 3px solid white !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+}
+
+.map-pin::after {
+    content: '' !important;
+    width: 8px !important;
+    height: 8px !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) rotate(45deg) !important;
+}
+
+.location-info {
+    text-align: center !important;
+    background: rgba(255,255,255,0.9) !important;
+    padding: 15px 20px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+.location-info h3 {
+    margin: 0 0 5px 0 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+}
+
+.location-info p {
+    margin: 0 0 8px 0 !important;
+    font-size: 14px !important;
+    color: var(--text-secondary) !important;
+}
+
+.location-info .distance {
+    font-size: 12px !important;
+    color: var(--primary-color) !important;
+    font-weight: 500 !important;
+}
