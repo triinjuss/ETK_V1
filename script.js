@@ -71,9 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal) modal.classList.add('show');
     }
 
-    function closeModal(modal) {
+    window.closeModal = function(modal) {
         if (modal) modal.classList.remove('show');
-    }
+    };
+
+    // Make closeModal available globally for the handleJobSave function
+    window.openModal = openModal;
 
     // Simple function to open job details modal
     window.openJobDetailsModal = function(jobTitle) {
@@ -159,18 +162,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const jobDetailsCancelBtn = document.getElementById('job-details-cancel');
     const jobDetailsSaveBtn = document.getElementById('job-details-save');
 
+    console.log('Job details save button found:', jobDetailsSaveBtn); // Debug log
+    console.log('Job details cancel button found:', jobDetailsCancelBtn); // Debug log
+
     if (jobDetailsCancelBtn) {
         jobDetailsCancelBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            closeModal(jobDetailsModal);
+            // Get modal element directly
+            const jobDetailsModal = document.getElementById('job-details-modal');
+            if (jobDetailsModal) {
+                closeModal(jobDetailsModal);
+            }
         });
     }
 
     if (jobDetailsSaveBtn) {
         jobDetailsSaveBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            console.log('Save button clicked'); // Debug log
+            
+            // Get modal element directly
+            const jobDetailsModal = document.getElementById('job-details-modal');
+            
             // Here you can add form validation and saving logic
-            closeModal(jobDetailsModal);
+            if (jobDetailsModal) {
+                closeModal(jobDetailsModal);
+            }
+            
+            // Show success modal with map
+            const savedJobTitle = document.getElementById('saved-job-title');
+            const jobDetailsTitle = document.getElementById('job-details-title');
+            
+            if (savedJobTitle && jobDetailsTitle) {
+                savedJobTitle.textContent = jobDetailsTitle.textContent;
+            }
+            
+            // Use the new function that initializes the map
+            openJobSavedModal();
         });
     }
 
@@ -678,4 +706,164 @@ document.addEventListener('DOMContentLoaded', function() {
             updateSkillDisplay(item);
         });
     });
+
+    // Ensure save button functionality is attached after DOM load
+    setTimeout(() => {
+        const saveBtn = document.getElementById('job-details-save');
+        console.log('Delayed save button check:', saveBtn);
+        if (saveBtn && !saveBtn.hasAttribute('data-listener-attached')) {
+            saveBtn.setAttribute('data-listener-attached', 'true');
+            saveBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Save button clicked (delayed handler)');
+                
+                const jobDetailsModal = document.getElementById('job-details-modal');
+                if (jobDetailsModal) {
+                    closeModal(jobDetailsModal);
+                }
+                
+                const savedJobTitle = document.getElementById('saved-job-title');
+                const jobDetailsTitle = document.getElementById('job-details-title');
+                
+                if (savedJobTitle && jobDetailsTitle) {
+                    savedJobTitle.textContent = jobDetailsTitle.textContent;
+                }
+                
+                openJobSavedModal();
+            });
+        }
+    }, 500);
 });
+
+// Google Maps initialization
+let map;
+let marker;
+
+// Global function to handle job save
+window.handleJobSave = function() {
+    console.log('handleJobSave function called');
+    
+    // Close the job details modal
+    const jobDetailsModal = document.getElementById('job-details-modal');
+    if (jobDetailsModal) {
+        window.closeModal(jobDetailsModal);
+        console.log('Job details modal closed');
+    }
+    
+    // Get job information to pass to career dashboard
+    const jobDetailsTitle = document.getElementById('job-details-title');
+    const locationInput = document.getElementById('location-input');
+    
+    const jobTitle = jobDetailsTitle ? jobDetailsTitle.textContent : 'Projektijuht';
+    const location = locationInput ? locationInput.value || 'Keila' : 'Keila';
+    
+    console.log('Job saved:', jobTitle, 'Location:', location);
+    
+    // Update the saved job title in current page
+    const savedJobTitle = document.getElementById('saved-job-title');
+    if (savedJobTitle && jobDetailsTitle) {
+        savedJobTitle.textContent = jobDetailsTitle.textContent;
+        console.log('Job title updated:', jobDetailsTitle.textContent);
+    }
+    
+    // Create URL with job parameters
+    const dashboardUrl = `career-dashboard.html?job=${encodeURIComponent(jobTitle)}&location=${encodeURIComponent(location)}`;
+    
+    console.log('Opening career dashboard with URL:', dashboardUrl);
+    
+    // Open the career dashboard in a new tab with job-specific data
+    window.open(dashboardUrl, '_blank');
+};
+
+function initRealGoogleMap() {
+    // This function is for when you have a real Google Maps API key
+    // Keila coordinates
+    const keilaLocation = { lat: 59.3047, lng: 24.4128 };
+    
+    // Initialize map
+    map = new google.maps.Map(document.getElementById("google-map"), {
+        zoom: 12,
+        center: keilaLocation,
+        styles: [
+            {
+                "featureType": "all",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "weight": "2.00"
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#9c9c9c"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#eeeeee"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#c8d7d4"
+                    }
+                ]
+            }
+        ],
+        disableDefaultUI: true,
+        zoomControl: true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.RIGHT_BOTTOM
+        }
+    });
+
+    // Add custom marker
+    marker = new google.maps.Marker({
+        position: keilaLocation,
+        map: map,
+        title: "Keila linn",
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 8,
+            fillColor: "#046c63",
+            fillOpacity: 1,
+            strokeWeight: 2,
+            strokeColor: "#ffffff"
+        }
+    });
+
+    // Add info window
+    const infoWindow = new google.maps.InfoWindow({
+        content: `
+            <div style="font-family: Inter, sans-serif; padding: 8px;">
+                <h6 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #333;">Keila linn</h6>
+                <p style="margin: 0; font-size: 12px; color: #666;">Harju maakond, Eesti</p>
+            </div>
+        `
+    });
+
+    marker.addListener("click", () => {
+        infoWindow.open(map, marker);
+    });
+}

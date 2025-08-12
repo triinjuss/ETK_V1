@@ -6,6 +6,74 @@
     <title>Minu Plaan - Uus Kujundus</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Demo Google Maps implementation (no API key needed)
+        window.initMap = function() {
+            console.log('Initializing demo Google Maps');
+            
+            // Create a styled demo map that looks like Google Maps
+            const mapContainer = document.getElementById('google-map');
+            console.log('Map container found:', mapContainer);
+            console.log('Map container dimensions:', mapContainer ? `${mapContainer.offsetWidth}x${mapContainer.offsetHeight}` : 'N/A');
+            console.log('Map container style:', mapContainer ? mapContainer.style.cssText : 'N/A');
+            
+            if (mapContainer) {
+                console.log('Setting innerHTML for map container');
+                mapContainer.innerHTML = `
+                    <div style="
+                        width: 100%; 
+                        height: 100%; 
+                        background: linear-gradient(135deg, #e8f5e8 0%, #c8d7d4 100%);
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: Inter, sans-serif;
+                        border-radius: 8px;
+                        min-height: 280px;
+                    ">
+                        <div style="
+                            background: rgba(255,255,255,0.9);
+                            padding: 20px;
+                            border-radius: 8px;
+                            text-align: center;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        ">
+                            <div style="
+                                width: 12px;
+                                height: 12px;
+                                background: #046c63;
+                                border-radius: 50%;
+                                margin: 0 auto 8px auto;
+                                border: 2px solid white;
+                                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                            "></div>
+                            <h6 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #333;">Keila linn</h6>
+                            <p style="margin: 0; font-size: 12px; color: #666;">Demo kaart</p>
+                        </div>
+                    </div>
+                `;
+                console.log('Demo map HTML set successfully');
+                console.log('Map container after update:', mapContainer.innerHTML.length, 'characters');
+                return true;
+            } else {
+                console.log('Map container not found!');
+                return false;
+            }
+        }
+        
+        // Test function to manually open success modal with map
+        window.testMapModal = function() {
+            console.log('Testing map modal');
+            const modal = document.getElementById('job-saved-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    window.initMap();
+                }, 200);
+            }
+        }
+    </script>
 </head>
 <body>
     <header class="main-header">
@@ -1393,7 +1461,7 @@ Ootused järgmisele ametikohale:
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="job-details-cancel">Loobu</button>
-                <button class="btn btn-primary" id="job-details-save">Salvesta</button>
+                <button class="btn btn-primary" id="job-details-save" onclick="handleJobSave()">Salvesta</button>
             </div>
         </div>
     </div>
