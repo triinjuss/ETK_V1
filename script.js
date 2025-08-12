@@ -881,3 +881,42 @@ function initRealGoogleMap() {
         infoWindow.open(map, marker);
     });
 }
+
+// Job Listings Modal Functions
+function openJobListingsModal() {
+    // First close the career dashboard modal if it's open using the proper modal system
+    const careerModal = document.getElementById('career-dashboard-modal');
+    if (careerModal) {
+        window.closeModal(careerModal);
+    }
+    
+    // Then open the job listings modal
+    const modal = document.getElementById('jobListingsModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+function closeJobListingsModal() {
+    const modal = document.getElementById('jobListingsModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+}
+
+// Close modal when clicking outside the modal content
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('jobListingsModal');
+    if (modal && event.target === modal) {
+        closeJobListingsModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeJobListingsModal();
+    }
+});
