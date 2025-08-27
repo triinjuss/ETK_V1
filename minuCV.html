@@ -238,6 +238,22 @@
             display: block;
         }
 
+        /* Dropdown Arrow Styles */
+        .dropdown-arrow {
+            transition: transform 0.2s ease;
+            margin-left: 4px;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown .dropbtn {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
         /* Responsive Menu Styles */
         @media (max-width: 1023px) {
             .main-nav-container {
@@ -825,13 +841,17 @@
                 <div class="main-nav-group">
                     <a href="#">Minu töötukassa</a>
                     <a href="#">Arvelevõtmine</a>
-                    <a href="#">Minu plaan</a>
+                    <a href="index.html">Minu plaan</a>
                     <a href="#">Toetused ja hüvitised</a>
                     <div class="dropdown">
-                        <a href="#" class="active dropbtn">Tööotsingud &#9662;</a>
+                        <a href="tootsinguld.html" class="active dropbtn">
+                            Tööotsingud
+                            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </a>
                         <div class="dropdown-content">
-                            <a href="#" class="current">Minu CV</a>
-                            <a href="#">Tööpakkumised</a>
+                            <a href="minuCV.html" class="current">Minu CV</a>
                             <a href="#">Minu kandideerimised</a>
                         </div>
                     </div>
