@@ -5349,7 +5349,6 @@
         }
         
         .notebook-card .reason-textarea {
-            width: 95%; 
             height: 60px; 
             padding: 0.5rem; 
             border-radius: 6px;
@@ -5556,4 +5555,88 @@
         line-height: 1.4;
         white-space: pre-line;
     }
+}
+
+/* Tööandja tagasiside column spacing */
+.notebook-table td:nth-child(6) {
+    padding: 16px 12px;
+    line-height: 1.6;
+}
+
+.notebook-table td:nth-child(6) .reason-text {
+    display: block;
+    margin-bottom: 8px;
+    padding: 12px 0;
+    line-height: 1.5;
+}
+
+/* Minu põhjendus column styling - bigger and more spacing */
+.notebook-table td:nth-child(5) {
+    padding: 16px 14px;
+    line-height: 1.6;
+    min-height: 80px;
+    vertical-align: top;
+}
+
+.notebook-table td:nth-child(5) .reason-text {
+    display: block;
+    padding: 10px 0;
+    line-height: 1.6;
+    min-height: 60px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.notebook-table td:nth-child(5) [contenteditable="true"] {
+    min-height: 90px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    line-height: 1.5;
+}
+
+.notebook-table td:nth-child(5) [contenteditable="true"]:focus {
+    border-color: var(--primary-color);
+    background-color: #f9fafb;
+    outline: none;
+    min-height: 110px;
+}
+
+/* Mobile spacing for feedback column */
+@media (max-width: 768px) {
+    .notebook-table td:nth-child(6) {
+        padding-top: 1.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+    
+    .notebook-table td:nth-child(6):before {
+        margin-bottom: 8px;
+    }
+    
+    /* Mobile spacing for Minu põhjendus */
+    .notebook-table td:nth-child(5) {
+        padding-top: 1.5rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+    }
+    
+    .notebook-table td:nth-child(5):before {
+        margin-bottom: 8px;
+    }
+}
+
+/* General table spacing improvements */
+.notebook-table td {
+    padding: 14px 10px;
+    vertical-align: top;
+}
+
+.notebook-table tr {
+    margin-bottom: 8px;
+}
+
+.notebook-table tbody tr:not(:last-child) {
+    border-bottom: 2px solid #f1f3f4;
 }
