@@ -4801,7 +4801,6 @@
         .feedback-buttons .btn-primary:hover {
             background-color: #035c54;
             border-color: #035c54;
-
         }
 
         /* Job Search Notebook Styles */
@@ -5650,5 +5649,3 @@
 .notebook-table tbody tr:not(:last-child) {
     border-bottom: 2px solid #f1f3f4;
 }
-
-        }
