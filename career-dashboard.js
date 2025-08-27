@@ -227,4 +227,4 @@ function initializeTagInteractions() {
 // Add event listeners for tags when page loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeTagInteractions();
-});
+

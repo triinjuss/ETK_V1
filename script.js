@@ -202,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+
     // Add Job Application Modal Save Button Event Listener
     const saveJobApplicationBtn = document.getElementById('save-job-application');
     if (saveJobApplicationBtn) {
@@ -210,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
             saveJobApplication();
         });
     }
+
 
     // Job title autocomplete functionality
     const jobTitleInput = document.getElementById('job-title');
@@ -984,6 +986,7 @@ document.addEventListener('click', function(event) {
     if (feedbackModal && event.target === feedbackModal) {
         closeJobFeedbackModal();
     }
+
 });
 
 // Job Search Notebook Functions
@@ -1242,3 +1245,4 @@ window.saveJobApplication = function() {
         closeModal(modal);
     }
 };
+});
