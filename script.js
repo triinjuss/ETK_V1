@@ -991,3 +991,111 @@ function updateStatusColor(selectElement) {
     const statusClass = 'status-' + selectElement.value;
     selectElement.className += ' ' + statusClass;
 }
+
+// New Notebook Functions
+let hasUnsavedChanges = false;
+
+window.addEventListener('beforeunload', (event) => {
+    if (hasUnsavedChanges) {
+        event.preventDefault();
+        event.returnValue = 'Teil on salvestamata muudatusi. Kas olete kindel, et soovite lahkuda?';
+    }
+});
+
+function updateNotebookStatusColor(selectElement) {
+    selectElement.className = 'status-select';
+    selectElement.classList.add('status-' + selectElement.value);
+}
+
+function storeOriginalStatus(selectElement) {
+    selectElement.closest('tr').dataset.originalStatus = selectElement.value;
+}
+
+function startNotebookEditing(selectElement) {
+    const row = selectElement.closest('tr');
+    if (row.classList.contains('is-editing')) return;
+    
+    hasUnsavedChanges = true;
+    row.classList.add('is-editing');
+    
+    // Update status color
+    updateNotebookStatusColor(selectElement);
+
+    const reasonCell = row.querySelector('.reason-cell');
+    row.dataset.originalReason = reasonCell.innerHTML; 
+    
+    const currentText = reasonCell.querySelector('.reason-text').textContent;
+    
+    const textarea = document.createElement('textarea');
+    textarea.className = 'reason-textarea';
+    textarea.value = currentText;
+    
+    reasonCell.innerHTML = '';
+    reasonCell.appendChild(textarea);
+    
+    const actionsCell = row.querySelector('.actions-cell');
+    actionsCell.innerHTML = '';
+    
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'btn-save';
+    saveBtn.textContent = 'Salvesta';
+    saveBtn.onclick = () => saveNotebookChanges(row);
+    
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'btn-cancel';
+    cancelBtn.textContent = 'Loobu';
+    cancelBtn.onclick = () => cancelNotebookChanges(row);
+    
+    actionsCell.appendChild(saveBtn);
+    actionsCell.appendChild(cancelBtn);
+    
+    textarea.focus();
+}
+
+function saveNotebookChanges(row) {
+    if (!row.classList.contains('is-editing')) return;
+
+    const reasonCell = row.querySelector('.reason-cell');
+    const textarea = reasonCell.querySelector('textarea');
+    const newText = textarea.value;
+
+    const newSpan = document.createElement('span');
+    newSpan.className = 'reason-text';
+    newSpan.textContent = newText;
+    
+    reasonCell.innerHTML = '';
+    reasonCell.appendChild(newSpan);
+
+    const actionsCell = row.querySelector('.actions-cell');
+    actionsCell.innerHTML = '';
+    
+    row.classList.remove('is-editing');
+    delete row.dataset.originalReason;
+    delete row.dataset.originalStatus;
+    
+    if (document.querySelectorAll('.is-editing').length === 0) {
+        hasUnsavedChanges = false;
+    }
+}
+
+function cancelNotebookChanges(row) {
+    if (!row.classList.contains('is-editing')) return;
+
+    const reasonCell = row.querySelector('.reason-cell');
+    reasonCell.innerHTML = row.dataset.originalReason;
+
+    const select = row.querySelector('.status-select');
+    select.value = row.dataset.originalStatus;
+    updateNotebookStatusColor(select);
+
+    const actionsCell = row.querySelector('.actions-cell');
+    actionsCell.innerHTML = '';
+    
+    row.classList.remove('is-editing');
+    delete row.dataset.originalReason;
+    delete row.dataset.originalStatus;
+
+    if (document.querySelectorAll('.is-editing').length === 0) {
+        hasUnsavedChanges = false;
+    }
+}

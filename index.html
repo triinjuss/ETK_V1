@@ -409,7 +409,7 @@ Ootused järgmisele ametikohale:
         </div>
 
         <!-- Tööotsingute märkmik -->
-        <div class="card notebook-section" style="margin-top: 32px;">
+        <div class="notebook-card" style="margin-top: 32px;">
             <div class="notebook-header">
                 <div class="notebook-title-wrapper">
                     <h2>Tööotsingute märkmik</h2>
@@ -440,9 +440,9 @@ Ootused järgmisele ametikohale:
                         <th style="width: 18%;">Amet ja tööandja</th>
                         <th style="width: 12%;">Kuupäev</th>
                         <th style="width: 16%;">Staatus</th>
-                        <th style="width: 18%;">Minu põhjendus</th>
-                        <th style="width: 26%;">Tööandja tagasiside</th>
-                        <th style="width: 10%; text-align: right;">Tegevused</th>
+                        <th style="width: 20%;">Minu põhjendus</th>
+                        <th style="width: 24%;">Tööandja tagasiside</th>
+                        <th style="width: 10%;"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -454,17 +454,15 @@ Ootused järgmisele ametikohale:
                         </td>
                         <td>23.07.2025</td>
                         <td>
-                            <select class="status-select status-vastuse-ootel" onchange="updateStatusColor(this)">
+                            <select class="status-select status-vastuse-ootel" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
                                 <option value="vastuse-ootel" selected>Vastuse ootel</option>
                                 <option value="vastus-saadud">Vastus saadud</option>
                                 <option value="ei-sobi">Ei sobi</option>
                             </select>
                         </td>
-                        <td><span class="reason-text">Kandideerisin eile, ootan tagasisidet.</span></td>
+                        <td class="reason-cell"><span class="reason-text">Kandideerisin eile, ootan tagasisidet.</span></td>
                         <td><span class="reason-text">Tagasiside puudub</span></td>
-                        <td class="actions-cell">
-                            <button class="action-btn" title="Muuda"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button>
-                        </td>
+                        <td class="actions-cell"></td>
                     </tr>
                     <tr>
                         <td>
@@ -474,17 +472,15 @@ Ootused järgmisele ametikohale:
                         </td>
                         <td>20.07.2025</td>
                         <td>
-                            <select class="status-select status-vastus-saadud" onchange="updateStatusColor(this)">
+                            <select class="status-select status-vastus-saadud" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
                                 <option value="vastuse-ootel">Vastuse ootel</option>
                                 <option value="vastus-saadud" selected>Vastus saadud</option>
                                 <option value="ei-sobi">Ei sobi</option>
                             </select>
                         </td>
-                        <td><span class="reason-text">Sain positiivse vastuse, leppisime kokku intervjuu aja.</span></td>
+                        <td class="reason-cell"><span class="reason-text">Sain positiivse vastuse, leppisime kokku intervjuu aja.</span></td>
                         <td><span class="reason-text">Tänan kandideerimast! Jäite meile silma, kuid otsustasime hetkel jätkata teise kandidaadiga. Soovime edu edaspidiseks!</span></td>
-                        <td class="actions-cell">
-                            <button class="action-btn" title="Muuda"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button>
-                        </td>
+                        <td class="actions-cell"></td>
                     </tr>
                     <tr>
                         <td>
@@ -494,17 +490,15 @@ Ootused järgmisele ametikohale:
                         </td>
                         <td>15.07.2025</td>
                         <td>
-                            <select class="status-select status-ei-sobi" onchange="updateStatusColor(this)">
+                            <select class="status-select status-ei-sobi" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
                                 <option value="vastuse-ootel">Vastuse ootel</option>
                                 <option value="vastus-saadud">Vastus saadud</option>
                                 <option value="ei-sobi" selected>Ei sobi</option>
                             </select>
                         </td>
-                        <td><span class="reason-text">Palk oli liiga madal ja asukoht ei sobinud.</span></td>
+                        <td class="reason-cell"><span class="reason-text">Palk oli liiga madal ja asukoht ei sobinud.</span></td>
                         <td><span class="reason-text">Kahjuks ei osutunud Te seekord valituks. Portfoolio oli huvitav, kuid otsisime teistsuguse fookusega kogemust.</span></td>
-                        <td class="actions-cell">
-                            <button class="action-btn" title="Muuda"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button>
-                        </td>
+                        <td class="actions-cell"></td>
                     </tr>
                     <tr>
                         <td>
@@ -514,17 +508,15 @@ Ootused järgmisele ametikohale:
                         </td>
                         <td>29.07.2025</td>
                         <td>
-                            <select class="status-select status-vastuse-ootel" onchange="updateStatusColor(this)">
+                            <select class="status-select status-vastuse-ootel" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
                                 <option value="vastuse-ootel" selected>Vastuse ootel</option>
                                 <option value="vastus-saadud">Vastus saadud</option>
                                 <option value="ei-sobi">Ei sobi</option>
                             </select>
                         </td>
-                        <td><span class="reason-text">Saatsin avalduse nädal tagasi, pole veel vastust saanud.</span></td>
+                        <td class="reason-cell"><span class="reason-text">Saatsin avalduse nädal tagasi, pole veel vastust saanud.</span></td>
                         <td><span class="reason-text">Tagasiside puudub</span></td>
-                        <td class="actions-cell">
-                            <button class="action-btn" title="Muuda"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button>
-                        </td>
+                        <td class="actions-cell"></td>
                     </tr>
                 </tbody>
             </table>
