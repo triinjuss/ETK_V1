@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minu CV - Kaisa Karu</title>
+    <style>
+        :root {
+            --primary-blue: #0056b3;
+            --primary-teal: #0d806f;
+            --link-purple: #6e48a4;
+            --light-grey-bg: #f5f7fa;
+            --border-color: #e0e5ed;
+            --text-color: #3f4a59;
+            --text-light: #7a8599;
+            --white: #ffffff;
+            --success-green: #28a745;
+            --suggestion-blue: #007bff;
+            --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--light-grey-bg);
+            color: var(--text-color);
+            margin: 0;
+            font-size: 14px;
+            scroll-behavior: smooth; /* For smooth scrolling */
+        }
+        
+        .page-wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .container-fluid {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+             .container-fluid {
+                padding: 20px 40px;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                flex-direction: row;
+            }
+        }
+
+        /* Highlight for edit */
+        .highlight-for-edit {
+            box-shadow: 0 0 0 3px var(--primary-blue);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 768px) {
+            header {
+                padding: 0 40px;
+            }
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--primary-teal);
+        }
+
+        .header-left a {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .header-left a {
+                display: inline;
+                text-decoration: underline;
+                color: var(--link-purple);
+                font-weight: 500;
+            }
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-container {
+            position: relative;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .search-container {
+                display: block;
+            }
+        }
+
+        .search-container input {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 250px;
+        }
+        
+        .search-container::after {
+            content: '🔍';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .user-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            padding: 10px 16px;
+            border-radius: 4px;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .main-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .main-nav-group {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        
+        .main-nav-group > a, .nav-back-link, .dropdown .dropbtn {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .main-nav-group > a.active, .dropdown .dropbtn.active {
+            color: var(--primary-teal);
+            font-weight: 500;
+        }
+        
+        .main-nav-group > a.active::after, .dropdown .dropbtn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary-teal);
+        }
+
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            z-index: 110;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown .dropbtn {
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 220px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            z-index: 10;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            margin-top: 12px;
+        }
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a.current {
+            font-weight: bold;
+        }
+        .dropdown-content a:hover {
+            background-color: var(--light-grey-bg);
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Responsive Menu Styles */
+        @media (max-width: 1023px) {
+            .main-nav-container {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 0;
+                left: -20px;
+                right: -20px;
+                background-color: var(--white);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--border-color);
+                z-index: 100;
+                padding-top: 60px;
+            }
+            .main-nav-container.is-open {
+                display: flex;
+            }
+            .main-nav-group, .nav-back-link {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                align-items: flex-start;
+            }
+            .main-nav-group > a, .nav-back-link, .dropdown {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .main-nav-group > a, .nav-back-link, .dropdown .dropbtn {
+                padding: 16px 20px;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .main-nav-group > a.active::after, .dropdown .dropbtn.active::after {
+                display: none;
+            }
+            .dropdown {
+                position: static;
+            }
+            .dropdown-content {
+                display: block;
+                position: static;
+                box-shadow: none;
+                border: none;
+                min-width: unset;
+                width: 100%;
+                background-color: transparent;
+                margin-top: 0;
+            }
+            .dropdown-content a {
+                padding: 16px 20px 16px 40px;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .dropdown-content a:last-child {
+                border-bottom: 0;
+            }
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+            .hamburger-menu {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .main-nav {
+                justify-content: flex-end;
+            }
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        @media (min-width: 1024px) {
+            .sidebar {
+                width: 280px;
+            }
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            margin: 0 0 20px 0;
+            font-weight: 500;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            margin-bottom: 24px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        .card.cta-card {
+            text-align: center;
+        }
+        .card.cta-card p {
+            margin-top: 0;
+            color: var(--text-light);
+        }
+
+        .sidebar .card {
+            background-color: var(--light-grey-bg);
+            border: none;
+            padding: 16px;
+        }
+
+        .cv-status .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .cv-status .status-header strong {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .progress-bar-container {
+            margin-top: 10px;
+        }
+        .progress-bar-container label, .progress-bar-container span {
+             font-size: 12px; color: var(--text-light);
+        }
+        .progress-bar-container .value {
+            float: right;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #d6dbe3;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .progress {
+            height: 100%;
+            background-color: var(--primary-teal);
+        }
+        
+        .cv-nav ul {
+            list-style: none;
+            padding: 16px;
+            margin: 0;
+            background-color: var(--white);
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cv-nav li a {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .cv-nav li a::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+            border-radius: 50%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .cv-nav li.checked a::before {
+            background-color: var(--primary-teal);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='white'%3E%3Cpath d='M4.5 9.1L1.4 6l-1 1.1L4.5 11.3 11.6 4.1 10.6 3z'/%3E%3C/svg%3E");
+            background-size: 10px;
+        }
+        .cv-nav li.unchecked a::before {
+            border: 1.5px solid #c5cde0;
+        }
+
+        /* Content Area */
+        .content {
+            flex-grow: 1;
+        }
+
+        .content-header {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: stretch;
+            margin-bottom: 24px;
+        }
+        @media (min-width: 768px) {
+            .content-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .content-header .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .card-header h3 {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .close-btn {
+            font-size: 24px; cursor: pointer; color: var(--text-light);
+        }
+
+        .cv-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .cv-grid {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .cv-info {
+            width: 100%;
+        }
+         @media (min-width: 768px) {
+            .cv-info {
+                width: 65%;
+            }
+        }
+
+        .cv-info p {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            margin: 12px 0;
+            align-items: center;
+        }
+
+        .cv-info label {
+            color: var(--text-light);
+        }
+        
+        .cv-info span {
+            font-weight: 500;
+        }
+
+        .cv-photo {
+            width: 100%;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .cv-photo {
+                width: 30%;
+            }
+        }
+
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border: 1px solid var(--border-color);
+            background-color: var(--white);
+            border-radius: 8px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .item-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        @media (min-width: 768px) {
+            .item-row {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 0;
+            }
+        }
+        .item-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .item-row:first-child { padding-top: 0; }
+        
+        .item-row .dates {
+            color: var(--text-light);
+        }
+        @media (min-width: 768px) {
+             .item-row .dates {
+                flex-basis: 25%;
+            }
+        }
+
+        .item-row .details {
+            flex-grow: 1;
+        }
+        @media (min-width: 768px) {
+            .item-row .details {
+                padding-right: 20px;
+            }
+        }
+
+        .item-row .details p { margin: 0 0 4px 0; }
+        .item-row .details strong { font-weight: 500; }
+        .item-row .details .subtitle { color: var(--text-light); font-size: 13px; }
+        
+        .card-actions {
+            text-align: right;
+        }
+        .edit-icon {
+            cursor: pointer;
+            color: var(--text-light);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Buttons */
+        .btn-primary, .btn-secondary {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1.5px solid;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-back::before {
+            content: '←';
+        }
+        .btn-back-circle::before {
+            content: '←';
+            color: var(--white);
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            padding-bottom: 60px;
+        }
+        .carousel-slide { display: none; line-height: 1.6; }
+        .carousel-slide.active { display: block; }
+        .carousel-slide h3 { font-size: 16px; font-weight: 500; }
+        .carousel-nav {
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .carousel-dots { display: flex; gap: 8px; }
+        .carousel-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background-color: #d1d8e6;
+            cursor: pointer;
+        }
+        .carousel-dot.active { background-color: #8c96ab; }
+        #prevBtn, #nextBtn {
+            background: none;
+            border: 1.5px solid var(--primary-blue);
+        }
+        
+        /* Info Icon & Tooltip */
+        .info-tooltip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid var(--text-light);
+            color: var(--text-light);
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            cursor: help;
+            line-height: 16px;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 280px;
+            background-color: var(--text-color);
+            color: var(--white);
+            text-align: left;
+            border-radius: 4px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -140px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--text-color) transparent transparent transparent;
+        }
+
+        .info-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        .tooltip-text strong {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.is-visible {
+            display: flex;
+        }
+        .modal-content {
+            background-color: var(--white);
+            margin: auto;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .modal-close {
+            color: var(--text-light);
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 22px;
+            color: var(--text-color);
+        }
+        .feedback-card {
+            background-color: #fcfdff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        .feedback-card h3 {
+            font-size: 16px;
+            margin: 0 0 12px 0;
+            color: var(--text-color);
+        }
+        .feedback-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .feedback-item svg {
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .feedback-item.strength .icon-circle {
+            fill: var(--success-green);
+        }
+        .feedback-item.suggestion .icon-circle {
+            fill: var(--suggestion-blue);
+        }
+        .feedback-action {
+            margin-top: 12px;
+        }
+        .btn-edit-cv {
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            font-weight: bold;
+            cursor: pointer;
+            padding: 4px 0;
+            font-size: 14px;
+        }
+        .btn-edit-cv:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <header>
+        <div class="header-top">
+            <div class="header-left">
+                <div class="logo">ETK</div>
+                <a href="#">Juhendid ja abimaterjalid</a>
+            </div>
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" placeholder="Otsi kodulehe sisust">
+                </div>
+                <div class="user-menu">
+                    <a href="#">Kaisa Karu &#9662;</a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+             <div class="main-nav-container" id="main-nav-container">
+                <a href="#" class="nav-back-link">&lt; Tagasi infoportaali</a>
+                <div class="main-nav-group">
+                    <a href="#">Minu töötukassa</a>
+                    <a href="#">Arvelevõtmine</a>
+                    <a href="#">Minu plaan</a>
+                    <a href="#">Toetused ja hüvitised</a>
+                    <div class="dropdown">
+                        <a href="#" class="active dropbtn">Tööotsingud &#9662;</a>
+                        <div class="dropdown-content">
+                            <a href="#" class="current">Minu CV</a>
+                            <a href="#">Tööpakkumised</a>
+                            <a href="#">Minu kandideerimised</a>
+                        </div>
+                    </div>
+                    <a href="#">Töövõime</a>
+                </div>
+            </div>
+            <button class="hamburger-menu" id="hamburger-toggle" aria-label="Ava menüü">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21" stroke="#3f4a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 6H21" stroke="#3f4a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 18H21" stroke="#3f4a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <main class="container">
+            <aside class="sidebar">
+                <h2>Minu CV</h2>
+                <div class="card">
+                    <div class="cv-status">
+                        <div class="status-header">
+                            <span>CV staatus</span>
+                            <strong>Aktiivne &gt;</strong>
+                        </div>
+                        <div class="progress-bar-container">
+                            <label>CV valmidus</label>
+                            <span class="value">100%</span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav class="cv-nav">
+                    <ul>
+                        <li class="checked"><a href="#">Aadress</a></li>
+                        <li class="checked"><a href="#">Kontaktandmed</a></li>
+                        <li class="checked"><a href="#">Foto</a></li>
+                        <li class="checked"><a href="#">Lühitutvustus</a></li>
+                        <li class="checked"><a href="#">Hariduskäik</a></li>
+                        <li class="checked"><a href="#">Täienduskoolitused</a></li>
+                        <li class="checked"><a href="#">Töökogemus</a></li>
+                        <li class="checked"><a href="#">Ametitunnistused</a></li>
+                        <li class="unchecked"><a href="#">Kutsetunnistused</a></li>
+                        <li class="checked"><a href="#">Keeleoskus</a></li>
+                        <li class="checked"><a href="#">Juhtimisõigus</a></li>
+                        <li class="checked"><a href="#">Arvutioskus</a></li>
+                        <li class="checked"><a href="#">Huvialad</a></li>
+                        <li class="checked"><a href="#">Kuulumine organisatsioonidesse</a></li>
+                        <li class="checked"><a href="#">Isikuomadused</a></li>
+                        <li class="checked"><a href="#">Muu info</a></li>
+                        <li class="unchecked"><a href="#">Kooskõlastatud soovitajad</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <section class="content">
+                <!-- Carousel Start -->
+                <div class="card carousel-container">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <h3>Teie kogemused on väärtuslikud!</h3>
+                            <p>Tööandja soovib olla kindel, et Teil on olemas need teadmised ja oskused, mida uuel töötajal tööülesannete täitmiseks vaja läheb. Seepärast lisage iga ametikoha juurde lühidalt, millised olid Teie igapäevased tööülesanded.</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <h3>Enne kandideerimist vaadake üle</h3>
+                            <p>Enne kandideerimist vaadake üle, kas lisasite oma CV-sse kõik vajalikud oskused ja kogemused ning CV on selge ja lihtsalt loetav ega sisalda kirjavigu. Vajadusel pidage nõu töötukassa karjäärispetsialistiga.</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <h3>Tööotsingu töötoast või tööklubist saate tuge CV koostamiseks</h3>
+                            <p>Osalemiseks võtke ühendust karjäärikeskuse töötajaga: <a href="mailto:karjaar@tootukassa.ee">karjaar@tootukassa.ee</a>.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="btn-secondary" id="prevBtn">&larr; Eelmine</button>
+                        <div class="carousel-dots">
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                        </div>
+                        <button class="btn-secondary" id="nextBtn">Järgmine &rarr;</button>
+                    </div>
+                </div>
+                <!-- Carousel End -->
+                
+                <div class="content-header">
+                    <button class="btn-secondary btn-back-circle">Minu tööotsingud ja CV</button>
+                    <div class="btn-group">
+                        <button class="btn-secondary" id="open-ai-modal-btn">Tehisaru tagasiside CV-le</button>
+                        <button class="btn-primary">Vaata CV-d</button>
+                    </div>
+                </div>
+
+                <div class="card" id="card-kontakt">
+                    <div class="card-header">
+                        <h3>Curriculum Vitae
+                            <div class="info-tooltip">
+                                <span class="info-icon">?</span>
+                                <span class="tooltip-text"><strong>Miks see on vajalik?</strong> Korrektsed kontaktandmed on esmatähtsad, et tööandja saaks Sinuga ühendust võtta. Aadress aitab tööandjal hinnata Sinu potentsiaalset tööle tulemise aega ja logistikat.</span>
+                            </div>
+                        </h3>
+                    </div>
+                    <div class="cv-grid">
+                        <div class="cv-info">
+                            <p><label>Nimi</label><span>Kaisa Karu</span></p>
+                            <p><label>Sünnikuupäev</label><span>01.02.2006</span></p>
+                            <p><label>CV-s nähtav</label><span><input type="radio" name="cv-visible" checked> Jah <input type="radio" name="cv-visible"> Ei</span></p>
+                            <p><label>Aadress</label><span>Akadeemia tee 15, Tallinn</span></p>
+                            <p><label>Telefon</label><span>55123456</span></p>
+                            <p><label>E-post</label><span>kaisa.karu@ut.ee</span></p>
+                            <p><label>www</label><span>github.com/kaisakaru</span></p>
+                        </div>
+                        <div class="cv-photo">
+                            <div class="photo-placeholder">
+                               <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="#d1d8e6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M20 21V19C20 16.7909 18.2091 15 16 15H8C5.79086 15 4 16.7909 4 19V21" stroke="#d1d8e6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <button class="btn-primary">Lae uus</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="card-luhitutvustus">
+                     <div class="card-header">
+                        <h3>Lühitutvustus
+                            <div class="info-tooltip">
+                                <span class="info-icon">?</span>
+                                <span class="tooltip-text"><strong>Miks see on vajalik?</strong> See on Sinu võimalus jätta endast meeldejääv esmamulje. Hea lühitutvustus tõstab Sind teiste kandidaatide seast esile ja annab tööandjale kiire ülevaate Sinu eesmärkidest.</span>
+                            </div>
+                        </h3>
+                    </div>
+                    <p>Olen ambitsioonikas ja kiiresti õppiv informaatikatudeng, kellel on suur kirg tarkvaraarenduse ja probleemide lahendamise vastu. Otsin võimalust rakendada oma akadeemilisi teadmisi praktikas juuniorarendaja või praktikandina, et anda oma panus uuenduslike lahenduste loomisesse ja kasvada koos ettevõttega.</p>
+                </div>
+
+                <div class="card" id="card-tookogemus">
+                    <div class="card-header">
+                        <h3>Töökogemus
+                            <div class="info-tooltip">
+                                <span class="info-icon">?</span>
+                                <span class="tooltip-text"><strong>Miks see on vajalik?</strong> See on CV kõige olulisem osa. Kirjelda oma varasemaid tööülesandeid ja saavutusi, et näidata oma praktilisi oskusi ja kogemusi. Tööandja hindab selle põhjal Sinu sobivust pakutavale ametikohale.</span>
+                            </div>
+                        </h3>
+                        <div class="card-actions">
+                            <button class="btn-secondary">Lisa töökogemus</button>
+                        </div>
+                    </div>
+                    <div class="item-row">
+                        <div class="dates">06.2025 - 08.2025</div>
+                        <div class="details">
+                            <p><strong>Bolt Technology OÜ, Tarkvaraarenduse praktikant</strong></p>
+                            <p class="subtitle">Osalesin tõukerataste haldussüsteemi arendustiimis. Peamised ülesanded hõlmasid automaattestide kirjutamist (Python, Pytest) ja väiksemate funktsionaalsuste arendamist ning parandamist Node.js teenustes.</p>
+                        </div>
+                        <div class="card-actions edit-icon">
+                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#7a8599" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.04 3.02002L8.16 10.9C7.86 11.2 7.56 11.79 7.5 12.22L7.07 15.23C6.91 16.32 7.68 17.08 8.77 16.93L11.78 16.5C12.21 16.44 12.8 16.14 13.1 15.84L20.98 7.96002C22.34 6.60002 22.98 4.89002 20.98 2.89002C18.98 0.890016 17.4 1.56002 16.04 3.02002Z" stroke="#7a8599" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.91 4.15039C15.58 6.54039 17.45 8.41039 19.85 9.08039" stroke="#7a8599" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="card-arvutioskus">
+                    <div class="card-header">
+                        <h3>Arvutioskus
+                            <div class="info-tooltip">
+                                <span class="info-icon">?</span>
+                                <span class="tooltip-text"><strong>Miks see on vajalik?</strong> Tänapäeval on digitaalsed oskused enamikul ametikohtadel hädavajalikud. Kirjelda oma oskusi erinevate programmide ja tarkvaraga, et tööandja saaks hinnata Sinu digipädevust.</span>
+                            </div>
+                        </h3>
+                        <div class="card-actions edit-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="#7a8599" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.04 3.02002L8.16 10.9C7.86 11.2 7.56 11.79 7.5 12.22L7.07 15.23C6.91 16.32 7.68 17.08 8.77 16.93L11.78 16.5C12.21 16.44 12.8 16.14 13.1 15.84L20.98 7.96002C22.34 6.60002 22.98 4.89002 20.98 2.89002C18.98 0.890016 17.4 1.56002 16.04 3.02002Z" stroke="#7a8599" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.91 4.15039C15.58 6.54039 17.45 8.41039 19.85 9.08039" stroke="#7a8599" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+                     <div class="item-row">
+                        <div class="details"><p><strong>Programmeerimiskeeled:</strong> Python, JavaScript/TypeScript, Java, SQL</p></div>
+                    </div>
+                     <div class="item-row">
+                        <div class="details"><p><strong>Tehnoloogiad ja raamistikud:</strong> React, Node.js, Express, Flask, HTML5, CSS3</p></div>
+                    </div>
+                     <div class="item-row">
+                        <div class="details"><p><strong>Andmebaasid:</strong> PostgreSQL, MongoDB</p></div>
+                    </div>
+                    <div class="item-row">
+                        <div class="details"><p><strong>Tööriistad:</strong> Git, Docker, Jira, VS Code, Figma</p></div>
+                    </div>
+                </div>
+                
+                <!-- Other cards would go here -->
+
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- AI Feedback Modal -->
+<div id="ai-feedback-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="modal-close" id="modal-close-btn">&times;</span>
+        <h2>Turboboost Sinu CV-le! 🚀</h2>
+        <p>Su CV on juba päris äge, aga teeme selle koos veelgi võimsamaks! Siin on mõned nipid, kuidas tööandjale eriti hästi silma jääda.</p>
+        
+        <div class="feedback-card">
+            <h3>Lühitutvustus</h3>
+            <div class="feedback-item strength">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle class="icon-circle" cx="10" cy="10" r="10"/><path d="M14.25 7.3125L8.9375 12.625L6.25 9.9375" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><strong>Hästi tehtud!</strong> Sinu eesmärk ja kirg on selgelt väljendatud. "Ambitsioonikas" ja "kiire õppija" on head märksõnad.</div>
+            </div>
+            <div class="feedback-item suggestion">
+                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle class="icon-circle" cx="10" cy="10" r="10" /><path d="M10 13.75V10M10 6.25H10.0083" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><strong>Proovi seda:</strong> Lisa mõni konkreetne näide, mis teeb su jutu veelgi usutavamaks. See näitab, et sa mitte ainult ei räägi, vaid ka teed!</div>
+            </div>
+            <div class="feedback-action">
+                <button class="btn-edit-cv" data-target="card-luhitutvustus">Muuda lühitutvustust</button>
+            </div>
+        </div>
+
+        <div class="feedback-card">
+            <h3>Töökogemus</h3>
+             <div class="feedback-item strength">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle class="icon-circle" cx="10" cy="10" r="10"/><path d="M14.25 7.3125L8.9375 12.625L6.25 9.9375" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><strong>Väga hea!</strong> Oled oma praktika juures välja toonud konkreetsed tehnoloogiad (Python, Node.js).</div>
+            </div>
+            <div class="feedback-item suggestion">
+                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle class="icon-circle" cx="10" cy="10" r="10" /><path d="M10 13.75V10M10 6.25H10.0083" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><strong>Proovi seda:</strong> Kirjelda oma panuse tulemust. Näiteks: "Kirjutasin automaatteste, mis aitasid leida vigu ja muutsid äpi stabiilsemaks."</div>
+            </div>
+            <div class="feedback-action">
+                <button class="btn-edit-cv" data-target="card-tookogemus">Täienda töökogemust</button>
+            </div>
+        </div>
+
+        <div class="feedback-card">
+            <h3>Üldine soovitus</h3>
+            <div class="feedback-item suggestion">
+                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle class="icon-circle" cx="10" cy="10" r="10" /><path d="M10 13.75V10M10 6.25H10.0083" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div><strong>Pro-tip:</strong> Loe alati läbi tööpakkumine. Kui seal otsitakse "iseseisvat probleemilahendajat", kasuta just neid samu sõnu ka oma CV-s. Nii leiab värbaja su CV palju lihtsamini üles!</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Carousel Script
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        if (slides.length > 0) {
+            let currentSlide = 0;
+            function showSlide(index) {
+                if (slides.length === 0) return;
+                currentSlide = (index + slides.length) % slides.length;
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            if (nextBtn && prevBtn) {
+                nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+                prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+                dots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+            }
+            showSlide(0);
+        }
+
+        // Hamburger Menu Script
+        const hamburgerBtn = document.getElementById('hamburger-toggle');
+        const navContainer = document.getElementById('main-nav-container');
+        if (hamburgerBtn && navContainer) {
+            hamburgerBtn.addEventListener('click', function() {
+                navContainer.classList.toggle('is-open');
+            });
+        }
+
+        // AI Feedback Modal Script
+        const modal = document.getElementById('ai-feedback-modal');
+        const openBtn = document.getElementById('open-ai-modal-btn');
+        const closeBtn = document.getElementById('modal-close-btn');
+        if (modal && openBtn && closeBtn) {
+            openBtn.addEventListener('click', () => modal.classList.add('is-visible'));
+            closeBtn.addEventListener('click', () => modal.classList.remove('is-visible'));
+            modal.addEventListener('click', event => {
+                if (event.target === modal) {
+                    modal.classList.remove('is-visible');
+                }
+            });
+
+            // Handle "Edit CV" buttons inside the modal
+            const editButtons = modal.querySelectorAll('.btn-edit-cv');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Close the modal
+                        modal.classList.remove('is-visible');
+                        
+                        // Scroll to the target element
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Highlight the target element
+                        targetElement.classList.add('highlight-for-edit');
+                        setTimeout(() => {
+                            targetElement.classList.remove('highlight-for-edit');
+                        }, 2500); // Remove highlight after 2.5 seconds
+                    }
+                });
+            });
+        }
+    });
+</script>
+</body>
+</html>
