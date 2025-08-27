@@ -4844,6 +4844,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
             pointer-events: none;
+            color: white !important;
         }
 
         .tooltip-container:hover .tooltip-content {
@@ -4854,9 +4855,13 @@
 
         .tooltip-content p {
             margin: 0 0 16px 0;
-            color: var(--text-color);
+            color: white !important;
             font-size: 14px;
             line-height: 1.5;
+        }
+        
+        .tooltip-content * {
+            color: white !important;
         }
 
         .tooltip-content ul {
