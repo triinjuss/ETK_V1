@@ -1173,6 +1173,7 @@ window.saveJobApplication = function() {
     const reasoning = document.getElementById('app-reasoning').value.trim();
     
     // Validate required fields
+    //test 
     if (!jobTitle || !companyName) {
         alert('Palun täida ametinimetus ja tööandja nimi.');
         return;
