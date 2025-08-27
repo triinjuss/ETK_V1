@@ -118,19 +118,24 @@
                 <a href="#" class="nav-item">
                     Arvelevõtmine
                 </a>
-                <a href="#" class="nav-item active">
+                <a href="index.html" class="nav-item active">
                     Minu plaan
                 </a>
                 <a href="#" class="nav-item">
                     Toetused ja hüvitised
                 </a>
-
-                <a href="tootsinguld.html" class="nav-item">
-
-                <a href="#" class="nav-item">
-
-                    Tööotsingud
-                </a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link">
+                        Tööotsingud
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="minuCV.html" class="dropdown-item">Minu CV</a>
+                        <a href="#" class="dropdown-item">Minu kandideerimised</a>
+                    </div>
+                </div>
                 <a href="#" class="nav-item">
                     Töövõime
                 </a>
@@ -279,7 +284,7 @@
                 <!-- Minu Profiil kaart -->
                 <div class="card my-profile-card">
                     <a href="#" id="open-ai-profile-analysis-modal" class="ai-icon-link" title="AI Profiili analüüs">AI</a>
-                    <h3><a href="#">Minu CV</a></h3>
+                    <h3><a href="minuCV.html">Minu CV</a></h3>
                     <div class="profile-stats-grid">
                         <div class="stat-box">
                             <div class="label">CV staatus</div>
@@ -306,7 +311,7 @@
                         </ul>
                     </div>
                     <div class="profile-action" style="margin-top: 24px;">
-                        <button class="btn btn-primary">Muuda CV-d</button>
+                        <a href="minuCV.html" class="btn btn-primary">Muuda CV-d</a>
                     </div>
                 </div>
             </div>

@@ -272,6 +272,68 @@
             border-radius: 1px;
         }
 
+        /* Dropdown Navigation Styles */
+        .nav-item.dropdown {
+            position: relative;
+        }
+
+        .nav-item.dropdown .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 10px 16px;
+            transition: var(--transition);
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item.dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 16px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
         .page-container { 
             max-width: 1200px; 
             margin: 32px auto; 
@@ -519,6 +581,17 @@
              margin-bottom: 20px;
              font-size: 1.25rem;
              font-weight: 600;
+        }
+
+        .my-profile-card h3 a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .my-profile-card h3 a:hover {
+            color: var(--primary-color);
+            opacity: 0.8;
         }
         
         .profile-stats-grid {
@@ -2485,6 +2558,36 @@
             
             .nav-item.active::after {
                 display: none;
+            }
+
+            /* Mobile Dropdown Navigation */
+            .nav-item.dropdown .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                margin-left: 20px;
+                background: transparent;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+            }
+
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .nav-item.dropdown .dropdown-item {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                border-radius: 4px;
+                margin: 2px 0;
+            }
+
+            .nav-item.dropdown .dropdown-item:hover {
+                background-color: var(--secondary-color);
             }
             
             /* Page container mobile padding */
