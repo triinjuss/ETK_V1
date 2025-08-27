@@ -1099,3 +1099,44 @@ function cancelNotebookChanges(row) {
         hasUnsavedChanges = false;
     }
 }
+
+// Status dropdown color functionality removed
+
+function updateAllStatusColors() {
+    // Color functionality removed
+}
+
+// Hook into the existing startNotebookEditing function
+const originalStartNotebookEditing = window.startNotebookEditing;
+window.startNotebookEditing = function(element) {
+    // Call original function
+    if (originalStartNotebookEditing) {
+        originalStartNotebookEditing(element);
+    }
+};
+
+// Use event delegation to handle all status dropdown changes
+document.addEventListener('change', function(event) {
+    if (event.target.classList.contains('status-select')) {
+        // Color functionality removed
+    }
+});
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded'); // Debug log
+    
+    // Observer for dynamic content
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                // Color functionality removed
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+});

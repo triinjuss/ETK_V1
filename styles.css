@@ -5011,24 +5011,6 @@
             font-family: inherit !important;
         }
 
-        .status-vastuse-ootel {
-            background-color: #fef3c7;
-            color: #92400e;
-            border-color: #f59e0b;
-        }
-
-        .status-vastus-saadud {
-            background-color: #d1fae5;
-            color: #065f46;
-            border-color: #10b981;
-        }
-
-        .status-ei-sobi {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border-color: #ef4444;
-        }
-
         .reason-text {
             font-size: 13px;
             color: var(--text-color);
@@ -5376,24 +5358,6 @@
             width: auto !important;
         }
         
-        .notebook-card .status-select.status-vastuse-ootel { 
-            background-color: #f3f4f6 !important; 
-            color: #4b5563 !important; 
-            border-color: #e5e7eb !important; 
-        }
-        
-        .notebook-card .status-select.status-vastus-saadud { 
-            background-color: #fef3c7 !important; 
-            color: #b45309 !important; 
-            border-color: #fde68a !important; 
-        }
-        
-        .notebook-card .status-select.status-ei-sobi { 
-            background-color: #fee2e2 !important; 
-            color: #b91c1c !important; 
-            border-color: #fecaca !important; 
-        }
-
         .notebook-card .actions-cell { 
             text-align: right; 
             min-width: 170px; 
