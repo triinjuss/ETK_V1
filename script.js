@@ -1191,6 +1191,9 @@ window.saveJobApplication = function() {
                     <span class="editable-field">${companyName}</span>
                 </div>
             </td>
+            <td class="contact-cell">
+                <span class="contact-info editable-field">${contacts}</span>
+            </td>
             <td>
                 <span class="editable-field">${date}</span>
             </td>
@@ -1205,7 +1208,7 @@ window.saveJobApplication = function() {
                 <span class="editable-field">${reasoning}</span>
             </td>
             <td>
-                <span class="editable-field">${contacts}</span>
+                <span class="editable-field"></span>
             </td>
             <td></td>
         `;

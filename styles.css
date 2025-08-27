@@ -2689,18 +2689,22 @@
             }
             
             .notebook-table td:nth-child(2):before {
-                content: "Kuupäev:";
+                content: "Tööandja kontakt:";
             }
             
             .notebook-table td:nth-child(3):before {
-                content: "Staatus:";
+                content: "Kuupäev:";
             }
             
             .notebook-table td:nth-child(4):before {
-                content: "Minu põhjendus:";
+                content: "Staatus:";
             }
             
             .notebook-table td:nth-child(5):before {
+                content: "Minu põhjendus:";
+            }
+            
+            .notebook-table td:nth-child(6):before {
                 content: "Tööandja tagasiside:";
             }
             
@@ -2727,8 +2731,9 @@
                 color: #6b7280;
                 padding-top: 0.75rem;
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 gap: 0.5rem;
+                flex-direction: column;
             }
             
             .notebook-table td:nth-child(2):before {
@@ -2739,6 +2744,22 @@
             }
             
             .notebook-table td:nth-child(3) {
+                font-size: 0.85rem;
+                color: #6b7280;
+                padding-top: 0.75rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .notebook-table td:nth-child(3):before {
+                position: static;
+                flex-shrink: 0;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .notebook-table td:nth-child(4) {
                 padding-top: 0.75rem;
                 display: flex;
                 align-items: center;
@@ -2747,7 +2768,7 @@
                 width: 100%;
             }
             
-            .notebook-table td:nth-child(3):before {
+            .notebook-table td:nth-child(4):before {
                 position: static;
                 flex-shrink: 0;
                 margin: 0;
@@ -2756,7 +2777,7 @@
                 min-width: 40px;
             }
             
-            .notebook-table td:nth-child(3) .status-select {
+            .notebook-table td:nth-child(4) .status-select {
                 font-size: 1.1rem;
                 padding: 0.8rem 1rem;
                 font-weight: 700;
@@ -5490,5 +5511,49 @@
     
     #add-job-application-modal .form-row .form-group {
         margin-bottom: 20px;
+    }
+}
+
+/* Contact Column Styles */
+.contact-cell {
+    vertical-align: top;
+    padding: 12px 8px;
+}
+
+.contact-info {
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--text-color);
+    display: block;
+    white-space: pre-line;
+}
+
+.contact-info br {
+    line-height: 1.6;
+}
+
+/* Mobile responsive updates for contact column */
+@media (max-width: 768px) {
+    .notebook-card .contact-section {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .notebook-card .contact-section:last-child {
+        border-bottom: none;
+    }
+    
+    .contact-label {
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 4px;
+        font-size: 14px;
+    }
+    
+    .contact-content {
+        font-size: 13px;
+        color: var(--text-color-light);
+        line-height: 1.4;
+        white-space: pre-line;
     }
 }
