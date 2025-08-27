@@ -5427,3 +5427,68 @@
             color: #b45309; 
             font-size: 0.9rem; 
         }
+
+/* Job Application Modal Styles */
+#add-job-application-modal .form-group {
+    margin-bottom: 20px;
+}
+
+#add-job-application-modal .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+#add-job-application-modal .form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+#add-job-application-modal .form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+#add-job-application-modal input,
+#add-job-application-modal select,
+#add-job-application-modal textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: var(--font-family);
+    transition: border-color 0.3s ease;
+}
+
+#add-job-application-modal input:focus,
+#add-job-application-modal select:focus,
+#add-job-application-modal textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(4, 108, 99, 0.1);
+}
+
+#add-job-application-modal textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#add-job-application-modal .modal-content {
+    max-width: 600px;
+    width: 90%;
+}
+
+@media (max-width: 768px) {
+    #add-job-application-modal .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    #add-job-application-modal .form-row .form-group {
+        margin-bottom: 20px;
+    }
+}

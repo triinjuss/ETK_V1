@@ -202,6 +202,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Add Job Application Modal Save Button Event Listener
+    const saveJobApplicationBtn = document.getElementById('save-job-application');
+    if (saveJobApplicationBtn) {
+        saveJobApplicationBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            saveJobApplication();
+        });
+    }
+
     // Job title autocomplete functionality
     const jobTitleInput = document.getElementById('job-title');
     const jobTitleDropdown = document.getElementById('job-title-dropdown');
@@ -1140,3 +1149,92 @@ document.addEventListener('DOMContentLoaded', function() {
         subtree: true
     });
 });
+
+// Job Application Modal Functions
+window.openAddJobApplicationModal = function() {
+    const modal = document.getElementById('add-job-application-modal');
+    if (modal) {
+        openModal(modal);
+        // Set current date as default
+        const dateInput = document.getElementById('app-date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
+        }
+    }
+};
+
+window.saveJobApplication = function() {
+    const jobTitle = document.getElementById('app-job-title').value.trim();
+    const companyName = document.getElementById('app-company-name').value.trim();
+    const date = document.getElementById('app-date').value;
+    const status = document.getElementById('app-status').value;
+    const contacts = document.getElementById('app-company-contacts').value.trim();
+    const reasoning = document.getElementById('app-reasoning').value.trim();
+    
+    // Validate required fields
+    if (!jobTitle || !companyName) {
+        alert('Palun täida ametinimetus ja tööandja nimi.');
+        return;
+    }
+    
+    // Add new row to the notebook table
+    const tableBody = document.querySelector('.notebook-table tbody');
+    if (tableBody) {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>
+                <div class="job-title">
+                    <span class="editable-field">${jobTitle}</span>
+                </div>
+                <div class="company-name">
+                    <span class="editable-field">${companyName}</span>
+                </div>
+            </td>
+            <td>
+                <span class="editable-field">${date}</span>
+            </td>
+            <td>
+                <select class="status-dropdown">
+                    <option value="Vastuse ootel" ${status === 'Vastuse ootel' ? 'selected' : ''}>Vastuse ootel</option>
+                    <option value="Vastus saadud" ${status === 'Vastus saadud' ? 'selected' : ''}>Vastus saadud</option>
+                    <option value="Ei sobi" ${status === 'Ei sobi' ? 'selected' : ''}>Ei sobi</option>
+                </select>
+            </td>
+            <td>
+                <span class="editable-field">${reasoning}</span>
+            </td>
+            <td>
+                <span class="editable-field">${contacts}</span>
+            </td>
+            <td></td>
+        `;
+        
+        // Add the same editing functionality as existing rows
+        const editableFields = newRow.querySelectorAll('.editable-field');
+        editableFields.forEach(field => {
+            field.setAttribute('contenteditable', 'true');
+            field.addEventListener('focus', handleEditStart);
+            field.addEventListener('blur', handleEditSave);
+        });
+        
+        const statusDropdown = newRow.querySelector('.status-dropdown');
+        if (statusDropdown) {
+            statusDropdown.addEventListener('change', handleEditSave);
+        }
+        
+        tableBody.appendChild(newRow);
+    }
+    
+    // Clear form and close modal
+    document.getElementById('app-job-title').value = '';
+    document.getElementById('app-company-name').value = '';
+    document.getElementById('app-company-contacts').value = '';
+    document.getElementById('app-reasoning').value = '';
+    document.getElementById('app-status').value = 'Vastuse ootel';
+    
+    const modal = document.getElementById('add-job-application-modal');
+    if (modal) {
+        closeModal(modal);
+    }
+};
