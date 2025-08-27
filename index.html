@@ -409,59 +409,150 @@ Ootused järgmisele ametikohale:
         </div>
 
         <!-- Tööotsingute märkmik -->
-        <div class="remarks-section card" style="margin-top: 32px;">
-            <div class="remarks-header">
-                <h2 style="margin: 0; font-size: 1.25rem;">Tööotsingute märkmik</h2>
-                <button class="add-note-btn">Ava tööotsingute märkmik</button>
-            </div>
-            
-            <p style="color: var(--text-color-light); margin-bottom: 20px;">
-                All kuvatud tabelis on välja toodud Sinu viimati muudetud tööotsingud. Tööotsingute märkmiku
-                täitmiseks vajutage nupul "Ava tööotsingute märkmik".
-            </p>
-            
-            <div style="background: var(--secondary-color); padding: 20px; border-radius: 8px;">
-                
-                
-                
-                
-                <div class="activity-table-container">
-                    <table class="activity-table">
-                        <tbody>
-                            <tr>
-                                <td class="activity-type"><h4 style="margin: 0 0 15px; font-size: 1rem;">Ametikoht</h4></td>
-                                <td class="activity-org"><h4 style="margin: 0 0 15px; font-size: 1rem;">Tööandja</h4></td>
-                                <td class="activity-date"><h4 style="margin: 0 0 15px; font-size: 1rem;">Viimane muutmine</h4></td>
-                            </tr>
-                            <tr>
-                                <td class="activity-type">IT tugi</td>
-                                <td class="activity-org">Toila Haigla Sihtasutus</td>
-                                <td class="activity-date">14.10.2024</td>
-                            </tr>
-                            <tr>
-                                
-                                <td class="activity-type">Projektijuht</td>
-                                <td class="activity-org">Medida OÜ</td>
-                                <td class="activity-date">09.05.2024</td>
-                            </tr>
-                            <tr>
-                                <td class="activity-type">Andmesisestaja</td>
-                                <td class="activity-org">OÜ Lilleke</td>
-                                <td class="activity-date">09.05.2024</td>
-                            </tr>
-                            <tr>
-                                <td class="activity-type">Õpetaja</td>
-                                <td class="activity-org">Kuressaare Lasteaed</td>
-                                <td class="activity-date">02.04.2024</td>
-                            </tr>
-                            <tr>
-                                <td class="activity-type">Vanemanalüütik</td>
-                                <td class="activity-org">OÜ Arenseburg</td>
-                                <td class="activity-date">02.04.2024</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="notebook-card" style="margin-top: 32px;">
+            <div class="notebook-header">
+                <div class="notebook-title-wrapper">
+                    <h2>Tööotsingute märkmik</h2>
+                    <div class="tooltip-container">
+                        <svg class="tooltip-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                        </svg>
+                        <div class="tooltip-content">
+                            <p><strong>Tööotsingute märkmik – sinu abivahend töö leidmisel.</strong> Tööotsingute märkmik aitab sul hoida kogu tööotsingute info korras ja annab selge ülevaate kandideerimistest. See säästab aega ja toetab sind igal sammul.</p>
+                            <ul>
+                                <li>Selge ülevaade – näed kohe, kuhu oled kandideerinud ja mis seisus kandideerimised on.</li>
+                                <li>Kõik ühes kohas – ei pea enam meeles pidama, kuhu ja millal midagi saatsid, sest märkmik teeb seda sinu eest.</li>
+                                <li>Lihtsam koostöö nõustajaga – nõustaja näeb infot otse ja saab sind paremini toetada.</li>
+                                <li>Meeldetuletused ja soovitused – märkmik tuletab õigel ajal meelde, kui on vaja midagi teha, ja annab nõu, kuidas kandideerimisel edukam olla.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                <div class="header-actions">
+                    <input type="text" class="search-input" placeholder="Otsi: Ameti või tööandja nimi...">
+                    <button class="add-btn" onclick="openAddJobApplicationModal()">Lisa uus tööotsing</button>
+                </div>
+            </div>
+
+            <table class="notebook-table">
+                <thead>
+                    <tr>
+                        <th style="width: 14%;">Amet ja tööandja</th>
+                        <th style="width: 14%;">Tööandja kontakt</th>
+                        <th style="width: 8%;">Kuupäev</th>
+                        <th style="width: 10%;">Staatus</th>
+                        <th style="width: 26%;">Minu põhjendus</th>
+                        <th style="width: 20%;">Tööandja tagasiside</th>
+                        <th style="width: 8%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="job-title">Projektijuht</span>
+                            <span class="company-name">AKTSIASELTS HELMES</span>
+                            <div class="application-date-subtext">Kandideerimine 29.07.2025</div>
+                        </td>
+                        <td class="contact-cell">
+                            <span class="contact-info">
+                                Alice Teki, Esindaja<br>
+                                alice.teki@helmes.com<br>
+                                +37255556666
+                            </span>
+                        </td>
+                        <td>23.07.2025</td>
+                        <td>
+                            <select class="status-select status-vastuse-ootel" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
+                                <option value="vastuse-ootel" selected>Vastuse ootel</option>
+                                <option value="vastus-saadud">Vastus saadud</option>
+                                <option value="ei-sobi">Ei sobi</option>
+                            </select>
+                        </td>
+                        <td class="reason-cell"><span class="reason-text">Kandideerisin eile, ootan tagasisidet.</span></td>
+                        <td><span class="reason-text">Tagasiside puudub</span></td>
+                        <td class="actions-cell"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="job-title">Tarkvaraarendaja</span>
+                            <span class="company-name">Pipedrive OÜ</span>
+                            <div class="application-date-subtext">Kandideerimine 20.07.2025</div>
+                        </td>
+                        <td class="contact-cell">
+                            <span class="contact-info">
+                                Maarika Kask, HR<br>
+                                maarika.kask@pipedrive.com<br>
+                                +37256789123
+                            </span>
+                        </td>
+                        <td>20.07.2025</td>
+                        <td>
+                            <select class="status-select status-vastus-saadud" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
+                                <option value="vastuse-ootel">Vastuse ootel</option>
+                                <option value="vastus-saadud" selected>Vastus saadud</option>
+                                <option value="ei-sobi">Ei sobi</option>
+                            </select>
+                        </td>
+                        <td class="reason-cell"><span class="reason-text">Sain positiivse vastuse, leppisime kokku intervjuu aja.</span></td>
+                        <td><span class="reason-text">Tänan kandideerimast! Jäite meile silma, kuid otsustasime hetkel jätkata teise kandidaadiga. Soovime edu edaspidiseks!</span></td>
+                        <td class="actions-cell"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="job-title">UI/UX Disainer</span>
+                            <span class="company-name">Bolt Technology OÜ</span>
+                            <div class="application-date-subtext">Kandideerimine 15.07.2025</div>
+                        </td>
+                        <td class="contact-cell">
+                            <span class="contact-info">
+                                Kristjan Mets, Personalijuht<br>
+                                kristjan.mets@bolt.eu<br>
+                                +37251234567
+                            </span>
+                        </td>
+                        <td>15.07.2025</td>
+                        <td>
+                            <select class="status-select status-ei-sobi" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
+                                <option value="vastuse-ootel">Vastuse ootel</option>
+                                <option value="vastus-saadud">Vastus saadud</option>
+                                <option value="ei-sobi" selected>Ei sobi</option>
+                            </select>
+                        </td>
+                        <td class="reason-cell"><span class="reason-text">Palk oli liiga madal ja asukoht ei sobinud.</span></td>
+                        <td><span class="reason-text">Kahjuks ei osutunud Te seekord valituks. Portfoolio oli huvitav, kuid otsisime teistsuguse fookusega kogemust.</span></td>
+                        <td class="actions-cell"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="job-title">Andmeanalüütik</span>
+                            <span class="company-name">Wise Payments Limited</span>
+                            <div class="application-date-subtext">Kandideerimine 29.07.2025</div>
+                        </td>
+                        <td class="contact-cell">
+                            <span class="contact-info">
+                                Laura Luts, Värbamisjuht<br>
+                                laura.luts@wise.com<br>
+                                +37254567890
+                            </span>
+                        </td>
+                        <td>29.07.2025</td>
+                        <td>
+                            <select class="status-select status-vastuse-ootel" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
+                                <option value="vastuse-ootel" selected>Vastuse ootel</option>
+                                <option value="vastus-saadud">Vastus saadud</option>
+                                <option value="ei-sobi">Ei sobi</option>
+                            </select>
+                        </td>
+                        <td class="reason-cell"><span class="reason-text">Saatsin avalduse nädal tagasi, pole veel vastust saanud.</span></td>
+                        <td><span class="reason-text">Tagasiside puudub</span></td>
+                        <td class="actions-cell"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-banner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span><strong>Nõuanne:</strong> Uuenda oma kandideerimiste staatuseid regulaarselt, et hoida nii endal kui ka oma nõustajal selget ülevaadet.</span>
             </div>
         </div>
         
@@ -1480,7 +1571,11 @@ Ootused järgmisele ametikohale:
                         <div class="card">
                             <h2>Asukoha ülevaade</h2>
                             <div class="map-container">
+
+                                <img src="kelia kaart.jpg" alt="Keila kaart" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px;">
+
                                 <img src="Keila kaart.jpg" alt="Keila kaart" style="width: 100%; height: 350px; object-fit: cover; border-radius: 8px;">
+
                             </div>
                         </div>
                         <div class="card job-description-card">
@@ -1758,6 +1853,59 @@ Ootused järgmisele ametikohale:
         </div>
     </div>
 
+
+    <!-- Add Job Application Modal -->
+    <!--test-->
+    <div id="add-job-application-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Lisa uus töötotsing</h3>
+                <span class="modal-close" data-modal-id="add-job-application-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="app-job-title">Ametinimetus</label>
+                    <input type="text" id="app-job-title" placeholder="" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="app-company-name">Tööandja nimi</label>
+                    <input type="text" id="app-company-name" placeholder="" />
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="app-date">Kuupäev</label>
+                        <input type="date" id="app-date" value="2024-10-24" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="app-status">Staatus</label>
+                        <select id="app-status">
+                            <option value="Vastuse ootel">Vastuse ootel</option>
+                            <option value="Vastus saadud">Vastus saadud</option>
+                            <option value="Ei sobi">Ei sobi</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="app-company-contacts">Tööandja kontaktid</label>
+                    <textarea id="app-company-contacts" rows="3" placeholder=""></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="app-reasoning">Minu põhjendus</label>
+                    <textarea id="app-reasoning" rows="4" placeholder=""></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal-id="add-job-application-modal">Tühista</button>
+                <button class="btn btn-primary" id="save-job-application">Lisa töötötsing</button>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
+    
 </body>
 </html>

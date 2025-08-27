@@ -202,6 +202,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Add Job Application Modal Save Button Event Listener
+    const saveJobApplicationBtn = document.getElementById('save-job-application');
+    if (saveJobApplicationBtn) {
+        saveJobApplicationBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            saveJobApplication();
+        });
+    }
+
     // Job title autocomplete functionality
     const jobTitleInput = document.getElementById('job-title');
     const jobTitleDropdown = document.getElementById('job-title-dropdown');
@@ -976,3 +985,260 @@ document.addEventListener('click', function(event) {
         closeJobFeedbackModal();
     }
 });
+
+// Job Search Notebook Functions
+function updateStatusColor(selectElement) {
+    // Remove only the status-specific classes, keep status-select class
+    selectElement.className = selectElement.className.replace(/status-(vastuse-ootel|vastus-saadud|ei-sobi)/g, '');
+    
+    // Ensure the base status-select class is present
+    if (!selectElement.className.includes('status-select')) {
+        selectElement.className += ' status-select';
+    }
+    
+    // Add the new status class based on selected value
+    const statusClass = 'status-' + selectElement.value;
+    selectElement.className += ' ' + statusClass;
+}
+
+// New Notebook Functions
+let hasUnsavedChanges = false;
+
+window.addEventListener('beforeunload', (event) => {
+    if (hasUnsavedChanges) {
+        event.preventDefault();
+        event.returnValue = 'Teil on salvestamata muudatusi. Kas olete kindel, et soovite lahkuda?';
+    }
+});
+
+function updateNotebookStatusColor(selectElement) {
+    selectElement.className = 'status-select';
+    selectElement.classList.add('status-' + selectElement.value);
+}
+
+function storeOriginalStatus(selectElement) {
+    selectElement.closest('tr').dataset.originalStatus = selectElement.value;
+}
+
+function startNotebookEditing(selectElement) {
+    const row = selectElement.closest('tr');
+    if (row.classList.contains('is-editing')) return;
+    
+    hasUnsavedChanges = true;
+    row.classList.add('is-editing');
+    
+    // Update status color
+    updateNotebookStatusColor(selectElement);
+
+    const reasonCell = row.querySelector('.reason-cell');
+    row.dataset.originalReason = reasonCell.innerHTML; 
+    
+    const currentText = reasonCell.querySelector('.reason-text').textContent;
+    
+    const textarea = document.createElement('textarea');
+    textarea.className = 'reason-textarea';
+    textarea.value = currentText;
+    
+    reasonCell.innerHTML = '';
+    reasonCell.appendChild(textarea);
+    
+    const actionsCell = row.querySelector('.actions-cell');
+    actionsCell.innerHTML = '';
+    
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'btn-save';
+    saveBtn.textContent = 'Salvesta';
+    saveBtn.onclick = () => saveNotebookChanges(row);
+    
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'btn-cancel';
+    cancelBtn.textContent = 'Loobu';
+    cancelBtn.onclick = () => cancelNotebookChanges(row);
+    
+    actionsCell.appendChild(saveBtn);
+    actionsCell.appendChild(cancelBtn);
+    
+    textarea.focus();
+}
+
+function saveNotebookChanges(row) {
+    if (!row.classList.contains('is-editing')) return;
+
+    const reasonCell = row.querySelector('.reason-cell');
+    const textarea = reasonCell.querySelector('textarea');
+    const newText = textarea.value;
+
+    const newSpan = document.createElement('span');
+    newSpan.className = 'reason-text';
+    newSpan.textContent = newText;
+    
+    reasonCell.innerHTML = '';
+    reasonCell.appendChild(newSpan);
+
+    const actionsCell = row.querySelector('.actions-cell');
+    actionsCell.innerHTML = '';
+    
+    row.classList.remove('is-editing');
+    delete row.dataset.originalReason;
+    delete row.dataset.originalStatus;
+    
+    if (document.querySelectorAll('.is-editing').length === 0) {
+        hasUnsavedChanges = false;
+    }
+}
+
+function cancelNotebookChanges(row) {
+    if (!row.classList.contains('is-editing')) return;
+
+    const reasonCell = row.querySelector('.reason-cell');
+    reasonCell.innerHTML = row.dataset.originalReason;
+
+    const select = row.querySelector('.status-select');
+    select.value = row.dataset.originalStatus;
+    updateNotebookStatusColor(select);
+
+    const actionsCell = row.querySelector('.actions-cell');
+    actionsCell.innerHTML = '';
+    
+    row.classList.remove('is-editing');
+    delete row.dataset.originalReason;
+    delete row.dataset.originalStatus;
+
+    if (document.querySelectorAll('.is-editing').length === 0) {
+        hasUnsavedChanges = false;
+    }
+}
+
+// Status dropdown color functionality removed
+
+function updateAllStatusColors() {
+    // Color functionality removed
+}
+
+// Hook into the existing startNotebookEditing function
+const originalStartNotebookEditing = window.startNotebookEditing;
+window.startNotebookEditing = function(element) {
+    // Call original function
+    if (originalStartNotebookEditing) {
+        originalStartNotebookEditing(element);
+    }
+};
+
+// Use event delegation to handle all status dropdown changes
+document.addEventListener('change', function(event) {
+    if (event.target.classList.contains('status-select')) {
+        // Color functionality removed
+    }
+});
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded'); // Debug log
+    
+    // Observer for dynamic content
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                // Color functionality removed
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+});
+
+// Job Application Modal Functions
+window.openAddJobApplicationModal = function() {
+    const modal = document.getElementById('add-job-application-modal');
+    if (modal) {
+        openModal(modal);
+        // Set current date as default
+        const dateInput = document.getElementById('app-date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
+        }
+    }
+};
+
+window.saveJobApplication = function() {
+    const jobTitle = document.getElementById('app-job-title').value.trim();
+    const companyName = document.getElementById('app-company-name').value.trim();
+    const date = document.getElementById('app-date').value;
+    const status = document.getElementById('app-status').value;
+    const contacts = document.getElementById('app-company-contacts').value.trim();
+    const reasoning = document.getElementById('app-reasoning').value.trim();
+    
+    // Validate required fields
+    //test-->
+    if (!jobTitle || !companyName) {
+        alert('Palun täida ametinimetus ja tööandja nimi.');
+        return;
+    }
+    
+    // Add new row to the notebook table
+    const tableBody = document.querySelector('.notebook-table tbody');
+    if (tableBody) {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>
+                <div class="job-title">
+                    <span class="editable-field">${jobTitle}</span>
+                </div>
+                <div class="company-name">
+                    <span class="editable-field">${companyName}</span>
+                </div>
+            </td>
+            <td class="contact-cell">
+                <span class="contact-info editable-field">${contacts}</span>
+            </td>
+            <td>
+                <span class="editable-field">${date}</span>
+            </td>
+            <td>
+                <select class="status-dropdown">
+                    <option value="Vastuse ootel" ${status === 'Vastuse ootel' ? 'selected' : ''}>Vastuse ootel</option>
+                    <option value="Vastus saadud" ${status === 'Vastus saadud' ? 'selected' : ''}>Vastus saadud</option>
+                    <option value="Ei sobi" ${status === 'Ei sobi' ? 'selected' : ''}>Ei sobi</option>
+                </select>
+            </td>
+            <td>
+                <span class="editable-field">${reasoning}</span>
+            </td>
+            <td>
+                <span class="editable-field"></span>
+            </td>
+            <td></td>
+        `;
+        
+        // Add the same editing functionality as existing rows
+        const editableFields = newRow.querySelectorAll('.editable-field');
+        editableFields.forEach(field => {
+            field.setAttribute('contenteditable', 'true');
+            field.addEventListener('focus', handleEditStart);
+            field.addEventListener('blur', handleEditSave);
+        });
+        
+        const statusDropdown = newRow.querySelector('.status-dropdown');
+        if (statusDropdown) {
+            statusDropdown.addEventListener('change', handleEditSave);
+        }
+        
+        tableBody.appendChild(newRow);
+    }
+    
+    // Clear form and close modal
+    document.getElementById('app-job-title').value = '';
+    document.getElementById('app-company-name').value = '';
+    document.getElementById('app-company-contacts').value = '';
+    document.getElementById('app-reasoning').value = '';
+    document.getElementById('app-status').value = 'Vastuse ootel';
+    
+    const modal = document.getElementById('add-job-application-modal');
+    if (modal) {
+        closeModal(modal);
+    }
+};
