@@ -776,7 +776,7 @@ function updateCareerDashboardContent(jobTitle, location) {
     const contentElement = document.getElementById('job-overview-content');
     
     if (titleElement) {
-        titleElement.textContent = `${jobTitle} turuülevaade (${location})`;
+        titleElement.textContent = `${jobTitle} tööturu ülevaade (${location})`;
     }
     
     if (contentElement) {
@@ -976,3 +976,18 @@ document.addEventListener('click', function(event) {
         closeJobFeedbackModal();
     }
 });
+
+// Job Search Notebook Functions
+function updateStatusColor(selectElement) {
+    // Remove only the status-specific classes, keep status-select class
+    selectElement.className = selectElement.className.replace(/status-(vastuse-ootel|vastus-saadud|ei-sobi)/g, '');
+    
+    // Ensure the base status-select class is present
+    if (!selectElement.className.includes('status-select')) {
+        selectElement.className += ' status-select';
+    }
+    
+    // Add the new status class based on selected value
+    const statusClass = 'status-' + selectElement.value;
+    selectElement.className += ' ' + statusClass;
+}

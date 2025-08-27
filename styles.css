@@ -4598,3 +4598,393 @@
             background-color: #035c54;
             border-color: #035c54;
         }
+
+        /* Job Search Notebook Styles */
+        .notebook-section {
+            margin-top: 32px;
+        }
+
+        .notebook-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .notebook-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notebook-title-wrapper h2 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .tooltip-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .tooltip-icon {
+            width: 20px;
+            height: 20px;
+            color: #6b7280;
+            cursor: help;
+            transition: color 0.2s;
+        }
+
+        .tooltip-icon:hover {
+            color: var(--primary-color);
+        }
+
+        .tooltip-content {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 8px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .tooltip-container:hover .tooltip-content {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .tooltip-content p {
+            margin: 0 0 16px 0;
+            color: var(--text-color);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .tooltip-content ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-color);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .tooltip-content li {
+            margin-bottom: 8px;
+        }
+
+        .tooltip-content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-input {
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            width: 300px;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(4, 108, 99, 0.1);
+        }
+
+        .add-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-btn:hover {
+            background-color: #035c54;
+        }
+
+        .notebook-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .notebook-table thead {
+            background-color: #f8fafc;
+        }
+
+        .notebook-table th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 13px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .notebook-table td {
+            padding: 20px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: top;
+        }
+
+        .notebook-table td:nth-child(3) {
+            min-width: 140px;
+            max-width: 200px;
+            width: auto;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .notebook-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .job-title {
+            display: block;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .company-name {
+            display: block;
+            color: var(--text-color-light);
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .application-date-subtext {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .status-select {
+            padding: 10px 12px !important;
+            border-radius: 8px !important;
+            border: 1px solid transparent !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            min-width: 120px !important;
+            max-width: 180px !important;
+            width: auto !important;
+            text-align: center !important;
+            outline: none !important;
+            transition: background-color 0.2s ease, border-color 0.2s ease !important;
+            box-sizing: border-box !important;
+            display: inline-block !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            font-family: inherit !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+            background-position: right 8px center !important;
+            background-repeat: no-repeat !important;
+            background-size: 16px 16px !important;
+            padding-right: 32px !important;
+            white-space: nowrap !important;
+        }
+
+        .status-select:focus {
+            min-width: 120px !important;
+            max-width: 180px !important;
+            width: auto !important;
+        }
+
+        .status-select option {
+            padding: 8px !important;
+            text-align: center !important;
+            font-family: inherit !important;
+        }
+
+        .status-vastuse-ootel {
+            background-color: #fef3c7;
+            color: #92400e;
+            border-color: #f59e0b;
+        }
+
+        .status-vastus-saadud {
+            background-color: #d1fae5;
+            color: #065f46;
+            border-color: #10b981;
+        }
+
+        .status-ei-sobi {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border-color: #ef4444;
+        }
+
+        .reason-text {
+            font-size: 13px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .actions-cell {
+            text-align: right;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+        }
+
+        .tip-banner {
+            margin-top: 24px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            border: 1px solid #b3e5fc;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tip-banner svg {
+            color: #0277bd;
+            flex-shrink: 0;
+        }
+
+        .tip-banner span {
+            color: #01579b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .tip-banner strong {
+            font-weight: 600;
+        }
+
+        /* Responsive design for notebook */
+        @media (max-width: 1200px) {
+            .search-input {
+                width: 250px;
+            }
+            
+            .tooltip-content {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .notebook-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .header-actions {
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .notebook-table {
+                font-size: 12px;
+            }
+            
+            .notebook-table th,
+            .notebook-table td {
+                padding: 12px 8px;
+            }
+            
+            .tooltip-content {
+                width: 280px;
+                left: 0;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .notebook-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .notebook-table thead,
+            .notebook-table tbody,
+            .notebook-table th,
+            .notebook-table td,
+            .notebook-table tr {
+                display: block;
+            }
+            
+            .notebook-table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            .notebook-table tr {
+                border: 1px solid var(--border-color);
+                margin-bottom: 16px;
+                border-radius: 8px;
+                padding: 16px;
+                background: white;
+            }
+            
+            .notebook-table td {
+                border: none;
+                padding: 8px 0;
+                position: relative;
+                padding-left: 50%;
+            }
+            
+            .notebook-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: 600;
+                color: var(--text-color);
+            }
+        }
