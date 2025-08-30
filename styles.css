@@ -647,6 +647,11 @@
             text-decoration: underline;
         }
         
+        .training-button-container {
+            margin-top: 16px;
+            text-align: right;
+        }
+        
         /* Minu Profiil kaardi stiilid */
         .my-profile-card {
             flex-grow: 1;
