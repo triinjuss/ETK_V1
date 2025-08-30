@@ -616,15 +616,29 @@
         .training-section {
             background-color: transparent;
             border-radius: 8px;
-            padding: 20px;
+            padding: 28px;
             border: 1px solid var(--border-color);
         }
         
         .training-section h4 {
-            margin: 0 0 16px 0;
-            color: var(--text-color);
+            margin: 0 0 20px 0;
+            color: var(--primary-color);
             font-size: 1.1rem;
             font-weight: 600;
+        }
+        
+        .training-info {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+        }
+        
+        .short-term-text {
+            margin: 20px 0 12px 0;
+        }
+        
+        .short-term-list {
+            margin-bottom: 20px;
         }
         
         .training-info p {
@@ -648,7 +662,7 @@
         }
         
         .training-button-container {
-            margin-top: 16px;
+            margin-top: 24px;
             text-align: right;
         }
         
@@ -905,6 +919,25 @@
             color: var(--highlight-text);
             font-weight: 500;
             margin: 0;
+        }
+        
+        .short-term-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 16px 0;
+        }
+        
+        .short-term-list li {
+            margin: 4px 0;
+        }
+        
+        .short-term-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .short-term-list a:hover {
+            text-decoration: underline;
         }
         
         .card-header { 
