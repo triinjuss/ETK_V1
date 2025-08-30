@@ -348,14 +348,14 @@
         .main-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 32px;
+            gap: 24px;
             align-items: start;
         }
         
         .main-column, .sidebar-column { 
             display: flex; 
             flex-direction: column; 
-            gap: 32px; 
+            gap: 24px; 
         }
         
         .card { 
@@ -578,10 +578,6 @@
         }
         
         /* Teated nõustajalt kaardi stiilid */
-        .consultation-card {
-            margin-bottom: 24px;
-        }
-        
         .consultation-content {
             padding-top: 16px;
         }
@@ -667,78 +663,215 @@
         }
         
         /* Minu Profiil kaardi stiilid */
-        .my-profile-card {
+        /* CV Profile Card */
+        .cv-profile-card {
             flex-grow: 1;
         }
-        
-        .my-profile-card h3 {
-             margin-bottom: 20px;
-             font-size: 1.25rem;
-             font-weight: 600;
+
+        .cv-profile-card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .my-profile-card h3 a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: var(--transition);
+        .cv-profile-card .card-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
         }
 
-        .my-profile-card h3 a:hover {
-            color: var(--primary-color);
-            opacity: 0.8;
+        .cv-quick-stats {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
         }
-        
-        .profile-stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
+
+        .cv-stat-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
-        
-        .stat-box {
+
+        .cv-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-color-light);
+            font-weight: 500;
+        }
+
+        .cv-stat-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .cv-stat-value.status-active {
+            color: var(--success-color);
+        }
+
+        .cv-completion {
             background-color: var(--secondary-color);
             border-radius: 8px;
             padding: 16px;
+            margin-bottom: 20px;
             border: 1px solid var(--border-color);
         }
-        
-        .stat-box .label {
-            font-size: 0.85rem;
+
+        .cv-completion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .cv-completion-label {
+            font-size: 0.9rem;
             color: var(--text-color-light);
-            margin-bottom: 4px;
-            line-height: 1.3;
+            font-weight: 500;
         }
-        
-        .stat-box .label .sub-label {
-            display: block;
-            font-weight: 400;
-        }
-        
-        .stat-box .value {
-            font-size: 1.25rem;
+
+        .cv-completion-percent {
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-top: 4px;
+            color: var(--primary-color);
         }
-        
-        .stat-box.full-width {
-            grid-column: 1 / -1;
-            position: relative;
-        }
-        
-        .progress-bar-container {
+
+        .cv-progress-bar {
             width: 100%;
             height: 8px;
             background-color: #e9ecef;
             border-radius: 4px;
             overflow: hidden;
-            margin-top: 8px;
+            margin-bottom: 8px;
         }
-        
-        .progress-bar {
-            width: 84%;
+
+        .cv-progress-fill {
             height: 100%;
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color), #4CAF50);
             border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .cv-improvement-hint {
+            font-size: 0.8rem;
+            color: var(--text-color-light);
+            margin: 0;
+            font-style: italic;
+        }
+
+        .cv-motivation {
+            background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+            border: 1px solid #d1e7ff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+        }
+
+        .cv-motivation p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .cv-motivation strong {
+            color: var(--primary-color);
+        }
+
+        .cv-motivation .highlight-number {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: inline-block;
+            text-shadow: 0 1px 2px rgba(63, 81, 181, 0.2);
+        }
+
+        .cv-motivation .motivation-tip {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-color-light);
+            font-style: italic;
+        }
+
+        .cv-tips {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cv-tips h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            color: var(--text-color);
+        }
+
+        .cv-tip-text {
+            font-size: 0.9rem;
+            margin: 0 0 12px 0;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .cv-tip-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+            font-size: 0.85rem;
+        }
+
+        .cv-tip-list li {
+            padding: 4px 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cv-tip-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cv-tip-button-container .btn-small {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+        }
+
+        .cv-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-cv {
+            flex: 1;
+            padding: 10px 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .cv-actions .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .cv-actions .btn-secondary:hover {
+            background-color: var(--border-color);
+            transform: translateY(-1px);
+        }
+
+        .cv-actions .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(63, 81, 181, 0.3);
         }
         
         .profile-tips h4 {
@@ -970,7 +1103,7 @@
         .self-assessment-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 24px;
             align-items: stretch;
         }
 
@@ -1172,7 +1305,7 @@
         }
 
         .job-listing {
-            background: #f8f9fa;
+            background: #ffffff;
             border-radius: 8px;
             padding: 16px;
             margin-bottom: 12px;
@@ -1275,14 +1408,26 @@
             transition: all 0.2s ease;
         }
 
+        .job-buttons .btn-save {
+            background: #6c757d;
+            border-color: #6c757d;
+            color: white;
+        }
+
+        .job-buttons .btn-save:hover {
+            background: #5a6268;
+            border-color: #5a6268;
+        }
+
         .btn-save {
-            background: white;
-            border-color: #ddd;
-            color: #666;
+            background: #6c757d;
+            border-color: #6c757d;
+            color: white;
         }
 
         .btn-save:hover {
-            background: #f8f9fa;
+            background: #5a6268;
+            border-color: #5a6268;
         }
 
         .btn-apply {
@@ -1937,7 +2082,8 @@
             gap: 12px;
             margin-top: 8px;
         }
-        .btn-save {
+        
+        .job-offer-footer .btn-save {
             background: transparent;
             border: 1px solid var(--border-color);
             border-radius: 50%;
@@ -1949,9 +2095,28 @@
             cursor: pointer;
             color: var(--text-color-light);
         }
-        .btn-save:hover {
+        
+        .job-offer-footer .btn-save:hover {
             background-color: var(--secondary-color);
             color: var(--primary-color);
+        }
+        
+        /* Tööpakkumiste kaartide salvesta nupp */
+        .job-listing .btn-save,
+        .job-buttons .btn-save {
+            background: #6c757d !important;
+            border-color: #6c757d !important;
+            color: white !important;
+            border-radius: 4px !important;
+            width: auto !important;
+            height: auto !important;
+            padding: 6px 12px !important;
+        }
+
+        .job-listing .btn-save:hover,
+        .job-buttons .btn-save:hover {
+            background: #5a6268 !important;
+            border-color: #5a6268 !important;
         }
 
         /* Wish Analysis Modal */
@@ -2961,10 +3126,60 @@
             .page-container {
                 padding: 15px;
             }
+
+            /* CV Profile Card Mobile */
+            .cv-quick-stats {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .cv-stat-item {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px 12px;
+                background-color: var(--secondary-color);
+                border-radius: 6px;
+                border: 1px solid var(--border-color);
+            }
+
+            .cv-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn-cv {
+                padding: 12px 16px;
+                font-size: 1rem;
+            }
+
+            /* CV motivation mobile */
+            .cv-motivation {
+                padding: 10px 12px;
+                margin-bottom: 16px;
+            }
+
+            .cv-motivation p {
+                font-size: 0.85rem;
+            }
+
+            /* CV tips mobile */
+            .cv-tips {
+                padding: 12px;
+                margin-bottom: 16px;
+            }
+
+            .cv-tip-text {
+                font-size: 0.85rem;
+            }
+
+            .cv-tip-list {
+                font-size: 0.8rem;
+            }
             
             /* Cards mobile responsive */
             .card {
-                margin-bottom: 20px;
                 padding: 20px;
             }
             
@@ -2997,7 +3212,27 @@
                 text-align: left;
             }
         }
-         @media (max-width: 576px) {
+
+        .cv-motivation {
+            background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+            border: 1px solid #d1e7ff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+        }
+
+        .cv-motivation p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .cv-motivation strong {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 576px) {
             .skill-item {
                 grid-template-columns: 1fr;
                 text-align: left;
