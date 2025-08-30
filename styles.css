@@ -41,6 +41,11 @@
             color: var(--text-color);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-padding-top: 250px; /* Offset to center the block on page */
         }
         
         .main-header {
