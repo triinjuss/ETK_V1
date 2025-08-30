@@ -614,7 +614,7 @@
         }
         
         .training-section {
-            background-color: var(--secondary-color);
+            background-color: transparent;
             border-radius: 8px;
             padding: 20px;
             border: 1px solid var(--border-color);
@@ -889,6 +889,7 @@
             margin-top: auto;
             padding: 16px;
             background-color: var(--primary-light);
+            
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
@@ -1228,42 +1229,22 @@
         }
 
         .btn-save, .btn-apply, .btn-not-interested {
-            padding: 8px 12px;
+            padding: 6px 12px;
             border: 1px solid;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            border-radius: 4px;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            text-align: center;
-            white-space: nowrap;
-            min-width: 70px;
-            height: auto;
-            display: inline-block;
         }
 
-        .job-buttons .btn-save {
-            background: white !important;
-            border-color: var(--primary-color) !important;
-            color: var(--primary-color) !important;
-            border-width: 1px !important;
-            border-style: solid !important;
-            border-radius: 5px !important;
-            padding: 8px 12px !important;
-            font-size: 0.85rem !important;
-            font-weight: 500 !important;
-            min-width: 70px !important;
-            height: auto !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            text-align: center !important;
-            vertical-align: middle !important;
+        .btn-save {
+            background: white;
+            border-color: #ddd;
+            color: #666;
         }
 
-        .job-buttons .btn-save:hover {
-            background: var(--primary-color) !important;
-            color: white !important;
+        .btn-save:hover {
+            background: #f8f9fa;
         }
 
         .btn-apply {
