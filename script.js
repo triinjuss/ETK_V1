@@ -1,4 +1,56 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Auto-resize textareas based on content - but allow manual resize too
+    function autoResizeTextarea(textarea) {
+        // Only auto-resize if user hasn't manually resized
+        if (!textarea.hasAttribute('data-manually-resized')) {
+            // Reset height to auto to measure content
+            textarea.style.height = 'auto';
+            
+            // Get the scroll height (total content height)
+            const scrollHeight = textarea.scrollHeight;
+            const minHeight = 20;
+            
+            // Set height to either minimum or content height, whichever is larger
+            textarea.style.height = Math.max(minHeight, scrollHeight) + 'px';
+        }
+    }
+
+    // Initialize auto-resize for task notes
+    const taskNotesTextareas = document.querySelectorAll('.task-notes');
+    taskNotesTextareas.forEach(textarea => {
+        // Add event listener for input to auto-resize
+        textarea.addEventListener('input', function() {
+            autoResizeTextarea(this);
+        });
+        
+        // Add event listener for paste
+        textarea.addEventListener('paste', function() {
+            setTimeout(() => autoResizeTextarea(this), 0);
+        });
+        
+        // Detect manual resize (when user drags the resize handle)
+        let isResizing = false;
+        textarea.addEventListener('mousedown', function(e) {
+            // Check if clicking near the resize handle (bottom right corner)
+            const rect = textarea.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            if (x > rect.width - 20 && y > rect.height - 20) {
+                isResizing = true;
+            }
+        });
+        
+        textarea.addEventListener('mouseup', function() {
+            if (isResizing) {
+                textarea.setAttribute('data-manually-resized', 'true');
+                isResizing = false;
+            }
+        });
+        
+        // Initial resize based on existing content
+        autoResizeTextarea(textarea);
+    });
+
     // Mobile menu toggle functionality
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mainNav = document.getElementById('main-nav');
