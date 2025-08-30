@@ -572,6 +572,76 @@
             background-color: #035750;
         }
         
+        /* Teated nõustajalt kaardi stiilid */
+        .consultation-card {
+            margin-bottom: 24px;
+        }
+        
+        .consultation-content {
+            padding-top: 16px;
+        }
+        
+        .consultation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px 0;
+        }
+        
+        .consultation-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 24px;
+        }
+        
+        .consultation-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .consultation-list li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .training-section {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .training-section h4 {
+            margin: 0 0 16px 0;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .training-info p {
+            margin: 0 0 12px 0;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .training-info p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .training-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .training-info a:hover {
+            text-decoration: underline;
+        }
+        
         /* Minu Profiil kaardi stiilid */
         .my-profile-card {
             flex-grow: 1;
