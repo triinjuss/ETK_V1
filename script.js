@@ -1294,3 +1294,43 @@ window.saveJobApplication = function() {
         closeModal(modal);
     }
 };
+
+// Job dropdown toggle functionality
+function toggleJobDropdown(jobType) {
+    const dropdown = document.getElementById(jobType + '-dropdown');
+    const arrow = event.target.closest('.job-wish-details').querySelector('.dropdown-arrow');
+    const jobWishItem = dropdown.closest('.job-wish-item');
+    
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
+        arrow.style.transform = 'rotate(180deg)';
+        jobWishItem.classList.add('dropdown-open');
+        
+        // Calculate dynamic height based on dropdown content
+        setTimeout(() => {
+            const dropdownHeight = dropdown.offsetHeight;
+            const dynamicMargin = dropdownHeight + 50; // Add 50px buffer
+            jobWishItem.style.marginBottom = dynamicMargin + 'px';
+        }, 10);
+        
+    } else {
+        dropdown.style.display = 'none';
+        arrow.style.transform = 'rotate(0deg)';
+        jobWishItem.classList.remove('dropdown-open');
+        jobWishItem.style.marginBottom = '8px'; // Reset to default
+    }
+    
+    // Close other dropdowns
+    const allDropdowns = document.querySelectorAll('.job-dropdown');
+    const allArrows = document.querySelectorAll('.dropdown-arrow');
+    const allJobWishItems = document.querySelectorAll('.job-wish-item');
+    
+    allDropdowns.forEach((dd, index) => {
+        if (dd !== dropdown) {
+            dd.style.display = 'none';
+            allArrows[index].style.transform = 'rotate(0deg)';
+            allJobWishItems[index].classList.remove('dropdown-open');
+            allJobWishItems[index].style.marginBottom = '8px'; // Reset to default
+        }
+    });
+}
