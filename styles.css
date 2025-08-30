@@ -1172,7 +1172,7 @@
         }
 
         .job-listing {
-            background: #f8f9fa;
+            background: #ffffff;
             border-radius: 8px;
             padding: 16px;
             margin-bottom: 12px;
@@ -1275,14 +1275,26 @@
             transition: all 0.2s ease;
         }
 
+        .job-buttons .btn-save {
+            background: #6c757d;
+            border-color: #6c757d;
+            color: white;
+        }
+
+        .job-buttons .btn-save:hover {
+            background: #5a6268;
+            border-color: #5a6268;
+        }
+
         .btn-save {
-            background: white;
-            border-color: #ddd;
-            color: #666;
+            background: #6c757d;
+            border-color: #6c757d;
+            color: white;
         }
 
         .btn-save:hover {
-            background: #f8f9fa;
+            background: #5a6268;
+            border-color: #5a6268;
         }
 
         .btn-apply {
@@ -1937,7 +1949,8 @@
             gap: 12px;
             margin-top: 8px;
         }
-        .btn-save {
+        
+        .job-offer-footer .btn-save {
             background: transparent;
             border: 1px solid var(--border-color);
             border-radius: 50%;
@@ -1949,9 +1962,28 @@
             cursor: pointer;
             color: var(--text-color-light);
         }
-        .btn-save:hover {
+        
+        .job-offer-footer .btn-save:hover {
             background-color: var(--secondary-color);
             color: var(--primary-color);
+        }
+        
+        /* Tööpakkumiste kaartide salvesta nupp */
+        .job-listing .btn-save,
+        .job-buttons .btn-save {
+            background: #6c757d !important;
+            border-color: #6c757d !important;
+            color: white !important;
+            border-radius: 4px !important;
+            width: auto !important;
+            height: auto !important;
+            padding: 6px 12px !important;
+        }
+
+        .job-listing .btn-save:hover,
+        .job-buttons .btn-save:hover {
+            background: #5a6268 !important;
+            border-color: #5a6268 !important;
         }
 
         /* Wish Analysis Modal */
