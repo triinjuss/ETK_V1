@@ -48,6 +48,17 @@
             scroll-padding-top: 250px; /* Offset to center the block on page */
         }
         
+        /* Link styles */
+        .link-orange {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .link-orange:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
         .main-header {
             background-color: var(--card-bg);
             box-shadow: var(--shadow-sm);
