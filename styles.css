@@ -1082,6 +1082,190 @@
             font-style: italic;
         }
 
+        /* Job dropdown styling */
+        .job-wish-item {
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .job-wish-details {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .job-wish-details:hover {
+            background-color: #f8f9fa;
+        }
+
+        .dropdown-arrow {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .job-dropdown {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: dropdownSlide 0.3s ease-out;
+        }
+
+        @keyframes dropdownSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .job-listing {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #e1e5e9;
+        }
+
+        .job-listing:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .job-company {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .job-info {
+            flex: 1;
+        }
+
+        .job-info h4 {
+            margin: 0 0 4px 0;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+
+        .job-info p {
+            margin: 0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .job-match {
+            background: #d4edda;
+            color: #155724;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .job-meta span {
+            background: #f1f3f4;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #5f6368;
+        }
+
+        .job-details p {
+            margin: 0 0 12px 0;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .job-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .job-time {
+            color: #7f8c8d;
+            font-size: 0.8rem;
+        }
+
+        .job-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-save, .btn-apply, .btn-not-interested {
+            padding: 6px 12px;
+            border: 1px solid;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-save {
+            background: white;
+            border-color: #ddd;
+            color: #666;
+        }
+
+        .btn-save:hover {
+            background: #f8f9fa;
+        }
+
+        .btn-apply {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-apply:hover {
+            background: #035a52;
+        }
+
+        .btn-not-interested {
+            background: white;
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .btn-not-interested:hover {
+            background: #f8d7da;
+        }
+
         .add-task-form input { 
             flex-grow: 1; 
             font-size: 14px;
