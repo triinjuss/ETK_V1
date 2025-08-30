@@ -640,7 +640,7 @@ Ootused:
                         </td>
                         <td>23.07.2025</td>
                         <td>
-                            <select class="status-select status-vastuse-ootel" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
+                            <select class="status-select status-vastuse-ootel" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)" style="background-color: #fff3cd; color: #856404; border: 1px solid #ffc107; border-radius: 4px; padding: 4px 8px;">
                                 <option value="vastuse-ootel" selected>Vastuse ootel</option>
                                 <option value="vastus-saadud">Vastus saadud</option>
                                 <option value="ei-sobi">Ei sobi</option>
@@ -667,7 +667,7 @@ Ootused:
                         </td>
                         <td>20.07.2025</td>
                         <td>
-                            <select class="status-select status-vastus-saadud" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
+                            <select class="status-select status-vastus-saadud" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)" style="background-color: #d4edda; color: #155724; border: 1px solid #28a745; border-radius: 4px; padding: 4px 8px;">
                                 <option value="vastuse-ootel">Vastuse ootel</option>
                                 <option value="vastus-saadud" selected>Vastus saadud</option>
                                 <option value="ei-sobi">Ei sobi</option>
@@ -696,7 +696,7 @@ Ootused:
                         </td>
                         <td>15.07.2025</td>
                         <td>
-                            <select class="status-select status-ei-sobi" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
+                            <select class="status-select status-ei-sobi" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)" style="background-color: #f8d7da; color: #721c24; border: 1px solid #dc3545; border-radius: 4px; padding: 4px 8px;">
                                 <option value="vastuse-ootel">Vastuse ootel</option>
                                 <option value="vastus-saadud">Vastus saadud</option>
                                 <option value="ei-sobi" selected>Ei sobi</option>
@@ -724,7 +724,7 @@ Ootused:
                         </td>
                         <td>29.07.2025</td>
                         <td>
-                            <select class="status-select status-vastuse-ootel" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)">
+                            <select class="status-select status-vastuse-ootel" onfocus="storeOriginalStatus(this)" onchange="startNotebookEditing(this)" style="background-color: #fff3cd; color: #856404; border: 1px solid #ffc107; border-radius: 4px; padding: 4px 8px;">
                                 <option value="vastuse-ootel" selected>Vastuse ootel</option>
                                 <option value="vastus-saadud">Vastus saadud</option>
                                 <option value="ei-sobi">Ei sobi</option>
@@ -2154,6 +2154,52 @@ Ootused:
         </div>
     </div>
 
+    <script>
+        // Function to update status colors based on selection
+        function updateStatusColors(selectElement) {
+            const value = selectElement.value;
+            
+            // Remove existing status classes
+            selectElement.classList.remove('status-vastuse-ootel', 'status-vastus-saadud', 'status-ei-sobi');
+            
+            // Apply colors based on selected value
+            switch(value) {
+                case 'vastuse-ootel':
+                    selectElement.style.backgroundColor = '#fff3cd';
+                    selectElement.style.color = '#856404';
+                    selectElement.style.border = '1px solid #ffc107';
+                    selectElement.classList.add('status-vastuse-ootel');
+                    break;
+                case 'vastus-saadud':
+                    selectElement.style.backgroundColor = '#d4edda';
+                    selectElement.style.color = '#155724';
+                    selectElement.style.border = '1px solid #28a745';
+                    selectElement.classList.add('status-vastus-saadud');
+                    break;
+                case 'ei-sobi':
+                    selectElement.style.backgroundColor = '#f8d7da';
+                    selectElement.style.color = '#721c24';
+                    selectElement.style.border = '1px solid #dc3545';
+                    selectElement.classList.add('status-ei-sobi');
+                    break;
+            }
+        }
+
+        // Add event listeners when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusSelects = document.querySelectorAll('.status-select');
+            statusSelects.forEach(select => {
+                // Update colors on change
+                select.addEventListener('change', function() {
+                    updateStatusColors(this);
+                });
+                
+                // Set initial colors
+                updateStatusColors(select);
+            });
+        });
+    </script>
+    
     <script src="script.js"></script>
     
 </body>
