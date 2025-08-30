@@ -585,7 +585,7 @@ Ootused:
                 </div>
             </div>
             <div class="card-footer" style="text-align: right; border-top: 1px solid var(--border-color); padding-top: 24px; margin-top: 24px;">
-                <button class="btn btn-primary">Salvesta plaan</button>
+                <button class="btn btn-primary" style="padding: 8px 16px; font-size: 14px; min-width: auto;">Salvesta plaan</button>
             </div>
         </div>
 
@@ -610,8 +610,8 @@ Ootused:
                     </div>
                 </div>
                 <div class="header-actions">
-                    <input type="text" class="search-input" placeholder="Otsi: Ameti või tööandja nimi...">
-                    <button class="add-btn" onclick="openAddJobApplicationModal()">Lisa uus tööotsing</button>
+                    <input type="text" class="search-input" placeholder="Otsi: Ameti või tööandja nimi..." style="width: 250px;">
+                    <button class="add-btn" onclick="openAddJobApplicationModal()" style="padding: 6px 12px; font-size: 13px; white-space: nowrap;">Lisa uus tööotsing</button>
                 </div>
             </div>
 
@@ -622,8 +622,7 @@ Ootused:
                         <th style="width: 9%;">Kuupäev</th>
                         <th style="width: 10%;">Staatus</th>
                         <th style="width: 25%;">Minu põhjendus</th>
-                        <th style="width: 30%;">Tööandja tagasiside</th>
-                        <th style="width: 8%;"></th>
+                        <th style="width: 38%;">Tööandja tagasiside</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -652,7 +651,6 @@ Ootused:
                                 Tagasiside puudub
                             </div>
                         </td>
-                        <td class="actions-cell"></td>
                     </tr>
                     <tr>
                         <td>
@@ -681,7 +679,6 @@ Ootused:
                                 Soovime edu edaspidiseks!"
                             </div>
                         </td>
-                        <td class="actions-cell"></td>
                     </tr>
                     <tr>
                         <td>
@@ -709,7 +706,6 @@ Ootused:
                                 Portfoolio oli huvitav, kuid otsisime teistsuguse fookusega kogemust."
                             </div>
                         </td>
-                        <td class="actions-cell"></td>
                     </tr>
                     <tr>
                         <td>
@@ -736,15 +732,9 @@ Ootused:
                                 Tagasiside puudub
                             </div>
                         </td>
-                        <td class="actions-cell"></td>
                     </tr>
                 </tbody>
             </table>
-
-            <div class="tip-banner">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                <span><strong>Nõuanne:</strong> Uuenda oma kandideerimiste staatuseid regulaarselt, et hoida nii endal kui ka oma nõustajal selget ülevaadet.</span>
-            </div>
         </div>
         
         <!-- UUS Oskuste kaart -->
@@ -1280,8 +1270,8 @@ Ootused:
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-modal-id="add-task-modal">Tühista</button>
-                <button class="btn btn-primary">Salvesta tegevus</button>
+                <button class="btn btn-secondary" data-modal-id="add-task-modal" style="padding: 6px 12px; font-size: 13px; min-width: auto;">Tühista</button>
+                <button class="btn btn-primary" style="padding: 6px 12px; font-size: 13px; min-width: auto;">Salvesta tegevus</button>
             </div>
         </div>
     </div>
@@ -1396,8 +1386,8 @@ Ootused:
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-modal-id="ai-formulated-goal-modal">Loobu</button>
-                <button class="btn btn-primary">Salvesta eesmärk</button>
+                <button class="btn btn-secondary" data-modal-id="ai-formulated-goal-modal" style="padding: 6px 12px; font-size: 13px; min-width: auto;">Loobu</button>
+                <button class="btn btn-primary" style="padding: 6px 12px; font-size: 13px; min-width: auto;">Salvesta eesmärk</button>
             </div>
         </div>
     </div>
@@ -1519,8 +1509,8 @@ Ootused:
                 </ul>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-modal-id="ai-activity-suggestion-modal">Loobu</button>
-                <button class="btn btn-primary">Lisa minu tegevuste hulka</button>
+                <button class="btn btn-secondary" data-modal-id="ai-activity-suggestion-modal" style="padding: 6px 12px; font-size: 13px; min-width: auto;">Loobu</button>
+                <button class="btn btn-primary" style="padding: 6px 12px; font-size: 13px; min-width: auto;">Lisa minu tegevuste hulka</button>
             </div>
         </div>
     </div>
@@ -1612,8 +1602,8 @@ Ootused:
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-modal-id="add-job-wish-modal">Loobu</button>
-                <button class="btn btn-primary" id="add-job-wish-edasi" onclick="handleAddJobWishEdasi()">Edasi</button>
+                <button class="btn btn-secondary" data-modal-id="add-job-wish-modal" style="padding: 6px 12px; font-size: 13px; min-width: auto;">Loobu</button>
+                <button class="btn btn-primary" id="add-job-wish-edasi" onclick="handleAddJobWishEdasi()" style="padding: 6px 12px; font-size: 13px; min-width: auto;">Edasi</button>
             </div>
         </div>
     </div>
@@ -1750,9 +1740,9 @@ Ootused:
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="job-details-cancel">Loobu</button>
-                <button class="btn btn-primary" id="job-details-save" onclick="handleJobSave()">Salvesta</button>
+            <div class="modal-footer vertical-buttons">
+                <button class="btn btn-primary" id="job-details-save" onclick="handleJobSave()" style="padding: 6px 12px; font-size: 13px;">Salvesta</button>
+                <button class="btn btn-secondary" id="job-details-cancel" style="padding: 6px 12px; font-size: 13px;">Loobu</button>
             </div>
         </div>
     </div>
@@ -2045,9 +2035,9 @@ Ootused:
             
             <textarea placeholder="Kirjuta siia..." class="feedback-textarea"></textarea>
             
-            <div class="feedback-buttons">
-                <button class="btn btn-outline" onclick="closeJobFeedbackModal()">Loobu</button>
-                <button class="btn btn-primary" onclick="submitJobFeedback()">Salvesta</button>
+            <div class="feedback-buttons vertical-buttons">
+                <button class="btn btn-primary" onclick="submitJobFeedback()" style="padding: 6px 12px; font-size: 13px;">Salvesta</button>
+                <button class="btn btn-outline" onclick="closeJobFeedbackModal()" style="padding: 6px 12px; font-size: 13px;">Loobu</button>
             </div>
         </div>
     </div>

@@ -1300,15 +1300,16 @@ function startNotebookEditing(selectElement) {
     
     const currentText = reasonCell.querySelector('.reason-text').textContent;
     
+    // Create container for textarea and buttons
+    const editContainer = document.createElement('div');
+    editContainer.className = 'edit-container';
+    
     const textarea = document.createElement('textarea');
     textarea.className = 'reason-textarea';
     textarea.value = currentText;
     
-    reasonCell.innerHTML = '';
-    reasonCell.appendChild(textarea);
-    
-    const actionsCell = row.querySelector('.actions-cell');
-    actionsCell.innerHTML = '';
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'edit-buttons';
     
     const saveBtn = document.createElement('button');
     saveBtn.className = 'btn-save';
@@ -1320,8 +1321,14 @@ function startNotebookEditing(selectElement) {
     cancelBtn.textContent = 'Loobu';
     cancelBtn.onclick = () => cancelNotebookChanges(row);
     
-    actionsCell.appendChild(saveBtn);
-    actionsCell.appendChild(cancelBtn);
+    buttonContainer.appendChild(saveBtn);
+    buttonContainer.appendChild(cancelBtn);
+    
+    editContainer.appendChild(textarea);
+    editContainer.appendChild(buttonContainer);
+    
+    reasonCell.innerHTML = '';
+    reasonCell.appendChild(editContainer);
     
     textarea.focus();
 }
@@ -1339,9 +1346,6 @@ function saveNotebookChanges(row) {
     
     reasonCell.innerHTML = '';
     reasonCell.appendChild(newSpan);
-
-    const actionsCell = row.querySelector('.actions-cell');
-    actionsCell.innerHTML = '';
     
     row.classList.remove('is-editing');
     delete row.dataset.originalReason;
@@ -1361,9 +1365,6 @@ function cancelNotebookChanges(row) {
     const select = row.querySelector('.status-select');
     select.value = row.dataset.originalStatus;
     updateNotebookStatusColor(select);
-
-    const actionsCell = row.querySelector('.actions-cell');
-    actionsCell.innerHTML = '';
     
     row.classList.remove('is-editing');
     delete row.dataset.originalReason;

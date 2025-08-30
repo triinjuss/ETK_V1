@@ -6038,7 +6038,135 @@
         .notebook-card .header-actions { 
             display: flex; 
             align-items: center; 
-            gap: 1rem; 
+            gap: 12px;
+            justify-content: flex-end;
+        }
+        
+        /* Vertical button layout for modals */
+        .modal-footer.vertical-buttons {
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .modal-footer.vertical-buttons .btn {
+            width: 100%;
+        }
+        
+        .feedback-buttons.vertical-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .feedback-buttons.vertical-buttons .btn {
+            width: 100%;
+        }
+        
+        /* Edit container in reason cell */
+        .edit-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+        
+        .reason-textarea {
+            width: 100%;
+            min-height: 60px;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: var(--font-family);
+            font-size: 14px;
+            resize: vertical;
+        }
+        
+        .edit-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        
+        .edit-buttons .btn-save,
+        .edit-buttons .btn-cancel {
+            padding: 4px 12px;
+            font-size: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            min-width: 70px;
+        }
+        
+        .edit-buttons .btn-save {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .edit-buttons .btn-cancel {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .edit-buttons .btn-save:hover {
+            background-color: #035a52;
+        }
+        
+        .edit-buttons .btn-cancel:hover {
+            background-color: #5a6268;
+        }
+        
+        /* Action buttons in table cells */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: stretch;
+        }
+        
+        .action-buttons .btn {
+            width: 100%;
+            min-width: auto;
+        }
+        
+        /* Edit mode buttons in notebook */
+        .actions-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .actions-cell .btn-save,
+        .actions-cell .btn-cancel {
+            display: block;
+            width: 80%;
+            padding: 4px 8px;
+            font-size: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .actions-cell .btn-save {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .actions-cell .btn-cancel {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .actions-cell .btn-save:hover {
+            background-color: #035a52;
+        }
+        
+        .actions-cell .btn-cancel:hover {
+            background-color: #5a6268;
         }
         
         .notebook-card .search-input { 
