@@ -8,12 +8,30 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Get the scroll height (total content height)
             const scrollHeight = textarea.scrollHeight;
-            const minHeight = 20;
+            
+            // Set different minimum heights based on textarea type
+            let minHeight = 80; // Default minimum
+            if (textarea.classList.contains('task-notes')) {
+                minHeight = 80;
+            } else if (textarea.classList.contains('modal-textarea')) {
+                minHeight = 150;
+            } else if (textarea.classList.contains('feedback-textarea')) {
+                minHeight = 150;
+            } else if (textarea.classList.contains('plan-block')) {
+                minHeight = 400;
+            } else if (textarea.parentElement?.classList.contains('justification-group')) {
+                minHeight = 160;
+            } else if (textarea.parentElement?.classList.contains('form-section')) {
+                minHeight = 120;
+            }
             
             // Set height to either minimum or content height, whichever is larger
             textarea.style.height = Math.max(minHeight, scrollHeight) + 'px';
         }
     }
+
+    // Make autoResizeTextarea available globally
+    window.autoResizeTextarea = autoResizeTextarea;
 
     // Initialize auto-resize for task notes
     const taskNotesTextareas = document.querySelectorAll('.task-notes');
@@ -50,6 +68,201 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial resize based on existing content
         autoResizeTextarea(textarea);
     });
+
+    // Task checkbox functionality - handle completed tasks
+    function initializeTaskCheckboxes() {
+        const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+        
+        checkboxes.forEach(checkbox => {
+            // Remove any existing event listeners to avoid duplicates
+            checkbox.removeEventListener('change', handleCheckboxChange);
+            
+            // Set initial state based on checkbox status
+            toggleTaskCompletion(checkbox, checkbox.checked);
+            
+            // Add default text for unchecked tasks on page load
+            if (!checkbox.checked) {
+                const checklistItem = checkbox.closest('.checklist-item');
+                if (checklistItem) {
+                    const taskNotesTextarea = checklistItem.querySelector('.task-notes');
+                    if (taskNotesTextarea && !taskNotesTextarea.value.trim()) {
+                        taskNotesTextarea.value = 'Plaan: ';
+                        window.autoResizeTextarea(taskNotesTextarea);
+                    }
+                }
+            }
+            
+            // Add event listener for checkbox changes
+            checkbox.addEventListener('change', handleCheckboxChange);
+        });
+    }
+
+    function handleCheckboxChange(event) {
+        toggleTaskCompletion(event.target, event.target.checked);
+    }
+
+    function toggleTaskCompletion(checkbox, isCompleted) {
+        const checklistItem = checkbox.closest('.checklist-item');
+        if (checklistItem) {
+            const taskNotesTextarea = checklistItem.querySelector('.task-notes');
+            
+            if (isCompleted) {
+                checklistItem.classList.add('completed');
+                
+                // Add default completion text if textarea is empty or has placeholder text
+                if (taskNotesTextarea && (!taskNotesTextarea.value.trim() || taskNotesTextarea.value.includes('Plaan:'))) {
+                    const currentDate = new Date().toLocaleDateString('et-EE', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    taskNotesTextarea.value = `Tegevus lõpetatud ${currentDate}. `;
+                    
+                    // Trigger auto-resize
+                    window.autoResizeTextarea(taskNotesTextarea);
+                }
+            } else {
+                checklistItem.classList.remove('completed');
+                
+                // Add planning text for incomplete tasks if textarea is empty or has completion text
+                if (taskNotesTextarea && (!taskNotesTextarea.value.trim() || taskNotesTextarea.value.includes('Tegevus lõpetatud'))) {
+                    // Check if it's just the default completion text and replace it
+                    const currentDate = new Date().toLocaleDateString('et-EE', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    const defaultCompletionText = `Tegevus lõpetatud ${currentDate}. `;
+                    
+                    if (taskNotesTextarea.value.trim() === defaultCompletionText.trim() || !taskNotesTextarea.value.trim()) {
+                        taskNotesTextarea.value = 'Plaan: ';
+                        
+                        // Trigger auto-resize
+                        window.autoResizeTextarea(taskNotesTextarea);
+                    }
+                }
+            }
+        }
+    }
+
+    // Make the function globally available for dynamic content
+    window.initializeTaskCheckboxes = initializeTaskCheckboxes;
+
+    // Task suggestions for better user experience
+    const taskSuggestions = {
+        cv_profiil: [
+            "Uuenda CV-d viimase 6 kuu kogemusega",
+            "Lisa LinkedIn profiilile uued oskused ja projektid", 
+            "Koosta motivatsioonikiri sihtettevõttele",
+            "Palun soovituskirju endistelt kolleegidelt"
+        ],
+        kandideerimine: [
+            "Otsi sobivaid ametikohti CV Keskuses ja töötukassa lehelt",
+            "Kandideeri vähemalt 3 ametikohale nädalas",
+            "Jälgi vastuste saamist ja järelküsi vajadusel",
+            "Säilita kandideerimiste ülevaade tabelis"
+        ],
+        võrgustik: [
+            "Võta ühendust 5 endise kolleegiga",
+            "Osale valdkonna networking üritustel",
+            "Liitu erialasete LinkedIn gruppidega",
+            "Järgi huvitavaid ettevõtteid sotsiaalmeedia"
+        ],
+        õppimine: [
+            "Osale veebiseminaril projektijuhtimise teemal",
+            "Loe vähemalt 2 erialaartiklit nädalas",
+            "Soovita uut oskust või sertifikaati",
+            "Uurin tööturul nõutud tehnoloogiaid"
+        ],
+        ettevalmistus: [
+            "Valmista ette vastused tüüpilistele intervjuu küsimustele",
+            "Uurin sihtettevõtte tausta ja väärtusi",
+            "Ühenda oma kogemust ettevõtte vajadustega",
+            "Valmista ette küsimused tööandja kohta"
+        ]
+    };
+
+    const taskOutcomes = [
+        "CV on täielikult ajakohastatud",
+        "LinkedIn profiil on 100% täidetud",
+        "Kandideerinud vähemalt 3 ametikohale",
+        "Saanud 2 positiivset tagasisidet",
+        "Loonud 5 uut professionaalset kontakti", 
+        "Saanud uue sertifikaadi või tunnistuse",
+        "Valmis järgmiseks intervjuuks",
+        "Leidnud 3 sihtettevõtet",
+        "Parandanud oma võrgustikku 20%",
+        "Omandanud 2 uut oskust"
+    ];
+
+    // Function to get random task suggestion
+    window.getRandomTaskSuggestion = function(category = null) {
+        if (category && taskSuggestions[category]) {
+            const suggestions = taskSuggestions[category];
+            return suggestions[Math.floor(Math.random() * suggestions.length)];
+        } else {
+            // Get random suggestion from any category
+            const allSuggestions = Object.values(taskSuggestions).flat();
+            return allSuggestions[Math.floor(Math.random() * allSuggestions.length)];
+        }
+    };
+
+    // Function to get random task outcome
+    window.getRandomTaskOutcome = function() {
+        return taskOutcomes[Math.floor(Math.random() * taskOutcomes.length)];
+    };
+
+    // Add click handler for task description field to show suggestions
+    const taskDescriptionField = document.getElementById('task-description');
+    if (taskDescriptionField) {
+        taskDescriptionField.addEventListener('focus', function() {
+            if (!this.value.trim()) {
+                // Optionally populate with a random suggestion
+                // this.value = window.getRandomTaskSuggestion();
+            }
+        });
+    }
+
+    // Add click handler for task outcome field to show suggestions  
+    const taskOutcomeField = document.getElementById('task-outcome');
+    if (taskOutcomeField) {
+        taskOutcomeField.addEventListener('focus', function() {
+            if (!this.value.trim()) {
+                // Optionally populate with a random outcome
+                // this.value = window.getRandomTaskOutcome();
+            }
+        });
+    }
+
+    // Initialize task checkboxes
+    initializeTaskCheckboxes();
+
+    // Observer to handle dynamically added tasks
+    const taskObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1) { // Element node
+                        // Check if the added node contains checkboxes or is a checklist item
+                        if (node.classList && node.classList.contains('checklist-item')) {
+                            initializeTaskCheckboxes();
+                        } else if (node.querySelector && node.querySelector('.checklist input[type="checkbox"]')) {
+                            initializeTaskCheckboxes();
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    // Start observing the checklist container for changes
+    const checklistContainer = document.querySelector('.checklist');
+    if (checklistContainer) {
+        taskObserver.observe(checklistContainer, {
+            childList: true,
+            subtree: true
+        });
+    }
 
     // Mobile menu toggle functionality
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
