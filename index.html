@@ -399,28 +399,43 @@ Põhitöö otsimise kõrvalt saad teha kuni <strong>kaheksa päeva kuus ajutist 
                     </div>
                 </div>
 
-                <!-- Minu Profiil kaart -->
-                <div class="card my-profile-card">
-                    <a href="#" id="open-ai-profile-analysis-modal" class="ai-icon-link" title="AI Profiili analüüs">AI</a>
-                    <h3><a href="minuCV.html">Minu CV</a></h3>
-                    <div class="profile-stats-grid">
-                        <div class="stat-box">
-                            <div class="label">CV staatus</div>
-                            <div class="value">Aktiivne</div>
+                <!-- Minu CV kaart -->
+                <div class="card cv-profile-card">
+                    <div class="card-header">
+                        <h3>Minu CV</h3>
+                        <a href="#" id="open-ai-profile-analysis-modal" class="ai-icon-link" title="AI Profiili analüüs">AI</a>
+                    </div>
+                    
+                    <div class="cv-quick-stats">
+                        <div class="cv-stat-item">
+                            <span class="cv-stat-label">Staatus</span>
+                            <span class="cv-stat-value status-active">Aktiivne</span>
                         </div>
-                        <div class="stat-box">
-                            <div class="label">CV vastamisi <span class="sub-label">(1 kuu jooksul)</span></div>
-                            <div class="value">2</div>
-                        </div>
-                        <div class="stat-box full-width">
-                            <div class="label">CV valmidus</div>
-                            <div class="value">84%</div>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar"></div>
-                            </div>
+                        <div class="cv-stat-item">
+                            <span class="cv-stat-label">Vaatamised (1 kuu)</span>
+                            <span class="cv-stat-value">2</span>
                         </div>
                     </div>
-                   
+                    
+                    <div class="cv-completion">
+                        <div class="cv-completion-header">
+                            <span class="cv-completion-label">CV valmidus</span>
+                            <span class="cv-completion-percent">84%</span>
+                        </div>
+                        <div class="cv-progress-bar">
+                            <div class="cv-progress-fill" style="width: 84%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="cv-motivation">
+                        <p><span class="motivation-tip">Uuenda oma CV enne iga kandideerimist.<br>
+                        Nii saab tööandja kätte sinu värskeimad andmed.</span></p>
+                    </div>
+                    
+                    <div class="cv-actions">
+                        <a href="minuCV.html" class="btn btn-secondary btn-cv">Vaata CV-d</a>
+                        <button class="btn btn-primary btn-cv">Muuda CV-d</button>
+                    </div>
                 </div>
             </div>
         </div>
