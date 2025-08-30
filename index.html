@@ -237,7 +237,7 @@
                                             <div class="job-buttons">
                                                 <button class="btn-save">Salvesta</button>
                                                 <button class="btn-apply">Kandideeri</button>
-                                                <button class="btn-not-interested">Ei sobi</button>
+                                               <button class="btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +263,7 @@
                                             <div class="job-buttons">
                                                 <button class="btn-save">Salvesta</button>
                                                 <button class="btn-apply">Kandideeri</button>
-                                                <button class="btn-not-interested">Ei sobi</button>
+                                                <button class="btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                             </div>
                                         </div>
                                     </div>
@@ -303,7 +303,7 @@
                                             <div class="job-buttons">
                                                 <button class="btn-save">Salvesta</button>
                                                 <button class="btn-apply">Kandideeri</button>
-                                                <button class="btn-not-interested">Ei sobi</button>
+                                                <button class="btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                             </div>
                                         </div>
                                     </div>
@@ -433,8 +433,7 @@ Põhitöö otsimise kõrvalt saad teha kuni <strong>kaheksa päeva kuus ajutist 
                     </div>
                     
                     <div class="cv-actions">
-                        <a href="minuCV.html" class="btn btn-secondary btn-cv">Vaata CV-d</a>
-                        <button class="btn btn-primary btn-cv">Muuda CV-d</button>
+                        <button class="btn btn-primary btn-cv btn-full-width">Muuda CV-d</button>
                     </div>
                 </div>
             </div>
@@ -985,7 +984,7 @@ Ootused järgmisele ametikohale:
                                 <!-- Offer 1 -->
                                 <div class="job-offer-card">
                                     <div class="job-offer-main">
-                                        <div class="job-offer-logo">T</div>
+                                        
                                         <div class="job-offer-info">
                                             <h4>IT Projektijuht</h4>
                                             <span>TechNordic OÜ • Tallinn</span>
@@ -1006,13 +1005,13 @@ Ootused järgmisele ametikohale:
                                         <div class="actions">
                                             <button class="btn btn-secondary btn-small">Salvesta</button>
                                             <button class="btn btn-primary btn-small">Kandideeri</button>
+                                            <button class="btn btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Offer 2 -->
                                 <div class="job-offer-card">
                                     <div class="job-offer-main">
-                                        <div class="job-offer-logo" style="background-color: #e3f2fd; color: #1e88e5;">N</div>
                                         <div class="job-offer-info">
                                             <h4>Vanemprojektijuht</h4>
                                             <span>NordicSoft AS • Tallinn</span>
@@ -1033,13 +1032,13 @@ Ootused järgmisele ametikohale:
                                         <div class="actions">
                                             <button class="btn btn-secondary btn-small">Salvesta</button>
                                             <button class="btn btn-primary btn-small">Kandideeri</button>
+                                            <button class="btn btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Offer 3 -->
                                 <div class="job-offer-card">
                                     <div class="job-offer-main">
-                                        <div class="job-offer-logo" style="background-color: #ede7f6; color: #5e35b1;">D</div>
                                         <div class="job-offer-info">
                                             <h4>Digitaalsete projektide juht</h4>
                                             <span>DigiTarkus OÜ • Kaugtöö</span>
@@ -1060,13 +1059,13 @@ Ootused järgmisele ametikohale:
                                         <div class="actions">
                                             <button class="btn btn-secondary btn-small">Salvesta</button>
                                             <button class="btn btn-primary btn-small">Kandideeri</button>
+                                            <button class="btn btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Offer 4 -->
                                 <div class="job-offer-card">
                                     <div class="job-offer-main">
-                                        <div class="job-offer-logo" style="background-color: #fff0e1; color: #af4025;">A</div>
                                         <div class="job-offer-info">
                                             <h4>Tehniline projektijuht</h4>
                                             <span>AgileWorks OÜ • Tartu</span>
@@ -1087,6 +1086,7 @@ Ootused järgmisele ametikohale:
                                         <div class="actions">
                                             <button class="btn btn-secondary btn-small">Salvesta</button>
                                             <button class="btn btn-primary btn-small">Kandideeri</button>
+                                            <button class="btn btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                         </div>
                                     </div>
                                 </div>
@@ -2068,6 +2068,56 @@ Ootused järgmisele ametikohale:
             </div>
         </div>
     </div>
+
+    <!-- Job Feedback Modal -->
+    <div id="jobFeedbackModal" class="job-feedback-modal-overlay" style="display: none;">
+        <div class="job-feedback-modal-content">
+            <div class="job-feedback-modal-header">
+                <h3>Pakkumisest loobumine</h3>
+                <span class="job-feedback-modal-close" onclick="closeJobFeedbackModal()">&times;</span>
+            </div>
+            <div class="job-feedback-modal-body">
+                <p>Palun anna meile teada, miks see tööpakkumine sulle ei sobi. Sinu tagasiside aitab meil tulevikus pakkuda paremaid soovitusi.</p>
+                
+                <div class="feedback-reasons">
+                    <div class="reason-option">
+                        <input type="radio" id="reason-location" name="feedback-reason" value="location">
+                        <label for="reason-location">Asukoht ei sobi</label>
+                    </div>
+                    <div class="reason-option">
+                        <input type="radio" id="reason-salary" name="feedback-reason" value="salary">
+                        <label for="reason-salary">Palk ei ole sobiv</label>
+                    </div>
+                    <div class="reason-option">
+                        <input type="radio" id="reason-requirements" name="feedback-reason" value="requirements">
+                        <label for="reason-requirements">Nõudmised ei sobitu minu oskustega</label>
+                    </div>
+                    <div class="reason-option">
+                        <input type="radio" id="reason-schedule" name="feedback-reason" value="schedule">
+                        <label for="reason-schedule">Töökoormus/graafik ei sobi</label>
+                    </div>
+                    <div class="reason-option">
+                        <input type="radio" id="reason-company" name="feedback-reason" value="company">
+                        <label for="reason-company">Ettevõte ei huvita</label>
+                    </div>
+                    <div class="reason-option">
+                        <input type="radio" id="reason-other" name="feedback-reason" value="other">
+                        <label for="reason-other">Muu põhjus</label>
+                    </div>
+                </div>
+                
+                <div class="feedback-textarea-container">
+                    <label for="feedback-details">Täiendav kommentaar (valikuline):</label>
+                    <textarea class="feedback-textarea" id="feedback-details" rows="4" placeholder="Kirjelda lühidalt, mis täpsemalt ei sobinud..."></textarea>
+                </div>
+            </div>
+            <div class="job-feedback-modal-footer">
+                <button class="btn btn-secondary" onclick="closeJobFeedbackModal()">Tühista</button>
+                <button class="btn btn-primary" onclick="submitJobFeedback()">Saada tagasiside</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     
 </body>

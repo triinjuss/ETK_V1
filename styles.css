@@ -858,6 +858,11 @@
             transition: all 0.2s ease;
         }
 
+        .btn-cv.btn-full-width {
+            width: 100%;
+            flex: none;
+        }
+
         .cv-actions .btn-secondary {
             background-color: var(--secondary-color);
             color: var(--text-color);
@@ -5421,7 +5426,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2100;
+            z-index: 10002;
             padding: 1rem;
         }
 
