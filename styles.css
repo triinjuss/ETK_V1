@@ -1188,6 +1188,10 @@
             line-height: 1.6;
         }
         
+        .plan-block #skills-and-expectations-textarea {
+            min-height: 990px !important;
+        }
+        
         .main-goal-input { 
             font-size: 0.95rem;
             width: 100%;
