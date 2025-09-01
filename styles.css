@@ -3601,7 +3601,7 @@
         /* Job Search Page Specific Styles */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -6173,9 +6173,22 @@
             align-items: stretch;
         }
         
+        /* Job card action buttons should be horizontal */
+        .job-card .action-buttons {
+            flex-direction: row;
+            gap: 8px;
+            align-items: center;
+        }
+        
         .action-buttons .btn {
             width: 100%;
             min-width: auto;
+        }
+        
+        /* Job card buttons should not be full width */
+        .job-card .action-buttons .btn {
+            width: auto;
+            flex: 0 0 auto;
         }
         
         /* Edit mode buttons in notebook */

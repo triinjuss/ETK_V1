@@ -3,8 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tööotsinguld - ETK</title>
+    <title>Tööotsingud - ETK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Demo Google Maps implementation (no API key needed)
+        window.initMap = function() {
+            console.log('Initializing demo Google Maps');
+            
+            // Create a styled demo map that looks like Google Maps
+            const mapContainer = document.getElementById('google-map');
+            console.log('Map container found:', mapContainer);
+            console.log('Map container dimensions:', mapContainer ? `${mapContainer.offsetWidth}x${mapContainer.offsetHeight}` : 'N/A');
+            console.log('Map container style:', mapContainer ? mapContainer.style.cssText : 'N/A');
+            
+            if (mapContainer) {
+                console.log('Setting innerHTML for map container');
+                mapContainer.innerHTML = `
+                    <div style="
+                        width: 100%; 
+                        height: 100%; 
+                        background: linear-gradient(135deg, #e8f5e8 0%, #c8d7d4 100%);
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: Inter, sans-serif;
+                        border-radius: 8px;
+                        min-height: 280px;
+                    ">
+                        <div style="
+                            background: rgba(255,255,255,0.9);
+                            padding: 20px;
+                            border-radius: 8px;
+                            text-align: center;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        ">
+                            <div style="
+                                width: 12px;
+                                height: 12px;
+                                background: #046c63;
+                                border-radius: 50%;
+                                margin: 0 auto 8px auto;
+                                border: 2px solid white;
+                                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                            "></div>
+                            <h6 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #333;">Keila linn</h6>
+                            <p style="margin: 0; font-size: 12px; color: #666;">Demo kaart</p>
+                        </div>
+                    </div>
+                `;
+                console.log('Demo map HTML set successfully');
+                console.log('Map container after update:', mapContainer.innerHTML.length, 'characters');
+                return true;
+            } else {
+                console.log('Map container not found!');
+                return false;
+            }
+        }
+        
+        // Test function to manually open success modal with map
+        window.testMapModal = function() {
+            console.log('Testing map modal');
+            const modal = document.getElementById('job-saved-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    window.initMap();
+                }, 200);
+            }
+        }
+    </script>
 </head>
 <body>
     <header class="main-header">
@@ -29,10 +98,9 @@
             </div>
         </div>
     </header>
-
     <div class="sub-nav-bar-container">
         <div class="sub-nav-bar">
-            <a href="index.html" class="back-link">
+            <a href="#" class="back-link">
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -56,10 +124,22 @@
                 <a href="#" class="nav-item">
                     Toetused ja hüvitised
                 </a>
-                <a href="#" class="nav-item active">
-                    Tööotsingud
-                </a>
                 <a href="#" class="nav-item">
+                    Teenused
+                </a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link active">
+                        Tööotsingud
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="minuCV.html" class="dropdown-item">Minu CV</a>
+                        <a href="#" class="dropdown-item">Minu kandideerimised</a>
+                    </div>
+                </div>
+                <a href="toovoimehindamine.html" class="nav-item">
                     Töövõime
                 </a>
             </nav>
@@ -71,192 +151,119 @@
         
         <!-- Statistics Grid -->
         <div class="stats-grid">
-            <div class="stat-card card">
-                <h3>Võimalikud töökohad</h3>
+            <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <h3>Sobivad tööpakkumised</h3>
+                <div class="stat-number">3</div>
+            </div>
+            <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <h3>Aktiivsed kandideerimised</h3>
                 <div class="stat-number">0</div>
             </div>
-            <div class="stat-card card">
-                <h3>Aktiivset kandideerimist</h3>
+            <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <h3>Meelde jäetud tööpakkumisi</h3>
                 <div class="stat-number">0</div>
             </div>
-            <div class="stat-card card">
-                <h3>Meelde jäetud kandideerimist</h3>
+            <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <h3>Kandideerimise kutseid</h3>
                 <div class="stat-number">0</div>
             </div>
-            <div class="stat-card card">
-                <h3>Kandideerimiste kokkuloed</h3>
+            <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <h3>AI soovitatud tööpakkumised</h3>
                 <div class="stat-number">0</div>
             </div>
         </div>
 
-        <div class="main-grid">
-            <div class="main-column">
-                <!-- CV Section -->
-                <div class="cv-section card">
-                    <div class="cv-header">
-                        <h2 style="margin: 0; font-size: 1.25rem;">Minu CV</h2>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-secondary">Vaata CV-d</button>
-                            <button class="btn btn-primary">Muuda CV-d</button>
-                        </div>
-                    </div>
-                    
-                    <div class="cv-profile">
-                        
-                        <div class="cv-info">
-                            <h3>Tere Kaisa!</h3>
-                            <div class="cv-details">
-                                <div><strong>Haridus:</strong> Bakalaureius</div>
-                                <div><strong>Töökogemus:</strong> 4 aastat 10 kuud</div>
-                                <div><strong>Keeleoskus:</strong> Eesti keel, inglise keel, vene keel</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cv-stats">
-                        <div class="cv-stat">
-                            <span class="cv-stat-label">CV staatus</span>
-                            <div class="cv-stat-value">Aktiivne</div>
-                        </div>
-                        <div class="cv-stat">
-                            <span class="cv-stat-label">CV vaatamist (1 kuu jooksul)</span>
-                            <div class="cv-stat-value">0</div>
-                        </div>
-                        <div class="cv-progress">
-                            <div class="cv-progress-label">CV valmidus 84%</div>
-                            <div class="cv-progress-bar">
-                                <div class="cv-progress-fill"></div>
-                            </div>
-                            <div class="cv-progress-text">84%</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Job Search Remarks -->
-                <div class="remarks-section card">
-                    <div class="remarks-header">
-                        <h2 style="margin: 0; font-size: 1.25rem;">Tööotsingute märkmiк</h2>
-                        <button class="add-note-btn">Ava tööotsingute märkmiк</button>
-                    </div>
-                    
-                    <p style="color: var(--text-color-light); margin-bottom: 20px;">
-                        All kuvatud tabelis on välja toodud Sinu viimati muudetud tööotsingud. Tööotsingute märkmiku
-                        täitmiseks vajutage nupul "Ava tööotsingute märkmiк".
-                    </p>
-                    
-                    <div style="background: var(--secondary-color); padding: 20px; border-radius: 8px;">
-                        <h4 style="margin: 0 0 15px; font-size: 1rem;">Ametikoht</h4>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <span style="font-weight: 500;">Tööandja</span>
-                            <span style="color: var(--text-color-light);">Viimane muutmine</span>
-                        </div>
-                        
-                        <div class="activity-table-container">
-                            <table class="activity-table">
-                                <tbody>
-                                    <tr>
-                                        <td class="activity-type">IT tugi</td>
-                                        <td class="activity-org">Toila Haigla Sihtasutus</td>
-                                        <td class="activity-date">14.10.2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="activity-type">Projektijuht</td>
-                                        <td class="activity-org">Medida OÜ</td>
-                                        <td class="activity-date">09.05.2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="activity-type">Andmesisestaja</td>
-                                        <td class="activity-org">OÜ Lilleke</td>
-                                        <td class="activity-date">09.05.2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="activity-type">Õpetaja</td>
-                                        <td class="activity-org">Kuressaare Lasteaed</td>
-                                        <td class="activity-date">02.04.2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="activity-type">Vanemanalüütik</td>
-                                        <td class="activity-org">OÜ Arenseburg</td>
-                                        <td class="activity-date">02.04.2024</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+        <!-- Job Offers Section -->
+        <div class="job-offers-section" style="margin-top: 32px;">
+            <div class="job-offers-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="margin: 0; font-size: 1.5rem; color: var(--text-color);">⭐ Sobivad tööpakkumised</h2>
+                <button class="btn btn-outline btn-small">Filtreeri</button>
             </div>
 
-            <div class="sidebar-column">
-                <!-- Minu töösoovid section from original -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Minu töösoovid</h3>
-                        <button class="btn btn-secondary btn-small">Lisa töösoov</button>
+            <div class="job-listings-container">
+                <!-- Job 1: Tootejuht -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">P</div>
+                            <div>
+                                <h3>Tootejuht</h3>
+                                <p>Pipedrive OÜ • Tartu</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">98% sobivus</div>
                     </div>
-                    
-                    <ul class="job-wishes-list">
-                        <li class="job-wish-item">
-                            <div class="job-wish-details">
-                                
-                                <div class="job-wish-title"> IT projektijuht</div>
-                            
-                            </div>
-                            <div class="job-wish-actions">
-                                <div class="job-count">
-                                    <b>0</b> töökohta
-                                </div>
-                                <button class="job-wish-manage-btn"></button>
-                            </div>
-                        </li>
-                        <li class="job-wish-item">
-                            <div class="job-wish-details">
-                                <div class="job-wish-title"> Andmeanalüütik</div>
-                            </div>
-                            <div class="job-wish-actions">
-                                <div class="job-count">
-                                    <b>1</b> töökohta
-                                </div>
-                                <button class="job-wish-manage-btn"></button>
-                            </div>
-                    </ul>
-                    
-                    <button class="btn btn-primary btn-full-width add-wish-btn">+ Lisa töösoov</button>
-                    
-                    <div class="short-term-section">
-                        <p class="short-term-text">Lühiajaline töö</p>
-                        <button class="btn btn-accent btn-small">Lülita sisse</button>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Tartu, Kesklinn</span>
+                        <span class="detail-tag">💰 3500-5000€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                        <span class="detail-tag">🏠 Hübriid (2 p. kontoris)</span>
+                    </div>
+                    <p class="job-card-description">Otsime kirglikku tootejuhti, kes aitaks kujundada meie müügitarkvara tulevikku. Vajalik varasem tootejuhtimise kogemus SaaS valdkonnas.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 1 päev tagasi</span>
+                        <div class="action-buttons" style="display: flex; gap: 8px;">
+                            <button class="btn btn-outline">Ei sobi</button>
+                            <button class="btn btn-outline">Jätan meelde</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Services section from original -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Teenused</h3>
+                <!-- Job 2: Ärianalüütik -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">S</div>
+                            <div>
+                                <h3>Ärianalüütik</h3>
+                                <p>Swedbank AS • Tallinn</p>
+                            </div>
+                        </div>
+                        <div class="match-badge">95% sobivus</div>
                     </div>
-                    <div class="services-grid">
-                        <div class="service-item-card card">
-                            <div class="service-item-content">
-                                <h4><a href="#">Karjäärinõustamine</a></h4>
-                                <p>Professionaalne abi karjääri planeerimisel ja tööturul orienteerumisel.</p>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Tallinn, Liivalaia</span>
+                        <span class="detail-tag">💰 2800-4200€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                        <span class="detail-tag">🏠 Paindlik</span>
+                    </div>
+                    <p class="job-card-description">Liitu meie andme- ja analüütikatiimiga, et tõlkida ärivajadused tehnilisteks lahendusteks. Ootame sinult tugevat SQL-i oskust.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 3 päeva tagasi</span>
+                        <div class="action-buttons" style="display: flex; gap: 8px;">
+                            <button class="btn btn-outline">Ei sobi</button>
+                            <button class="btn btn-outline">Jätan meelde</button>
+                            <button class="btn btn-primary">Kandideeri</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 3: Scrum Master -->
+                <div class="job-card">
+                    <div class="job-card-header">
+                        <div class="job-title-section">
+                            <div class="company-logo">T</div>
+                            <div>
+                                <h3>Scrum Master</h3>
+                                <p>Telia Eesti AS • Pärnu</p>
                             </div>
                         </div>
-                        <div class="service-item-card card">
-                            <div class="service-item-content">
-                                <h4><a href="#">Tööintervjuu treening</a></h4>
-                                <p>Harjutame koos, kuidas edukalt läbida töövestlusi.</p>
-                            </div>
-                        </div>
-                        <div class="service-item-card card">
-                            <div class="service-item-content">
-                                <h4><a href="#">CV koostamine</a></h4>
-                                <p>Aitame luua efektiivsed ja mõjuvad CV-d ja kaaskirjad.</p>
-                            </div>
-                        </div>
-                        <div class="service-item-card card">
-                            <div class="service-item-content">
-                                <h4><a href="#">Oskuste hindamine</a></h4>
-                                <p>Selgitame välja teie tugevused ja arendusvaldkonnad.</p>
-                            </div>
+                        <div class="match-badge">92% sobivus</div>
+                    </div>
+                    <div class="job-card-details">
+                        <span class="detail-tag">📍 Pärnu</span>
+                        <span class="detail-tag">💰 3000-4000€</span>
+                        <span class="detail-tag">🕒 Täistööaeg</span>
+                        <span class="detail-tag">🏠 Kaugtöö võimalus</span>
+                    </div>
+                    <p class="job-card-description">Sinu ülesanne on toetada ja juhendada meie agiilset arendusmeeskonda, eemaldada takistused ja tagada sujuv töövoog.</p>
+                    <div class="job-card-footer">
+                        <span class="posted-date">Lisatud 5 päeva tagasi</span>
+                        <div class="action-buttons" style="display: flex; gap: 8px;">
+                            <button class="btn btn-outline">Ei sobi</button>
+                            <button class="btn btn-outline">Jätan meelde</button>
+                            <button class="btn btn-primary">Kandideeri</button>
                         </div>
                     </div>
                 </div>
