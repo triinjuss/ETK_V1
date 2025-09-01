@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandideeri tööpakkumisele - CloudPoint AS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .application-modal {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .application-header {
+            padding: 24px 32px 16px 32px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: #046c63;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .application-content {
+            padding: 32px;
+        }
+
+        .job-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .job-meta span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #046c63;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #046c63;
+        }
+
+        .section-content {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .details-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+
+        .details-table td:first-child {
+            color: #666;
+            font-weight: 500;
+            width: 200px;
+            padding-right: 24px;
+        }
+
+        .details-table td:last-child {
+            color: #333;
+        }
+
+        .location-link {
+            color: #046c63;
+            text-decoration: none;
+        }
+
+        .location-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-link {
+            color: #046c63;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .application-info {
+            background-color: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .application-info h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .application-info p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .application-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            padding: 24px 32px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #046c63;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #035a52;
+        }
+
+        .btn-secondary {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e9ecef;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #666;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-outline:hover {
+            background-color: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            .application-modal {
+                margin: 10px;
+                max-height: 95vh;
+            }
+            
+            .application-content {
+                padding: 24px;
+            }
+            
+            .job-title {
+                font-size: 24px;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .application-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Candidate History Styles */
+        .candidate-history-block {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .candidate-history-item {
+            display: flex;
+            padding: 16px;
+            border-bottom: 1px solid #e5e5e5;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .candidate-history-item:last-child {
+            border-bottom: none;
+        }
+
+        .candidate-history-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .candidate-history-date {
+            font-size: 12px;
+            color: #666;
+            min-width: 80px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .candidate-history-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .candidate-history-job {
+            font-weight: 500;
+            color: #333;
+            line-height: 1.3;
+            font-size: 14px;
+        }
+
+        .candidate-history-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .history-link {
+            color: #046c63;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .history-link:hover {
+            text-decoration: underline;
+        }
+
+        .candidate-history-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 500;
+            align-self: flex-start;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-accepted {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-interview {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="application-modal">
+        <div class="application-header">
+            <a href="index.html" class="back-link">← Tagasi nimekirja</a>
+            <div class="company-name">CloudPoint AS</div>
+            <button class="close-btn" onclick="window.history.back()">&times;</button>
+        </div>
+
+        <div class="application-content">
+            <!-- Candidate Application History Block -->
+            <div class="section">
+                <h2 class="section-title">Kandideerimise ajalugu</h2>
+                <div class="candidate-history-block">
+                    <div class="candidate-history-item">
+                        <div class="candidate-history-date">26.07.2025</div>
+                        <div class="candidate-history-content">
+                            <div class="candidate-history-job">Kandideerinud</div>
+                            <div class="candidate-history-actions">
+                                <a href="#" class="history-link">Ava kaaskiri</a>
+                                <a href="#" class="history-link">Kandidaadi CV</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="job-title">IT Projektijuht</h1>
+            
+            <div class="job-meta">
+                <span>Registrikood: 14560891</span>
+                <span>Avaldatud: 26.08.2025</span>
+                <span>Tööpakkumise nr: 1754202</span>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Tööülesanded</h2>
+                <div class="section-content">
+                    <p>Otsime dünaamilist ja kogenud IT projektijuhti, kes oskab juhtida keerukaid tarkvaraprojekte alates ideest kuni valmis tooteni. Meie meeskonnas töötad kaasaegsete tehnoloogiatega ja rahvusvaheliste klientidega.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Omalt poolt pakume</h2>
+                <div class="section-content">
+                    <p>Rahvusvaheline töökeskkond, võimalus töötada kõige uuemate tehnoloogiatega, täienduskoolitused ja sertifikaadid, täielik tervisekindlustus, paindlik töögraafik ja kaugtöö võimalus.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Töökoha andmed</h2>
+                <table class="details-table">
+                    <tr>
+                        <td>Töökoha asukoht</td>
+                        <td><a href="#" class="location-link">Harju maakond, Tallinn, Kesklinn</a></td>
+                    </tr>
+                    <tr>
+                        <td>Vabade töökohtade arv</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Töötasu lähtestus</td>
+                        <td>3500-4500 eurot/kuus (bruto)</td>
+                    </tr>
+                    <tr>
+                        <td>Tööaeg</td>
+                        <td>Täistööaeg</td>
+                    </tr>
+                    <tr>
+                        <td>Tööaja lähtestus</td>
+                        <td>Paindlik tööaeg</td>
+                    </tr>
+                    <tr>
+                        <td>Vahetetustega</td>
+                        <td>Ei</td>
+                    </tr>
+                    <tr>
+                        <td>Töösuhte kestus</td>
+                        <td>Tähtajatu</td>
+                    </tr>
+                    <tr>
+                        <td>Töösuhte asumise aeg</td>
+                        <td>Kohe</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Kandideerimise info</h2>
+                <table class="details-table">
+                    <tr>
+                        <td>Kandideerimise tähtaeg</td>
+                        <td>15.09.2025</td>
+                    </tr>
+                    <tr>
+                        <td>Vajalikud dokumendid</td>
+                        <td>CV, motivatsioonikiri ja referentsid</td>
+                    </tr>
+                    <tr>
+                        <td>Kontakt</td>
+                        <td>Mark Peterson, CTO, e-post: <a href="mailto:mark@cloudpoint.ee" class="contact-link">mark@cloudpoint.ee</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add any JavaScript functionality here if needed
+    </script>
+</body>
+</html>

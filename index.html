@@ -6,6 +6,363 @@
     <title>Minu Plaan - Uus Kujundus</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Job Modal Styles */
+        .job-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .job-modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .job-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e9ecef;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .job-modal-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .back-to-list {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        
+        .back-to-list:hover {
+            background: #f8f9fa;
+            color: #035750;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6c757d;
+            padding: 5px 10px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .close-modal:hover {
+            background: #f8f9fa;
+            color: #dc3545;
+            transform: scale(1.1);
+        }
+        
+        .job-modal-body {
+            padding: 30px;
+            line-height: 1.6;
+        }
+        
+        .job-modal-body h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-size: 1.8rem;
+        }
+        
+        .job-meta {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .job-modal-body h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+        }
+        
+        .job-details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .job-details-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: top;
+        }
+        
+        .job-details-table td:first-child {
+            font-weight: 500;
+            width: 30%;
+            color: #495057;
+        }
+        
+        .job-details-table td:last-child {
+            color: var(--text-color);
+        }
+        
+        .job-modal-footer {
+            padding: 20px 30px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: #f8f9fa;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .job-modal-footer .btn {
+            padding: 10px 18px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: 500; 
+            text-align: center; 
+            text-decoration: none; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            font-family: Inter, sans-serif;
+            border: 1px solid transparent;
+        }
+        
+        .job-modal-footer .btn-outline {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border-color: #fca5a5;
+        }
+        
+        .job-modal-footer .btn-outline:hover {
+            background-color: #fecaca;
+            border-color: #f87171;
+        }
+        
+        .skills-info-banner {
+            background: #E8F4FD;
+            color: #333;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border: 1px solid #D1E7F5;
+        }
+        
+        .banner-icon {
+            font-size: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .banner-content {
+            flex: 1;
+        }
+        
+        .banner-content h4 {
+            margin: 0 0 8px 0;
+            color: #2C5AA0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .banner-content p {
+            margin: 0 0 8px 0;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .banner-link {
+            color: #2C5AA0;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .banner-link:hover {
+            text-decoration: underline;
+        }
+        
+        
+        
+        .info-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Application Modal Styles */
+        .application-modal-content {
+            max-width: 600px;
+            background: white;
+        }
+        
+        .application-job-title {
+            color: #333;
+            font-size: 1.3rem;
+            margin: 0 0 25px 0;
+            font-weight: 600;
+        }
+        
+        .form-section {
+            background: white;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: Inter, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            background: white;
+            box-sizing: border-box;
+            min-height: 150px;
+        }
+        
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 1px var(--primary-color);
+        }
+        
+        .form-group small {
+            display: block;
+            margin-top: 8px;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .file-upload-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .file-upload-btn {
+            align-self: flex-start;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+        }
+        
+        .file-help {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .application-footer {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        
+        .application-footer .btn {
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 4px;
+        }
+        
+        .application-footer .btn-outline {
+            background: white;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+        
+        .application-footer .btn-outline:hover {
+            background: #f5f5f5;
+            border-color: #999;
+        }
+        
+        .application-footer .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .application-footer .btn-primary:hover {
+            background: #035750;
+            border-color: #035750;
+        }
+        
+        @media (max-width: 768px) {
+            .job-modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+            
+            .job-modal-header, .job-modal-body, .job-modal-footer {
+                padding: 20px;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
     <script>
         // Demo Google Maps implementation (no API key needed)
         window.initMap = function() {
@@ -239,7 +596,7 @@
                                             <span class="job-time">Lisatud 1 päev tagasi</span>
                                             <div class="job-buttons">
                                                 <button class="btn-save">Jätan meelde</button>
-                                                <button class="btn-apply">Kandideeri</button>
+                                                <button class="btn-apply" onclick="openJobModal('job1')">Kandideeri</button>
                                                <button class="btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                             </div>
                                         </div>
@@ -265,7 +622,7 @@
                                             <span class="job-time">Lisatud 4 päeva tagasi</span>
                                             <div class="job-buttons">
                                                 <button class="btn-save">Jätan meelde</button>
-                                                <button class="btn-apply">Kandideeri</button>
+                                                <button class="btn-apply" onclick="openJobModal('job2')">Kandideeri</button>
                                                 <button class="btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                             </div>
                                         </div>
@@ -305,7 +662,7 @@
                                             <span class="job-time">Lisatud 2 päeva tagasi</span>
                                             <div class="job-buttons">
                                                 <button class="btn-save">Jätan meelde</button>
-                                                <button class="btn-apply">Kandideeri</button>
+                                                <button class="btn-apply" onclick="openJobModal('job3')">Kandideeri</button>
                                                 <button class="btn-not-interested" onclick="openJobFeedbackModal()">Ei sobi</button>
                                             </div>
                                         </div>
@@ -829,6 +1186,248 @@ Ootused:
             </div>
         </div>
         
+    </div>
+    
+    <!-- Application Modal -->
+    <div id="application-modal" class="job-modal">
+        <div class="job-modal-content application-modal-content">
+            <div class="job-modal-header">
+                <h2>Kandideeri tööpakkumisele</h2>
+                <button class="close-modal" onclick="closeApplicationModal()">&times;</button>
+            </div>
+            <div class="job-modal-body">
+                <h3 class="application-job-title">IT Projektijuht - Digiraju OÜ</h3>
+                
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="cover-letter">Kaaskiri</label>
+                        <textarea id="cover-letter" rows="8" placeholder="Kaaskiri on lühike ja kompaktne kiri, andes vastuse tööandja küsimustele. „Miks oled just Sina sellele ametikohale kõige sobivam kandidaat.""></textarea>
+                        <small>Kaaskiri on lühike ja kompaktne kiri, andes vastuse tööandja küsimustele. „Miks oled just Sina sellele ametikohale kõige sobivam kandidaat."</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cv-file">Lisa fail</label>
+                        <div class="file-upload-container">
+                            <button type="button" class="btn btn-primary file-upload-btn">
+                                Lisa fail
+                            </button>
+                            <input type="file" id="cv-file" accept=".pdf,.doc,.docx" style="display: none;">
+                            <small class="file-help">Max. faili suurus 2MB</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="job-modal-footer application-footer">
+                <button class="btn btn-outline" onclick="closeApplicationModal()">Tühista</button>
+                <button class="btn btn-primary" onclick="openDetailedApplication()">Kandideeri</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Job Modal for job1 -->
+    <div id="job1-modal" class="job-modal">
+        <div class="job-modal-content">
+            <div class="job-modal-header">
+                <button class="back-to-list" onclick="closeJobModal('job1')">
+                    ← Tagasi nimekirja
+                </button>
+                <h2>Digiraju OÜ</h2>
+                <button class="close-modal" onclick="closeJobModal('job1')">&times;</button>
+            </div>
+            <div class="job-modal-body">
+                <h2>IT Projektijuht</h2>
+                <div class="job-meta">
+                    <span>Registrikood: 14560890</span>
+                    <span>Avaldatud: 27.08.2025</span>
+                    <span>Tööpakkumise nr: 1754201</span>
+                </div>
+                
+                <!-- Skills Info Banner -->
+                <div class="skills-info-banner">
+                    <div class="banner-icon">💡</div>
+                    <div class="banner-content">
+                        <h4>Uued oskused viivad alus edasi</h4>
+                        <p>Kas teadsid, et osade töökohtade inimesed on võimalik uusi oskusi omandada tööülesaba toe?</p>
+                        <a href="#" class="banner-link">Vaata lähemalt</a>
+                    </div>
+                </div>
+                
+                <h3>Tööülesanded</h3>
+                <p>Otsime oma meeskonda kogenud IT Projektijuhti. Sinu peamisteks ülesanneteks on uute funktsionaalsuste arendamine ja olemasolevate süsteemide hooldamine ning täiustamine. See hõlmab nii back-end loogika kui ka front-end kasutajaliidese loomist. Ootame sinult puhast ja testitavat koodi ning aktiivsest osalust meie tiimi arendusprotsessis.</p>
+                
+                <h3>Omalt poolt pakume</h3>
+                <p>Kaasaegset töökeskkonda, paindlikku tööaega (sh kaugtöö võimalus), konkurentsivõimelist palka ja optsiooniprogrammi, sporttoetust ja eraravikulindust, meeskonnasündsust, arengu- ja koolitustoetust, meeskonnaüritusi.</p>
+                
+                <h3>Töökoha andmed</h3>
+                <table class="job-details-table">
+                    <tr><td>Töökoha asukoht</td><td>Harju maakond, Tallinn, Kesklinn (või kaugtöö)</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>2</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>3200-4200 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
+                    <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Paindlik tööaeg</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepped</td></tr>
+                </table>
+                
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>27.09.2025</td></tr>
+                    <tr><td>Vajalikud dokumendid</td><td>CV ja portfolo (või link GitHub profileile)</td></tr>
+                    <tr><td>Kontakt</td><td>Liisa Kask, HR-juht, e-post: <a href="mailto:liisa.kask@digiraju.ee">liisa.kask@digiraju.ee</a></td></tr>
+                </table>
+            </div>
+            <div class="job-modal-footer">
+                <button class="btn btn-primary" onclick="applyToJob('job1')">Kandideeri</button>
+                <button class="btn btn-secondary" onclick="saveJob('job1')">Jäta meelde</button>
+                <button class="btn btn-outline" onclick="closeJobModal('job1')">Ei sobi</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Job Modal for job2 (CloudPoint) -->
+    <div id="job2-modal" class="job-modal">
+        <div class="job-modal-content">
+            <div class="job-modal-header">
+                <button class="back-to-list" onclick="closeJobModal('job2')">
+                    ← Tagasi nimekirja
+                </button>
+                <h2>CloudPoint AS</h2>
+                <button class="close-modal" onclick="closeJobModal('job2')">&times;</button>
+            </div>
+            <div class="job-modal-body">
+                <h2>IT Projektijuht</h2>
+                <div class="job-meta">
+                    <span>Registrikood: 11234567</span>
+                    <span>Avaldatud: 28.08.2025</span>
+                    <span>Tööpakkumise nr: 1754202</span>
+                </div>
+                
+                <!-- Skills Info Banner -->
+                <div class="skills-info-banner">
+                    <div class="banner-icon">💡</div>
+                    <div class="banner-content">
+                        <h4>Uued oskused viivad alus edasi</h4>
+                        <p>Kas teadsid, et osade töökohtade inimesed on võimalik uusi oskusi omandada tööülesaba toe?</p>
+                        <a href="#" class="banner-link">Vaata lähemalt</a>
+                    </div>
+                </div>
+                
+                <h3>Tööülesanded</h3>
+                <p>Otsime oma meeskonda kogenud IT Projektijuhti pilvelahenduste valdkonda. Sinu peamisteks ülesanneteks on rahvusvaheliste projektide koordineerimine, pilvelahenduste juurutamine ning tehniliste meeskondade juhtimine. Ootame sinult tugevat tehnilist tausta ja kogemust suurprojektide juhtimisega.</p>
+                
+                <h3>Omalt poolt pakume</h3>
+                <p>Konkurentsivõimelist palka, rahvusvahelisi projekte, võimalust töötada uusimate tehnoloogiatega, täielikku kaugtööd, koolitustoetust ja karjäärivõimalusi kiiresti kasvavs ettevõttes.</p>
+                
+                <h3>Töökoha andmed</h3>
+                <table class="job-details-table">
+                    <tr><td>Töökoha asukoht</td><td>Tartu maakond, Tartu (või kaugtöö)</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>1</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>3500-4500 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
+                    <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Paindlik tööaeg</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepped</td></tr>
+                </table>
+                
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>30.09.2025</td></tr>
+                    <tr><td>Kontaktisik</td><td>Marta Kask</td></tr>
+                    <tr><td>E-post</td><td>marta@cloudpoint.ee</td></tr>
+                    <tr><td>Telefon</td><td>+372 5555 1234</td></tr>
+                </table>
+                
+                <h3>Nõuded kandidaadile</h3>
+                <ul>
+                    <li>Kõrgharidus IT, inseneriteaduse või majanduse valdkonnas</li>
+                    <li>Vähemalt 3 aastat kogemust projektijuhtimises</li>
+                    <li>Kogemus pilvelahenduste või tehnoloogiaprojektidega</li>
+                    <li>Suurepärased suhtlemisoskused ja meeskonnatöö oskused</li>
+                    <li>Inglise keele oskus kõrgtasemel</li>
+                    <li>Projektijuhtimise sertifikaadid (PMP, PRINCE2) on eeliseks</li>
+                </ul>
+            </div>
+            <div class="job-modal-footer">
+                <button class="btn btn-primary" onclick="applyToJob('job2')">Kandideeri</button>
+                <button class="btn btn-secondary" onclick="saveJob('job2')">Jäta meelde</button>
+                <button class="btn btn-outline" onclick="closeJobModal('job2')">Ei sobi</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Job Modal for job3 (DataMinds - Vanemanalüütik) -->
+    <div id="job3-modal" class="job-modal">
+        <div class="job-modal-content">
+            <div class="job-modal-header">
+                <button class="back-to-list" onclick="closeJobModal('job3')">
+                    ← Tagasi nimekirja
+                </button>
+                <h2>DataMinds OÜ</h2>
+                <button class="close-modal" onclick="closeJobModal('job3')">&times;</button>
+            </div>
+            <div class="job-modal-body">
+                <h2>Vanemanalüütik</h2>
+                <div class="job-meta">
+                    <span>Registrikood: 12345678</span>
+                    <span>Avaldatud: 30.08.2025</span>
+                    <span>Tööpakkumise nr: 1754203</span>
+                </div>
+                
+                <!-- Skills Info Banner -->
+                <div class="skills-info-banner">
+                    <div class="banner-icon">💡</div>
+                    <div class="banner-content">
+                        <h4>Uued oskused viivad alus edasi</h4>
+                        <p>Kas teadsid, et osade töökohtade inimesed on võimalik uusi oskusi omandada tööülesaba toe?</p>
+                        <a href="#" class="banner-link">Vaata lähemalt</a>
+                    </div>
+                </div>
+                
+                <h3>Tööülesanded</h3>
+                <p>Otsime oma meeskonda kogenud vanemanalüütikut, kes viiks läbi keerukaid andmeanalüüse ja toodaks äri jaoks väärtuslikke insights'e. Sinu peamisteks ülesanneteks on andmete analüüsimine, aruannete koostamine, BI lahenduste arendamine ning äripartneritega tihe koostöö andmepõhiste otsuste toetamiseks.</p>
+                
+                <h3>Omalt poolt pakume</h3>
+                <p>Huvitavaid analüüsi väljakutseid, võimalust töötada mitmekesiste andmetega, kaasaegset tehnoloogiaplatformi, paindlikku tööaega (1 päev nädalas kodus), konkurentsivõimelist palka, koolitustoetust ja sõbralikku meeskonda.</p>
+                
+                <h3>Töökoha andmed</h3>
+                <table class="job-details-table">
+                    <tr><td>Töökoha asukoht</td><td>Harju maakond, Tallinn, Kesklinn</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>1</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>2800-3700 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
+                    <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Hübriid (1 päev kodus)</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepped</td></tr>
+                </table>
+                
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>28.09.2025</td></tr>
+                    <tr><td>Kontaktisik</td><td>Anna Sein</td></tr>
+                    <tr><td>E-post</td><td>anna@dataminds.ee</td></tr>
+                    <tr><td>Telefon</td><td>+372 5555 7890</td></tr>
+                </table>
+                
+                <h3>Nõuded kandidaadile</h3>
+                <ul>
+                    <li>Kõrgharidus matemaatika, statistika, IT või majanduse valdkonnas</li>
+                    <li>Vähemalt 3 aastat kogemust andmeanalüüsi valdkonnas</li>
+                    <li>Suurepärased SQL oskused ja kogemus andmebaasidega</li>
+                    <li>Kogemus BI tööriistadega (Power BI, Tableau või sarnased)</li>
+                    <li>Analüütilised mõtlemisoskused ja tähelepanelikkus detailidele</li>
+                    <li>Kogemus Python või R-ga on eeliseks</li>
+                    <li>Head suhtlemisoskused äripartneritega</li>
+                </ul>
+            </div>
+            <div class="job-modal-footer">
+                <button class="btn btn-primary" onclick="applyToJob('job3')">Kandideeri</button>
+                <button class="btn btn-secondary" onclick="saveJob('job3')">Jäta meelde</button>
+                <button class="btn btn-outline" onclick="closeJobModal('job3')">Ei sobi</button>
+            </div>
+        </div>
     </div>
     
     <!-- AI Profile Analysis Modal -->
@@ -2197,6 +2796,283 @@ Ootused:
                 // Set initial colors
                 updateStatusColors(select);
             });
+        });
+
+        // Job modal functionality
+        const jobData = {
+            'job1': {
+                title: 'IT Projektijuht',
+                company: 'Digiraju OÜ',
+                registryCode: '14560890',
+                publishDate: '27.08.2025',
+                jobNumber: '1754201',
+                description: 'Otsime oma meeskonda kogenud IT Projektijuhti. Sinu peamisteks ülesanneteks on uute funktsionaalsuste arendamine ja olemasolevate süsteemide hooldamine ning täiustamine. See hõlmab nii back-end loogika kui ka front-end kasutajaliidese loomist. Ootame sinult puhast ja testitavat koodi ning aktiivsest osalust meie tiimi arendusprotsessis.',
+                benefits: 'Kaasaegset töökeskkonda, paindlikku tööaega (sh kaugtöö võimalus), konkurentsivõimelist palka ja optsiooniprogrammi, sporttoetust ja eraravikulindust, meeskonnasündsust, arengu- ja koolitustoetust, meeskonnaüritusi.',
+                location: 'Harju maakond, Tallinn, Kesklinn (või kaugtöö)',
+                positions: '2',
+                salary: '3200-4200 eurot/kuus (bruto), sõltuvalt kogemusest',
+                workTime: 'Täistööaeg',
+                schedule: 'Paindlik tööaeg',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: 'Kokkulepped',
+                deadline: '27.09.2025',
+                documents: 'CV ja portfolo (või link GitHub profileile)',
+                contact: 'Liisa Kask, HR-juht, e-post: <a href="mailto:liisa.kask@digiraju.ee">liisa.kask@digiraju.ee</a>'
+            },
+            'job2': {
+                title: 'IT Projektijuht',
+                company: 'CloudPoint AS',
+                registryCode: '11234567',
+                publishDate: '28.08.2025',
+                jobNumber: '1754202',
+                description: 'Otsime oma meeskonda kogenud IT Projektijuhti pilvelahenduste valdkonda. Sinu peamisteks ülesanneteks on rahvusvaheliste projektide koordineerimine, pilvelahenduste juurutamine ning tehniliste meeskondade juhtimine. Ootame sinult tugevat tehnilist tausta ja kogemust suurprojektide juhtimisega.',
+                benefits: 'Konkurentsivõimelist palka, rahvusvahelisi projekte, võimalust töötada uusimate tehnoloogiatega, täielikku kaugtööd, koolitustoetust ja karjäärivõimalusi kiiresti kasvavs ettevõttes.',
+                location: 'Tartu maakond, Tartu (või kaugtöö)',
+                positions: '1',
+                salary: '3500-4500 eurot/kuus (bruto), sõltuvalt kogemusest',
+                workTime: 'Täistööaeg',
+                schedule: 'Paindlik tööaeg',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: 'Kokkulepped',
+                deadline: '30.09.2025',
+                documents: 'CV ja kaaskiri',
+                contact: 'Marta Kask, marta@cloudpoint.ee, +372 5555 1234'
+            },
+            'job3': {
+                title: 'Vanemanalüütik',
+                company: 'DataMinds OÜ',
+                registryCode: '12345678',
+                publishDate: '30.08.2025',
+                jobNumber: '1754203',
+                description: 'Otsime oma meeskonda kogenud vanemanalüütikut, kes viiks läbi keerukaid andmeanalüüse ja toodaks äri jaoks väärtuslikke insights\'e. Sinu peamisteks ülesanneteks on andmete analüüsimine, aruannete koostamine, BI lahenduste arendamine ning äripartneritega tihe koostöö andmepõhiste otsuste toetamiseks.',
+                benefits: 'Huvitavaid analüüsi väljakutseid, võimalust töötada mitmekesiste andmetega, kaasaegsat tehnoloogiaplatformi, paindlikku tööaega (1 päev nädalas kodus), konkurentsivõimelist palka, koolitustoetust ja sõbralikku meeskonda.',
+                location: 'Harju maakond, Tallinn, Kesklinn',
+                positions: '1',
+                salary: '2800-3700 eurot/kuus (bruto), sõltuvalt kogemusest',
+                workTime: 'Täistööaeg',
+                schedule: 'Hübriid (1 päev kodus)',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: 'Kokkulepped',
+                deadline: '28.09.2025',
+                documents: 'CV ja motivatsioonikiri',
+                contact: 'Anna Sein, anna@dataminds.ee, +372 5555 7890'
+            }
+        };
+
+        function openJobModal(jobId) {
+            const modal = document.getElementById(jobId + '-modal');
+            if (modal) {
+                // Update modal content with dynamic data
+                updateModalContent(jobId);
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+        
+        function updateModalContent(jobId) {
+            const job = jobData[jobId];
+            if (!job) return;
+            
+            const modal = document.getElementById(jobId + '-modal');
+            
+            // Update company name in header
+            const companyHeader = modal.querySelector('.job-modal-header h2');
+            if (companyHeader) companyHeader.textContent = job.company;
+            
+            // Update job title
+            const jobTitle = modal.querySelector('.job-modal-body h2');
+            if (jobTitle) jobTitle.textContent = job.title;
+            
+            // Update job meta info
+            const metaSpans = modal.querySelectorAll('.job-meta span');
+            if (metaSpans.length >= 3) {
+                metaSpans[0].textContent = `Registrikood: ${job.registryCode}`;
+                metaSpans[1].textContent = `Avaldatud: ${job.publishDate}`;
+                metaSpans[2].textContent = `Tööpakkumise nr: ${job.jobNumber}`;
+            }
+            
+            // Update description
+            const h3Elements = modal.querySelectorAll('h3');
+            h3Elements.forEach(h3 => {
+                if (h3.textContent === 'Tööülesanded') {
+                    const descriptionP = h3.nextElementSibling;
+                    if (descriptionP) descriptionP.textContent = job.description;
+                }
+                if (h3.textContent === 'Omalt poolt pakume') {
+                    const benefitsP = h3.nextElementSibling;
+                    if (benefitsP) benefitsP.textContent = job.benefits;
+                }
+            });
+            
+            // Update job details table
+            const detailsTables = modal.querySelectorAll('.job-details-table');
+            if (detailsTables.length >= 1) {
+                const rows = detailsTables[0].querySelectorAll('tr');
+                if (rows.length >= 8) {
+                    rows[0].cells[1].textContent = job.location;
+                    rows[1].cells[1].textContent = job.positions;
+                    rows[2].cells[1].textContent = job.salary;
+                    rows[3].cells[1].textContent = job.workTime;
+                    rows[4].cells[1].textContent = job.schedule;
+                    rows[5].cells[1].textContent = job.shifts;
+                    rows[6].cells[1].textContent = job.duration;
+                    rows[7].cells[1].textContent = job.startTime;
+                }
+            }
+            
+            // Update application info table
+            if (detailsTables.length >= 2) {
+                const rows = detailsTables[1].querySelectorAll('tr');
+                if (rows.length >= 3) {
+                    rows[0].cells[1].textContent = job.deadline;
+                    rows[1].cells[1].textContent = job.documents;
+                    rows[2].cells[1].innerHTML = job.contact;
+                }
+            }
+        }
+        
+        function closeJobModal(jobId) {
+            const modal = document.getElementById(jobId + '-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        }
+        
+        function saveJob(jobId) {
+            alert('Tööpakkumine on meelde jäetud!');
+        }
+
+        function applyToJob(jobId) {
+            // Store current job ID for later use
+            window.currentJobId = jobId;
+            
+            // Open application modal instead of just showing alert
+            const applicationModal = document.getElementById('application-modal');
+            if (applicationModal) {
+                // Update application modal content with job data
+                updateApplicationModalContent(jobId);
+                // Close job modal and open application modal
+                closeJobModal(jobId);
+                applicationModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                alert('Kandideerimisprotsess algatatud!');
+                closeJobModal(jobId);
+            }
+        }
+        
+        function updateApplicationModalContent(jobId) {
+            const job = jobData[jobId];
+            if (!job) return;
+            
+            const applicationModal = document.getElementById('application-modal');
+            
+            // Update the job title in the application modal
+            const jobTitle = applicationModal.querySelector('.application-job-title');
+            if (jobTitle) {
+                jobTitle.textContent = `${job.title} - ${job.company}`;
+            }
+            
+            // Add cover letter template based on job
+            const coverLetterTextarea = applicationModal.querySelector('#cover-letter');
+            if (coverLetterTextarea) {
+                if (jobId === 'job1') {
+                    coverLetterTextarea.value = `Lugupeetud Liisa Kask,
+
+Kandideerin huviga IT Projektijuhi ametikohale Digiraju OÜ-s. Teie tööpakkumine köitis mind eelkõige võimalusega panustada nii uute funktsionaalsuste arendamisse kui ka olemasolevate süsteemide täiustamisse.
+
+Minu 4-aastane kogemus IT projektijuhina on andnud mulle tugevad oskused meeskondade juhtimiseks ja keerukate tarkvaraprojektide edukaks elluviimiseks. Olen juhitanud projekte alates planeerimisest kuni käikülaskamiseni, rakendades Scrum ja Agile metoodikaid. Minu tehnilised teadmised hõlmavad nii back-end kui ka front-end arendust, mis võimaldab mul efektiivselt suhelda arendusmeeskonnaga ja mõista tehnilisi väljakutseid.
+
+Teie pakutav töökeskkond - kaasaegne, paindlik tööaeg ja kaugtöö võimalus - vastab täielikult minu ootustele. Hindan eriti võimalust osaleda aktiivselt tiimi arendusprotsessis ja panustada puhta, testitava koodi loomisse. Olen alati olnud meeskonnainimene, kes väärtustab nii professionaalset arengut kui ka meeskonnasündmusi.
+
+Usun, et minu kogemus projektijuhtimises, tehniline taust ja motiveeritus täiustada süsteeme teeb minust sobiva kandidaadi teie meeskonda. Olen valmis alustama kokkulepetel ja panustama Digiraju OÜ edukasse tulevikku.
+
+Ootan põnevusega võimalust arutada, kuidas saan aidata kaasa teie projektide edukale elluviimisele.
+
+Lugupidamisega,
+[Kandidaadi nimi]`;
+                } else if (jobId === 'job2') {
+                    coverLetterTextarea.value = `Lugupeetud Marta Kask,
+
+Kandideerin huviga IT Projektijuhi ametikohale CloudPoint AS-s. Teie tööpakkumine köitis mind eelkõige võimalusega osaleda rahvusvahelistes projektides ja töötada pilvelahenduste innovaatilises valdkonnas.
+
+Minu 5-aastane kogemus IT projektijuhtimises on andnud mulle põhjaliku arusaama suurprojektide koordineerimisest ja tehniliste meeskondade juhtimisest. Olen edukalt juhitanud mitut pilvelahenduste juurutamise projekti, sealhulgas AWS ja Azure platformidel. Minu tugev tehniline taust võimaldab mul efektiivselt suhelda arendajate ja arhitektidega ning mõista keerukaid tehnilisi väljakutseid.
+
+Rahvusvaheliste projektide kogemus on andnud mulle suurepärased inglise keele oskused ja kultuuridevahelise suhtlemise pädevused. Olen töötanud meeskondadega üle maailma ja juhtinud projekte, kus oli vaja koordineerida erinevates ajavööndites töötavaid tiime. Minu projektijuhtimise sertifikaadid (PMP) ja Agile/Scrum kogemused tagavad professionaalse lähenemise projektide elluviimisele.
+
+CloudPoint AS pakutav võimalus töötada uusimate tehnoloogiatega ja täielik kaugtöö vastavad täielikult minu karjääri-ootustele. Hindan eriti võimalust areneda kiiresti kasvavs ettevõttes ja saada koolitustoetust.
+
+Usun, et minu kogemus pilvelahenduste projektidega, rahvusvaheliste meeskondade juhtimine ja tehniline kompetents teevad minust ideaalse kandidaadi teie meeskonda. Olen valmis alustama kokkulepetel ja panustama CloudPoint AS-i edukasse tulevikku.
+
+Ootan põnevusega võimalust arutada, kuidas saan aidata kaasa teie pilvelahenduste projektide edukale elluviimisele.
+
+Lugupidamisega,
+[Kandidaadi nimi]`;
+                } else if (jobId === 'job3') {
+                    coverLetterTextarea.value = `Lugupeetud Anna Sein,
+
+Kandideerin huviga Vanemanalüütiku ametikohale DataMinds OÜ-s. Teie tööpakkumine köitis mind eelkõige võimalusega viia läbi keerukaid andmeanalüüse ja luua äripartneritele väärtuslikke insights'e.
+
+Minu 4-aastane kogemus andmeanalüüsi valdkonnas on andnud mulle põhjaliku arusaama andmete töötlemisest, analüüsimisest ja visualiseerimisest. Olen tööotnud mitmesuguste andmete ja andmebaasidega, omandanud sügavad SQL oskused ning kogemuse erinevate BI tööriistadega, sealhulgas Power BI ja Tableau. Minu tehniline taust hõlmab ka Python'i kasutamist statistiliseks analüüsiks ja andmete töötlemiseks.
+
+Eelmistes rollides olen edukalt loonud automatiseeritud aruandeid, analüüsinud kliendiandmeid äriprotsesside optimeerimiseks ning andnud äripartneritele andmepõhiseid soovitusi. Minu analüütilised mõtlemisoskused ja tähelepanelikkus detailidele on võimaldanud mul tuvastada olulisi mustreid ja trende, mis on aidanud ettevõtetel paremaid otsuseid teha.
+
+DataMinds OÜ pakutav võimalus töötada mitmekesiste andmetega ja kaasaegse tehnoloogiaplatformiga vastab täielikult minu karjääri-eesmärkidele. Hindan eriti hübriid-töökorraldust ja võimalust areneda sõbralikus meeskonnas.
+
+Usun, et minu analüütilised oskused, tehniline kogemus ja motiveeritus luua äri jaoks väärtust teeb minust ideaalse kandidaadi teie meeskonda. Olen valmis alustama kokkulepetel ja panustama DataMinds OÜ analüütilisse võimekusse.
+
+Ootan põnevusega võimalust arutada, kuidas saan aidata kaasa teie andmeanalüüsi projektide edukale elluviimisele.
+
+Lugupidamisega,
+[Kandidaadi nimi]`;
+                }
+            }
+        }
+        
+        function closeApplicationModal() {
+            const modal = document.getElementById('application-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function openDetailedApplication() {
+            // Get current job ID to open the correct application form
+            const currentJobId = window.currentJobId || 'job1';
+            
+            if (currentJobId === 'job1') {
+                window.open('1ITprojektijuht_index.html', '_blank');
+            } else if (currentJobId === 'job2') {
+                window.open('2ITprojektijuht_CloudPoint.html', '_blank');
+            } else if (currentJobId === 'job3') {
+                window.open('3DataFlow_index.html', '_blank');
+            }
+        }
+        
+        // File upload functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileUploadBtn = document.querySelector('.file-upload-btn');
+            const fileInput = document.getElementById('cv-file');
+            
+            if (fileUploadBtn && fileInput) {
+                fileUploadBtn.addEventListener('click', function() {
+                    fileInput.click();
+                });
+                
+                fileInput.addEventListener('change', function() {
+                    if (this.files.length > 0) {
+                        const fileName = this.files[0].name;
+                        fileUploadBtn.textContent = fileName;
+                        fileUploadBtn.style.backgroundColor = '#e8f5e8';
+                        fileUploadBtn.style.color = 'var(--primary-color)';
+                    }
+                });
+            }
         });
     </script>
     

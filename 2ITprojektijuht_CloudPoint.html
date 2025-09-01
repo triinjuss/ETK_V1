@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandideeri tööpakkumisele - CloudPoint AS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .application-modal {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .application-header {
+            padding: 24px 32px 16px 32px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: #046c63;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .company-name {
+            color: #046c63;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            padding: 4px;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .application-content {
+            padding: 32px;
+        }
+
+        .job-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .candidate-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: #666;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-submitted {
+            background: #e8f5e8;
+            color: #2d7738;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-reviewing {
+            background: #cce5ff;
+            color: #0056b3;
+        }
+
+        .application-form {
+            background: #f8f9fa;
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .file-upload {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-button {
+            padding: 10px 16px;
+            background: #046c63;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .file-button:hover {
+            background: #035650;
+        }
+
+        .file-name {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 16px;
+            background: #046c63;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 24px;
+        }
+
+        .submit-button:hover {
+            background: #035650;
+        }
+
+        .application-history {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-content {
+            flex: 1;
+        }
+
+        .history-title {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .history-date {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .message-bubble {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid #046c63;
+        }
+
+        .message-sender {
+            font-weight: 500;
+            color: #046c63;
+            margin-bottom: 8px;
+        }
+
+        .message-text {
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="application-modal">
+        <div class="application-header">
+            <a href="toootsingud.html" class="back-link">← Tagasi nimekirja</a>
+            <div class="company-name">CloudPoint AS</div>
+            <button class="close-btn" onclick="window.history.back()">&times;</button>
+        </div>
+
+        <div class="application-content">
+            <!-- Candidate Application History Block -->
+            <div class="section">
+                <h2 class="section-title">Kandideerimise ajalugu</h2>
+                <div class="application-history">
+                    <div class="history-item">
+                        <div class="history-content">
+                            <div class="history-title">IT Projektijuht - CloudPoint AS</div>
+                            <div class="history-date">Kandideerimine 29.08.2025</div>
+                        </div>
+                        <div class="status-badge status-pending">Ootel</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Information -->
+            <div class="section">
+                <h1 class="job-title">IT Projektijuht</h1>
+                <div class="job-meta">
+                    <span>CloudPoint AS</span>
+                    <span>Tartu</span>
+                    <span>3500-4500€</span>
+                    <span>Tähtaeg: 30.09.2025</span>
+                </div>
+            </div>
+
+            <!-- Current Application -->
+            <div class="section">
+                <h2 class="section-title">Kandideerimise vorm</h2>
+                <div class="candidate-info">
+                    <div class="info-row">
+                        <span class="info-label">Kandidaat:</span>
+                        <span class="info-value">Nimi Perekonnanimi</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">E-post:</span>
+                        <span class="info-value">kandidaat@email.ee</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Telefon:</span>
+                        <span class="info-value">+372 5555 5555</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Kogemus:</span>
+                        <span class="info-value">5+ aastat IT projektijuhina</span>
+                    </div>
+                </div>
+
+                <div class="application-form">
+                    <div class="form-group">
+                        <label class="form-label" for="cover-letter">Kaaskiri</label>
+                        <textarea class="form-textarea" id="cover-letter" placeholder="Kirjuta oma kaaskiri siia...">Lugupeetud Marta Kask,
+
+Kandideerin huviga IT Projektijuhi ametikohale CloudPoint AS-s. Teie tööpakkumine köitis mind eelkõige võimalusega osaleda rahvusvahelistes projektides ja töötada pilvelahenduste innovaatilises valdkonnas.
+
+Minu 5-aastane kogemus IT projektijuhtimises on andnud mulle põhjaliku arusaama suurprojektide koordineerimisest ja tehniliste meeskondade juhtimisest. Olen edukalt juhitanud mitut pilvelahenduste juurutamise projekti, sealhulgas AWS ja Azure platformidel. Minu tugev tehniline taust võimaldab mul efektiivselt suhelda arendajate ja arhitektidega ning mõista keerukaid tehnilisi väljakutseid.
+
+Rahvusvaheliste projektide kogemus on andnud mulle suurepärased inglise keele oskused ja kultuuridevahelise suhtlemise pädevused. Olen töötanud meeskondadega üle maailma ja juhtinud projekte, kus oli vaja koordineerida erinevates ajavööndites töötavaid tiime. Minu projektijuhtimise sertifikaadid (PMP) ja Agile/Scrum kogemused tagavad professionaalse lähenemise projektide elluviimisele.
+
+CloudPoint AS pakutav võimalus töötada uusimate tehnoloogiatega ja täielik kaugtöö vastavad täielikult minu karjääri-ootustele. Hindan eriti võimalust areneda kiiresti kasvavs ettevõttes ja saada koolitustoetust.
+
+Usun, et minu kogemus pilvelahenduste projektidega, rahvusvaheliste meeskondade juhtimine ja tehniline kompetents teevad minust ideaalse kandidaadi teie meeskonda. Olen valmis alustama kokkulepetel ja panustama CloudPoint AS-i edukasse tulevikku.
+
+Ootan põnevusega võimalust arutada, kuidas saan aidata kaasa teie pilvelahenduste projektide edukale elluviimisele.
+
+Lugupidamisega,
+[Kandidaadi nimi]</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">CV ja dokumendid</label>
+                        <div class="file-upload">
+                            <button class="file-button" onclick="document.getElementById('cv-upload').click()">Vali failid</button>
+                            <input type="file" id="cv-upload" class="file-input" multiple accept=".pdf,.doc,.docx">
+                            <span class="file-name" id="file-names">Failid valimata</span>
+                        </div>
+                    </div>
+
+                    <button class="submit-button" onclick="submitApplication()">Saada kandideerimisavaldus</button>
+                </div>
+            </div>
+
+            <!-- Communication History -->
+            <div class="section">
+                <h2 class="section-title">Suhtlusajalugu</h2>
+                <div class="message-bubble">
+                    <div class="message-sender">CloudPoint AS personaliosakond</div>
+                    <div class="message-text">
+                        Tere! Täname kandideerimast meie IT Projektijuhi ametikohale. Teie avaldus on vastu võetud ja me vaatame selle läbi lähimate päevade jooksul. Küsimuste korral võtke julgelt ühendust.
+                    </div>
+                    <div class="message-time">29.08.2025 14:30</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload functionality
+        document.getElementById('cv-upload').addEventListener('change', function() {
+            const fileNames = document.getElementById('file-names');
+            if (this.files.length > 0) {
+                const names = Array.from(this.files).map(file => file.name).join(', ');
+                fileNames.textContent = names;
+            } else {
+                fileNames.textContent = 'Failid valimata';
+            }
+        });
+
+        function submitApplication() {
+            const coverLetter = document.getElementById('cover-letter').value;
+            const files = document.getElementById('cv-upload').files;
+            
+            if (!coverLetter.trim()) {
+                alert('Palun täida kaaskiri');
+                return;
+            }
+            
+            if (files.length === 0) {
+                alert('Palun lisa vähemalt CV fail');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('Kandideerimisavaldus on edukalt saadetud! CloudPoint AS-i personaliosakond vaatab teie avalduse läbi ja annab tagasisidet lähimate päevade jooksul.');
+            
+            // Optionally close window or redirect
+            // window.close();
+        }
+    </script>
+</body>
+</html>
