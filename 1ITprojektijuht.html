@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandideeri tööpakkumisele - Digiraju OÜ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .application-modal {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .application-header {
+            padding: 24px 32px 16px 32px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            color: #046c63;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .company-name {
+            color: #046c63;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            padding: 4px;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .application-content {
+            padding: 32px;
+        }
+
+        .job-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #046c63;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #046c63;
+        }
+
+        .section-content {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .details-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+
+        .details-table td:first-child {
+            color: #666;
+            font-weight: 500;
+            width: 200px;
+            padding-right: 24px;
+        }
+
+        .details-table td:last-child {
+            color: #333;
+        }
+
+        .location-link {
+            color: #046c63;
+            text-decoration: none;
+        }
+
+        .location-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-link {
+            color: #046c63;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .application-info {
+            background-color: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .application-info h4 {
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .application-info p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .application-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            padding: 24px 32px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #046c63;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #035a52;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #666;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-outline:hover {
+            border-color: #046c63;
+            color: #046c63;
+        }
+
+        .btn-secondary {
+            background-color: #f8f9fa;
+            color: #666;
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e9ecef;
+        }
+
+        @media (max-width: 768px) {
+            .application-modal {
+                margin: 10px;
+            }
+            
+            .application-content {
+                padding: 24px;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .details-table td:first-child {
+                width: auto;
+                padding-right: 16px;
+            }
+            
+            .application-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Candidate History Styles */
+        .candidate-history-block {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .candidate-history-item {
+            display: flex;
+            padding: 16px;
+            border-bottom: 1px solid #e5e5e5;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .candidate-history-item:last-child {
+            border-bottom: none;
+        }
+
+        .candidate-history-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .candidate-history-date {
+            font-size: 12px;
+            color: #666;
+            min-width: 80px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .candidate-history-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .candidate-history-job {
+            font-weight: 500;
+            color: #333;
+            line-height: 1.3;
+            font-size: 14px;
+        }
+
+        .candidate-history-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .history-link {
+            color: #046c63;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .history-link:hover {
+            text-decoration: underline;
+        }
+
+        .candidate-history-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 500;
+            align-self: flex-start;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-accepted {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-interview {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="application-modal">
+        <div class="application-header">
+            <a href="toootsingud.html" class="back-link">← Tagasi nimekirja</a>
+            <div class="company-name">Digiraju OÜ</div>
+            <button class="close-btn" onclick="window.history.back()">&times;</button>
+        </div>
+
+        <div class="application-content">
+            <!-- Candidate Application History Block -->
+            <div class="section">
+                <h2 class="section-title">Kandideerimise ajalugu</h2>
+                <div class="candidate-history-block">
+                    <div class="candidate-history-item">
+                        <div class="candidate-history-date">25.07.2025</div>
+                        <div class="candidate-history-content">
+                            <div class="candidate-history-job">Kandideerinud</div>
+                            <div class="candidate-history-actions">
+                                <a href="#" class="history-link">Ava kaaskiri</a>
+                                <a href="#" class="history-link">Kandidaadi CV</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="job-title">IT Projektijuht</h1>
+            
+            <div class="job-meta">
+                <span>Registrikood: 14560896</span>
+                <span>Avaldatud: 27.08.2025</span>
+                <span>Tööpakkumise nr: 1754201</span>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Tööülesanded</h2>
+                <div class="section-content">
+                    <p>Otsime oma meeskonda kogenuld IT Projektijuhti. Sinu peamisteks ülesanneteks on uute funktsioonaalsuste arendamine ja olemasolevate süsteemide hooldamine ning täiustamine. See hõlmab nii back-end loogika kui ka front-end kasutajaliidese loomist. Ootame sinult puhast ja testitavat koodi ning aktiivset osalust meie tiimi arendusprotsessis.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Omalt poolt pakume</h2>
+                <div class="section-content">
+                    <p>Kaasaegset töökaonada, paindlikku tööaega (sh kaugtöö võimalus), konkurentsivõimelist palka ja optsioonipragrammi, spordituetusi ja eraavikuliindust, meeskonnasündusid, arengu- ja koolitustoetust, meeskonnaturitusi.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Töökoha andmed</h2>
+                <table class="details-table">
+                    <tr>
+                        <td>Töökoha asukoht</td>
+                        <td><a href="#" class="location-link">Harju maakond, Tallinn, Keskinn (või kaugtöö)</a></td>
+                    </tr>
+                    <tr>
+                        <td>Vabade töökohtade arv</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Töötasu lähtestus</td>
+                        <td>3200-4200 eurot/kuus (bruto), sõltuvalt kogemusest</td>
+                    </tr>
+                    <tr>
+                        <td>Tööaeg</td>
+                        <td>Täistööaeg</td>
+                    </tr>
+                    <tr>
+                        <td>Tööaja lähtestus</td>
+                        <td>Paindlik tööaeg</td>
+                    </tr>
+                    <tr>
+                        <td>Vahetetustega</td>
+                        <td>Ei</td>
+                    </tr>
+                    <tr>
+                        <td>Töösuhtе kestus</td>
+                        <td>Tähtajatu</td>
+                    </tr>
+                    <tr>
+                        <td>Töösuhtе asumise aeg</td>
+                        <td>Kokkulepped</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Kandideerimise info</h2>
+                <table class="details-table">
+                    <tr>
+                        <td>Kandideerimise tähtaeg</td>
+                        <td>27.09.2025</td>
+                    </tr>
+                    <tr>
+                        <td>Vajalikud dokumendid</td>
+                        <td>CV ja portoolio (või link GitHub profiilile)</td>
+                    </tr>
+                    <tr>
+                        <td>Kontakt</td>
+                        <td>Liisa Kask, HR-juht, e-post: <a href="mailto:liisa.kask@digiraju.ee" class="contact-link">liisa.kask@digiraju.ee</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <script>
+        // Get job data from URL parameters
+        function getJobDataFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobId = urlParams.get('job') || 'job1';
+            
+            const jobData = {
+                'job1': {
+                    title: 'IT Projektijuht',
+                    company: 'Digiraju OÜ',
+                    registryCode: '14560896',
+                    publishDate: '27.08.2025',
+                    jobNumber: '1754201',
+                    description: 'Otsime oma meeskonda kogenuld IT Projektijuhti. Sinu peamisteks ülesanneteks on uute funktsioonaalsuste arendamine ja olemasolevate süsteemide hooldamine ning täiustamine. See hõlmab nii back-end loogika kui ka front-end kasutajaliidese loomist. Ootame sinult puhast ja testitavat koodi ning aktiivset osalust meie tiimi arendusprotsessis.',
+                    benefits: 'Kaasaegset töökaonada, paindlikku tööaega (sh kaugtöö võimalus), konkurentsivõimelist palka ja optsioonipragrammi, spordituetusi ja eraavikuliindust, meeskonnasündusid, arengu- ja koolitustoetust, meeskonnaturitusi.',
+                    contact: 'Liisa Kask, HR-juht, e-post: liisa.kask@digiraju.ee'
+                },
+                'job2': {
+                    title: 'IT Projektijuht',
+                    company: 'CloudPoint AS',
+                    registryCode: '14560897',
+                    publishDate: '25.08.2025',
+                    jobNumber: '1754202',
+                    description: 'CloudPoint AS otsib kogenuld IT projektijuhti meie pilvelahenduste arendusmeeskonda. Peamised ülesanded hõlmavad klientide vajaduste analüüsimist, projekti planeerimist ja meeskonna koordineerimist. Ootame kandidaati, kes on valmis töötama kiiresti muutuvas tehnoloogiakeskkonnas.',
+                    benefits: 'Konkurentsivõimeline palk, täissotsiaalkindlustus, paindlik tööaeg, kaugtöö võimalus, täiendkoolitused, tervisekindlustus, sporditoetus.',
+                    contact: 'Mari Tamm, personalijuht, e-post: mari.tamm@cloudpoint.ee'
+                },
+                'job3': {
+                    title: 'Andmeanalüütik',
+                    company: 'DataMinds OÜ',
+                    registryCode: '14560898',
+                    publishDate: '24.08.2025',
+                    jobNumber: '1754203',
+                    description: 'Otsime andmeanalüütikut, kes aitaks meil muuta suuri andmekogumeid väärtuslikeks ärilahendusteks. Töö hõlmab andmete kogumist, analüüsimist ja visualiseerimist, aruannete koostamist ning prognoosimismudelite loomist.',
+                    benefits: 'Paindlik tööaeg, võimalus töötada osaliselt kodus, professionaalne areng, tasuta koolitused, sõbralik meeskond.',
+                    contact: 'Karin Saar, arendusjuht, e-post: karin.saar@dataminds.ee'
+                },
+                'job4': {
+                    title: 'UX/UI Disainer',
+                    company: 'CreativeStudio OÜ',
+                    registryCode: '14560899',
+                    publishDate: '23.08.2025',
+                    jobNumber: '1754204',
+                    description: 'CreativeStudio otsib loovat UX/UI disainerit, kes aitaks luua kaasaegseid ja kasutajasõbralikke digitaalseid lahendusi. Töö hõlmab kasutajakogemuse uurimist, wireframe\'ide loomist ja visuaalse disaini väljatöötamist.',
+                    benefits: 'Loov töökeskkond, paindlik tööaeg, võimalus töötada huvitavate projektidega, professionaalne areng.',
+                    contact: 'Peeter Laur, disainijuht, e-post: peeter.laur@creativestudio.ee'
+                },
+                'job5': {
+                    title: 'Frontend Arendaja',
+                    company: 'WebSolutions AS',
+                    registryCode: '14560900',
+                    publishDate: '22.08.2025',
+                    jobNumber: '1754205',
+                    description: 'WebSolutions otsib kogenuld frontend arendajat meie veebiarendusmeeskonda. Peamised ülesanded hõlmavad moodsa kasutajaliidese loomist, responsive design\'i rakendamist ja API integratsioonide teostamist.',
+                    benefits: 'Konkurentsivõimeline palk, moodne töökeskkond, võimalus töötada uusimate tehnoloogiatega, meeskonna üritused.',
+                    contact: 'Anna Kask, tehnoloogiajuht, e-post: anna.kask@websolutions.ee'
+                },
+                'job6': {
+                    title: 'Turunduskoordináator',
+                    company: 'MarketPro OÜ',
+                    registryCode: '14560901',
+                    publishDate: '21.08.2025',
+                    jobNumber: '1754206',
+                    description: 'MarketPro otsib energilist turunduskoordinaatorit, kes aitaks planeerida ja ellu viia tõhusaid turunduskampaaniaid. Töö hõlmab sotsiaalmeedia haldamist, sisu loomist ja turundustegevuste koordineerimist.',
+                    benefits: 'Dünaamiline töökeskkond, võimalus osaleda huvitavates projektides, professionaalne areng, meeskonna üritused.',
+                    contact: 'Kadri Mets, turundusjuht, e-post: kadri.mets@marketpro.ee'
+                },
+                'job7': {
+                    title: 'Müügikonsultant',
+                    company: 'SalesForce AS',
+                    registryCode: '14560902',
+                    publishDate: '20.08.2025',
+                    jobNumber: '1754207',
+                    description: 'SalesForce otsib motiveeritud müügikonsultanti, kes aitaks suurendada meie müügitulemusi. Töö hõlmab klientide nõustamist, müügiprotsessi juhtimist ja pikaajaliste kliendisuhete hooldamist.',
+                    benefits: 'Atraktiivne komisjonitasu, võimalus teenida kõrget palka, professionaalne müügikoolitused, karjäärivõimalused.',
+                    contact: 'Toomas Rebane, müügijuht, e-post: toomas.rebane@salesforce.ee'
+                },
+                'job8': {
+                    title: 'HR Specialist',
+                    company: 'HRExperts OÜ',
+                    registryCode: '14560903',
+                    publishDate: '19.08.2025',
+                    jobNumber: '1754208',
+                    description: 'HRExperts otsib HR spetsialisti, kes aitaks arendada meie personalijuhtimise protsesse. Töö hõlmab värbamist, töötajate arendamist, töösuhtega seotud küsimuste lahendamist ning HR poliitikate väljatöötamist.',
+                    benefits: 'Stabiilne töökeskkond, professionaalne areng, võimalus mõjutada ettevõtte kultuuri, paindlik tööaeg.',
+                    contact: 'Ene Luik, personalidirektor, e-post: ene.luik@hrexperts.ee'
+                },
+                'job9': {
+                    title: 'Raamatupidaja',
+                    company: 'Accounting Plus AS',
+                    registryCode: '14560904',
+                    publishDate: '18.08.2025',
+                    jobNumber: '1754209',
+                    description: 'Accounting Plus otsib täpsust ja korrektsust väärtustavat raamatupidajat. Töö hõlmab igapäevase raamatupidamise pidamist, käibemaksudeklaratsioonide koostamist ja finantsaruandluse ettevalmistamist.',
+                    benefits: 'Stabiilne töökeskkond, võimalus töötada erinevate klientidega, professionaalne areng, konkurentsivõimeline palk.',
+                    contact: 'Rein Kull, pearaamatupidaja, e-post: rein.kull@accountingplus.ee'
+                }
+            };
+            
+            return jobData[jobId] || jobData['job1'];
+        }
+
+        function applyForJob() {
+            // Redirect to application form with job data
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobId = urlParams.get('job') || 'job1';
+            window.location.href = `kandideerimine.html?job=${jobId}`;
+        }
+
+        function saveJob() {
+            alert('Tööpakkumine on meelde jäetud!');
+        }
+
+        // Initialize page with job data
+        document.addEventListener('DOMContentLoaded', function() {
+            const jobData = getJobDataFromUrl();
+            
+            // Update job title and company
+            document.querySelector('.job-title').textContent = jobData.title;
+            document.querySelector('.company-name').textContent = jobData.company;
+            
+            // Update meta information
+            const metaElements = document.querySelectorAll('.job-meta span');
+            if (metaElements.length >= 3) {
+                metaElements[0].textContent = `Registrikood: ${jobData.registryCode}`;
+                metaElements[1].textContent = `Avaldatud: ${jobData.publishDate}`;
+                metaElements[2].textContent = `Tööpakkumise nr: ${jobData.jobNumber}`;
+            }
+            
+            // Update job description
+            const descriptionElement = document.querySelector('.section:nth-child(4) .section-content p');
+            if (descriptionElement && jobData.description) {
+                descriptionElement.textContent = jobData.description;
+            }
+            
+            // Update benefits
+            const benefitsElement = document.querySelector('.section:nth-child(5) .section-content p');
+            if (benefitsElement && jobData.benefits) {
+                benefitsElement.textContent = jobData.benefits;
+            }
+            
+            // Update contact information
+            const contactElement = document.querySelector('.details-table tr:last-child td:last-child');
+            if (contactElement && jobData.contact) {
+                const emailMatch = jobData.contact.match(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/);
+                if (emailMatch) {
+                    const email = emailMatch[1];
+                    const contactText = jobData.contact.replace(email, '');
+                    contactElement.innerHTML = `${contactText}<a href="mailto:${email}" class="contact-link">${email}</a>`;
+                } else {
+                    contactElement.textContent = jobData.contact;
+                }
+            }
+            
+            // Update page title
+            document.title = `Kandideeri tööpakkumisele - ${jobData.company}`;
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="et">
 <head>
     <meta charset="UTF-8">
@@ -170,7 +170,7 @@
             </div>
             <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
                 <h3>AI soovitatud tööpakkumised</h3>
-                <div class="stat-number">3</div>
+                <div class="stat-number">6</div>
             </div>
         </div>
 
@@ -245,7 +245,7 @@
                         <div class="job-title-section">
                             <div>
                                 <h3>Vanemanalüütik</h3>
-                                <p>DataMinds OÜ • Tallinn</p>
+                                <p>DataFlow Solutions • Tallinn</p>
                             </div>
                         </div>
                         <div class="job-offer-match high">90% sobivus</div>
@@ -269,26 +269,26 @@
 
             </div>
 
-            <!-- Second AI Recommendations Header -->
-            <div class="job-offers-header accordion-header" style="display: flex; justify-content: space-between; align-items: center; margin: 32px 0 0 0; position: relative; padding: 16px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; cursor: pointer; transition: all 0.3s ease; border: 1px solid #dee2e6;" onclick="toggleAccordion('skills-accordion')" onmouseover="this.style.background='linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%)'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'" onmouseout="this.style.background='linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <a href="#" id="open-ai-job-recommendations-modal" class="ai-icon-link" title="Tööpakkumiste soovitused">AI</a>
-                    <h2 style="margin: 0; font-size: 1.5rem; color: var(--text-color);">Oskuste põhjal soovitatud tööpakkumised</h2>
-                    <span class="job-count" style="background: var(--primary-color); color: white; padding: 4px 10px; border-radius: 16px; font-size: 0.8rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">6</span>
-                    <span style="font-size: 0.9rem; color: #6c757d; font-weight: 500;">Klõpsa avamiseks</span>
+            <!-- Skills-based Recommendations Accordion -->
+            <div class="skills-recommendations-accordion" style="margin-top: 32px;">
+                <div class="accordion-header" onclick="toggleSkillsRecommendations()" style="background: var(--card-background); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; cursor: pointer; transition: all 0.3s ease; margin-bottom: 0;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <h2 style="margin: 0; font-size: 1.5rem; color: var(--text-color);">Oskuste põhjal soovitatud tööpakkumised</h2>
+                            <span style="background: var(--primary-color); color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">6 töökohta</span>
+                        </div>
+                        <svg id="skills-accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--text-color); transition: transform 0.3s ease;">
+                            <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <p style="margin: 8px 0 0 0; color: #666; font-size: 14px;">Sinu profiili ja oskuste põhjal sobivad tööpakkumised</p>
                 </div>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <svg class="accordion-arrow" width="24" height="24" style="transition: all 0.3s ease; transform: rotate(-90deg); color: var(--primary-color);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="accordion-content" id="skills-accordion" style="display: none; margin-top: 0; overflow: hidden; transition: all 0.3s ease;">
-                <div class="job-listings-container" style="padding-top: 24px; background: linear-gradient(to bottom, #f8f9fa 0%, transparent 20px);"
+                
+                <div id="skills-recommendations-content" class="accordion-content" style="display: none; padding: 0; border: 1px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; background: var(--card-background);">
+                    <div class="job-listings-container" style="padding: 24px;")
 
                 <!-- Job 4: IT Projektijuht (TechNordic) -->
-                <div class="job-card" id="first-skills-job">
+                <div class="job-card">
                     <div class="job-card-header">
                         <div class="job-title-section">
                             <div>
@@ -310,7 +310,7 @@
                         <div class="action-buttons" style="display: flex; gap: 8px;">
                             <button class="btn btn-outline">Ei sobi</button>
                             <button class="btn btn-outline">Jätan meelde</button>
-                            <button class="btn btn-primary" onclick="openJobModal('job4')">Kandideeri</button>
+                            <a href="#"><button class="btn btn-primary" ">Kandideeri</button></a>
                         </div>
                     </div>
                 </div>
@@ -338,7 +338,7 @@
                         <div class="action-buttons" style="display: flex; gap: 8px;">
                             <button class="btn btn-outline">Ei sobi</button>
                             <button class="btn btn-outline">Jätan meelde</button>
-                            <button class="btn btn-primary" onclick="openJobModal('job5')">Kandideeri</button>
+                            <a href="#"><button class="btn btn-primary" >Kandideeri</button></a>
                         </div>
                     </div>
                 </div>
@@ -366,7 +366,7 @@
                         <div class="action-buttons" style="display: flex; gap: 8px;">
                             <button class="btn btn-outline">Ei sobi</button>
                             <button class="btn btn-outline">Jätan meelde</button>
-                            <button class="btn btn-primary" onclick="openJobModal('job6')">Kandideeri</button>
+                            <a href="#"><button class="btn btn-primary" >Kandideeri</button></a>
                         </div>
                     </div>
                 </div>
@@ -394,7 +394,7 @@
                         <div class="action-buttons" style="display: flex; gap: 8px;">
                             <button class="btn btn-outline">Ei sobi</button>
                             <button class="btn btn-outline">Jätan meelde</button>
-                            <button class="btn btn-primary" onclick="openJobModal('job7')">Kandideeri</button>
+                            <a href="#"><button class="btn btn-primary" ">Kandideeri</button></a>
                         </div>
                     </div>
                 </div>
@@ -422,7 +422,7 @@
                         <div class="action-buttons" style="display: flex; gap: 8px;">
                             <button class="btn btn-outline">Ei sobi</button>
                             <button class="btn btn-outline">Jätan meelde</button>
-                            <button class="btn btn-primary" onclick="openJobModal('job8')">Kandideeri</button>
+                            <button class="btn btn-primary" >Kandideeri</button>
                         </div>
                     </div>
                 </div>
@@ -450,83 +450,15 @@
                         <div class="action-buttons" style="display: flex; gap: 8px;">
                             <button class="btn btn-outline">Ei sobi</button>
                             <button class="btn btn-outline">Jätan meelde</button>
-                            <button class="btn btn-primary" onclick="openJobModal('job9')">Kandideeri</button>
+                            <button class="btn btn-primary" >Kandideeri</button>
                         </div>
                     </div>
                 </div>
 
-                </div>
             </div>
         </div>
+        </div>
     </div>
-
-    <script>
-        // Enhanced accordion functionality with smooth animations and auto-scroll
-        function toggleAccordion(accordionId) {
-            const content = document.getElementById(accordionId);
-            const arrow = content.previousElementSibling.querySelector('.accordion-arrow');
-            const header = content.previousElementSibling;
-            const hintText = header.querySelector('span[style*="Klõpsa"]');
-            
-            if (content.style.display === 'none' || content.style.display === '') {
-                // Opening animation
-                content.style.display = 'block';
-                content.style.maxHeight = '0px';
-                content.style.opacity = '0';
-                
-                // Trigger animation
-                setTimeout(() => {
-                    content.style.maxHeight = '2000px';
-                    content.style.opacity = '1';
-                    arrow.style.transform = 'rotate(0deg)';
-                    arrow.style.color = '#28a745';
-                    if (hintText) hintText.textContent = 'Klõpsa sulgemiseks';
-                    
-                    // Auto-scroll to first job after animation completes
-                    setTimeout(() => {
-                        const firstJob = document.getElementById('first-skills-job');
-                        if (firstJob) {
-                            firstJob.scrollIntoView({ 
-                                behavior: 'smooth', 
-                                block: 'start',
-                                inline: 'nearest' 
-                            });
-                        }
-                    }, 300);
-                }, 10);
-                
-            } else {
-                // Closing animation
-                content.style.maxHeight = '0px';
-                content.style.opacity = '0';
-                arrow.style.transform = 'rotate(-90deg)';
-                arrow.style.color = 'var(--primary-color)';
-                if (hintText) hintText.textContent = 'Klõpsa avamiseks';
-                
-                setTimeout(() => {
-                    content.style.display = 'none';
-                }, 300);
-            }
-        }
-
-        // Add keyboard accessibility
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordionHeader = document.querySelector('.accordion-header');
-            if (accordionHeader) {
-                accordionHeader.setAttribute('tabindex', '0');
-                accordionHeader.setAttribute('role', 'button');
-                accordionHeader.setAttribute('aria-expanded', 'false');
-                accordionHeader.setAttribute('aria-label', 'Oskuste põhjal soovitatud tööpakkumised - klõpsa avamiseks');
-                
-                accordionHeader.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        toggleAccordion('skills-accordion');
-                    }
-                });
-            }
-        });
-    </script>
 
     <!-- Job Detail Modals -->
     <!-- Job 1: IT Projektijuht (Digiraju) -->
@@ -545,6 +477,16 @@
                     <span>Registrikood: 14560890</span>
                     <span>Avaldatud: 27.08.2025</span>
                     <span>Tööpakkumise nr: 1754201</span>
+                </div>
+                
+                <!-- Skills Info Banner -->
+                <div class="skills-info-banner">
+                    <div class="info-icon">💡</div>
+                    <div class="info-content">
+                        <h4>Uued oskused viivad alus edasi</h4>
+                        <p>Kas teadsid, et osade töökohtade inimesed on võimalik uusi oskusi omandada tööülesaba toe?</p>
+                        <a href="#" class="info-link">Vaata lähemalt</a>
+                    </div>
                 </div>
                 
                 <h3>Tööülesanded</h3>
@@ -695,38 +637,34 @@
             <div class="job-modal-body">
                 <h2>IT Projektijuht</h2>
                 <div class="job-meta">
-                    <span>📍 Tallinn</span>
-                    <span>💰 3800-5200€</span>
-                    <span>⏰ Täistööaeg</span>
-                    <span>🏢 Hübriid (3 p. kontoris)</span>
+                    <span>Registrikood: 14567891</span>
+                    <span>Avaldatud: 30.08.2025</span>
+                    <span>Tööpakkumise nr: 1754235</span>
                 </div>
 
                 <h3>Tööülesanded</h3>
-                <ul>
-                    <li>Rahvusvaheliste digitaliseerimisprojektide juhtimine</li>
-                    <li>Projektide planeerimise ja koordineerimise</li>
-                    <li>Meeskondade juhtimine ja motiveerimise</li>
-                    <li>Riskide hindamine ja maandamine</li>
-                    <li>Klientide ja sidusgruppidega suhtlemine</li>
-                </ul>
+                <p>Otsime IT projektijuhti rahvusvaheliste digitaliseerimisprojektide juhtimiseks. Eeldame PMP sertifikaati, kogemust agiilsete metoodikatega ning head analüütilist mõtlemist. Vastutad projektide kogumise, töötlemise ja analüüsimise eest.</p>
 
                 <h3>Omalt poolt pakume</h3>
-                <ul>
-                    <li>Konkurentsivõimelist töötasu (3800-5200€)</li>
-                    <li>Hübriidset töökorraldust</li>
-                    <li>Rahvusvaheliste projektide kogemust</li>
-                    <li>Professionaalset arendust ja koolitusi</li>
-                    <li>Motiveeritud ja tugev meeskonda</li>
-                </ul>
+                <p>Huvitavaid rahvusvahelisi projekte, hübriidtööd (3 päeva kontoris), arenemisvõimalusi, konkurentsivõimelist töötasu, sõbralikku meeskonda.</p>
 
-                <h3>Ametikoha detailid</h3>
+                <h3>Töökoha andmed</h3>
                 <table class="job-details-table">
-                    <tr><td>Ettevõte</td><td>TechNordic OÜ</td></tr>
-                    <tr><td>Ametikoht</td><td>IT Projektijuht</td></tr>
-                    <tr><td>Asukoht</td><td>Tallinn</td></tr>
-                    <tr><td>Töötasu</td><td>3800-5200€</td></tr>
+                    <tr><td>Töökoha asukoht</td><td>Harju maakond, Tallinn, Kesklinn</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>1</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>3800-5200 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
                     <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
-                    <tr><td>Töökorraldus</td><td>Hübriid (3 päeva kontoris)</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Hübriid (3 p. kontoris)</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepitud</td></tr>
+                </table>
+
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>30.09.2025</td></tr>
+                    <tr><td>Vajalikud dokumendid</td><td>CV ja tööproovid</td></tr>
+                    <tr><td>Kontakt</td><td>Mari Kask, Projektijuht, e-post: <a href="mailto:mari.kask@technordic.ee">mari.kask@technordic.ee</a></td></tr>
                 </table>
             </div>
             <div class="job-modal-footer">
@@ -750,38 +688,34 @@
             <div class="job-modal-body">
                 <h2>Digitaalsete projektide juht</h2>
                 <div class="job-meta">
-                    <span>📍 Kaugtöö</span>
-                    <span>💰 3000-4300€</span>
-                    <span>⏰ Täistööaeg</span>
-                    <span>🏢 Paindlik graafik</span>
+                    <span>Registrikood: 14567892</span>
+                    <span>Avaldatud: 28.08.2025</span>
+                    <span>Tööpakkumise nr: 1754236</span>
                 </div>
 
                 <h3>Tööülesanded</h3>
-                <ul>
-                    <li>Veebirakenduste ja mobiilirakenduste arendusprojektide koordineerimine</li>
-                    <li>Digitaalse transformatsiooni projektide juhtimine</li>
-                    <li>Arendusmeeskondade koordineerimine</li>
-                    <li>Klientide vajaduste analüüsimine</li>
-                    <li>Projektide dokumenteerimine ja aruandlus</li>
-                </ul>
+                <p>Otsime digitaalsete projektide juhti veebirakenduste ja mobiilirakenduste arendusprojektide koordineerimiseks. Eeldame kogemust digitaalse transformatsiooni valdkonnas, kogemust BI tööriistedega ning head analüütilist mõtlemist. Vastutad projektide kogumise, töötlemise ja analüüsimise eest.</p>
 
                 <h3>Omalt poolt pakume</h3>
-                <ul>
-                    <li>Paindlikku töökorraldust (100% kaugtöö)</li>
-                    <li>Konkurentsivõimelist töötasu</li>
-                    <li>Innovaatilisi projekte</li>
-                    <li>Professionaalset arendust</li>
-                    <li>Toetavat meeskonda</li>
-                </ul>
+                <p>Huvitavaid digitaalseid projekte, kaugtööd (100%), arenemisvõimalusi, konkurentsivõimelist töötasu, sõbralikku meeskonda.</p>
 
-                <h3>Ametikoha detailid</h3>
+                <h3>Töökoha andmed</h3>
                 <table class="job-details-table">
-                    <tr><td>Ettevõte</td><td>DigiTarkus OÜ</td></tr>
-                    <tr><td>Ametikoht</td><td>Digitaalsete projektide juht</td></tr>
-                    <tr><td>Asukoht</td><td>Kaugtöö</td></tr>
-                    <tr><td>Töötasu</td><td>3000-4300€</td></tr>
+                    <tr><td>Töökoha asukoht</td><td>Kaugtöö</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>1</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>3000-4300 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
                     <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
-                    <tr><td>Töökorraldus</td><td>Paindlik graafik</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Paindlik graafik</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepitud</td></tr>
+                </table>
+
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>28.09.2025</td></tr>
+                    <tr><td>Vajalikud dokumendid</td><td>CV ja tööproovid</td></tr>
+                    <tr><td>Kontakt</td><td>Peeter Kask, Digijuht, e-post: <a href="mailto:peeter.kask@digitarkus.ee">peeter.kask@digitarkus.ee</a></td></tr>
                 </table>
             </div>
             <div class="job-modal-footer">
@@ -805,38 +739,34 @@
             <div class="job-modal-body">
                 <h2>Scrum Master</h2>
                 <div class="job-meta">
-                    <span>📍 Tallinn</span>
-                    <span>💰 2800-3500€</span>
-                    <span>⏰ Täistööaeg</span>
-                    <span>🏢 Hübriid (2 p. kontoris)</span>
+                    <span>Registrikood: 14567893</span>
+                    <span>Avaldatud: 26.08.2025</span>
+                    <span>Tööpakkumise nr: 1754237</span>
                 </div>
 
                 <h3>Tööülesanded</h3>
-                <ul>
-                    <li>Agiilsete arendusmeeskondade toetamine</li>
-                    <li>Scrum ceremooniate läbiviimine</li>
-                    <li>Meeskonna tööprotsesside optimeerimine</li>
-                    <li>Takistuste eemaldamine ja probleemide lahendamine</li>
-                    <li>Meeskonna coaching ja juhendamine</li>
-                </ul>
+                <p>Otsime Scrum Masterit agiilsete arendusmeeskondade toetamiseks. Eeldame sertifikaati ja kogemust Agile metoodikatega ning tugevat kommunikatsioonioskust. Vastutad meeskondade coaching ja juhendamise eest.</p>
 
                 <h3>Omalt poolt pakume</h3>
-                <ul>
-                    <li>Professionaalset arengut Agile valdkonnas</li>
-                    <li>Hübriidset töökorraldust</li>
-                    <li>Motiveeritud arendusmeeskonda</li>
-                    <li>Sertifikaatide rahastamist</li>
-                    <li>Kaasaegset töökeskkonda</li>
-                </ul>
+                <p>Huvitavaid agiilseid projekte, hübriidtööd (2 päeva kontoris), arenemisvõimalusi, konkurentsivõimelist töötasu, sõbralikku meeskonda.</p>
 
-                <h3>Ametikoha detailid</h3>
+                <h3>Töökoha andmed</h3>
                 <table class="job-details-table">
-                    <tr><td>Ettevõte</td><td>TechFlow AS</td></tr>
-                    <tr><td>Ametikoht</td><td>Scrum Master</td></tr>
-                    <tr><td>Asukoht</td><td>Tallinn</td></tr>
-                    <tr><td>Töötasu</td><td>2800-3500€</td></tr>
+                    <tr><td>Töökoha asukoht</td><td>Harju maakond, Tallinn, Kesklinn</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>1</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>2800-3500 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
                     <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
-                    <tr><td>Töökorraldus</td><td>Hübriid (2 päeva kontoris)</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Hübriid (2 p. kontoris)</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepitud</td></tr>
+                </table>
+
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>26.09.2025</td></tr>
+                    <tr><td>Vajalikud dokumendid</td><td>CV ja tööproovid</td></tr>
+                    <tr><td>Kontakt</td><td>Anna Tamm, Personalijuht, e-post: <a href="mailto:anna.tamm@techflow.ee">anna.tamm@techflow.ee</a></td></tr>
                 </table>
             </div>
             <div class="job-modal-footer">
@@ -860,38 +790,34 @@
             <div class="job-modal-body">
                 <h2>IT Arendaja</h2>
                 <div class="job-meta">
-                    <span>📍 Tallinn</span>
-                    <span>💰 2500-3200€</span>
-                    <span>⏰ Täistööaeg</span>
-                    <span>🏢 Hübriid (2 p. kontoris)</span>
+                    <span>Registrikood: 14567894</span>
+                    <span>Avaldatud: 29.08.2025</span>
+                    <span>Tööpakkumise nr: 1754238</span>
                 </div>
 
                 <h3>Tööülesanded</h3>
-                <ul>
-                    <li>Veebirakenduste ja mobiilirakenduste arendamine</li>
-                    <li>JavaScript, React ja Node.js tehnoloogiate kasutamine</li>
-                    <li>Koodi kvaliteedi tagamine ja testimine</li>
-                    <li>Meeskonnatöö arendusprojektides</li>
-                    <li>Tehnilise dokumentatsiooni koostamine</li>
-                </ul>
+                <p>Otsime IT arendajat meie meeskonda veebirakenduste ja mobiilirakenduste arendamiseks. Eeldame kogemust JavaScript, React ja Node.js tehnoloogiatega ning head analüütilist mõtlemist. Vastutad koodi kvaliteedi tagamise ja testimise eest.</p>
 
                 <h3>Omalt poolt pakume</h3>
-                <ul>
-                    <li>Kaasaegseid arendustehnoloogiaid</li>
-                    <li>Hübriidset töökorraldust</li>
-                    <li>Professionaalset arengut</li>
-                    <li>Innovaatilisi projekte</li>
-                    <li>Võimalust õppida uusi tehnoloogiaid</li>
-                </ul>
+                <p>Huvitavaid arendusprojekte, hübriidtööd (2 päeva kontoris), arenemisvõimalusi, konkurentsivõimelist töötasu, sõbralikku meeskonda.</p>
 
-                <h3>Ametikoha detailid</h3>
+                <h3>Töökoha andmed</h3>
                 <table class="job-details-table">
-                    <tr><td>Ettevõte</td><td>CodeCraft OÜ</td></tr>
-                    <tr><td>Ametikoht</td><td>IT Arendaja</td></tr>
-                    <tr><td>Asukoht</td><td>Tallinn</td></tr>
-                    <tr><td>Töötasu</td><td>2500-3200€</td></tr>
+                    <tr><td>Töökoha asukoht</td><td>Harju maakond, Tallinn, Kesklinn</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>1</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>2500-3200 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
                     <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
-                    <tr><td>Töökorraldus</td><td>Hübriid (2 päeva kontoris)</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Hübriid (2 p. kontoris)</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepitud</td></tr>
+                </table>
+
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>29.09.2025</td></tr>
+                    <tr><td>Vajalikud dokumendid</td><td>CV ja tööproovid</td></tr>
+                    <tr><td>Kontakt</td><td>Kati Mänd, Arendusjuht, e-post: <a href="mailto:kati.mand@codecraft.ee">kati.mand@codecraft.ee</a></td></tr>
                 </table>
             </div>
             <div class="job-modal-footer">
@@ -915,38 +841,34 @@
             <div class="job-modal-body">
                 <h2>Tootejuht (IT)</h2>
                 <div class="job-meta">
-                    <span>📍 Tallinn</span>
-                    <span>💰 3500-4800€</span>
-                    <span>⏰ Täistööaeg</span>
-                    <span>🏢 Hübriid (1 p. kodus)</span>
+                    <span>Registrikood: 14567895</span>
+                    <span>Avaldatud: 25.08.2025</span>
+                    <span>Tööpakkumise nr: 1754239</span>
                 </div>
 
                 <h3>Tööülesanded</h3>
-                <ul>
-                    <li>IT lahenduste tootearenduse juhtimine</li>
-                    <li>Kasutajakogemuse disaini koordineerimine</li>
-                    <li>Turuvajaduste analüüsimine</li>
-                    <li>Arendusmeeskondade suunamine</li>
-                    <li>Toote strateegia väljatöötamine</li>
-                </ul>
+                <p>Otsime tootejuhti IT lahenduste arendamiseks. Eeldame kogemust kasutajakogemuse disaini ja tootearenduse protsessidega ning analüütilist mõtlemist. Vastutad toote strateegia väljatöötamise ja meeskondade suunamise eest.</p>
 
                 <h3>Omalt poolt pakume</h3>
-                <ul>
-                    <li>Konkurentsivõimelist töötasu</li>
-                    <li>Võimalust mõjutada toote arengut</li>
-                    <li>Kaasaegset töökeskkonda</li>
-                    <li>Professionaalset arengut</li>
-                    <li>Innovaatilisi lahendusi</li>
-                </ul>
+                <p>Huvitavaid IT projekte, hübriidtööd (1 päev kodus), arenemisvõimalusi, konkurentsivõimelist töötasu, sõbralikku meeskonda.</p>
 
-                <h3>Ametikoha detailid</h3>
+                <h3>Töökoha andmed</h3>
                 <table class="job-details-table">
-                    <tr><td>Ettevõte</td><td>InnoTech Solutions</td></tr>
-                    <tr><td>Ametikoht</td><td>Tootejuht (IT)</td></tr>
-                    <tr><td>Asukoht</td><td>Tallinn</td></tr>
-                    <tr><td>Töötasu</td><td>3500-4800€</td></tr>
+                    <tr><td>Töökoha asukoht</td><td>Harju maakond, Tallinn, Kesklinn</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>1</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>3500-4800 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
                     <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
-                    <tr><td>Töökorraldus</td><td>Hübriid (1 päev kodus)</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Hübriid (1 p. kodus)</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepitud</td></tr>
+                </table>
+
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>25.09.2025</td></tr>
+                    <tr><td>Vajalikud dokumendid</td><td>CV ja tööproovid</td></tr>
+                    <tr><td>Kontakt</td><td>Siim Saar, Tootejuht, e-post: <a href="mailto:siim.saar@innotech.ee">siim.saar@innotech.ee</a></td></tr>
                 </table>
             </div>
             <div class="job-modal-footer">
@@ -970,38 +892,34 @@
             <div class="job-modal-body">
                 <h2>IT Konsultant</h2>
                 <div class="job-meta">
-                    <span>📍 Tartu</span>
-                    <span>💰 2900-3800€</span>
-                    <span>⏰ Täistööaeg</span>
-                    <span>🏢 Kaugtöö võimalus</span>
+                    <span>Registrikood: 14567896</span>
+                    <span>Avaldatud: 27.08.2025</span>
+                    <span>Tööpakkumise nr: 1754240</span>
                 </div>
 
                 <h3>Tööülesanded</h3>
-                <ul>
-                    <li>Äriklientide nõustamine digitaliseerimise valdkonnas</li>
-                    <li>IT süsteemide juurutamise juhendamine</li>
-                    <li>Klientide koolitamine ja toetamine</li>
-                    <li>Digitaliseerimise lahenduste väljatöötamine</li>
-                    <li>Projektide koordineerimine ja järelvalve</li>
-                </ul>
+                <p>Vajame IT konsultanti äriklientide nõustamiseks digitaliseerimise valdkonnas. Eeldame kogemust erinevate IT süsteemide juurutamisega ja klientide koolitamisega ning head analüütilist mõtlemist. Vastutad projektide koordineerimise ja järelvalve eest.</p>
 
                 <h3>Omalt poolt pakume</h3>
-                <ul>
-                    <li>Kaugtöö võimalust</li>
-                    <li>Mitmekesiseid kliente ja projekte</li>
-                    <li>Professionaalset arengut</li>
-                    <li>Paindlikku töökorraldust</li>
-                    <li>Võimalust reisida</li>
-                </ul>
+                <p>Huvitavaid konsultatsiooni projekte, kaugtöö võimalust, arenemisvõimalusi, konkurentsivõimelist töötasu, sõbralikku meeskonda.</p>
 
-                <h3>Ametikoha detailid</h3>
+                <h3>Töökoha andmed</h3>
                 <table class="job-details-table">
-                    <tr><td>Ettevõte</td><td>DigitalAdvice OÜ</td></tr>
-                    <tr><td>Ametikoht</td><td>IT Konsultant</td></tr>
-                    <tr><td>Asukoht</td><td>Tartu</td></tr>
-                    <tr><td>Töötasu</td><td>2900-3800€</td></tr>
+                    <tr><td>Töökoha asukoht</td><td>Tartu maakond, Tartu</td></tr>
+                    <tr><td>Vabade töökohtade arv</td><td>1</td></tr>
+                    <tr><td>Töötasu lähtestus</td><td>2900-3800 eurot/kuus (bruto), sõltuvalt kogemusest</td></tr>
                     <tr><td>Tööaeg</td><td>Täistööaeg</td></tr>
-                    <tr><td>Töökorraldus</td><td>Kaugtöö võimalus</td></tr>
+                    <tr><td>Tööaja lähtestus</td><td>Kaugtöö võimalus</td></tr>
+                    <tr><td>Vahetetustega</td><td>Ei</td></tr>
+                    <tr><td>Töösuhte kestus</td><td>Tähtajatu</td></tr>
+                    <tr><td>Töösuhte asumise aeg</td><td>Kokkulepitud</td></tr>
+                </table>
+
+                <h3>Kandideerimise info</h3>
+                <table class="job-details-table">
+                    <tr><td>Kandideerimise tähtaeg</td><td>27.09.2025</td></tr>
+                    <tr><td>Vajalikud dokumendid</td><td>CV ja tööproovid</td></tr>
+                    <tr><td>Kontakt</td><td>Laura Veski, Konsultatsiooni juht, e-post: <a href="mailto:laura.veski@digitaladvice.ee">laura.veski@digitaladvice.ee</a></td></tr>
                 </table>
             </div>
             <div class="job-modal-footer">
@@ -1020,14 +938,6 @@
                 <button class="close-modal" onclick="closeApplicationModal()">&times;</button>
             </div>
             <div class="job-modal-body">
-                <div class="application-info-banner">
-                    <div class="info-icon">ℹ️</div>
-                    <div class="info-text">
-                        <strong>Kandideerimie toimub teie e-töötukassas oleva CV-ga.</strong>
-                        <a href="#" class="cv-link">CV-d saad vaadata siit.</a>
-                    </div>
-                </div>
-                
                 <h3 class="application-job-title">IT Projektijuht - Digiraju OÜ</h3>
                 
                 <div class="form-section">
@@ -1051,7 +961,7 @@
             </div>
             <div class="job-modal-footer application-footer">
                 <button class="btn btn-outline" onclick="closeApplicationModal()">Tühista</button>
-                <button class="btn btn-primary" onclick="submitApplication()">Kandideeri</button>
+                <button class="btn btn-primary" onclick="openDetailedApplication()">Kandideeri</button>
             </div>
         </div>
     </div>
@@ -1392,14 +1302,438 @@
                 width: 40%;
             }
         }
+
+        /* Candidate History Styles */
+        .candidate-history-section {
+            padding: 20px;
+            border-top: 1px solid #e5e5e5;
+            background-color: #f8f9fa;
+        }
+
+        .candidate-history-title {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .candidate-history-block {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        .candidate-history-item {
+            display: flex;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+        }
+
+        .candidate-history-item:last-child {
+            border-bottom: none;
+        }
+
+        .candidate-history-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .candidate-history-date {
+            font-size: 12px;
+            color: #666;
+            min-width: 80px;
+            font-weight: 500;
+        }
+
+        .candidate-history-details {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .candidate-history-job {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .candidate-history-status {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-accepted {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-interview {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        /* Skills Info Banner Styles */
+        .skills-info-banner {
+            background-color: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .skills-info-banner .info-icon {
+            font-size: 24px;
+            color: #1976d2;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .skills-info-banner .info-content {
+            flex: 1;
+        }
+
+        .skills-info-banner h4 {
+            color: #1976d2;
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .skills-info-banner p {
+            color: #424242;
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .skills-info-banner .info-link {
+            color: #1976d2;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .skills-info-banner .info-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Skills Recommendations Accordion Styles */
+        .skills-recommendations-accordion .accordion-header:hover {
+            background: var(--card-hover-background) !important;
+            border-color: var(--primary-color) !important;
+        }
+
+        .accordion-content {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 2000px;
+                padding-top: 24px;
+                padding-bottom: 24px;
+            }
+        }
     </style>
 
     <script>
+        // Job data object - same as in job-details.html
+        const jobData = {
+            'job1': {
+                title: 'IT Projektijuht',
+                company: 'Digiraju OÜ',
+                registryCode: '14560890',
+                publishDate: '27.08.2025',
+                jobNumber: '1754201',
+                description: 'Otsime oma meeskonda kogenud IT Projektijuhti. Sinu peamisteks ülesanneteks on uute funktsionaalsuste arendamine ja olemasolevate süsteemide hooldamine ning täiustamine. See hõlmab nii back-end loogika kui ka front-end kasutajaliidese loomist. Ootame sinult puhast ja testitavat koodi ning aktiivsest osalust meie tiimi arendusprotsessis.',
+                benefits: 'Kaasaegset töökeskkonda, paindlikku tööaega (sh kaugtöö võimalus), konkurentsivõimelist palka ja optsiooniprogrammi, sporttoetust ja eraravikulindust, meeskonnasündsust, arengu- ja koolitustoetust, meeskonnasündmusi.',
+                location: 'Harju maakond, Tallinn, Keskinn (või kaugtöö)',
+                positions: '2',
+                salary: '3200-4200 eurot/kuus (bruto), sõltuvalt kogemusest',
+                workTime: 'Täistööaeg',
+                schedule: 'Paindlik tööaeg',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: 'Kokkulepped',
+                deadline: '27.09.2025',
+                documents: 'CV ja portoolio (või link GitHub profileile)',
+                contact: 'Liisa Kask, HR-juht, e-post: <a href="mailto:liisa.kask@digiraju.ee">liisa.kask@digiraju.ee</a>'
+            },
+            'job2': {
+                title: 'IT Projektijuht',
+                company: 'CloudPoint AS',
+                registryCode: '14560891',
+                publishDate: '26.08.2025',
+                jobNumber: '1754202',
+                description: 'Otsime dünaamilist ja kogenud IT projektijuhti, kes oskab juhtida keerukaid tarkvaraprojekte alates ideest kuni valmis tooteni. Meie meeskonnas töötad kaasaegsete tehnoloogiatega ja rahvusvaheliste klientidega.',
+                benefits: 'Rahvusvaheline töökeskkond, võimalus töötada kõige uuemate tehnoloogiatega, täienduskoolitused ja sertifikaadid, täielik tervisekindlustus, paindlik töögraafik ja kaugtöö võimalus.',
+                location: 'Harju maakond, Tallinn, Kesklinn',
+                positions: '1',
+                salary: '3500-4500 eurot/kuus (bruto)',
+                workTime: 'Täistööaeg',
+                schedule: 'Paindlik tööaeg',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: 'Kohe',
+                deadline: '15.09.2025',
+                documents: 'CV, motivatsioonikiri ja referentsid',
+                contact: 'Mark Peterson, CTO, e-post: <a href="mailto:mark@cloudpoint.ee">mark@cloudpoint.ee</a>'
+            },
+            'job3': {
+                title: 'Vanemanalüütik',
+                company: 'DataFlow Solutions',
+                registryCode: '14560892',
+                publishDate: '25.08.2025',
+                jobNumber: '1754203',
+                description: 'Otsime vanemanalüütikut äriprotsesside ja andmeanalüüsi projektidesse. Eeldame SQL oskust, kogemust BI tööriistadega ning head analüütilist mõtlemist. Töö hõlmab äriandmete analüüsi ja aruannete koostamist.',
+                benefits: 'Andmeanalüüsi tööriistade koolitus, paindlik tööaeg, tervisekindlustus, sportimisvõimalused kontoris, meeskonnasündmused ja professionaalne areng.',
+                location: 'Tallinn, Kristiine linnaosa',
+                positions: '1',
+                salary: '2800-3700 eurot/kuus (bruto)',
+                workTime: 'Täistööaeg',
+                schedule: 'Hübriid (1 päev kodus)',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: '01.10.2025',
+                deadline: '20.09.2025',
+                documents: 'CV ja näidisanalüüs',
+                contact: 'Anna Rebane, HR, e-post: <a href="mailto:anna.rebane@dataflow.ee">anna.rebane@dataflow.ee</a>'
+            },
+            'job4': {
+                title: 'IT Projektijuht',
+                company: 'TechNordic OÜ',
+                registryCode: '14560893',
+                publishDate: '29.08.2025',
+                jobNumber: '1754204',
+                description: 'Otsime kogenud IT projektijuhti, kes juhiks meie rahvusvahelisi digitaliseerimisprojekte. Vajalik PMP sertifikaat ja kogemus agiile metoodikatega. Projekt hõlmab meeskondade koordineerimist ja klientide nõustamist.',
+                benefits: 'Võimalus töötada rahvusvaheliste projektidega, PMP sertifikatsiooni toetus, konkurentsivõimeline palk, täienduskoolitused, paindlik tööaeg ja kaugtöö.',
+                location: 'Tallinn',
+                positions: '1',
+                salary: '3800-5200 eurot/kuus (bruto)',
+                workTime: 'Täistööaeg',
+                schedule: 'Hübriid (3 päeva kontoris)',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: 'Kohe',
+                deadline: '10.09.2025',
+                documents: 'CV, PMP sertifikaat, portfolo',
+                contact: 'Erik Männik, Project Manager, e-post: <a href="mailto:erik@technordic.ee">erik@technordic.ee</a>'
+            },
+            'job5': {
+                title: 'UX/UI Disainer',
+                company: 'DesignHub Studio',
+                registryCode: '14560894',
+                publishDate: '28.08.2025',
+                jobNumber: '1754205',
+                description: 'Otsime loovat UX/UI disainerit, kes aitaks luua kasutajasõbralikke ja visuaalselt atraktiivseid digitaalseid lahendusi. Ootame kogemust Figma, Adobe Creative Suite ja prototüüpimise tööriistadega.',
+                benefits: 'Loov töökeskkond, võimalus töötada mitmekesiste projektidega, Adobe Creative Suite litsents, disainikonverentsidel osalemine, paindlik tööaeg.',
+                location: 'Tallinn, Põhja-Tallinn',
+                positions: '2',
+                salary: '2200-3200 eurot/kuus (bruto)',
+                workTime: 'Täistööaeg',
+                schedule: 'Paindlik tööaeg',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: '15.09.2025',
+                deadline: '25.09.2025',
+                documents: 'CV ja portfolo',
+                contact: 'Maria Kask, Creative Director, e-post: <a href="mailto:maria@designhub.ee">maria@designhub.ee</a>'
+            },
+            'job6': {
+                title: 'Frontend Arendaja',
+                company: 'WebCraft Solutions',
+                registryCode: '14560895',
+                publishDate: '27.08.2025',
+                jobNumber: '1754206',
+                description: 'Otsime frontend arendajat, kes on valmis töötama React ja Vue.js projektidega. Ootame kogemust moodsate JavaScript raamistike ja CSS preprosessoritega. Võimalus töötada huvitavate projektidega.',
+                benefits: 'Moodsad arendustööriistad, koolitused ja konverentsid, tervisekindlustus, sportklubi liikmesus, paindlik tööaeg, võimalus kaugtööks.',
+                location: 'Tallinn, Mustamäe',
+                positions: '3',
+                salary: '2500-3500 eurot/kuus (bruto)',
+                workTime: 'Täistööaeg',
+                schedule: 'Hübriid (2 päeva kodus)',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: 'Kokkulepped',
+                deadline: '30.09.2025',
+                documents: 'CV ja GitHub profile',
+                contact: 'Jaak Tamm, Lead Developer, e-post: <a href="mailto:jaak@webcraft.ee">jaak@webcraft.ee</a>'
+            },
+            'job7': {
+                title: 'Turunduskoordináator',
+                company: 'MarketFlow Agency',
+                registryCode: '14560896',
+                publishDate: '26.08.2025',
+                jobNumber: '1754207',
+                description: 'Otsime turunduskoordinaatorit, kes aitaks planeerida ja ellu viia turunduskampaaniaid. Ootame kogemust digitaalturunduse, sotsiaalmeedia ja sisu loomisega. Võimalus töötada erinevate klientidega.',
+                benefits: 'Võimalus töötada erinevate projektidega, turunduskoolitused, Google ja Facebook sertifikaadid, loov töökeskkond, paindlik tööaeg.',
+                location: 'Tallinn, Kesklinn',
+                positions: '1',
+                salary: '1800-2500 eurot/kuus (bruto)',
+                workTime: 'Täistööaeg',
+                schedule: 'Kontoris',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: '01.10.2025',
+                deadline: '22.09.2025',
+                documents: 'CV ja motivatsioonikiri',
+                contact: 'Laura Sepp, Marketing Director, e-post: <a href="mailto:laura@marketflow.ee">laura@marketflow.ee</a>'
+            },
+            'job8': {
+                title: 'Müügikonsultant',
+                company: 'SalesForce Baltic',
+                registryCode: '14560897',
+                publishDate: '25.08.2025',
+                jobNumber: '1754208',
+                description: 'Otsime müügikonsultanti, kes aitaks kasvatada meie kliendibaasi ja müügitulemusi. Ootame kogemust B2B müügiga, head suhtlemisoskust ja motivatsiooni saavutada eesmärke.',
+                benefits: 'Konkurentsivõimeline põhipalk + komisjonitasu, müügikoolitused, võimalus osaleda rahvusvahelistel konverentsidel, firmaauto, tervisekindlustus.',
+                location: 'Tallinn, Lasnamäe',
+                positions: '2',
+                salary: '1500-2500 eurot/kuus (bruto) + komisjon',
+                workTime: 'Täistööaeg',
+                schedule: 'Kontoris',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: 'Kohe',
+                deadline: '18.09.2025',
+                documents: 'CV ja motivatsioonikiri',
+                contact: 'Tõnu Kala, Sales Manager, e-post: <a href="mailto:tonu@salesforce.ee">tonu@salesforce.ee</a>'
+            },
+            'job9': {
+                title: 'HR Specialist',
+                company: 'PeopleFirst Solutions',
+                registryCode: '14560898',
+                publishDate: '24.08.2025',
+                jobNumber: '1754209',
+                description: 'Otsime HR spetsialisti, kes aitaks meie inimressursside valdkonda arendada. Ootame kogemust värbamise, töötajate arenguga ja HR protsesside täiustamisega.',
+                benefits: 'HR koolitused ja sertifikaadid, võimalus osaleda HR konverentsidel, paindlik tööaeg, tervisekindlustus, sõbralik töökollektiiv.',
+                location: 'Tallinn, Kristiine',
+                positions: '1',
+                salary: '2000-2800 eurot/kuus (bruto)',
+                workTime: 'Täistööaeg',
+                schedule: 'Hübriid (1 päev kodus)',
+                shifts: 'Ei',
+                duration: 'Tähtajatu',
+                startTime: '15.09.2025',
+                deadline: '28.09.2025',
+                documents: 'CV ja motivatsioonikiri',
+                contact: 'Karin Lepik, HR Director, e-post: <a href="mailto:karin@peoplefirst.ee">karin@peoplefirst.ee</a>'
+            }
+        };
+
         function openJobModal(jobId) {
             const modal = document.getElementById(jobId + '-modal');
             if (modal) {
+                // Update modal content with dynamic data
+                updateModalContent(jobId);
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+        
+        function updateModalContent(jobId) {
+            const job = jobData[jobId];
+            if (!job) return;
+            
+            const modal = document.getElementById(jobId + '-modal');
+            
+            // Update company name in header
+            const companyHeader = modal.querySelector('.job-modal-header h2');
+            if (companyHeader) companyHeader.textContent = job.company;
+            
+            // Update job title
+            const jobTitle = modal.querySelector('.job-modal-body h2');
+            if (jobTitle) jobTitle.textContent = job.title;
+            
+            // Update job meta info
+            const metaSpans = modal.querySelectorAll('.job-meta span');
+            if (metaSpans.length >= 3) {
+                metaSpans[0].textContent = `Registrikood: ${job.registryCode}`;
+                metaSpans[1].textContent = `Avaldatud: ${job.publishDate}`;
+                metaSpans[2].textContent = `Tööpakkumise nr: ${job.jobNumber}`;
+            }
+            
+            // Add skills info banner if it doesn't exist
+            const existingBanner = modal.querySelector('.skills-info-banner');
+            if (!existingBanner) {
+                const jobMeta = modal.querySelector('.job-meta');
+                if (jobMeta) {
+                    const banner = document.createElement('div');
+                    banner.className = 'skills-info-banner';
+                    banner.innerHTML = `
+                        <div class="info-icon">💡</div>
+                        <div class="info-content">
+                            <h4>Uued oskused viivad alus edasi</h4>
+                            <p>Kas teadsid, et osade töökohtade inimesed on võimalik uusi oskusi omandada tööülesaba toe?</p>
+                            <a href="#" class="info-link">Vaata lähemalt</a>
+                        </div>
+                    `;
+                    jobMeta.insertAdjacentElement('afterend', banner);
+                }
+            }
+            
+            // Update description
+            const h3Elements = modal.querySelectorAll('h3');
+            h3Elements.forEach(h3 => {
+                if (h3.textContent === 'Tööülesanded') {
+                    const descriptionP = h3.nextElementSibling;
+                    if (descriptionP) descriptionP.textContent = job.description;
+                }
+                if (h3.textContent === 'Omalt poolt pakume') {
+                    const benefitsP = h3.nextElementSibling;
+                    if (benefitsP) benefitsP.textContent = job.benefits;
+                }
+            });
+            
+            // Update job details table
+            const detailsTables = modal.querySelectorAll('.job-details-table');
+            if (detailsTables.length >= 1) {
+                const rows = detailsTables[0].querySelectorAll('tr');
+                if (rows.length >= 8) {
+                    rows[0].cells[1].textContent = job.location;
+                    rows[1].cells[1].textContent = job.positions;
+                    rows[2].cells[1].textContent = job.salary;
+                    rows[3].cells[1].textContent = job.workTime;
+                    rows[4].cells[1].textContent = job.schedule;
+                    rows[5].cells[1].textContent = job.shifts;
+                    rows[6].cells[1].textContent = job.duration;
+                    rows[7].cells[1].textContent = job.startTime;
+                }
+            }
+            
+            // Update application info table
+            if (detailsTables.length >= 2) {
+                const rows = detailsTables[1].querySelectorAll('tr');
+                if (rows.length >= 3) {
+                    rows[0].cells[1].textContent = job.deadline;
+                    rows[1].cells[1].textContent = job.documents;
+                    rows[2].cells[1].innerHTML = job.contact;
+                }
             }
         }
         
@@ -1418,39 +1752,56 @@
         }
         
         function applyToJob(jobId) {
+            // Store current job ID for later use
+            window.currentJobId = jobId;
+            
             // Open application modal instead of just showing alert
             const applicationModal = document.getElementById('application-modal');
             if (applicationModal) {
-                // Set the job title and cover letter in the modal
-                const modalTitle = applicationModal.querySelector('.application-job-title');
-                const coverLetterTextarea = document.getElementById('cover-letter');
-                
-                const jobData = {
-                    'job1': {
-                        title: 'IT Projektijuht - Digiraju OÜ',
-                        coverLetter: `Lugupeetud värbaja!
+                // Update application modal content with job data
+                updateApplicationModalContent(jobId);
+                // Close job modal and open application modal
+                closeJobModal(jobId);
+                applicationModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            } else {
+                alert('Kandideerimisprotsess algatatud!');
+                closeJobModal(jobId);
+            }
+        }
+        
+        function updateApplicationModalContent(jobId) {
+            const job = jobData[jobId];
+            if (!job) return;
+            
+            const applicationModal = document.getElementById('application-modal');
+            
+            // Update the job title in the application modal
+            const jobTitle = applicationModal.querySelector('.application-job-title');
+            if (jobTitle) {
+                jobTitle.textContent = `${job.title} - ${job.company}`;
+            }
+            
+            // Add cover letter template based on job
+            const coverLetterTextarea = applicationModal.querySelector('#cover-letter');
+            if (coverLetterTextarea) {
+                if (jobId === 'job1') {
+                    coverLetterTextarea.value = `Lugupeetud Liisa Kask,
 
-Kandideerimisega IT projektijuhi ametikohale soovin väljendada oma huvi ja valmisolekut panustada teie ettevõtte edukasse arengusse.
+Kandideerin huviga IT Projektijuhi ametikohale Digiraju OÜ-s. Teie tööpakkumine köitis mind eelkõige võimalusega panustada nii uute funktsionaalsuste arendamisse kui ka olemasolevate süsteemide täiustamisse.
 
-Minu 4-aastane kogemus IT projektijuhina on andnud mulle tugevad oskused meeskondade juhtimiseks ja keerukate tarkvaraprojektide edukaks elluviimiseks. Olen juhitanud projekte alates planeerimisest kuni käikülaskamiseni, rakendades Scrum ja Agile metoodikaid.
+Minu 4-aastane kogemus IT projektijuhina on andnud mulle tugevad oskused meeskondade juhtimiseks ja keerukate tarkvaraprojektide edukaks elluviimiseks. Olen juhitanud projekte alates planeerimisest kuni käikülaskamiseni, rakendades Scrum ja Agile metoodikaid. Minu tehnilised teadmised hõlmavad nii back-end kui ka front-end arendust, mis võimaldab mul efektiivselt suhelda arendusmeeskonnaga ja mõista tehnilisi väljakutseid.
 
-Minu tugevused:
-• Projektijuhtimine ja planeerimise oskused
-• Kogemus meeskondade juhtimisel (kuni 12 liiget)
-• Tugev analüütilise mõtlemise võime
-• Suurepärased kommunikatsiooni- ja läbirääkimisoskused
-• Probleemide kiire tuvastamine ja lahendamine
+Teie pakutav töökeskkond - kaasaegne, paindlik tööaeg ja kaugtöö võimalus - vastab täielikult minu ootustele. Hindan eriti võimalust osaleda aktiivselt tiimi arendusprotsessis ja panustada puhta, testitava koodi loomisse. Olen alati olnud meeskonnainimene, kes väärtustab nii professionaalset arengut kui ka meeskonnasündmusi.
 
-Usun, et minu kogemus ja motivatsioon aitavad kaasa teie ettevõtte IT-projektide edukale elluviimisele.
+Usun, et minu kogemus projektijuhtimises, tehniline taust ja motiveeritus täiustada süsteeme teeb minust sobiva kandidaadi teie meeskonda. Olen valmis alustama kokkulepetel ja panustama Digiraju OÜ edukasse tulevikku.
 
-Ootan võimalust intervjuul täpsemalt arutada, kuidas saan aidata kaasa teie eesmärkide saavutamisele.
+Ootan põnevusega võimalust arutada, kuidas saan aidata kaasa teie projektide edukale elluviimisele.
 
 Lugupidamisega,
-Kaisa Karu`
-                    },
-                    'job2': {
-                        title: 'IT Projektijuht - CloudPoint AS',
-                        coverLetter: `Lugupeetud värbaja!
+[Kandidaadi nimi]`;
+                } else if (jobId === 'job2') {
+                    coverLetterTextarea.value = `Lugupeetud Mark Peterson,
 
 Kandideerimisega IT projektijuhi ametikohale soovin väljendada oma tugevat huvi CloudPoint AS vastu ja valmisolekut aidata kaasa teie pilvelahenduste arendamisele.
 
@@ -1467,198 +1818,33 @@ Eriti atraktiivne on mulle võimalus töötada uudsete tehnoloogiatega ja aidata
 Ootan võimalust näha, kuidas saan aidata CloudPoint AS-il oma eesmärke saavutada.
 
 Lugupidamisega,
-Kaisa Karu`
-                    },
-                    'job3': {
-                        title: 'Andmeanalüütik - DataMinds OÜ',
-                        coverLetter: `Lugupeetud värbaja!
+[Kandidaadi nimi]`;
+                } else if (jobId === 'job3') {
+                    coverLetterTextarea.value = `Lugupeetud Anna Rebane,
 
-Kandideerimisega andmeanalüütiku ametikohale soovin väljendada oma suurt huvi andmeteaduse ja analüütika valdkonna vastu ning valmisolekut aidata DataMinds OÜ-l andmepõhiseid otsuseid langetada.
+Kandideerimisega Vanemanalüütiku ametikohale DataFlow Solutions-is soovin väljendada oma tugevat huvi äriprotsesside analüüsi ja andmeanalüüsi valdkonna vastu.
 
-Kuigi minu põhikogemus on IT projektijuhtimises, olen alati olnud kirgliku huvilise andmeanalüüsi vastu. Minu tehnilise tausta ja analüütiliste oskuste kombinatsioon teeb mind sobivaks kandidaadiks:
+Minu kogemus andmeanalüüsi ja ärianalüüsi vallas on andnud mulle vajalikud oskused teie nõutud ülesannete täitmiseks:
 
-• Tugev analüütilise mõtlemise võime ja probleemilahendus
-• Kogemus tehniliste projektide elluviimisel ja dokumenteerimisel
-• SQL andmebaaside kogemus projektijuhtimise käigus
-• Excel'i edasijõudnud kasutamine projektide analüüsiks
-• Statistiliste andmete tõlgendamise oskused
-• Kogemus aruannete koostamisel ja esitluste tegemisel
+• SQL - ekspert-taseme oskused keerukate päringute koostamiseks
+• Power BI ja Tableau - 3+ aastat kogemust dashboardide ja aruannete loomises  
+• Python/R - andmete töötlemine ja statistiline analüüs
+• Äriprotsesside analüüs ja optimiseerimine
+• Andmekvaliteedi hindamine ja parandamine
+• Finantsnäitajate analüüs ja prognoosimudellid
 
-Olen motiveeritud õppima uusi andmeanalüüsi tööriistu nagu Python, R või Tableau. Minu projektijuhtimise kogemus aitab mul mõista äriloogikaat ja tõlkida andmeid praktilisteks soovitusteks.
+Olen varem töötanud rahvusvahelistes ettevõtetes, kus olen vastutanud keerukate äriandmete analüüsi eest. Minu analüütilised oskused ja võime tõlgendada andmeid äriliselt kasutatavaks infoks on aidanud ettevõtetel teha paremaid strateegilisi otsuseid.
 
-Näen suurt potentsiaali oma seniste oskuste rakendamisel andmeanalüüsi valdkonnas ja ootan võimalust näidata, kuidas saan aidata kaasa teie ettevõtte andmepõhiste otsuste tegemisele.
+Teie pakutav hübriidtöö võimalus (1 päev kodus) ja professionaalse arengu tugi on mulle eriti atraktiivsed. Usun, et minu kogemus, tehniline kompetentsus ja kirg andmeanalüüsi vastu teeb minust sobiva kandidaadi teie meeskonda.
 
-Lugupidamisega,
-Kaisa Karu`
-                    },
-                    'job4': {
-                        title: 'IT Projektijuht - TechNordic OÜ',
-                        coverLetter: `Lugupeetud värbaja!
+Olen valmis esitama näidisanalüüsi, mis demonstreerib minu oskusi ja lähenemist äriprobleemide lahendamisele.
 
-Kandideerimisega IT projektijuhi ametikohale TechNordic OÜ-s soovin väljendada oma huvi rahvusvaheliste digitaliseerimisprojektide juhtimise vastu.
-
-Minu 4-aastane kogemus IT projektijuhina ja PMP sertifikaat teevad mind sobivaks kandidaadiks teie nõudlikele projektidele. Olen edukalt juhtinud rahvusvahelisi projekte ja omandanud tugevad oskused:
-
-• PMP sertifikaadiga projektijuhtimine
-• Rahvusvaheliste meeskondade koordineerimine  
-• Agile ja Scrum metoodikate rakendamine
-• Riskijuhtimise ja kvaliteedikontrolli oskused
-• Mitmekeelne suhtlus (eesti, inglise, vene keel)
-
-Eriliselt atraktiivne on mulle võimalus töötada rahvusvaheliste digitaliseerimisprojektidega, kus saan rakendada oma oskusi suurema mõjuga. Minu analüütilised võimed ja strateegiline mõtlemine aitavad tagada projektide edukat elluviimist.
-
-Ootan võimalust arutada, kuidas saan aidata TechNordic OÜ-l oma ambitsioonikaid eesmärke saavutada.
+Ootan põnevusega võimalust arutada, kuidas saan aidata DataFlow Solutions-il oma andmeanalüüsi eesmärke saavutada.
 
 Lugupidamisega,
-Kaisa Karu`
-                    },
-                    'job5': {
-                        title: 'Digitaalsete projektide juht - DigiTarkus OÜ',
-                        coverLetter: `Lugupeetud värbaja!
-
-Kandideerimisega digitaalsete projektide juhi ametikohale soovin väljendada oma huvi DigiTarkus OÜ innovaatiliste lahenduste vastu ja valmisolekut panustada digitaalse transformatsiooni projektidesse.
-
-Minu IT projektijuhtimise kogemus sobib suurepäraselt digitaalsete projektide spetsiifikaga. Olen töötanud nii veebirakenduste kui ka mobiilirakenduste projektidega:
-
-• Kogemus digitaalse transformatsiooni projektides
-• Veebirakenduste ja mobiilirakenduste arendusprojektide juhtimine
-• Agiilsete arendusmeeskondade koordineerimine
-• UX/UI disaini protsesside mõistmine
-• Kaugmeeskondade juhtimise kogemus
-
-Eriti motiveerib mind DigiTarkus OÜ paindlik töökorraldus ja võimalus töötada 100% kaugtööl. Usun, et minu organisatsioonioskused ja enesedistsipliin sobivad suurepäraselt sellise töökorraldusega.
-
-Näen suurt potentsiaali oma projektijuhtimise oskuste rakendamisel digitaalsete lahenduste valdkonnas.
-
-Lugupidamisega,
-Kaisa Karu`
-                    },
-                    'job6': {
-                        title: 'Scrum Master - TechFlow AS',
-                        coverLetter: `Lugupeetud värbaja!
-
-Kandideerimisega Scrum Masteri ametikohale soovin väljendada oma huvi süvendada oma Agile kogemusi ja keskenduda meeskondade arendamisele.
-
-Kuigi minu põhikogemus on IT projektijuhtimises, olen alati olnud kirgliku Agile metoodikate pooldaja. Minu taustast tulenev eelised Scrum Masteri rollis:
-
-• Sügav Scrum ja Agile metoodikate kogemus
-• 4+ aastat meeskondade juhtimist ja coaching'ut
-• Tugevad kommunikatsiooni- ja konfliktilahenduse oskused
-• Kogemus takistuste eemaldamises ja probleemide lahendamises
-• Sertifitseeritud Scrum Master (CSM)
-
-Olen alati näinud, et projektijuhi rollis on minu parimad hetked olnud meeskonna arendamine ja nende potentsiaali avamine. Scrum Masteri positsioon võimaldaks mul keskenduda sellele, mis mulle kõige rohkem meeldib - meeskondade toetamisele.
-
-Usun, et minu projektijuhtimise taust aitab mul paremini mõista ärilisi vajadusi ja tõlkida neid meeskonnale arusaadavaks.
-
-Lugupidamisega,
-Kaisa Karu`
-                    },
-                    'job7': {
-                        title: 'IT Arendaja - CodeCraft OÜ',
-                        coverLetter: `Lugupeetud värbaja!
-
-Kandideerimisega IT arendaja ametikohale soovin väljendada oma valmisolekut karjääri muutuseks tehnilisemas suunas ja huvi programmeerimise vastu.
-
-Kuigi minu põhikogemus on projektijuhtimises, olen alati olnud tehniliselt orienteeritud. Minu arendajakarjääri toetavad järgmised aspektid:
-
-• Tugev tehniline taust ja IT süsteemide mõistmine
-• Baasteadmised JavaScript, HTML/CSS valdkonnas
-• Kogemus arendusmeeskondadega töötamisel
-• Sügav arusaam tarkvara arenduse protsessidest
-• Analüütilised oskused ja probleemilahendus
-
-Olen motiveeritud õppima React ja Node.js tehnoloogiaid. Minu projektijuhtimise kogemus aitab mul mõista ärinõudeid ja kirjutada kasutajasõbralikku koodi.
-
-Näen suurt potentsiaali oma organisatsioonioskuste ja tehniliste huvide ühendamisel arendaja rollis. Olen valmis alustama junior tasemelt ja kiiresti õppima.
-
-Lugupidamisega,
-Kaisa Karu`
-                    },
-                    'job8': {
-                        title: 'Tootejuht (IT) - InnoTech Solutions',
-                        coverLetter: `Lugupeetud värbaja!
-
-Kandideerimisega tootejuhi ametikohale soovin väljendada oma huvi tooteaenduse valdkonna vastu ja valmisolekut rakendada oma projektijuhtimise kogemusi tootestrateegia kujundamisel.
-
-Minu IT projektijuhtimise taust sobib suurepäraselt tootejuhi rolliga, kuna mõlemad nõuavad sarnaseid oskusi:
-
-• Kogemus kasutajate vajaduste analüüsimisel projektides
-• Tootearenduse protsesside mõistmine projektijuhtimise kaudu
-• Meeskondade koordineerimise ja suunamise oskused
-• Tugevad analüütilised oskused ja strateegiline mõtlemine
-• Kogemus stakeholder'itega suhtlemisel
-
-Eriti huvitab mind võimalus mõjutada toote arengut strategilisel tasemel ja luua lahendusi, mis parandavad kasutajakogemust. Minu projektijuhtimise kogemus aitab mul paremini mõista arendusprotsesse ja realistlikult planeerida.
-
-Usun, et minu tausta kombinatsioon projektijuhtimisest ja tehnilistest teadmistest teeb mind tugeva tootejuhi kandidaadiks.
-
-Lugupidamisega,
-Kaisa Karu`
-                    },
-                    'job9': {
-                        title: 'IT Konsultant - DigitalAdvice OÜ',
-                        coverLetter: `Lugupeetud värbaja!
-
-Kandideerimisega IT konsultandi ametikohale soovin väljendada oma huvi jagada oma IT projektijuhtimise kogemusi äriklientidele ja aidata neil digitaliseerumise teekonnal.
-
-Minu projektijuhtimise taust ja klientide kogemus teevad mind sobivaks IT konsultandi rollis:
-
-• 4+ aastat kogemust erinevate IT süsteemide juurutamisel
-• Tugev klientidega suhtlemise kogemus projektides
-• Oskus tõlkida tehnilisi lahendusi ärikeelde
-• Kogemus digitaliseerimise projektide elluviimisel
-• Suurepärased esitlus- ja koolitusoskused
-
-Eriti motiveerib mind võimalus töötada mitmesuguste klientidega ja aidata ettevõtetel digitaalset transformatsiooni läbi viia. Minu projektijuhtimise kogemus aitab mul mõista klientide äriprotsesse ja pakkuda praktilist nõustamist.
-
-Tartus asukoht on mulle sobiv, kuna olen valmis ka reisima ja klientide juures kohapeal töötama.
-
-Ootan võimalust näidata, kuidas saan aidata DigitalAdvice OÜ klientidel oma digitaliseerimise eesmärke saavutada.
-
-Lugupidamisega,
-Kaisa Karu`
-                    }
-                };
-                
-                if (modalTitle && jobData[jobId]) {
-                    modalTitle.textContent = jobData[jobId].title;
+[Kandidaadi nimi]`;
                 }
-                
-                if (coverLetterTextarea && jobData[jobId]) {
-                    coverLetterTextarea.value = jobData[jobId].coverLetter;
-                }
-                
-                // Close job modal and open application modal
-                closeJobModal(jobId);
-                applicationModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            } else {
-                alert('Kandideerimisprotsess algatatud!');
-                closeJobModal(jobId);
             }
-        }
-        
-        function closeApplicationModal() {
-            const modal = document.getElementById('application-modal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-        
-        function submitApplication() {
-            const coverLetter = document.getElementById('cover-letter').value;
-            const cvFile = document.getElementById('cv-file').files[0];
-            
-            if (!coverLetter.trim()) {
-                alert('Palun lisage kaaskiri!');
-                return;
-            }
-            
-            // Simulate application submission
-            alert('Kandideerumine edukalt esitatud! Kaisa Karu, teie taotlus on vastu võetud.');
-            closeApplicationModal();
         }
         
         // File upload functionality
@@ -1688,6 +1874,28 @@ Kaisa Karu`
             }
         });
         
+        function closeApplicationModal() {
+            const modal = document.getElementById('application-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function submitApplication() {
+            const coverLetter = document.getElementById('cover-letter').value;
+            const cvFile = document.getElementById('cv-file').files[0];
+            
+            if (!coverLetter.trim()) {
+                alert('Palun lisage kaaskiri!');
+                return;
+            }
+            
+            // Simulate application submission
+            alert('Kandideerumine edukalt esitatud!');
+            closeApplicationModal();
+        }
+        
         // Close modal when clicking outside of it
         window.onclick = function(event) {
             if (event.target.classList.contains('job-modal')) {
@@ -1707,16 +1915,41 @@ Kaisa Karu`
             }
         });
         
-        // Update remaining buttons to have onclick handlers
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all kandideeri buttons that don't have onclick yet
-            const buttons = document.querySelectorAll('.btn.btn-primary');
-            buttons.forEach((button, index) => {
-                if (button.textContent.trim() === 'Kandideeri' && !button.hasAttribute('onclick')) {
-                    button.setAttribute('onclick', `openJobModal('job${index + 1}')`);
+        function openDetailedApplication() {
+            // Close application modal and open detailed job page with correct job ID
+            closeApplicationModal();
+            const jobId = window.currentJobId || 'job1';
+            // Add small delay to ensure modal closes properly before navigation
+            setTimeout(() => {
+                if (jobId === 'job1') {
+                    // For job1 (IT Projektijuht - Digiraju OÜ), open the specific page
+                    window.location.href = '1ITprojektijuht.html';
+                } else if (jobId === 'job2') {
+                    // For job2 (IT Projektijuht - CloudPoint AS), open the specific page
+                    window.location.href = '2CloudPoint.html';
+                } else if (jobId === 'job3') {
+                    // For job3 (Vanemanalüütik - DataFlow Solutions), open the specific page
+                    window.location.href = '3DataFlow.html';
+                } else {
+                    // For other jobs, open the general job details page
+                    window.location.href = `job-details.html?job=${jobId}`;
                 }
-            });
-        });
+            }, 100);
+        }
+
+        // Skills Recommendations Accordion functionality
+        function toggleSkillsRecommendations() {
+            const content = document.getElementById('skills-recommendations-content');
+            const arrow = document.getElementById('skills-accordion-arrow');
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
     </script>
     <script src="script.js"></script>
 </body>
