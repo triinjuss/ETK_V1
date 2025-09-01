@@ -148,6 +148,7 @@
 
     <div class="page-container">
       
+        <h1 style="margin: 32px 0 24px 0; font-size: 2rem; font-weight: 600; color: var(--text-color);">Tööpakkumised</h1>
         
         <!-- Statistics Grid -->
         <div class="stats-grid">
@@ -157,26 +158,29 @@
             </div>
             <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
                 <h3>Aktiivsed kandideerimised</h3>
-                <div class="stat-number">0</div>
+                <div class="stat-number">5</div>
             </div>
             <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
                 <h3>Meelde jäetud tööpakkumisi</h3>
-                <div class="stat-number">0</div>
+                <div class="stat-number">5</div>
             </div>
             <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
                 <h3>Kandideerimise kutseid</h3>
-                <div class="stat-number">0</div>
+                <div class="stat-number">1</div>
             </div>
             <div class="stat-card card" style="display: flex; flex-direction: column; justify-content: space-between;">
                 <h3>AI soovitatud tööpakkumised</h3>
-                <div class="stat-number">0</div>
+                <div class="stat-number">3</div>
             </div>
         </div>
 
         <!-- Job Offers Section -->
         <div class="job-offers-section" style="margin-top: 32px;">
-            <div class="job-offers-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                <h2 style="margin: 0; font-size: 1.5rem; color: var(--text-color);">⭐ Sobivad tööpakkumised</h2>
+            <div class="job-offers-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; position: relative;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <a href="#" id="open-ai-job-recommendations-modal" class="ai-icon-link" title="Tööpakkumiste soovitused">AI</a>
+                    <h2 style="margin: 0; font-size: 1.5rem; color: var(--text-color);">Soovitatud tööpakkumised</h2>
+                </div>
                 <button class="btn btn-outline btn-small">Filtreeri</button>
             </div>
 
@@ -185,7 +189,6 @@
                 <div class="job-card">
                     <div class="job-card-header">
                         <div class="job-title-section">
-                            <div class="company-logo">P</div>
                             <div>
                                 <h3>Tootejuht</h3>
                                 <p>Pipedrive OÜ • Tartu</p>
@@ -194,10 +197,10 @@
                         <div class="match-badge">98% sobivus</div>
                     </div>
                     <div class="job-card-details">
-                        <span class="detail-tag">📍 Tartu, Kesklinn</span>
-                        <span class="detail-tag">💰 3500-5000€</span>
-                        <span class="detail-tag">🕒 Täistööaeg</span>
-                        <span class="detail-tag">🏠 Hübriid (2 p. kontoris)</span>
+                        <span class="detail-tag">Tartu, Kesklinn</span>
+                        <span class="detail-tag">3500-5000€</span>
+                        <span class="detail-tag">Täistööaeg</span>
+                        <span class="detail-tag">Hübriid (2 p. kontoris)</span>
                     </div>
                     <p class="job-card-description">Otsime kirglikku tootejuhti, kes aitaks kujundada meie müügitarkvara tulevikku. Vajalik varasem tootejuhtimise kogemus SaaS valdkonnas.</p>
                     <div class="job-card-footer">
@@ -214,7 +217,6 @@
                 <div class="job-card">
                     <div class="job-card-header">
                         <div class="job-title-section">
-                            <div class="company-logo">S</div>
                             <div>
                                 <h3>Ärianalüütik</h3>
                                 <p>Swedbank AS • Tallinn</p>
@@ -223,10 +225,10 @@
                         <div class="match-badge">95% sobivus</div>
                     </div>
                     <div class="job-card-details">
-                        <span class="detail-tag">📍 Tallinn, Liivalaia</span>
-                        <span class="detail-tag">💰 2800-4200€</span>
-                        <span class="detail-tag">🕒 Täistööaeg</span>
-                        <span class="detail-tag">🏠 Paindlik</span>
+                        <span class="detail-tag">Tallinn, Liivalaia</span>
+                        <span class="detail-tag">2800-4200€</span>
+                        <span class="detail-tag">Täistööaeg</span>
+                        <span class="detail-tag">Paindlik</span>
                     </div>
                     <p class="job-card-description">Liitu meie andme- ja analüütikatiimiga, et tõlkida ärivajadused tehnilisteks lahendusteks. Ootame sinult tugevat SQL-i oskust.</p>
                     <div class="job-card-footer">
@@ -243,7 +245,6 @@
                 <div class="job-card">
                     <div class="job-card-header">
                         <div class="job-title-section">
-                            <div class="company-logo">T</div>
                             <div>
                                 <h3>Scrum Master</h3>
                                 <p>Telia Eesti AS • Pärnu</p>
@@ -252,10 +253,10 @@
                         <div class="match-badge">92% sobivus</div>
                     </div>
                     <div class="job-card-details">
-                        <span class="detail-tag">📍 Pärnu</span>
-                        <span class="detail-tag">💰 3000-4000€</span>
-                        <span class="detail-tag">🕒 Täistööaeg</span>
-                        <span class="detail-tag">🏠 Kaugtöö võimalus</span>
+                        <span class="detail-tag">Pärnu</span>
+                        <span class="detail-tag">3000-4000€</span>
+                        <span class="detail-tag">Täistööaeg</span>
+                        <span class="detail-tag">Kaugtöö võimalus</span>
                     </div>
                     <p class="job-card-description">Sinu ülesanne on toetada ja juhendada meie agiilset arendusmeeskonda, eemaldada takistused ja tagada sujuv töövoog.</p>
                     <div class="job-card-footer">
