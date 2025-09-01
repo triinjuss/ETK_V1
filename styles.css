@@ -6116,6 +6116,39 @@
             background-color: #5a6268;
         }
         
+        /* Consultation buttons */
+        .consultation-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .consultation-buttons .btn {
+            flex: 1;
+            min-width: 160px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .notification-badge {
+            background-color: #dc3545;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 4px;
+            min-width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        
         /* Action buttons in table cells */
         .action-buttons {
             display: flex;
