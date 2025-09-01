@@ -314,11 +314,14 @@
                             </div>
                         </li>
                     </ul>
-                    <button class="btn btn-secondary btn-full-width add-wish-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                        Lisa töösoov
-                        <span class="info-icon" data-tooltip="Töösoovi sisestamine on lihtne samm, mis avab ukse palju sihipärasematele soovitustele. Kui süsteem teab, millist tööd otsid, millises piirkonnas, millise koormusega ja millise palgaga, saab see pakkuda sulle ainult neid tööpakkumisi, mis päriselt sobivad. Nii ei pea sa raiskama aega valedele kuulutustele – sind ootavad juba need, mis vastavad su sihtidele.">?</span>
-                    </button>
+                    <div class="job-wishes-actions">
+                        <button class="btn btn-secondary add-wish-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            Lisa töösoov
+                            <span class="info-icon" data-tooltip="Töösoovi sisestamine on lihtne samm, mis avab ukse palju sihipärasematele soovitustele. Kui süsteem teab, millist tööd otsid, millises piirkonnas, millise koormusega ja millise palgaga, saab see pakkuda sulle ainult neid tööpakkumisi, mis päriselt sobivad. Nii ei pea sa raiskama aega valedele kuulutustele – sind ootavad juba need, mis vastavad su sihtidele.">?</span>
+                        </button>
+                        <button class="btn btn-primary btn-small">Vaata kõiki tööpakkumisi</button>
+                    </div>
                     <div class="training-section">
                         <h4>Tööamps</h4>
                         <p class="training-info">Kas teadsid, et saad <strong>tööampse teha</strong> ka siis, kui oled <strong>töötuna arvel?</strong>
@@ -440,7 +443,7 @@ Põhitöö otsimise kõrvalt saad teha kuni <strong>kaheksa päeva kuus ajutist 
                     </div>
                     
                     <div class="cv-actions">
-                        <button class="btn btn-primary btn-cv btn-full-width">Muuda CV-d</button>
+                        <a href="minuCV.html" class="btn btn-primary btn-cv btn-full-width">Muuda CV-d</a>
                     </div>
                 </div>
             </div>
@@ -589,7 +592,10 @@ Ootused:
                 </div>
             </div>
             <div class="card-footer" style="text-align: right; border-top: 1px solid var(--border-color); padding-top: 24px; margin-top: 24px;">
-                <button class="btn btn-primary" style="padding: 8px 16px; font-size: 14px; min-width: auto;">Salvesta plaan</button>
+                <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                    <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px; min-width: auto;">Edasta nõustajale</button>
+                    <button class="btn btn-primary" style="padding: 8px 16px; font-size: 14px; min-width: auto;">Salvesta plaan</button>
+                </div>
             </div>
         </div>
 
@@ -909,7 +915,7 @@ Ootused:
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-modal-id="ai-profile-analysis-modal">Hiljem</button>
-                <button class="btn btn-primary">Muuda CV-d</button>
+                <a href="minuCV.html" class="btn btn-primary">Muuda CV-d</a>
             </div>
         </div>
     </div>
