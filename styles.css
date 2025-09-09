@@ -6997,3 +6997,132 @@
     margin-left: 4px;
     line-height: 1;
 }
+
+/* Notifications modal table styling */
+.notifications-section {
+    margin-bottom: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.notifications-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.notifications-table thead {
+    background: #f8f9fa;
+}
+
+.notifications-table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 14px;
+}
+
+.notifications-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f1f3f4;
+    font-size: 14px;
+    color: #555;
+}
+
+.notifications-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.notification-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.notification-link:hover {
+    text-decoration: underline;
+}
+
+.notification-card {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.notification-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.notification-title-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.notification-title-link:hover {
+    text-decoration: underline;
+}
+
+.notification-date {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.notification-status {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.status-pending {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+/* Modal close button in top corner */
+.modal-close-x {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 0.2s ease;
+}
+
+.modal-close-x:hover {
+    background: #f5f5f5;
+    color: #666;
+    transform: scale(1.1);
+}

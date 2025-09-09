@@ -1626,62 +1626,59 @@ function openEmploymentOfficeNotifications() {
     const modal = document.createElement('div');
     modal.className = 'modal-overlay show'; // Add 'show' class
     modal.innerHTML = `
-        <div class="modal-content" style="max-width: 700px;">
+        <div class="modal-content" style="max-width: 900px; position: relative;">
+            <button class="modal-close-x" onclick="this.closest('.modal-overlay').remove()">×</button>
             <div class="modal-header">
                 <h2>Teated töötukassalt</h2>
-                <button class="close-modal" onclick="this.closest('.modal-overlay').remove()">×</button>
             </div>
             <div class="modal-body">
-                <div class="notifications-list">
-                    <div class="notification-item unread">
-                        <div class="notification-header">
-                            <span class="notification-date">08.09.2025</span>
-                            <span class="notification-status new">Uus</span>
-                        </div>
-                        <h4>Uued tööpakkumised teie valdkonnas</h4>
-                        <p>Leidsime 3 uut tööpakkumist, mis sobivad teie oskustega. Soovitame kiiresti kandideerida.</p>
-                        <div class="notification-actions">
-                            <button class="btn-primary">Vaata pakkumisi</button>
-                            <button class="btn-outline">Märgi loetuks</button>
-                        </div>
+                <!-- Minu teated section -->
+                <div class="notifications-section">
+                    <div class="section-header">
+                        <h3>Minu teated</h3>
+                        <button class="btn btn-primary btn-small">Saada uus teade</button>
                     </div>
                     
-                    <div class="notification-item unread">
-                        <div class="notification-header">
-                            <span class="notification-date">05.09.2025</span>
-                            <span class="notification-status new">Uus</span>
-                        </div>
-                        <h4>Karjäärinõustamise aeg kinnitatud</h4>
-                        <p>Teie karjäärinõustamine on kinnitatud 05.09.2025 kell 15:00. Nõustaja: Kadri Jõgi</p>
-                        <div class="notification-actions">
-                            <button class="btn-primary">Vaata detaile</button>
-                            <button class="btn-outline">Märgi loetuks</button>
-                        </div>
+                    <table class="notifications-table">
+                        <thead>
+                            <tr>
+                                <th>Saadetud</th>
+                                <th>Saatja</th>
+                                <th>Teema</th>
+                                <th>Vastus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>08.09.2025 15:16</td>
+                                <td>Mari Maasikas</td>
+                                <td><a href="#" class="notification-link">Koolitus</a></td>
+                                <td>08.09.2025 15:17</td>
+                            </tr>
+                            <tr>
+                                <td>08.09.2025 15:17</td>
+                                <td>Kaisa Karu</td>
+                                <td><a href="#" class="notification-link">E-päevik</a></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Teated section -->
+                <div class="notifications-section">
+                    <h3>Teated</h3>
+                    
+                    <div class="notification-card">
+                        <h4><a href="#" class="notification-title-link">Töövõimetoetuse taotlus (TVT20000000)</a></h4>
+                        <p class="notification-date">Taotlus esitatud: 29.08.2025</p>
+                        <p class="notification-status">Otsus: <span class="status-pending">Puudustega. Puuduste likvideerimise tähtaeg on 09.09.2025.</span></p>
                     </div>
                     
-                    <div class="notification-item unread">
-                        <div class="notification-header">
-                            <span class="notification-date">03.09.2025</span>
-                            <span class="notification-status new">Uus</span>
-                        </div>
-                        <h4>Tööotsingu toetus aegub varsti</h4>
-                        <p>Teie tööotsingu toetus aegub 15.09.2025. Palun võtke ühendust oma nõustajaga.</p>
-                        <div class="notification-actions">
-                            <button class="btn-primary">Võta ühendust</button>
-                            <button class="btn-outline">Märgi loetuks</button>
-                        </div>
-                    </div>
-                    
-                    <div class="notification-item read">
-                        <div class="notification-header">
-                            <span class="notification-date">28.08.2025</span>
-                            <span class="notification-status">Loetud</span>
-                        </div>
-                        <h4>Koolitusvõimalused teie valdkonnas</h4>
-                        <p>Avatud on registreerimine uutele koolitustele: "Digitaalne turundus" ja "Projektijuhtimine"</p>
-                        <div class="notification-actions">
-                            <button class="btn-outline">Vaata koolitusi</button>
-                        </div>
+                    <div class="notification-card">
+                        <h4><a href="#" class="notification-title-link">Töövõimetoetuse taotlus (TVT000000)</a></h4>
+                        <p class="notification-date">Taotlus esitatud: 21.04.2025</p>
+                        <p class="notification-status">Otsus: Menetluse lõpetamine (29.08.2025, nr TVT25/00000)</p>
                     </div>
                 </div>
             </div>
