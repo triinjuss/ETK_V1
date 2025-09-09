@@ -362,6 +362,66 @@
                 gap: 5px;
             }
         }
+        
+        /* Career Consultation Notice Styles */
+        .career-consultation-notice {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .consultation-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #046c63;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .consultation-details {
+            margin-left: 0;
+        }
+        
+        .consultation-time {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .consultation-advisor {
+            margin-bottom: 8px;
+            line-height: 1.4;
+            color: #666;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .consultation-advisor strong {
+            color: #333;
+        }
+        
+        .consultation-advisor a {
+            color: #046c63;
+            text-decoration: none;
+        }
+        
+        .consultation-advisor a:hover {
+            text-decoration: underline;
+        }
+        
+        .consultation-note {
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+        }
     </style>
     <script>
         // Demo Google Maps implementation (no API key needed)
@@ -511,6 +571,23 @@
                     <div class="profile-card-content">
                         <h3>Tere, Kaisa!</h3>
                         <p>Leidsime Sulle 3 sobivat tööpakkumist. Ühe tähtaeg on juba homme, seega tasub kiirustada. Vaata pakkumised üle ja kandideeri!</p>
+                        
+                        <!-- Broneeritud karjäärinõustamine -->
+                        <div class="career-consultation-notice">
+                            <div class="consultation-header">
+                                <strong>Teil on broneeritud karjäärinõustamine veebis</strong>
+                            </div>
+                            <div class="consultation-details">
+                                <div class="consultation-time">05.09.2025 kell 15:00</div>
+                                <div class="consultation-advisor">
+                                    Karjäärinõustaja: Kadri Jõgi<br>
+                                    E-mail: <a href="mailto:Kadri.Jogi@tehnmes.com">Kadri.Jogi@tehnmes.com</a>
+                                </div>
+                                <div class="consultation-note">
+                                    Enne teenuse algust saadab karjäärinõustaja Teile e-kirja teel lisainfot.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="profile-card-footer">
                         <a href="#minu-toosoovid" class="btn btn-primary">Vaata tööpakkumisi</a>
@@ -537,7 +614,7 @@
                                 <h4><a href="#">Tööalane koolitus</a></h4>
                                 <p>Täienda oma teadmisi või õpi uus amet, et parandada oma võimalusi tööturul.</p>
                             </div>
-                            <a href="#" class="btn btn-primary btn-small">Võta nõustajaga</a>
+                            <a href="#" class="btn btn-primary btn-small">Võta ühendust nõustajaga</a>
                         </div>
                         <div class="service-item-card card">
                             <div class="service-item-content">
@@ -735,7 +812,8 @@ Põhitöö otsimise kõrvalt saad teha kuni <strong>kaheksa päeva kuus ajutist 
                             mari.maasikas@tootukassa.ee
                         </a>
                         
-                        <button class="contact-button">Võta ühendust</button>
+                        <button class="contact-button" style="background: transparent; border: 2px solid #046c63; color: #046c63;">Võta ühendust</button>
+                        <button class="contact-button" style="margin-top: 10px; background: transparent; border: 2px solid #046c63; color: #046c63;">Teata tööleminekust</button>
                     </div>
                 </div>
 
