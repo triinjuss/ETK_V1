@@ -575,7 +575,7 @@
             color: white;
             border: none;
             border-radius: 8px;
-            padding: 12px;
+            padding: 8px 12px;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
@@ -6131,6 +6131,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 8px 12px;
         }
         
         .notification-badge {
@@ -6633,4 +6634,25 @@
 
 .btn-outline:hover {
     background-color: var(--secondary-color);
+}
+
+/* Job Summary Styling */
+.job-summary {
+    margin: 8px 0 0 0;
+    padding: 0;
+}
+
+.summary-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    background: rgba(4, 108, 99, 0.08);
+    padding: 8px 14px;
+    border-radius: 6px;
+    border-left: 3px solid var(--primary-color);
+    display: inline-block;
+}
+
+.summary-text strong {
+    color: var(--primary-color);
+    font-weight: 600;
 }
