@@ -1556,3 +1556,143 @@ function toggleJobDropdown(jobType) {
         }
     });
 }
+
+// Self-Assessment History function
+function openSelfAssessmentHistory() {
+    // Create modal for self-assessment history
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay show'; // Add 'show' class
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2>Enesehinnangu ajalugu</h2>
+                <button class="close-modal" onclick="this.closest('.modal-overlay').remove()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="assessment-history">
+                    <div class="history-item">
+                        <div class="history-date">15.08.2025</div>
+                        <div class="history-content">
+                            <h4>Töövõime hindamine</h4>
+                            <p><strong>Tulemus:</strong> Osalise töövõimega</p>
+                            <p><strong>Soovitused:</strong> Sobivad lühemad tööpäevad ja paindlik tööaeg</p>
+                            <div class="history-actions">
+                                <button class="btn-outline">Vaata detaile</button>
+                                <button class="btn-outline">Laadi alla PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-date">02.07.2025</div>
+                        <div class="history-content">
+                            <h4>Karjäärihuvi test</h4>
+                            <p><strong>Tulemus:</strong> Sobivad valdkonnad: IT, analüütika, projektijuhtimine</p>
+                            <p><strong>Soovitused:</strong> Täiendõpe andmeanalüüsis ja projektijuhtimises</p>
+                            <div class="history-actions">
+                                <button class="btn-outline">Vaata detaile</button>
+                                <button class="btn-outline">Laadi alla PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-date">20.05.2025</div>
+                        <div class="history-content">
+                            <h4>Oskuste hindamine</h4>
+                            <p><strong>Tulemus:</strong> Kõrge tase: Excel, kommunikatsioon. Keskmine: projektijuhtimine</p>
+                            <p><strong>Soovitused:</strong> Projektijuhtimise koolitus</p>
+                            <div class="history-actions">
+                                <button class="btn-outline">Vaata detaile</button>
+                                <button class="btn-outline">Laadi alla PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Add click outside to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
+
+// Employment Office Notifications function
+function openEmploymentOfficeNotifications() {
+    // Create modal for notifications
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay show'; // Add 'show' class
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2>Teated töötukassalt</h2>
+                <button class="close-modal" onclick="this.closest('.modal-overlay').remove()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="notifications-list">
+                    <div class="notification-item unread">
+                        <div class="notification-header">
+                            <span class="notification-date">08.09.2025</span>
+                            <span class="notification-status new">Uus</span>
+                        </div>
+                        <h4>Uued tööpakkumised teie valdkonnas</h4>
+                        <p>Leidsime 3 uut tööpakkumist, mis sobivad teie oskustega. Soovitame kiiresti kandideerida.</p>
+                        <div class="notification-actions">
+                            <button class="btn-primary">Vaata pakkumisi</button>
+                            <button class="btn-outline">Märgi loetuks</button>
+                        </div>
+                    </div>
+                    
+                    <div class="notification-item unread">
+                        <div class="notification-header">
+                            <span class="notification-date">05.09.2025</span>
+                            <span class="notification-status new">Uus</span>
+                        </div>
+                        <h4>Karjäärinõustamise aeg kinnitatud</h4>
+                        <p>Teie karjäärinõustamine on kinnitatud 05.09.2025 kell 15:00. Nõustaja: Kadri Jõgi</p>
+                        <div class="notification-actions">
+                            <button class="btn-primary">Vaata detaile</button>
+                            <button class="btn-outline">Märgi loetuks</button>
+                        </div>
+                    </div>
+                    
+                    <div class="notification-item unread">
+                        <div class="notification-header">
+                            <span class="notification-date">03.09.2025</span>
+                            <span class="notification-status new">Uus</span>
+                        </div>
+                        <h4>Tööotsingu toetus aegub varsti</h4>
+                        <p>Teie tööotsingu toetus aegub 15.09.2025. Palun võtke ühendust oma nõustajaga.</p>
+                        <div class="notification-actions">
+                            <button class="btn-primary">Võta ühendust</button>
+                            <button class="btn-outline">Märgi loetuks</button>
+                        </div>
+                    </div>
+                    
+                    <div class="notification-item read">
+                        <div class="notification-header">
+                            <span class="notification-date">28.08.2025</span>
+                            <span class="notification-status">Loetud</span>
+                        </div>
+                        <h4>Koolitusvõimalused teie valdkonnas</h4>
+                        <p>Avatud on registreerimine uutele koolitustele: "Digitaalne turundus" ja "Projektijuhtimine"</p>
+                        <div class="notification-actions">
+                            <button class="btn-outline">Vaata koolitusi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Add click outside to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}

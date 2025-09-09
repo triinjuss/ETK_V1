@@ -571,6 +571,26 @@
         </div>
     </div>
 
+    <!-- Enesehinnangu ajalugu ja teated -->
+    <div class="action-buttons-section">
+        <div class="action-buttons-container">
+            <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px; min-width: auto;" onclick="openSelfAssessmentHistory()">
+                <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3-6h3.75M6.75 4.5h-1.5A1.5 1.5 0 003.75 6v12A1.5 1.5 0 005.25 19.5h13.5A1.5 1.5 0 0020.25 18V6a1.5 1.5 0 00-1.5-1.5h-1.5m-6 0V3a1.5 1.5 0 00-1.5-1.5h-3A1.5 1.5 0 007.5 3v1.5M15.75 9a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Enesehinnangu ajalugu
+            </button>
+            
+            <button class="btn btn-secondary add-wish-btn notifications-btn" onclick="openEmploymentOfficeNotifications()">
+                <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                </svg>
+                Teated töötukassalt
+                <span class="notification-badge">3</span>
+            </button>
+        </div>
+    </div>
+
     <div class="page-container">
         <div class="main-grid">
             <div class="main-column">
@@ -926,7 +946,7 @@ Põhitöö otsimise kõrvalt saad teha kuni <strong>kaheksa päeva kuus ajutist 
                 </div>
             </div>
             <div style="text-align: right; margin-top: 20px;">
-                <button class="btn btn-outline btn-small">Enesehinnangu ajalugu</button>
+                 <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px; min-width: auto;">Enesehinnangu ajalugu</button>
             </div>
         </div>
 
@@ -943,36 +963,27 @@ Põhitöö otsimise kõrvalt saad teha kuni <strong>kaheksa päeva kuus ajutist 
                             <a href="#" id="open-strengths-ai-modal" class="ai-icon-link" title="AI Soovitus">AI</a>
                         </div>
                         <p class="card-subtitle">Sõnasta lühidalt oma oskused ja soovid, et saaksime sulle leida parima võimaliku töökoha.</p>
-                        <textarea id="skills-and-expectations-textarea" style="min-height: 650px;">Olen ambitsioonikas ja kiiresti õppiv informaatikatudeng, kellel on suur kirg tarkvaraarenduse ja probleemide lahendamise vastu. Mul on kogemusi nii frontend kui ka backend arendusega, samuti testimise ja projektijuhtimisega praktikantina.
+                        <textarea id="skills-and-expectations-textarea" style="min-height: 650px;">Olen viimased 7 aastat töötanud IT-projektijuhina, vastutades tarkvaraarendusprojektide elluviimise eest.
+Minu tugevused on meeskonna juhtimine, suhtlemisoskus ja probleemide lahendamine. Olen motiveeritud töötama keskkonnas, mis toetab innovatsiooni ja pakub võimalusi isiklikuks arenguks. Eelistan hübriidtööd.
 
-Minu tugevused:
-- Analüütiline mõtlemine ja probleemide lahendamine
-- Kiire õppimisvõime ja kohanemisvõime
-- Hea meeskonnatöö oskus
-- Täpsus ja kohusetundlikkus
-- Suur huvi uute tehnoloogiate vastu
+Minu tehnilised oskused:
+Projektijuhtimise metoodikad (Agile, Scrum, Kanban)
+JIRA, Confluence, Asana, Trello
+MS Project (algteadmised)
+SQL (algteadmised)
 
-Tehnilised oskused:
-- Programmeerimiskeeled: Python, JavaScript/TypeScript, Java
-- Veebiarendus: React, Node.js, HTML5, CSS3
-- Andmebaasid: PostgreSQL, MongoDB
-- Tööriistad: Git, Docker, Jira, VS Code, Figma
-- Testimine: Pytest, automaattestid
+Ootused järgmisele ametikohale:
 
-Väljakutsed, mille lahendamisel vajaksin töötukassa abi:
-- Kuidas oma CV-d paremini esitleda tööandjatele
-- Intervjuudeks valmistumine ja eneseusalduse suurendamine
-- Õige töökultuuriga ettevõtete leidmine
-- Palgaläbirääkimiste oskused algaja arendajana
-- Karjääri planeerimine IT-sektoris
+Võimalus juhtida ja arendada meeskonda
 
-Ootused:
-- Juuniorarendaja või praktikandi ametikoht
-- Võimalus õppida kogenud arendajate käe all
-- Huvitavad ja väljakutseid pakkuvad projektid
-- Toetav meeskond ja hea töökeskkond
-- Konkurentsivõimeline algaja töötasu (1800-2500€)
-- Võimalused karjääriks kasvuks ettevõttes</textarea>
+Rahvusvahelised projektid
+
+Paindlik töökorraldus
+
+Konkurentsivõimeline töötasu (3200–4000€)
+
+Karjäärivõimalused ettevõttes
+Write to Triin </textarea>
                     </div>
                     
                     <div class="plan-right-column">
