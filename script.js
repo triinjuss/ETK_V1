@@ -1696,3 +1696,85 @@ function openEmploymentOfficeNotifications() {
         }
     });
 }
+// Documents Modal function
+function openDocumentsModal() {
+    // Create modal for submitted documents
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay show';
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2>Edastatud dokumendid</h2>
+                <button class="close-modal" onclick="this.closest('.modal-overlay').remove()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="documents-list">
+                    <div class="document-item">
+                        <div class="document-info">
+                            <div class="document-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 6.75H9m-1.5-1.5v3m0 0h3m0 0v1.5a1.5 1.5 0 01-1.5 1.5H6A1.5 1.5 0 014.5 18v-9A1.5 1.5 0 016 7.5h3v1.5z" />
+                                </svg>
+                            </div>
+                            <div class="document-details">
+                                <h4>CV_Kaisa_Karu_2025.pdf</h4>
+                                <p>Edastatud: 05.09.2025 | Staatus: <span class="status-received">Vastu v�etud</span></p>
+                                <p>N�ustaja: Kadri J�gi</p>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn-outline">Vaata</button>
+                            <button class="btn-outline">Laadi alla</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <div class="document-info">
+                            <div class="document-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 6.75H9m-1.5-1.5v3m0 0h3m0 0v1.5a1.5 1.5 0 01-1.5 1.5H6A1.5 1.5 0 014.5 18v-9A1.5 1.5 0 016 7.5h3v1.5z" />
+                                </svg>
+                            </div>
+                            <div class="document-details">
+                                <h4>Motivatsioonikiri_IT_projektijuht.pdf</h4>
+                                <p>Edastatud: 03.09.2025 | Staatus: <span class="status-pending">Ootel</span></p>
+                                <p>N�ustaja: Kadri J�gi</p>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn-outline">Vaata</button>
+                            <button class="btn-outline">Laadi alla</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item">
+                        <div class="document-info">
+                            <div class="document-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 6.75H9m-1.5-1.5v3m0 0h3m0 0v1.5a1.5 1.5 0 01-1.5 1.5H6A1.5 1.5 0 014.5 18v-9A1.5 1.5 0 016 7.5h3v1.5z" />
+                                </svg>
+                            </div>
+                            <div class="document-details">
+                                <h4>T��kogemuse_t�end_2020-2024.pdf</h4>
+                                <p>Edastatud: 28.08.2025 | Staatus: <span class="status-received">Vastu v�etud</span></p>
+                                <p>N�ustaja: Kadri J�gi</p>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn-outline">Vaata</button>
+                            <button class="btn-outline">Laadi alla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Add click outside to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
