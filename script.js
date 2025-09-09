@@ -1699,68 +1699,197 @@ function openDocumentsModal() {
     const modal = document.createElement('div');
     modal.className = 'modal-overlay show';
     modal.innerHTML = `
-        <div class="modal-content" style="max-width: 800px;">
+        <div class="modal-content" style="max-width: 1000px; position: relative;">
+            <button class="modal-close-x" onclick="this.closest('.modal-overlay').remove()">×</button>
             <div class="modal-header">
                 <h2>Edastatud dokumendid</h2>
-                <button class="close-modal" onclick="this.closest('.modal-overlay').remove()"></button>
             </div>
             <div class="modal-body">
-                <div class="documents-list">
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 6.75H9m-1.5-1.5v3m0 0h3m0 0v1.5a1.5 1.5 0 01-1.5 1.5H6A1.5 1.5 0 014.5 18v-9A1.5 1.5 0 016 7.5h3v1.5z" />
-                                </svg>
-                            </div>
-                            <div class="document-details">
-                                <h4>CV_Kaisa_Karu_2025.pdf</h4>
-                                <p>Edastatud: 05.09.2025 | Staatus: <span class="status-received">Vastu v�etud</span></p>
-                                <p>N�ustaja: Kadri J�gi</p>
-                            </div>
+                <p class="documents-description">Siin on Eesti Töötukassa poolt Teile väljastatud dokumendid, meelespead ja tegevuskavad.</p>
+                
+                <!-- Filter Section -->
+                <div class="documents-filter-section">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label>Edastamise kuupäev</label>
+                            <input type="date" class="filter-input" placeholder="Alates">
                         </div>
-                        <div class="document-actions">
-                            <button class="btn-outline">Vaata</button>
-                            <button class="btn-outline">Laadi alla</button>
+                        <div class="filter-group">
+                            <label>Kuni</label>
+                            <input type="date" class="filter-input" placeholder="Kuni">
                         </div>
-                    </div>
-                    
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 6.75H9m-1.5-1.5v3m0 0h3m0 0v1.5a1.5 1.5 0 01-1.5 1.5H6A1.5 1.5 0 014.5 18v-9A1.5 1.5 0 016 7.5h3v1.5z" />
-                                </svg>
-                            </div>
-                            <div class="document-details">
-                                <h4>Motivatsioonikiri_IT_projektijuht.pdf</h4>
-                                <p>Edastatud: 03.09.2025 | Staatus: <span class="status-pending">Ootel</span></p>
-                                <p>N�ustaja: Kadri J�gi</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="btn-outline">Vaata</button>
-                            <button class="btn-outline">Laadi alla</button>
+                        <div class="filter-group">
+                            <label>Edastamise viis</label>
+                            <select class="filter-select">
+                                <option>- Vali -</option>
+                                <option>E-postiga</option>
+                                <option>Paberkandjal</option>
+                                <option>Digiallkirjastatud</option>
+                            </select>
                         </div>
                     </div>
+                    <div class="filter-actions">
+                        <button class="btn btn-outline">Tühjenda väljad</button>
+                        <button class="btn btn-primary">Otsi</button>
+                    </div>
+                </div>
+                
+                <!-- Documents Table -->
+                <div class="documents-table-section">
+                    <table class="documents-table">
+                        <thead>
+                            <tr>
+                                <th>Dokumendi nimi <span class="sort-icon">⇅</span></th>
+                                <th>Laadi alla</th>
+                                <th>Edastamise kuupäev <span class="sort-icon">⇅</span></th>
+                                <th>Edastamise viis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                 <td>
+                                    <span class="new-document-bell" title="Uus dokument">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#dc3545" stroke="#dc3545" stroke-width="2">
+                                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                                        </svg>
+                                    </span>
+                                Tegevuskava
+                                </td>
+                                <td>
+                                    <div class="download-icons">
+                                        <div class="document-type-icons">
+                                            <span class="pdf-icon" title="PDF dokument">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                    <polyline points="14,2 14,8 20,8"/>
+                                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                                    <polyline points="10,9 9,9 8,9"/>
+                                                </svg>
+                                            </span>
+                                            <span class="digidoc-icon" title="DigiDoc dokument">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" fill="#1B4F8C"/>
+                                                    <path d="M8 6h8v4H8z" fill="#FF5722"/>
+                                                    <path d="M8 12h8v6H8z" fill="#1B4F8C"/>
+                                                    <text x="12" y="16" text-anchor="middle" fill="white" font-size="8" font-weight="bold">iD</text>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>18.09.2025</td>
+                                <td>E-postiga</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="new-document-bell" title="Uus dokument">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#dc3545" stroke="#dc3545" stroke-width="2">
+                                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                                        </svg>
+                                    </span>
+                                    Ajutise töötamise meelespea
+                                </td>
+                                <td>
+                                    <div class="download-icons">
+                                        <div class="document-type-icons">
+                                            <span class="pdf-icon" title="PDF dokument">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                    <polyline points="14,2 14,8 20,8"/>
+                                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                                    <polyline points="10,9 9,9 8,9"/>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>17.09.2025</td>
+                                <td>E-postiga</td>
+                            </tr>
+                            <tr>
+                                <td>Telefoninõustamise meelespea</td>
+                                <td>
+                                    <div class="download-icons">
+                                        <div class="document-type-icons">
+                                            <span class="pdf-icon" title="PDF dokument">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                    <polyline points="14,2 14,8 20,8"/>
+                                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                                    <polyline points="10,9 9,9 8,9"/>
+                                                </svg>
+                                            </span>
+                                            <span class="digidoc-icon" title="DigiDoc dokument">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" fill="#1B4F8C"/>
+                                                    <path d="M8 6h8v4H8z" fill="#FF5722"/>
+                                                    <path d="M8 12h8v6H8z" fill="#1B4F8C"/>
+                                                    <text x="12" y="16" text-anchor="middle" fill="white" font-size="8" font-weight="bold">iD</text>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>17.09.2025</td>
+                                <td>E-postiga</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="new-document-bell" title="Uus dokument">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#dc3545" stroke="#dc3545" stroke-width="2">
+                                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                                        </svg>
+                                    </span>
+                                    Tegevuskava
+                                </td>
+                                <td>
+                                    <div class="download-icons">
+                                        <span class="pdf-icon" title="PDF dokument">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                <polyline points="14,2 14,8 20,8"/>
+                                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                                <polyline points="10,9 9,9 8,9"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>10.09.2025</td>
+                                <td>E-postiga</td>
+                            </tr>
+                            <tr>
+                                <td>Kinnituskriaga nõustamisteenuse osaleja meelespea</td>
+                                <td>
+                                    <div class="download-icons">
+                                        <span class="pdf-icon" title="PDF dokument">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                <polyline points="14,2 14,8 20,8"/>
+                                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                                <polyline points="10,9 9,9 8,9"/>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>01.09.2025</td>
+                                <td>E-postiga</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     
-                    <div class="document-item">
-                        <div class="document-info">
-                            <div class="document-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 6.75H9m-1.5-1.5v3m0 0h3m0 0v1.5a1.5 1.5 0 01-1.5 1.5H6A1.5 1.5 0 014.5 18v-9A1.5 1.5 0 016 7.5h3v1.5z" />
-                                </svg>
-                            </div>
-                            <div class="document-details">
-                                <h4>T��kogemuse_t�end_2020-2024.pdf</h4>
-                                <p>Edastatud: 28.08.2025 | Staatus: <span class="status-received">Vastu v�etud</span></p>
-                                <p>N�ustaja: Kadri J�gi</p>
-                            </div>
-                        </div>
-                        <div class="document-actions">
-                            <button class="btn-outline">Vaata</button>
-                            <button class="btn-outline">Laadi alla</button>
-                        </div>
+                    <div class="load-more-section">
+                        <button class="btn btn-outline load-more-btn">
+                            Laadi veel
+                            <span class="load-more-icon">2</span>
+                        </button>
                     </div>
                 </div>
             </div>
