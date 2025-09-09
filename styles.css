@@ -6623,3 +6623,14 @@
     gap: 6px;
     font-weight: 500;
 }
+
+/* Üldine outline nupu stiil */
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--secondary-color);
+}
