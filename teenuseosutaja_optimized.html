@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psühholoogiline nõustamine - ETK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inter fondi jõustamine */
+        *, *::before, *::after {
+            font-family: 'Inter', sans-serif !important;
+        }
+        
+        body, h1, h2, h3, h4, h5, h6, p, li, a, button, span, div {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, .counselor-name {
+            font-weight: 600 !important;
+        }
+        
+        /* Responsive grid layout */
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: 280px 1fr !important;
+                gap: 24px !important;
+            }
+            
+            .sidebar-column {
+                order: 1;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+            }
+            
+            .sidebar-column {
+                order: -1;
+            }
+            
+            .filter-sidebar {
+                position: static !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 16px 0 !important;
+            }
+            
+            .service-cards {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .page-header h1 {
+                font-size: 24px !important;
+            }
+        }
+        
+        /* Hover effects */
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+        }
+        
+        .filter-label:hover {
+            background: #f8fafc !important;
+        }
+        
+        /* Form focus states */
+        input:focus, select:focus {
+            border-color: var(--primary-color) !important;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(4, 108, 99, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="logo-nav">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo">ETK</span>
+                </a>
+                <span class="tagline">Eesti Töötukassa</span>
+            </div>
+            <div class="user-info">
+                <span class="user-name">Tere, Kait Kask</span>
+            </div>
+        </div>
+        
+        <div class="nav-container">
+            <nav class="main-nav">
+                <a href="index.html" class="nav-item">Avaleht</a>
+                <a href="index.html" class="nav-item">Minu plaan</a>
+                <a href="index.html" class="nav-item">Toetused ja hüvitised</a>
+                <div class="nav-item dropdown">
+                    <a href="teenused.html" class="nav-link active">
+                        Teenused
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="psuhnoustamine.html" class="dropdown-item">Psühholoogiline nõustamine</a>
+                        <a href="#" class="dropdown-item">Eures nõustamine</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="toootsingud.html" class="nav-link">
+                        Tööotsingud
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="minuCV.html" class="dropdown-item">Minu CV</a>
+                        <a href="index.html" class="dropdown-item">Minu plaan</a>
+                    </div>
+                </div>
+                <a href="toovoimehindamine.html" class="nav-item">Töövõime</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container" style="background: #f8fafc; min-height: 100vh; padding: 24px 0;">
+        <div style="max-width: 1600px; margin: 0 auto; padding: 0 20px;">
+            
+            <!-- Pealkiri ja breadcrumb -->
+            <div class="page-header" style="margin-bottom: 32px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 14px; color: #6b7280;">
+                    <a href="index.html" style="color: #6b7280; text-decoration: none;">Avaleht</a>
+                    <span>></span>
+                    <a href="teenused.html" style="color: #6b7280; text-decoration: none;">Teenused</a>
+                    <span>></span>
+                    <span style="color: var(--primary-color); font-weight: 500;">Psühholoogiline nõustamine</span>
+                </div>
+                <h1 style="margin: 0; color: #1f2937; font-size: 32px; font-weight: 700; line-height: 1.2;">Leia sobiv teenusepakkuja</h1>
+                <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 16px;">Vali endale sobiv psühholoogiline nõustaja meie partnerite seast</p>
+            </div>
+
+            <!-- Põhisisu grid -->
+            <div class="main-grid" style="display: grid; grid-template-columns: 320px 1fr 340px; gap: 32px; align-items: start;">
+                
+                <!-- Vasakul - Filtrid -->
+                <div class="filter-sidebar" style="background: white; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); padding: 28px; border: 1px solid #f1f5f9; position: sticky; top: 24px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                        <h3 style="color: var(--primary-color); margin: 0; font-size: 16px; font-weight: 700;">Filtrid</h3>
+                        <button style="background: none; border: none; color: #6b7280; font-size: 14px; cursor: pointer; padding: 4px 8px; border-radius: 4px; transition: background 0.2s;">Tühjenda</button>
+                    </div>
+                    
+                    <!-- Nõustamise liik -->
+                    <div style="margin-bottom: 32px;">
+                        <h4 style="color: #374151; margin: 0 0 16px 0; font-size: 15px; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9;">Nõustamise liik</h4>
+                        <div>
+                            <label class="filter-label" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; cursor: pointer; font-size: 15px; padding: 8px; border-radius: 8px; transition: background 0.2s;">
+                                <input type="checkbox" checked style="margin: 0; accent-color: var(--primary-color); width: 18px; height: 18px; border-radius: 4px;">
+                                <span style="font-weight: 500;">Psühholoogiline nõustamine</span>
+                            </label>
+                            <label class="filter-label" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; cursor: pointer; font-size: 15px; padding: 8px; border-radius: 8px; transition: background 0.2s;">
+                                <input type="checkbox" style="margin: 0; accent-color: var(--primary-color); width: 18px; height: 18px; border-radius: 4px;">
+                                <span>Võlanõustamine</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Teenusepakkuja otsing -->
+                    <div style="margin-bottom: 32px;">
+                        <h4 style="color: #374151; margin: 0 0 16px 0; font-size: 15px; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9;">Teenusepakkuja</h4>
+                        <div style="position: relative;">
+                            <input type="text" placeholder="Otsi ettevõtte nime järgi..." style="width: 100%; padding: 12px 40px 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 15px; box-sizing: border-box; transition: border-color 0.2s; background: #fafbfc;">
+                            <svg style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #9ca3af;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Piirkond -->
+                    <div style="margin-bottom: 32px;">
+                        <h4 style="color: #374151; margin: 0 0 16px 0; font-size: 15px; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9;">Piirkond</h4>
+                        <div style="position: relative; margin-bottom: 16px;">
+                            <select style="width: 100%; padding: 12px 40px 12px 16px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 15px; box-sizing: border-box; background: #fafbfc; appearance: none;">
+                                <option>Vali piirkond</option>
+                                <option selected>Harjumaa ja Tallinn</option>
+                                <option>Tartumaa</option>
+                                <option>Pärnumaa</option>
+                            </select>
+                            <svg style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #9ca3af; pointer-events: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m6 9l6 6 6-6"></path>
+                            </svg>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #e4f2f1, #f0f9f8); padding: 12px 16px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #b5e3d8;">
+                            <span style="color: var(--primary-color); font-size: 14px; font-weight: 600;">📍 Harjumaa ja Tallinn</span>
+                            <button style="background: none; border: none; color: var(--primary-color); cursor: pointer; font-size: 16px; font-weight: bold; padding: 4px; border-radius: 4px; transition: background 0.2s;">✕</button>
+                        </div>
+                    </div>
+
+                    <!-- Keel -->
+                    <div style="margin-bottom: 32px;">
+                        <h4 style="color: #374151; margin: 0 0 16px 0; font-size: 15px; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9;">Nõustamise keel</h4>
+                        <div>
+                            <label class="filter-label" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; cursor: pointer; font-size: 15px; padding: 8px; border-radius: 8px; transition: background 0.2s;">
+                                <input type="checkbox" checked style="margin: 0; accent-color: var(--primary-color); width: 18px; height: 18px;">
+                                <span style="font-weight: 500;">Eesti keel</span>
+                            </label>
+                            <label class="filter-label" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; cursor: pointer; font-size: 15px; padding: 8px; border-radius: 8px; transition: background 0.2s;">
+                                <input type="checkbox" style="margin: 0; accent-color: var(--primary-color); width: 18px; height: 18px;">
+                                <span>Vene keel</span>
+                            </label>
+                            <label class="filter-label" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; cursor: pointer; font-size: 15px; padding: 8px; border-radius: 8px; transition: background 0.2s;">
+                                <input type="checkbox" style="margin: 0; accent-color: var(--primary-color); width: 18px; height: 18px;">
+                                <span>Inglise keel</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Nõustamise viis -->
+                    <div style="margin-bottom: 32px;">
+                        <h4 style="color: #374151; margin: 0 0 16px 0; font-size: 15px; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9;">Nõustamise viis</h4>
+                        <div>
+                            <label class="filter-label" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; cursor: pointer; font-size: 15px; padding: 8px; border-radius: 8px; transition: background 0.2s;">
+                                <input type="checkbox" checked style="margin: 0; accent-color: var(--primary-color); width: 18px; height: 18px;">
+                                <span>Kaugnõustamine</span>
+                            </label>
+                            <label class="filter-label" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; cursor: pointer; font-size: 15px; padding: 8px; border-radius: 8px; transition: background 0.2s;">
+                                <input type="checkbox" checked style="margin: 0; accent-color: var(--primary-color); width: 18px; height: 18px;">
+                                <span>Kohapeal</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tulemuste arv ja nupud -->
+                    <div style="background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px;">
+                        <p id="results-summary" style="color: var(--primary-color); font-size: 15px; margin: 0 0 16px 0; font-weight: 600; text-align: center;">Leitud 15 teenusepakkujat</p>
+                        <div style="display: flex; gap: 12px;">
+                            <button onclick="clearFilters()" style="background: transparent; border: 2px solid #d1d5db; padding: 12px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #374151; flex: 1; font-weight: 500; transition: all 0.2s;">Tühjenda väljad</button>
+                            <button onclick="applyFilters()" style="background: var(--primary-color); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; flex: 1; transition: background 0.2s;">Otsi</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keskel - Kaart ja tulemused -->
+                <div class="content-column" style="display: flex; flex-direction: column; gap: 32px;">
+                    
+                    <!-- Kaardisektsioon -->
+                    <div style="background: white; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); overflow: hidden; position: relative; height: 480px; border: 1px solid #f1f5f9;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; background: var(--primary-color); padding: 16px 24px; color: white; z-index: 10;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <h3 style="margin: 0; font-size: 16px; font-weight: 700;">📍 Teenusepakkujate asukohad</h3>
+                                <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; opacity: 0.9;">
+                                    <span id="result-count">15 pakkujat Tallinnas</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Kaardipilt koos asukohtade märkidega -->
+                        <div style="position: relative; width: 100%; height: 100%; padding-top: 64px; box-sizing: border-box;">
+                            <iframe src="https://www.google.com/maps/d/embed?mid=yDHvDjFqPv3mQFthg" style="width: 100%; height: 100%; border: none; display: block;"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Teenusepakkujate kaardid -->
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                            <h3 style="margin: 0; color: #1f2937; font-size: 24px; font-weight: 700;">Teenusepakkujad</h3>
+                            <div style="display: flex; align-items: center; gap: 16px; font-size: 14px; color: #6b7280;">
+                                <span style="display: flex; align-items: center; gap: 6px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%;"></div>
+                                    <span id="visible-count">15 tulemust</span>
+                                </span>
+                                <select id="sort-select" onchange="sortResults()" style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; background: white;">
+                                    <option value="price-asc">Odavamad enne</option>
+                                    <option value="price-desc">Kallimad enne</option>
+                                    <option value="name-asc">Tähestikulises järjekorras</option>
+                                    <option value="location">Asukoha järgi</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div id="service-cards-container" class="service-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px;">
+
+                            <!-- Kaart 1 -->
+                            <div class="service-card" data-price="80" data-name="A-G Projekt OÜ" data-location="Kadriorg" data-service="psyh" data-language="eesti,inglise,vene" data-method="kohapeal,kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="https://ag-projekt.ee" target="_blank" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">A-G Projekt OÜ</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">80€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Kadriorg, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal, kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, inglise, vene keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">777 2000</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">25.09 14:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">08.10 16:30</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 2 -->
+                            <div class="service-card" data-price="70" data-name="MindCare Solutions" data-location="Mustamäe" data-service="psyh" data-language="eesti,inglise" data-method="kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="https://mindcare.ee" target="_blank" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">MindCare Solutions</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">70€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Mustamäe, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, inglise keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">888 3456</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">28.09 10:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">12.10 15:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">20.11 09:30</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 3 -->
+                            <div class="service-card" data-price="85" data-name="Positiiv Psühholoogia" data-location="Vanalinn" data-service="psyh" data-language="eesti,vene" data-method="kohapeal" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="https://positivepsychology.ee" target="_blank" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Positiiv Psühholoogia</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">85€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Vanalinn, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, vene keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">777 5678</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">30.09 13:30</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">15.10 11:00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 4 -->
+                            <div class="service-card" data-price="65" data-name="Wellness Therapy" data-location="Lasnamäe" data-service="psyh" data-language="eesti,vene" data-method="kohapeal,kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Wellness Therapy OÜ</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">65€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Lasnamäe, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal, kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, vene keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">555 9876</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">22.09 12:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">05.10 14:30</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">18.10 10:00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 5 -->
+                            <div class="service-card" data-price="90" data-name="Baltic Mind Center" data-location="Kristiine" data-service="psyh" data-language="eesti,inglise" data-method="kohapeal" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Baltic Mind Center</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">90€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Kristiine, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, inglise keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">666 4321</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">26.09 15:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">14.10 11:30</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 6 - Võlanõustamine -->
+                            <div class="service-card" data-price="75" data-name="Recovery Solutions" data-location="Nõmme" data-service="soltuvus" data-language="eesti,vene,inglise" data-method="kohapeal,kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Recovery Solutions</a>
+                                        <p style="margin: 0 0 8px 0; color: var(--accent-color); font-size: 14px; font-weight: 600;">Võlanõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">75€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Nõmme, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal, kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, vene, inglise keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">444 7890</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #fff4e6; color: var(--accent-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--accent-color);">24.09 09:00</span>
+                                        <span style="background: #fff4e6; color: var(--accent-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--accent-color);">01.10 13:00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 7 -->
+                            <div class="service-card" data-price="78" data-name="Therapeutic Hub" data-location="Põhja-Tallinn" data-service="psyh" data-language="eesti" data-method="kohapeal" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Therapeutic Hub</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">78€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Põhja-Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">333 1122</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">23.09 16:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">07.10 09:00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 8 -->
+                            <div class="service-card" data-price="68" data-name="Community Counseling" data-location="Mustamäe" data-service="psyh" data-language="eesti,vene" data-method="kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Community Counseling</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">68€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Mustamäe, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, vene keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">555 2211</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">26.09 14:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">09.10 11:30</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 9 - Vülanõustamine -->
+                            <div class="service-card" data-price="88" data-name="Addiction Care Estonia" data-location="Kesklinn" data-service="soltuvus" data-language="eesti,vene" data-method="kohapeal,kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Addiction Care Estonia</a>
+                                        <p style="margin: 0 0 8px 0; color: var(--accent-color); font-size: 14px; font-weight: 600;">Võlanõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">88€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Kesklinn, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal, kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, vene keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">111 5577</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #fff4e6; color: var(--accent-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--accent-color);">27.09 08:30</span>
+                                        <span style="background: #fff4e6; color: var(--accent-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--accent-color);">11.10 17:00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 10 -->
+                            <div class="service-card" data-price="95" data-name="Premium Psychology" data-location="Kesklinn" data-service="psyh" data-language="eesti,inglise" data-method="kohapeal" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Premium Psychology</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">95€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Kesklinn, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, inglise keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">777 9988</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">02.10 10:30</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">17.10 16:00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 11 -->
+                            <div class="service-card" data-price="72" data-name="Holistic Wellness" data-location="Pirita" data-service="psyh" data-language="eesti,inglise,vene" data-method="kohapeal" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Holistic Wellness</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">72€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Pirita, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, inglise, vene keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">999 6633</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">21.09 13:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">04.10 15:30</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 12 -->
+                            <div class="service-card" data-price="82" data-name="Mindful Counseling" data-location="Haabersti" data-service="psyh" data-language="eesti,inglise" data-method="kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Mindful Counseling</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">82€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Haabersti, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, inglise keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">222 8844</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">29.09 11:00</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">16.10 14:30</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 13 - Vülanõustamine -->
+                            <div class="service-card" data-price="80" data-name="Fresh Start Therapy" data-location="Kadriorg" data-service="soltuvus" data-language="eesti,inglise,vene" data-method="kohapeal" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Fresh Start Therapy</a>
+                                        <p style="margin: 0 0 8px 0; color: var(--accent-color); font-size: 14px; font-weight: 600;">Võlanõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">80€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Kadriorg, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, inglise, vene keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">888 7766</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #fff4e6; color: var(--accent-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--accent-color);">25.09 11:15</span>
+                                        <span style="background: #fff4e6; color: var(--accent-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--accent-color);">06.10 14:45</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 14 -->
+                            <div class="service-card" data-price="76" data-name="Urban Psychology" data-location="Lasnamäe" data-service="psyh" data-language="eesti,vene" data-method="kohapeal,kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Urban Psychology</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">76€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Lasnamäe, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kohapeal, kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, vene keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">444 3377</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">24.09 10:30</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">03.10 13:15</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kaart 15 -->
+                            <div class="service-card" data-price="84" data-name="Integrated Counseling" data-location="Nõmme" data-service="psyh" data-language="eesti,inglise" data-method="kaug" style="background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; border: 1px solid #e5e7eb; transition: all 0.3s ease;">
+                                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                    <div style="width: 8px; height: 8px; background: var(--primary-color); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+                                    <div style="flex: 1;">
+                                        <a href="#" style="text-decoration: none; color: #374151; font-size: 16px; font-weight: 600; margin-bottom: 4px; display: block; line-height: 1.3;">Integrated Counseling</a>
+                                        <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 14px;">Psühholoogiline nõustamine</p>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px; font-size: 13px; line-height: 1.4;">
+                                        <span style="font-weight: 600; color: #374151;">Hind:</span>
+                                        <span style="color: var(--primary-color); font-weight: 600;">84€</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Asukoht:</span>
+                                        <span style="color: #374151;">Nõmme, Tallinn</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Nõustamise viis:</span>
+                                        <span style="color: #374151;">kaugnõustamine</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Keel:</span>
+                                        <span style="color: #374151;">eesti, inglise keel</span>
+                                        
+                                        <span style="font-weight: 600; color: #374151;">Kontakt:</span>
+                                        <span style="color: #374151;">666 1199</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p style="margin: 0 0 8px 0; font-weight: 600; color: #6b7280; font-size: 13px;">Vabad ajad:</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">28.09 12:30</span>
+                                        <span style="background: #f1f5f9; color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 11px; border: 1px solid var(--primary-color);">13.10 09:15</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paremal - Nõustaja kaart -->
+                <div class="sidebar-column">
+                    <div class="card counselor-card">
+                        <h3 class="counselor-name">Mari Maasikas</h3>
+                        <p class="counselor-title">Minu töökeskne nõustaja</p>
+                        
+                        <div class="contact-reasons-wrapper">
+                            <ul class="contact-reasons">
+                                <li>Kui tööotsing tekitab segadust</li>
+                                <li>Kui motivatsioon on langenud</li>
+                                <li>Kui vajad abi CV või kandideerimisega</li>
+                                <li>Kui otsid sobivat koolitust või teenust</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="counselor-contact">
+                            <a href="tel:7773000" class="contact-item">
+                                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                                </svg>
+                                7773000
+                            </a>
+                            <a href="mailto:mari.maasikas@tootukassa.ee" class="contact-item">
+                                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                                mari.maasikas@tootukassa.ee
+                            </a>
+                            
+                            <button class="contact-button" style="background: transparent; border: 2px solid #046c63; color: #046c63;">Võta ühendust nõustajaga</button>
+                            <button class="contact-button" style="margin-top: 10px; background: transparent; border: 2px solid #046c63; color: #046c63;">Teata tööleminekust</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filtrite funktsioonid
+        function applyFilters() {
+            const cards = document.querySelectorAll('.service-card');
+            const searchInput = document.querySelector('input[type="text"]').value.toLowerCase();
+            const serviceTypes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.nextElementSibling.textContent.toLowerCase());
+            const languages = Array.from(document.querySelectorAll('div:nth-child(4) input[type="checkbox"]:checked')).map(cb => cb.nextElementSibling.textContent.toLowerCase());
+            const methods = Array.from(document.querySelectorAll('div:last-child input[type="checkbox"]:checked')).map(cb => cb.nextElementSibling.textContent.toLowerCase());
+            
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                const cardName = card.dataset.name.toLowerCase();
+                const cardService = card.dataset.service;
+                const cardLanguages = card.dataset.language.split(',');
+                const cardMethods = card.dataset.method.split(',');
+                
+                let show = true;
+                
+                // Otsi nime järgi
+                if (searchInput && !cardName.includes(searchInput)) {
+                    show = false;
+                }
+                
+                // Kontrolli teenuse tüüpi
+                if (serviceTypes.length > 0) {
+                    const showService = serviceTypes.some(service => {
+                        if (service.includes('psühholoogiline') && cardService === 'psyh') return true;
+                        if (service.includes('vülanõustamine') && cardService === 'soltuvus') return true;
+                        return false;
+                    });
+                    if (!showService) show = false;
+                }
+                
+                // Kontrolli keeli
+                if (languages.length > 0) {
+                    const showLanguage = languages.some(lang => 
+                        cardLanguages.some(cardLang => cardLang.includes(lang.split(' ')[0]))
+                    );
+                    if (!showLanguage) show = false;
+                }
+                
+                // Kontrolli meetodit
+                if (methods.length > 0) {
+                    const showMethod = methods.some(method => {
+                        if (method.includes('kaugnõustamine') && cardMethods.includes('kaug')) return true;
+                        if (method.includes('kohapeal') && cardMethods.includes('kohapeal')) return true;
+                        return false;
+                    });
+                    if (!showMethod) show = false;
+                }
+                
+                card.style.display = show ? 'block' : 'none';
+                if (show) visibleCount++;
+            });
+            
+            document.getElementById('visible-count').textContent = `${visibleCount} tulemust`;
+            document.getElementById('results-summary').innerHTML = ` Leitud ${visibleCount} teenusepakkujat`;
+            document.getElementById('result-count').textContent = `${visibleCount} pakkujat Tallinnas`;
+        }
+        
+        function clearFilters() {
+            // Tühjenda tekstiväli
+            document.querySelector('input[type="text"]').value = '';
+            
+            // Määra kõik checkboxid märkimata
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            
+            // Näita kõiki kaarte
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => card.style.display = 'block');
+            
+            // Uuenda loendureid
+            document.getElementById('visible-count').textContent = `${cards.length} tulemust`;
+            document.getElementById('results-summary').innerHTML = `Leitud ${cards.length} teenusepakkujat`;
+            document.getElementById('result-count').textContent = `${cards.length} pakkujat Tallinnas`;
+        }
+        
+        function sortResults() {
+            const sortSelect = document.getElementById('sort-select');
+            const container = document.getElementById('service-cards-container');
+            const cards = Array.from(container.querySelectorAll('.service-card'));
+            
+            cards.sort((a, b) => {
+                switch(sortSelect.value) {
+                    case 'price-asc':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-desc':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'name-asc':
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    case 'location':
+                        return a.dataset.location.localeCompare(b.dataset.location);
+                    default:
+                        return 0;
+                }
+            });
+            
+            // Eemalda kõik kaardid ja lisa sorteeritud järjekorras
+            container.innerHTML = '';
+            cards.forEach(card => container.appendChild(card));
+        }
+        
+        // Lisa event listenerid
+        document.addEventListener('DOMContentLoaded', function() {
+            // Otsinguga live filtreerimine
+            document.querySelector('input[type="text"]').addEventListener('input', applyFilters);
+            
+            // Checkboxide muutused
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+            });
+            
+            // Piirkonna filter
+            document.querySelector('select').addEventListener('change', function() {
+                const selectedRegion = this.value;
+                const regionTag = document.querySelector('.page-header + * .main-grid .filter-sidebar div:nth-child(4) div:last-child');
+                if (selectedRegion && selectedRegion !== 'Vali piirkond') {
+                    regionTag.style.display = 'flex';
+                    regionTag.querySelector('span').textContent = `📍 ${selectedRegion}`;
+                } else {
+                    regionTag.style.display = 'none';
+                }
+                applyFilters();
+            });
+        });
+    </script>
+
+</body>
+</html>
