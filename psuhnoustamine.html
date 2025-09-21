@@ -444,6 +444,12 @@
             border-radius: 8px;
             padding: 24px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03);
         }
 
         .alternatives-card {
@@ -627,7 +633,7 @@
             <!-- Vasak veerg - Video ja alternatiivide sektsioon -->
             <div class="video-section">
                 <!-- Video blokk -->
-                <div class="video-card">
+                <div class="video-card card">
                     <h1 class="video-title">Psühholoogiline nõustamine</h1>
                     
                     <!-- Video/pildi ala -->
@@ -649,7 +655,6 @@
                     
                     <!-- Teenuse tutvustus tekst -->
                     <div class="video-description">
-                        <p>Teenused tutvustus tekst siia</p>
                         <p class="small">Lisainfo ja täpsemad tingimused psühholoogilise nõustamise kohta. Teenus aitab toime tulla töötusega seotud raskustega ning leida uusi võimalusi karjääri arendamiseks.</p>
                     </div>
                     
@@ -666,47 +671,47 @@
 
                 <!-- Alternatiivide kaart -->
                 <div class="card alternatives-card">
-                    <h3 style="color: #046c63; margin-bottom: 20px; font-size: 1.2rem;">ALTERNATIIVID: PSÜHHOLOOGILINE NÕUSTAMINE</h3>
+                    <h3 style="color: var(--text-color); margin-bottom: 20px; font-size: 1.25rem; font-weight: 600; font-family: var(--font-family); margin-top: 0;">ALTERNATIIVID: PSÜHHOLOOGILINE NÕUSTAMINE</h3>
                     
-                    <ul style="list-style: none; padding: 0; line-height: 1.6;">
+                    <ul style="list-style: none; padding: 0; line-height: 1.6; font-family: var(--font-family); font-size: 14px;">
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
                             <span style="color: #046c63; font-weight: bold; margin-right: 8px;">•</span>
-                            <div>
+                            <div style="color: var(--text-color);">
                                 <strong>Teraapiafond.</strong> Perearsti saatekirja alusel on inimestel võimalik saada logopeedile, füsioteraapia ja kliinilise psühholoogia teenuseid ainult Tervisekassa lepingupartnerite juures.
                             </div>
                         </li>
                         
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
                             <span style="color: #046c63; font-weight: bold; margin-right: 8px;">•</span>
-                            <div>
+                            <div style="color: var(--text-color);">
                                 Ilma saatekirjata saab inimene pöörduda <a href="#" style="color: #046c63; text-decoration: none; border-bottom: 1px solid #046c63;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">vaimse tervise õe poole</a>.
                             </div>
                         </li>
                         
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
                             <span style="color: #046c63; font-weight: bold; margin-right: 8px;">•</span>
-                            <div>
+                            <div style="color: var(--text-color);">
                                 Ilma saatekirjata saab inimene pöörduda <a href="#" style="color: #046c63; text-decoration: none; border-bottom: 1px solid #046c63;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">psühhiaatri</a> poole.
                             </div>
                         </li>
                         
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
                             <span style="color: #046c63; font-weight: bold; margin-right: 8px;">•</span>
-                            <div>
+                            <div style="color: var(--text-color);">
                                 Vaimse tervise tuge ka <strong>MTÜ Peaasjad</strong> (<a href="#" style="color: #046c63; text-decoration: none; border-bottom: 1px solid #046c63;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">peaasi.ee</a>).
                             </div>
                         </li>
                         
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
                             <span style="color: #046c63; font-weight: bold; margin-right: 8px;">•</span>
-                            <div>
+                            <div style="color: var(--text-color);">
                                 <strong>Sotsiaalkindlustusamet</strong> pakub tasuta vaimse tervise veebipõhist nõustamist igale vanusegrupile tööpaeviti (teenusele saab ühe nädala jooksul). Tegu ei ole teraapia ega psühiaatrilise abiga ning teenus ei asenda arstisbi, saab arutada kuidas end paremini aidata ning kuhu professionaalse abi saamiseks pöörduda.
                             </div>
                         </li>
                         
                         <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
                             <span style="color: #046c63; font-weight: bold; margin-right: 8px;">•</span>
-                            <div>
+                            <div style="color: var(--text-color);">
                                 <strong>Lahendus.net</strong> on Eesti Psühholoogiaüliõpilaste Ühenduse poolt algatatud projekt, mis pakub veebipõhist psühholoogilist nõustamist igas vanuses inimestele.
                             </div>
                         </li>
