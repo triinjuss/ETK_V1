@@ -7329,3 +7329,72 @@
     font-size: 11px;
     font-weight: bold;
 }
+
+/* Responsive layout for three-column grid (psuhnoustamine.html) */
+@media (max-width: 1200px) {
+    /* On tablets, change to 2 columns with sidebar below */
+    .page-container > div[style*="grid-template-columns: 1fr 1fr 300px"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 24px !important;
+        grid-template-areas: 
+            "left center"
+            "sidebar sidebar" !important;
+    }
+    
+    .page-container .main-column:first-child {
+        grid-area: left;
+    }
+    
+    .page-container .main-column:nth-child(2) {
+        grid-area: center;
+    }
+    
+    .page-container .sidebar-column {
+        grid-area: sidebar;
+        max-width: none;
+    }
+}
+
+@media (max-width: 768px) {
+    /* On mobile, stack everything in one column */
+    .page-container > div[style*="grid-template-columns: 1fr 1fr 300px"] {
+        display: block !important;
+    }
+    
+    .page-container .main-column,
+    .page-container .sidebar-column {
+        margin-bottom: 24px;
+    }
+    
+    .page-container .sidebar-column {
+        margin-bottom: 0;
+    }
+}
+
+/* Emergency contacts card styles */
+.emergency-contacts-card .emergency-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.emergency-contacts .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.emergency-contacts .contact-icon-check {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.emergency-contacts .phone-number {
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}

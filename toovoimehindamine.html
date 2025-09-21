@@ -424,8 +424,10 @@
     <header class="main-header">
         <div class="top-bar">
             <div class="logo-nav">
-                <span class="logo">ETK</span>
-                <a href="#" class="help-link">Juhendid ja abimaterjalid</a>
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo">ETK</span>
+                </a>
+                <a href="index.html" class="help-link">Juhendid ja abimaterjalid</a>
             </div>
             <div class="search-container">
                 <input type="text" placeholder="Otsi kodulehe sisust">
@@ -443,13 +445,14 @@
             </div>
         </div>
     </header>
+    
     <div class="sub-nav-bar-container">
         <div class="sub-nav-bar">
-            <a href="#" class="back-link">
+            <a href="index.html" class="back-link">
                 <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
-                Tagasi Infoportaali
+                Tagasi infoportaali
             </a>
             <button class="mobile-menu-toggle" id="mobile-menu-toggle">
                 <span></span>
@@ -457,23 +460,32 @@
                 <span></span>
             </button>
             <nav class="main-nav" id="main-nav">
-                <a href="#" class="nav-item">
+                <a href="index.html" class="nav-item" style="white-space: nowrap;">
                     Minu töötukassa
                 </a>
-                <a href="#" class="nav-item">
+                <a href="index.html" class="nav-item" style="white-space: nowrap;">
                     Arvelevõtmine
                 </a>
-                <a href="index.html" class="nav-item">
+                <a href="index.html" class="nav-item" style="white-space: nowrap;">
                     Minu plaan
                 </a>
-                <a href="#" class="nav-item">
+                <a href="index.html" class="nav-item" style="white-space: nowrap;">
                     Toetused ja hüvitised
                 </a>
-                <a href="#" class="nav-item">
-                    Teenused
-                </a>
                 <div class="nav-item dropdown">
-                    <a href="tootsinguld.html" class="dropdown-toggle">
+                    <a href="teenused.html" class="nav-link" style="white-space: nowrap;">
+                        Teenused
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="psuhnoustamine.html" class="dropdown-item">Psühholoogiline nõustamine</a>
+                        <a href="#" class="dropdown-item">Eures nõustamine</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="toootsingud.html" class="nav-link" style="white-space: nowrap;">
                         Tööotsingud
                         <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M7 10l5 5 5-5z"/>
@@ -481,16 +493,14 @@
                     </a>
                     <div class="dropdown-menu">
                         <a href="minuCV.html" class="dropdown-item">Minu CV</a>
-
                     </div>
                 </div>
-                <a href="toovoimehindamine.html" class="nav-item active">
+                <a href="toovoimehindamine.html" class="nav-item active" style="white-space: nowrap;">
                     Töövõime
                 </a>
             </nav>
         </div>
     </div>
-
     <div class="page-container">
         <div class="main-grid">
             <div class="main-column">
