@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minu andmed - ETK</title>
+    <title>Minu oskused - ETK</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -74,7 +74,7 @@
                 <div class="nav-item dropdown">
                     <a href="toootsingud.html" class="nav-link" style="white-space: nowrap;">
                         Tööotsingud
-                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <svg class="dropdown-arrow" width="12" here="12" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M7 10l5 5 5-5z"/>
                         </svg>
                     </a>
@@ -104,155 +104,100 @@
             
             <!-- Tab navigatsioon -->
             <div class="tabs-navigation">
-                <a href="minuandmed.html" class="tab-button active">Üldandmed</a>
+                <a href="minuandmed.html" class="tab-button">Üldandmed</a>
                 <a href="minuharidus.html" class="tab-button">Haridus</a>
                 <a href="minutookogemus.html" class="tab-button">Töökogemus</a>
-                <a href="minuoskused.html" class="tab-button">Oskused</a>
+                <a href="minuoskused.html" class="tab-button active">Oskused</a>
             </div>
 
-            <!-- Profiili sektsioonid -->
-            <div class="profile-sections">
-                <!-- Isikuandmed -->
-                <div class="profile-section">
-                    <div class="section-header">
-                        <h2>Isikuandmed</h2>
+            <!-- Oskuste sektsioon -->
+            <div class="skills-sections">
+                
+                <!-- Ametitunnistused -->
+                <div class="skills-section">
+                    <h2>Ametitunnistused</h2>
+                    <div class="empty-section">
+                        <p>Ametitunnistusi ei leitud.</p>
                     </div>
-                    <div class="section-content">
-                        <div class="data-row">
-                            <span class="label">Nimi:</span>
-                            <span class="value">Kaisa Karu</span>
+                </div>
+
+                <!-- Kutsetunnistused -->
+                <div class="skills-section">
+                    <h2>Kutsetunnistused</h2>
+                    <div class="empty-section">
+                        <p>Kutsetunnistusi ei leitud.</p>
+                    </div>
+                </div>
+
+                <!-- Keeleoskus -->
+                <div class="skills-section">
+                    <h2>Keeleoskus</h2>
+                    <div class="language-table">
+                        <!-- Tabeli päis -->
+                        <div class="language-header">
+                            <div class="header-cell language">Keel</div>
+                            <div class="header-cell reading">Kõnes</div>
+                            <div class="header-cell writing">Kirjas</div>
+                            <div class="header-cell native">Põhiline suhtluskeel</div>
                         </div>
-                        <div class="data-row">
-                            <span class="label">Sünniaeg:</span>
-                            <span class="value">15.03.1988</span>
+
+                        <!-- Keeleoskuse kirjed -->
+                        <div class="language-row">
+                            <div class="language-cell language">inglise keel</div>
+                            <div class="language-cell reading">C2</div>
+                            <div class="language-cell writing">C2</div>
+                            <div class="language-cell native">Ei</div>
                         </div>
-                        <div class="data-row">
-                            <span class="label">Isikukood:</span>
-                            <span class="value">48803150234</span>
+
+                        <div class="language-row">
+                            <div class="language-cell language">eesti keel</div>
+                            <div class="language-cell reading">C2</div>
+                            <div class="language-cell writing">C2</div>
+                            <div class="language-cell native">Jah</div>
                         </div>
-                        <div class="data-row">
-                            <span class="label">Sugu:</span>
-                            <span class="value">Naine</span>
+
+                        <div class="language-row">
+                            <div class="language-cell language">vene keel</div>
+                            <div class="language-cell reading">B2</div>
+                            <div class="language-cell writing">B2</div>
+                            <div class="language-cell native">Ei</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Nõusolekud -->
-                <div class="profile-section">
-                    <div class="section-header">
-                        <h2>Nõusolekud</h2>
-                        <button class="edit-button">Muuda</button>
-                    </div>
-                    <div class="section-content">
-                        <p class="description">
-                            Minu nime ning andmeid võib edastada Euroopa töötsotsija liikuvuse portaali (eures.europa.eu) mulle sobiva töö vahendamiseks.
-                        </p>
-                    </div>
-                </div>
+                <!-- Juhtimisõigus -->
+                <div class="skills-section">
+                    <h2>Juhtimisõigus</h2>
+                    <div class="driving-table">
+                        <!-- Tabeli päis -->
+                        <div class="driving-header">
+                            <div class="header-cell category">Kategooria(d)</div>
+                            <div class="header-cell country">Riik</div>
+                            <div class="header-cell valid">Kehtiv alates</div>
+                        </div>
 
-                <!-- Kontakt -->
-                <div class="profile-section">
-                    <div class="section-header">
-                        <h2>Kontakt</h2>
-                        <button class="edit-button">Muuda</button>
-                    </div>
-                    <div class="section-content">
-                        <div class="data-row">
-                            <span class="label">Telefon:</span>
-                            <div class="value-group">
-                                <span class="value">+372 55555555</span>
-                                
-                            </div>
-                        </div>
-                        <div class="data-row">
-                            <span class="label">E-post:</span
-                            <span class="value">kaisa.karu@gmail.com</span>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <!-- Aadressid -->
-                <div class="profile-section">
-                    <div class="section-header">
-                        <h2>Aadressid</h2>
-                        <button class="edit-button">Muuda</button>
-                    </div>
-                    <div class="section-content">
-                        <div class="data-row">
-                            <span class="label">Elukoha aadress:</span>
-                            <span class="value">Harju maakond, Tallinn,  Karumõmmi tee 1</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="label">Postiaadress:</span>
-                            <span class="value">Harju maakond, Tallinn,  Karumõmmi tee 1</span>
+                        <!-- Juhtimisõiguse kirje -->
+                        <div class="driving-row">
+                            <div class="driving-cell category">B, B1</div>
+                            <div class="driving-cell country">Eesti</div>
+                            <div class="driving-cell valid">26.04.1985</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Nõustaja -->
-                <div class="profile-section">
-                    <div class="section-header">
-                        <h2>Nõustaja</h2>
-                    </div>
-                    <div class="section-content">
-                        <div class="data-row">
-                            <span class="label">Nimi:</span>
-                            <span class="value">Mari Maasikas</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="label">Büroo:</span>
-                            <span class="value">Tallinna osakond</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="label">E-post:</span>
-                            <span class="value">mari.maasikas@tootukassa.ee</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="label">Telefon:</span>
-                            <span class="value">777 3000 üldnumber</span>
+                <!-- Arvutioskus -->
+                <div class="skills-section">
+                    <h2>Arvutioskus</h2>
+                    <div class="computer-skills"> 
+                        <div class="skill-item">
+                            <span class="skill-label">Ekspert tase</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Pangakontod -->
-                <div class="profile-section">
-                    <div class="section-header">
-                        <h2>Pangakontod</h2>
-                    </div>
-                    <div class="section-content">
-                        <div class="bank-account">
-                            <div class="data-row">
-                                <span class="label">Pangakonto</span>
-                                <span class="value">Makstav toetus, hüvitis</span>
-                            </div>
-                            <div class="data-row account-number">
-                                <span class="label">EE 123456712345</span>
-                                <span class="value">Töötuskindlustushüvitis,  EVAT, Stipendium, Sõidutoetus</span>
-                            </div>
-                        </div>
-                        <div class="bank-spacing"></div>
-                    </div>
-                </div>
-
-                <!-- Muud andmed -->
-                <div class="profile-section">
-                    <div class="section-header">
-                        <h2>Muud andmed</h2>
-                    </div>
-                    <div class="section-content">
-                        <div class="data-row">
-                            <span class="label">Kliendikaarti nr:</span>
-                            <span class="value">78921</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="label">Töötukassa poolt ravikindlustuse:</span>
-                            <span class="value">Jah</span>
-                        </div>
-                    </div>
-                    <div class="action-section">
-                        <a href="minuharidus.html" class="btn btn-outline jargmine-btn">Salvesta ja jätka</a>
-                    </div>
+                <!-- Salvesta nupp -->
+                <div class="action-section">
+                    <button class="btn btn-primary salvesta-btn">Salvesta</button>
                 </div>
             </div>
         </div>
@@ -317,6 +262,7 @@
             color: var(--text-color);
             border-bottom: 3px solid transparent;
             transition: all 0.2s ease;
+            text-decoration: none;
         }
 
         .tab-button.active {
@@ -325,139 +271,155 @@
             font-weight: 500;
         }
 
-        .profile-sections {
-            padding: 0 24px 24px 24px;
+        .skills-sections {
+            padding: 24px;
         }
 
-        .profile-section {
-            border-bottom: 1px solid #f1f3f4;
-            padding: 24px 0;
+        .skills-section {
+            margin-bottom: 32px;
         }
 
-        .profile-section:last-child {
-            border-bottom: none;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .section-header h2 {
+        .skills-section h2 {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-color);
-            margin: 0;
+            margin: 0 0 16px 0;
         }
 
-        .edit-button {
-            background: none;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 6px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-
-        .edit-button:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .section-content {
-            color: var(--text-color);
-        }
-
-        .data-row {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 16px;
-            margin-bottom: 12px;
-            align-items: start;
-        }
-
-        .account-number {
-            gap: 48px;
-        }
-
-        .bank-account .data-row {
-            gap: 48px;
-        }
-
-        .label {
-            font-weight: 500;
-            color: #6c757d;
-            font-size: 14px;
-        }
-
-        .value {
-            color: var(--text-color);
-            font-size: 14px;
-            word-break: break-word;
-        }
-
-        .value-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .description {
-            font-size: 14px;
-            line-height: 1.5;
-            margin: 0;
-            color: var(--text-color);
-        }
-
-        .bank-account {
-            background: #f8f9fa;
+        .empty-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
             border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .empty-section p {
+            margin: 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Keeleoskus tabel */
+        .language-table {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .language-header {
+            display: grid;
+            grid-template-columns: 200px 120px 120px 200px;
+            background-color: #f8f9fa;
+            gap: 16px;
+            padding: 0 16px;
+        }
+
+        .language-row {
+            display: grid;
+            grid-template-columns: 200px 120px 120px 200px;
+            gap: 16px;
+            padding: 16px;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .language-row:last-child {
+            border-bottom: none;
+        }
+
+        .header-cell {
+            padding: 12px 0;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        .language-cell {
+            font-size: 14px;
+            color: var(--text-color);
+            align-self: center;
+        }
+
+        /* Juhtimisõigus tabel */
+        .driving-table {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .driving-header {
+            display: grid;
+            grid-template-columns: 200px 150px 200px;
+            background-color: #f8f9fa;
+            gap: 16px;
+            padding: 0 16px;
+        }
+
+        .driving-row {
+            display: grid;
+            grid-template-columns: 200px 150px 200px;
+            gap: 16px;
             padding: 16px;
         }
 
-        .account-number .label {
-            font-family: monospace;
+        .driving-cell {
+            font-size: 14px;
             color: var(--text-color);
-            font-weight: 600;
+            align-self: center;
+        }
+
+        /* Arvutioskus */
+        .computer-skills {
+            padding: 16px 0;
+        }
+
+        .skill-item {
+            display: inline-block;
+            margin-right: 16px;
+        }
+
+        .skill-label {
+            font-size: 14px;
+            color: var(--text-color);
         }
 
         .action-section {
-            margin-top: 20px;
             text-align: right;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #e9ecef;
         }
 
-        .jargmine-btn {
+        .salvesta-btn {
             background: var(--primary-color);
             color: white;
             border: 1px solid var(--primary-color);
-            padding: 8px 24px;
+            padding: 10px 24px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 500;
             transition: all 0.2s ease;
         }
 
-        .jargmine-btn:hover {
+        .salvesta-btn:hover {
             background: #035a52;
             border-color: #035a52;
         }
 
-        .bank-spacing {
-            height: 24px;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .profile-container {
                 margin: 0 16px;
             }
             
-            .data-row {
+            .language-header,
+            .language-row {
                 grid-template-columns: 1fr;
-                gap: 4px;
+                gap: 8px;
+            }
+            
+            .driving-header,
+            .driving-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
             }
             
             .tabs-navigation {
@@ -465,12 +427,42 @@
                 padding: 0 16px;
             }
             
-            .profile-sections {
-                padding: 0 16px 16px 16px;
+            .skills-sections {
+                padding: 16px;
             }
             
             .page-title {
                 padding: 16px 16px 12px 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .language-header,
+            .driving-header {
+                display: none;
+            }
+            
+            .language-row,
+            .driving-row {
+                display: block;
+                padding: 16px;
+                border: 1px solid #e9ecef;
+                border-radius: 8px;
+                margin-bottom: 16px;
+            }
+            
+            .language-cell,
+            .driving-cell {
+                display: block;
+                margin-bottom: 8px;
+                padding-left: 0;
+            }
+            
+            .language-cell:before,
+            .driving-cell:before {
+                content: attr(data-label) ": ";
+                font-weight: 600;
+                color: #6c757d;
             }
         }
     </style>
