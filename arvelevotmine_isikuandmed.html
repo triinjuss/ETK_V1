@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Töötuna arvelevõtmise avaldus - Isikuandmed - ETK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="logo-nav">
+               <a href="avaleht.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo">ETK</span>
+                </a>
+                <a href="#" class="help-link">Juhendid ja abimaterjalid</a>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Otsi kodulehe sisust">
+                <svg class="search-icon" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            <div class="user-actions">
+                
+                
+                <button class="profile-button">
+                    <span class="user-name">Kaisa Karu</span>
+                    <svg class="dropdown-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="sub-nav-bar-container">
+        <div class="sub-nav-bar">
+            <a href="#" class="back-link">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Tagasi infoportaali
+            </a>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="minutootukassa.html" class="nav-item" style="white-space: nowrap;">
+                    Minu töötukassa
+                </a>
+                <a href="arvelevotmine.html" class="nav-item active" style="white-space: nowrap;">
+                    Arvelevõtmine
+                </a>
+                <a href="index.html" class="nav-item" style="white-space: nowrap;">
+                    Minu plaan
+                </a>
+                <a href="#" class="nav-item" style="white-space: nowrap;">
+                    Toetused ja hüvitised
+                </a>
+                <div class="nav-item dropdown">
+                    <a href="teenused.html" class="nav-link" style="white-space: nowrap;">
+                        Teenused
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="psuhnoustamine.html" class="dropdown-item">Psühholoogiline nõustamine</a>
+                         <a href="volanoustamine.html" class="dropdown-item">Võlanõustamine</a>
+                        <a href="#" class="dropdown-item">Eures nõustamine</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="toootsingud.html" class="nav-link" style="white-space: nowrap;">
+                        Tööotsingud
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="minuCV.html" class="dropdown-item">Minu CV</a>
+                    </div>
+                </div>
+                <a href="toovoimehindamine.html" class="nav-item" style="white-space: nowrap;">
+                    Töövõime
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="container">
+            <div class="main-content">
+                <h1>Töötuna arvelevõtmise avaldus</h1>
+                
+                <div style="display: flex; gap: 32px; margin-top: 32px;">
+                    <!-- Left sidebar with steps -->
+                    <div style="width: 250px; flex-shrink: 0;">
+                        <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="position: relative;">
+                                <!-- Step 1 - Active -->
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px; position: relative;">
+                                    <div style="background: #2196F3; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; position: relative; z-index: 2;">1</div>
+                                    <span style="font-weight: 600; font-size: 16px; color: #333;">Isikuandmed</span>
+                                </div>
+                                
+                                <!-- Continuous dashed line from step 1 through step 3 -->
+                                <div style="position: absolute; left: 15px; top: 32px; width: 2px; height: 120px; border-left: 2px dashed #ddd; z-index: 1;"></div>
+                                
+                                <!-- Step 2 - Inactive -->
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px; position: relative;">
+                                    <div style="background: #ddd; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; position: relative; z-index: 2;">2</div>
+                                    <span style="font-weight: 500; font-size: 16px; color: #666;">Avalduse andmed</span>
+                                </div>
+                                
+                                <!-- Step 3 - Inactive -->
+                                <div style="display: flex; align-items: center; gap: 16px; position: relative;">
+                                    <div style="background: #ddd; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; position: relative; z-index: 2;">3</div>
+                                    <span style="font-weight: 500; font-size: 16px; color: #666;">Eelvaade ja esitamine</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main form content -->
+                    <div style="flex: 1;">
+                        <div style="background: white; border-radius: 12px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h2 style="margin: 0 0 24px 0; color: var(--text-color);">Taotleja andmed</h2>
+                            
+                            <!-- Personal info display -->
+                            <div style="padding: 20px; margin-bottom: 32px;">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 14px;">
+                                    <div>
+                                        <strong>Eesnimi:</strong>
+                                        <div style="margin-top: 4px;">Kaisa</div>
+                                    </div>
+                                    <div>
+                                        <strong>Perenimi:</strong>
+                                        <div style="margin-top: 4px;">Karu</div>
+                                    </div>
+                                    <div>
+                                        <strong>Isikukood:</strong>
+                                        <div style="margin-top: 4px;">48999999999</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3 style="margin: 0 0 20px 0; color: var(--text-color);">Aadress</h3>
+                            
+                            <form>
+                                <div style="display: grid; gap: 20px;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">
+                                            Maakond <span style="color: red;">*</span>
+                                        </label>
+                                        <input type="text" value="Harju maakond" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                                    </div>
+
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">
+                                            Linn/vald <span style="color: red;">*</span>
+                                        </label>
+                                        <input type="text" value="Tallinn" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                                    </div>
+
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">
+                                            Asuta/linnaosa <span style="color: #666; font-size: 12px;">ℹ️</span>
+                                        </label>
+                                        <input type="text" value="Kesklinn" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                                    </div>
+
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">
+                                            Nimetus <span style="color: #666; font-size: 12px;">ℹ️</span>
+                                        </label>
+                                        <input type="text" value="Pärnu mnt 15-23" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                                    </div>
+
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">
+                                            Aadressi lisainfo <span style="color: #666; font-size: 12px;">ℹ️</span>
+                                        </label>
+                                        <textarea placeholder="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; min-height: 80px; resize: vertical;"></textarea>
+                                        <div style="text-align: right; font-size: 12px; color: #666; margin-top: 4px;">0/255</div>
+                                    </div>
+
+                                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px;">
+                                        <div>
+                                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">
+                                                Postiindeks <span style="color: red;">*</span>
+                                            </label>
+                                            <input type="text" value="10111" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                                            <div style="font-size: 12px; color: #f7923a; margin-top: 4px;">Otsi postikoodi</div>
+                                        </div>
+                                        <div>
+                                            <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">
+                                                Kontakttelefon <span style="color: red;">*</span>
+                                            </label>
+                                            <input type="tel" value="+372 5567 8890" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-color);">
+                                            E-post <span style="color: red;">*</span>
+                                        </label>
+                                        <input type="email" value="kaisa.karu@email.ee" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                                        <div style="text-align: right; font-size: 12px; color: #666; margin-top: 4px;">18/255</div>
+                                    </div>
+
+                                    <div style="margin-top: 20px;">
+                                        <label style="display: block; margin-bottom: 12px; font-weight: 500; color: var(--text-color);">
+                                            Vali otsuse saatmise viis <span style="color: red;">*</span>
+                                        </label>
+                                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                                <input type="radio" name="delivery" value="email" checked>
+                                                <span>E-postiga</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                                <input type="radio" name="delivery" value="mail">
+                                                <span>Töötukassa kohtumis kohapeal</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                                    <button type="button" onclick="window.history.back()" style="background-color: transparent; color: #2196F3; border: 2px solid #2196F3; padding: 12px 24px; border-radius: 25px; font-weight: 500; cursor: pointer;">
+                                        Loobu
+                                    </button>
+                                    <button type="button" onclick="saveAndContinue()" style="background-color: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 500; cursor: pointer;">
+                                        Salvesta ja jätka
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function saveAndContinue() {
+            // Validate required fields
+            const requiredFields = document.querySelectorAll('input[required], input + label:has(span[style*="color: red"])');
+            let isValid = true;
+            let firstError = null;
+
+            // Check all inputs with red asterisks (required fields)
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                const label = input.parentNode.querySelector('label');
+                if (label && label.innerHTML.includes('color: red') && !input.value.trim()) {
+                    isValid = false;
+                    if (!firstError) firstError = input;
+                    input.style.borderColor = '#f44336';
+                } else if (input.value.trim()) {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+
+            if (!isValid) {
+                if (firstError) firstError.focus();
+                return;
+            }
+
+            // Validate email format
+            const emailInput = document.querySelector('input[type="email"]');
+            if (emailInput && emailInput.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    emailInput.focus();
+                    emailInput.style.borderColor = '#f44336';
+                    return;
+                }
+            }
+
+            // Validate delivery method selection
+            const deliveryMethods = document.querySelectorAll('input[name="delivery"]');
+            let deliverySelected = false;
+            deliveryMethods.forEach(method => {
+                if (method.checked) deliverySelected = true;
+            });
+
+            if (!deliverySelected) {
+                return;
+            }
+
+            // Save data and proceed to next step
+            window.location.href = 'arvelevotmine_avaldus.html';
+        }
+
+        // Add real-time validation and character counters
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character counter for textarea
+            const textarea = document.querySelector('textarea');
+            if (textarea) {
+                const counter = textarea.parentNode.querySelector('div[style*="text-align: right"]');
+                textarea.addEventListener('input', function() {
+                    if (counter) {
+                        counter.textContent = `${this.value.length}/255`;
+                    }
+                });
+            }
+
+            // Character counter for email
+            const emailInput = document.querySelector('input[type="email"]');
+            if (emailInput) {
+                const counter = emailInput.parentNode.querySelector('div[style*="text-align: right"]');
+                emailInput.addEventListener('input', function() {
+                    if (counter) {
+                        counter.textContent = `${this.value.length}/255`;
+                    }
+                });
+            }
+
+            // Real-time validation for inputs
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    const label = this.parentNode.querySelector('label');
+                    if (label && label.innerHTML.includes('color: red') && !this.value.trim()) {
+                        this.style.borderColor = '#f44336';
+                    } else if (this.type === 'email' && this.value) {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(this.value)) {
+                            this.style.borderColor = '#f44336';
+                        } else {
+                            this.style.borderColor = '#ddd';
+                        }
+                    } else if (this.value.trim()) {
+                        this.style.borderColor = '#ddd';
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Töötuna arvelevõtmise avaldus - Eelvaade ja esitamine - ETK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="logo-nav">
+               <a href="avaleht.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo">ETK</span>
+                </a>
+                <a href="#" class="help-link">Juhendid ja abimaterjalid</a>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Otsi kodulehe sisust">
+                <svg class="search-icon" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            <div class="user-actions">
+                
+                
+                <button class="profile-button">
+                    <span class="user-name">Kaisa Karu</span>
+                    <svg class="dropdown-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="sub-nav-bar-container">
+        <div class="sub-nav-bar">
+            <a href="#" class="back-link">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Tagasi infoportaali
+            </a>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="minutootukassa.html" class="nav-item" style="white-space: nowrap;">
+                    Minu töötukassa
+                </a>
+                <a href="arvelevotmine.html" class="nav-item active" style="white-space: nowrap;">
+                    Arvelevõtmine
+                </a>
+                <a href="index.html" class="nav-item" style="white-space: nowrap;">
+                    Minu plaan
+                </a>
+                <a href="#" class="nav-item" style="white-space: nowrap;">
+                    Toetused ja hüvitised
+                </a>
+                <div class="nav-item dropdown">
+                    <a href="teenused.html" class="nav-link" style="white-space: nowrap;">
+                        Teenused
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="psuhnoustamine.html" class="dropdown-item">Psühholoogiline nõustamine</a>
+                         <a href="volanoustamine.html" class="dropdown-item">Võlanõustamine</a>
+                        <a href="#" class="dropdown-item">Eures nõustamine</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="toootsingud.html" class="nav-link" style="white-space: nowrap;">
+                        Tööotsingud
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="minuCV.html" class="dropdown-item">Minu CV</a>
+                    </div>
+                </div>
+                <a href="toovoimehindamine.html" class="nav-item" style="white-space: nowrap;">
+                    Töövõime
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="container">
+            <div class="main-content">
+                <h1>Töötuna arvelevõtmise avaldus</h1>
+                
+                <div style="display: flex; gap: 32px; margin-top: 32px;">
+                    <!-- Left sidebar with steps -->
+                    <div style="width: 250px; flex-shrink: 0;">
+                        <div style="background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="position: relative;">
+                                <!-- Step 1 - Completed -->
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px; position: relative;">
+                                    <div style="background: #4caf50; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; position: relative; z-index: 2;">✓</div>
+                                    <span style="font-weight: 500; font-size: 16px; color: #333;">Isikuandmed</span>
+                                </div>
+                                
+                                <!-- Continuous dashed line from step 1 through step 3 -->
+                                <div style="position: absolute; left: 15px; top: 32px; width: 2px; height: 120px; border-left: 2px dashed #ddd; z-index: 1;"></div>
+                                
+                                <!-- Step 2 - Completed -->
+                                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px; position: relative;">
+                                    <div style="background: #4caf50; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; position: relative; z-index: 2;">✓</div>
+                                    <span style="font-weight: 500; font-size: 16px; color: #333;">Avalduse andmed</span>
+                                </div>
+                                
+                                <!-- Step 3 - Active -->
+                                <div style="display: flex; align-items: center; gap: 16px; position: relative;">
+                                    <div style="background: #2196F3; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; position: relative; z-index: 2;">3</div>
+                                    <span style="font-weight: 600; font-size: 16px; color: #333;">Eelvaade ja esitamine</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main content -->
+                    <div style="flex: 1;">
+                        <!-- Success message -->
+                        <div style="background: var(--primary-color); color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+                            <div style="background: rgba(255,255,255,0.2); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">✓</div>
+                            <span style="font-weight: 500;">Salvestamine õnnestus.</span>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <!-- Section 1: Isikuandmed -->
+                            <div style="margin-bottom: 40px;">
+                                <h2 style="margin: 0 0 24px 0; color: var(--text-color); font-size: 20px; font-weight: 600;">1. Isikuandmed</h2>
+                                
+                                <div style="margin-bottom: 24px;">
+                                    <h3 style="margin: 0 0 16px 0; color: var(--text-color); font-size: 16px; font-weight: 600;">Taotleja andmed</h3>
+                                    <div style="display: grid; grid-template-columns: 150px 1fr; gap: 8px; font-size: 14px;">
+                                        <div><strong>Eesnimi:</strong></div>
+                                        <div style="color: #666;">Kaisa</div>
+                                        <div><strong>Perenimi:</strong></div>
+                                        <div style="color: #666;">Karu</div>
+                                        <div><strong>Isikukood:</strong></div>
+                                        <div style="color: #666;">49999999999</div>
+                                        <div><strong>Aadress:</strong></div>
+                                        <div style="color: #666;">Karumõmmi tee 1, Tallinn</div>
+                                        <div><strong>Telefon:</strong></div>
+                                        <div style="color: #666;">5555 5555</div>
+                                        <div><strong>E-post:</strong></div>
+                                        <div style="color: #666;">mari.maasikas@tootukassa.ee</div>
+                                        <div><strong>Otsusest teavitamise viis:</strong></div>
+                                        <div style="color: #666;">E-postiga</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Section 2: Avalduse andmed -->
+                            <div style="margin-bottom: 40px;">
+                                <h2 style="margin: 0 0 24px 0; color: var(--text-color); font-size: 20px; font-weight: 600;">2. Avalduse andmed</h2>
+                                
+                                <div style="margin-bottom: 24px;">
+                                    <h3 style="margin: 0 0 16px 0; color: var(--text-color); font-size: 16px; font-weight: 600;">Arvelevõtmise tingimused</h3>
+                                    <div style="margin-bottom: 16px;">
+                                        <strong>Välismaal töötamise, õppimise, äriühingu juhatuse liikmeks olemise või füüsilisest isikust ettevõtjana tegutsemise kohta tehtud märked:</strong>
+                                    </div>
+                                    <div style="color: #666; font-style: italic;">Puuduvad</div>
+                                </div>
+                            </div>
+
+                            <!-- Action buttons -->
+                            <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                                <button type="button" onclick="cancel()" style="background-color: transparent; color: #2196F3; border: 2px solid #2196F3; padding: 12px 24px; border-radius: 25px; font-weight: 500; cursor: pointer;">
+                                    Loobu
+                                </button>
+                                <div style="display: flex; gap: 12px;">
+                                    <button type="button" onclick="goBack()" style="background-color: transparent; color: #2196F3; border: 2px solid #2196F3; padding: 12px 24px; border-radius: 25px; font-weight: 500; cursor: pointer;">
+                                        Tagasi
+                                    </button>
+                                    <button type="button" onclick="submitApplication()" style="background-color: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 500; cursor: pointer;">
+                                        Esita
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitApplication() {
+            // Redirect to success page or back to main page
+            window.location.href = 'arvelevotmine.html';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function cancel() {
+            window.location.href = 'arvelevotmine.html';
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

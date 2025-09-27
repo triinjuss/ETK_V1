@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arvelevõtmine - ETK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Modal -->
+    <div id="benefitModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+        <div class="modal-content" style="background: white; border-radius: 12px; padding: 32px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <button onclick="closeModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
+            
+            <h2 style="margin: 0 0 24px 0; color: var(--text-color);">Töötuna arvelevõtmise avalduse esitamine</h2>
+            
+            <div style="margin-bottom: 24px;">
+                <p style="margin-bottom: 16px; line-height: 1.6;">Kui soovite lisaks töötuna registreerimisele saada ka rahalist hüvitist või toetust, esitage palun ka tööstuskindustushüvitise või töötuoetuse avaldus.</p>
+                <p style="margin-bottom: 16px; line-height: 1.6;"><a href="#" style="color: #f7923a; text-decoration: underline;">Loe täpsemalt registreeritud töötule mõeldud toetustest ja hüvitistest.</a></p>
+            </div>
+
+            <div style="margin-bottom: 24px;">
+                <p style="margin-bottom: 16px; line-height: 1.6; font-weight: 600;">Palun valige lisaks arvelevõtmise avaldusele esitativ hüvitise või toetuse avaldus, mis tuleb pärast arvelevõtmise avalduse esitamist eraldi täita ja esitada (kui Te ei ole kindel, millist valida, soovitame esmalt taotleda tööstuskindustushüvitist, mitte töötuoetust): <span style="color: red;">*</span></p>
+                
+                <div style="margin-bottom: 16px;">
+                    <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; margin-bottom: 12px;">
+                        <input type="radio" name="benefit" value="unemployment" style="margin-top: 4px;">
+                        <span>Tööstuskindustushüvitise avaldus (hüvitise suurus on esimesel sajal päeval 60% ning seejärel 40% Teie keskmisest töötasust)</span>
+                    </label>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; margin-bottom: 12px;">
+                        <input type="radio" name="benefit" value="allowance" style="margin-top: 4px;">
+                        <span>Töötuoetuse avaldus (töötuoetuse suurus on 13,23 eurot päevas ehk 410,13 eurot kuus)</span>
+                    </label>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer;">
+                        <input type="radio" name="benefit" value="none" style="margin-top: 4px;">
+                        <span>Ei soovi rahalist toetust/hüvitist võimaldavat avaldust esitada</span>
+                    </label>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                <button onclick="closeModal()" style="background-color: transparent; color: #2196F3; border: 2px solid #2196F3; padding: 12px 24px; border-radius: 25px; font-weight: 500; cursor: pointer;">
+                    Loobu
+                </button>
+                <button onclick="submitApplication()" style="background-color: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 500; cursor: pointer;">
+                    Jätka
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="top-bar">
+            <div class="logo-nav">
+               <a href="avaleht.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo">ETK</span>
+                </a>
+                <a href="#" class="help-link">Juhendid ja abimaterjalid</a>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Otsi kodulehe sisust">
+                <svg class="search-icon" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            <div class="user-actions">
+                
+                
+                <button class="profile-button">
+                    <span class="user-name">Kaisa Karu</span>
+                    <svg class="dropdown-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="sub-nav-bar-container">
+        <div class="sub-nav-bar">
+            <a href="#" class="back-link">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Tagasi infoportaali
+            </a>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                <a href="minutootukassa.html" class="nav-item" style="white-space: nowrap;">
+                    Minu töötukassa
+                </a>
+                <a href="arvelevotmine.html" class="nav-item active" style="white-space: nowrap;">
+                    Arvelevõtmine
+                </a>
+                <a href="index.html" class="nav-item" style="white-space: nowrap;">
+                    Minu plaan
+                </a>
+                <a href="#" class="nav-item" style="white-space: nowrap;">
+                    Toetused ja hüvitised
+                </a>
+                <div class="nav-item dropdown">
+                    <a href="teenused.html" class="nav-link" style="white-space: nowrap;">
+                        Teenused
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="psuhnoustamine.html" class="dropdown-item">Psühholoogiline nõustamine</a>
+                         <a href="volanoustamine.html" class="dropdown-item">Võlanõustamine</a>
+                        <a href="#" class="dropdown-item">Eures nõustamine</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="toootsingud.html" class="nav-link" style="white-space: nowrap;">
+                        Tööotsingud
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="minuCV.html" class="dropdown-item">Minu CV</a>
+                    </div>
+                </div>
+                <a href="toovoimehindamine.html" class="nav-item" style="white-space: nowrap;">
+                    Töövõime
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="container">
+            <div class="main-content">
+                <h1>Arvelevõtmine</h1>
+                
+                <!-- Töötuna võtakse arvele info -->
+                <div class="info-card card">
+                    <p><strong>Töötuna võetakse arvele inimene</strong>, kes hetkel ei tööta, kuid kes otsib tööd, soovib tööle asuda ja vastab töötuna arvelevõtmise tingimustele.</p>
+                    
+                    <div style="margin-top: 24px;">
+                        <p><strong>Olen teadlik töötu põhikohustustest:</strong></p>
+                        <ol style="margin: 16px 0; padding-left: 20px; line-height: 1.6;">
+                            <li>Osalen nõustamisel vähemalt kord 30 päeva jooksul.</li>
+                            <li>Osalen tegevuskava koostamisel ja täidan kokkulepitud tegevusi.</li>
+                            <li>Otsin aktiivselt tööd.</li>
+                            <li>Olen valmis sobiva töö korral kohe tööle asuma.</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 24px; padding: 16px; background-color: #f8f9fa; border-radius: 12px;">
+                        <label style="display: flex; align-items: flex-start; gap: 12px; cursor: pointer; font-size: 14px; line-height: 1.5;">
+                            <input type="checkbox" id="agreementCheckbox" style="margin-top: 2px; width: 16px; height: 16px;">
+                            <span>Olen tutvunud <a href="#" style="color: #f7923a; text-decoration: underline;">töötu õiguste ja kohustustega</a> ning kinnitan, et täidan kõiki töötu põhikohustusi kogu arveloleku aja</span>
+                        </label>
+                    </div>
+
+                    <!-- Error message -->
+                    <div id="errorMessage" style="display: none; margin-top: 12px; padding: 12px; background-color: #ffebee; border: 1px solid #f44336; border-radius: 12px; color: #c62828; font-size: 14px;">
+                        Palun kinnitage, et olete tutvunud töötu õiguste ja kohustustega.
+                    </div>
+
+                    <!-- Additional info for oil shale sector -->
+                    <div style="margin-top: 24px; padding: 16px; background-color: #e8f5e8; border-radius: 12px;">
+                        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-color);">
+                            <strong>Kui Teie viimane töökogemus oli põlevkivisektori ettevõttes:</strong> Eesti Energia AS, Kirde Varad AS, Kiviõli Keemiatööstuse OÜ või m Enefit Power AS, Enefit Solutions AS, Osaühing VKG Kaevandused, VKG OIL AS, OÜ VIRU RMT, Osaühing VKG Energia ja VKG Logistika OÜ, siis teil võib olla õigus erinevale teenustele või hüvitistele. <a href="#" style="color: #f7923a; text-decoration: underline;">Palun tutvuge võimalustega enne arvelevõtu avalduse esitamist siit</a>.
+                        </p>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: row; gap: 12px; margin-top: 24px; justify-content: flex-end;">
+                        <button class="btn" onclick="testModal()" style="background-color: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 500;">
+                            Salvesta ja jätka
+                        </button>
+                        <button class="btn" style="background-color: transparent; color: #2196F3; border: 2px solid #2196F3; padding: 12px 24px; border-radius: 25px; font-weight: 500;">
+                            Loobu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Esitatud avaldused -->
+                <div class="applications-section" style="margin-top: 32px;">
+                    <h2 style="margin-bottom: 24px;">Esitatud avaldused</h2>
+                    
+                    <div class="applications-table card">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+                                    <th style="padding: 16px; text-align: left; font-weight: 600; color: var(--text-color);">Avaldus</th>
+                                    <th style="padding: 16px; text-align: left; font-weight: 600; color: var(--text-color);">Laadi alla avaldus</th>
+                                    <th style="padding: 16px; text-align: left; font-weight: 600; color: var(--text-color);">Esitamise kuupäev</th>
+                                    <th style="padding: 16px; text-align: left; font-weight: 600; color: var(--text-color);">Otsus</th>
+                                    <th style="padding: 16px; text-align: left; font-weight: 600; color: var(--text-color);">Kõik otsused</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #eee;">
+                                    <td style="padding: 16px;">
+                                        <a href="#" style="color: #f7923a; text-decoration: underline;">Töötuna arvelevõtmise avaldus</a>
+                                        <div style="font-size: 12px; color: #666; margin-top: 4px;">(TA-250020791)</div>
+                                    </td>
+                                    <td style="padding: 16px;">21.07.2025</td>
+                                    <td style="padding: 16px;"></td>
+                                    <td style="padding: 16px;">
+                                        <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        <a href="#" style="color: #f7923a; text-decoration: underline;">Töötuna arvelevõtmine</a>
+                                        <div style="font-size: 12px; color: #666; margin-top: 4px;">(21.07.2025, nr TA25-0037360)</div>
+                                    </td>
+                                    <td style="padding: 16px;"></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #eee;">
+                                    <td style="padding: 16px;">
+                                        <a href="#" style="color: #f7923a; text-decoration: underline;">Töötuna arvelevõtmise avaldus</a>
+                                        <div style="font-size: 12px; color: #666; margin-top: 4px;">(TA-220023672)</div>
+                                    </td>
+                                    <td style="padding: 16px;">05.04.2022</td>
+                                    <td style="padding: 16px;"></td>
+                                    <td style="padding: 16px;">
+                                        <svg width="16" height="16" style="margin-right: 8px; vertical-align: middle;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        <a href="#" style="color: #f7923a; text-decoration: underline;">Töötuna arveloleku lõpetamine</a>
+                                        <div style="font-size: 12px; color: #666; margin-top: 4px;">(25.05.2022, nr TA22-0072597)</div>
+                                    </td>
+                                    <td style="padding: 16px;">
+                                        <span style="background-color: #6c757d; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">Vaata</span>
+                                        <span style="background-color: #6c757d; color: white; padding: 2px 6px; border-radius: 50%; font-size: 10px; margin-left: 4px;">2</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple test function
+        function testModal() {
+            const modal = document.getElementById('benefitModal');
+            if (modal) {
+                modal.style.display = 'block';
+                modal.style.visibility = 'visible';
+                modal.style.opacity = '1';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function validateAndSubmit() {
+            const checkbox = document.getElementById('agreementCheckbox');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (!checkbox || !checkbox.checked) {
+                if (errorMessage) {
+                    errorMessage.style.display = 'block';
+                }
+                if (checkbox) {
+                    checkbox.focus();
+                }
+                return false;
+            } else {
+                if (errorMessage) {
+                    errorMessage.style.display = 'none';
+                }
+                openModal();
+                return true;
+            }
+        }
+
+        function openModal() {
+            const modal = document.getElementById('benefitModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('benefitModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function submitApplication() {
+            const selectedBenefit = document.querySelector('input[name="benefit"]:checked');
+            if (!selectedBenefit) {
+                alert('Palun valige üks valik.');
+                return;
+            }
+            
+            // Navigate to the personal data page
+            window.location.href = 'arvelevotmine_isikuandmed.html';
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
