@@ -127,24 +127,32 @@ suhelda oma Töötukassa nõustajaga.
 Kui soovid tuge karjäärivalikutes või vajad töökeskset nõustamist, võta meiega kindlasti ühendust – oleme siin, et Sind toetada!</p>
                     </div>
 
-                    <!-- Andmete uuendamise sektsioon -->
-                    <div class="update-section">
-                        <h3>Uuenda oma andmed</h3>
-                        <p>Kui sisened süsteemi, pakume võimalust vaadata üle ja kinnitada andmeid, mis on automaatselt päringuga toodud riiklikest registritest – näiteks elukoht, hariduskäik, töökogemus ja juhtimisõigus.</p>
-                        
-                        <p><strong>Andmete ülevaatamine ja kinnitamine kohe sisselogimisel aitab sul:</strong></p>
-                        <ul class="benefits-list">
-                            <li>hoida oma profiili ajakohasena ilma käsitsi sisestamiseta</li>
-                            <li>luua personaalse ülevaate, mille põhjal saame soovitada just sulle sobivaid töö- ja koolitusvõimalusi</li>
-                            <li>kiirendada CV täitmist – vajalik info on juba olemas</li>
-                            <li>kasutada süsteemi pakutavaid soovitusi täpsemalt ja efektiivsemalt</li>
-                        </ul>
-                        
-                        <p class="highlight">Andmete kontrollimine võtab vaid mõned minutid, kuid aitab sul hiljem aega säästa ja paremaid võimalusi märgata.</p>
-                    </div>
-                    
                     <!-- Nupud -->
                     <div class="video-buttons">
+                        <a href="#" class="btn btn-primary">
+                            Alusta kasutamist
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paremal pool - Andmete uuendamise kaart -->
+            <div class="side-section">
+                <div class="update-card card">
+                    <h3>Uuenda oma andmed</h3>
+                    <p>Kui sisened süsteemi, pakume võimalust vaadata üle ja kinnitada andmeid, mis on automaatselt päringuga toodud riiklikest registritest – näiteks elukoht, hariduskäik, töökogemus ja juhtimisõigus.</p>
+                    
+                    <p><strong>Andmete ülevaatamine ja kinnitamine kohe sisselogimisel aitab sul:</strong></p>
+                    <ul class="benefits-list">
+                        <li>hoida oma profiili ajakohasena ilma käsitsi sisestamiseta</li>
+                        <li>luua personaalse ülevaate, mille põhjal saame soovitada just sulle sobivaid töö- ja koolitusvõimalusi</li>
+                        <li>kiirendada CV täitmist – vajalik info on juba olemas</li>
+                        <li>kasutada süsteemi pakutavaid soovitusi täpsemalt ja efektiivsemalt</li>
+                    </ul>
+                    
+                    <p class="highlight">Andmete kontrollimine võtab vaid mõned minutid, kuid aitab sul hiljem aega säästa ja paremaid võimalusi märgata.</p>
+                    
+                    <div class="update-buttons">
                         <a href="#" class="btn btn-primary">
                             Uuenda kõiki andmeid
                         </a>
@@ -158,13 +166,19 @@ Kui soovid tuge karjäärivalikutes või vajad töökeskset nõustamist, võta m
         /* Video and counselor layout styles */
         .container {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 400px;
             gap: 24px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .video-section {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .side-section {
             display: flex;
             flex-direction: column;
             gap: 24px;
@@ -177,6 +191,9 @@ Kui soovid tuge karjäärivalikutes või vajad töökeskset nõustamist, võta m
             padding: 24px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             transition: all 0.2s ease;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
         }
         
         .video-card:hover {
@@ -195,9 +212,10 @@ Kui soovid tuge karjäärivalikutes või vajad töökeskset nõustamist, võta m
             background: #f8f9fa;
             border: 2px dashed #dee2e6;
             border-radius: 8px;
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
             margin-bottom: 20px;
+            min-height: 180px;
         }
 
         .video-icon-wrapper {
@@ -254,25 +272,40 @@ Kui soovid tuge karjäärivalikutes või vajad töökeskset nõustamist, võta m
             color: #6c757d;
         }
 
-        .update-section {
-            background: #f8f9fa;
+        .update-card {
+            background: white;
             border: 1px solid #e9ecef;
             border-radius: 8px;
-            padding: 20px;
-            margin: 24px 0 32px 0;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .update-section h3 {
+        .update-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03);
+        }
+
+        .update-card h3 {
             color: var(--primary-color);
             margin: 0 0 16px 0;
             font-size: 1.3rem;
             font-weight: 600;
         }
 
-        .update-section p {
+        .update-card p {
             margin-bottom: 16px;
             line-height: 1.6;
             color: var(--text-color);
+        }
+
+        .update-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
         }
 
         .benefits-list {
@@ -310,10 +343,20 @@ Kui soovid tuge karjäärivalikutes või vajad töökeskset nõustamist, võta m
         .video-buttons {
             display: flex;
             gap: 12px;
+            margin-top: auto;
         }
 
         @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
             .video-buttons {
+                flex-direction: column;
+            }
+            
+            .update-buttons {
                 flex-direction: column;
             }
         }
