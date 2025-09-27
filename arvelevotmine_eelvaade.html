@@ -195,11 +195,8 @@
 
     <script>
         function submitApplication() {
-            if (confirm('Kas olete kindel, et soovite avalduse esitada?')) {
-                alert('Avaldus on edukalt esitatud! Saate kinnituse e-postile.');
-                // Redirect to success page or back to main page
-                window.location.href = 'arvelevotmine.html';
-            }
+            // Redirect to success page or back to main page
+            window.location.href = 'arvelevotmine.html';
         }
 
         function goBack() {
@@ -207,9 +204,7 @@
         }
 
         function cancel() {
-            if (confirm('Kas olete kindel, et soovite avaldusest loobuda? Kõik sisestatud andmed lähevad kaotsi.')) {
-                window.location.href = 'arvelevotmine.html';
-            }
+            window.location.href = 'arvelevotmine.html';
         }
     </script>
     <script src="script.js"></script>

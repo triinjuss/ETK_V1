@@ -266,7 +266,6 @@
             });
 
             if (!isValid) {
-                alert('Palun täitke kõik kohustuslikud väljad (tähistatud *).');
                 if (firstError) firstError.focus();
                 return;
             }
@@ -276,7 +275,6 @@
             if (emailInput && emailInput.value) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(emailInput.value)) {
-                    alert('Palun sisestage kehtiv e-posti aadress.');
                     emailInput.focus();
                     emailInput.style.borderColor = '#f44336';
                     return;
@@ -291,7 +289,6 @@
             });
 
             if (!deliverySelected) {
-                alert('Palun valige otsuse saatmise viis.');
                 return;
             }
 

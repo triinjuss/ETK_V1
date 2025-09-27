@@ -147,7 +147,7 @@
 
                             <div style="margin-bottom: 32px;">
                                 <p style="margin: 0 0 20px 0; font-weight: 500; color: var(--text-color);">
-                                    Valimaal töötamise, õppimise, äriühingu juhatuse liikmeks olemise või füüsilisest isikust ettevõtjana tegutsemise korral, palun tehke märge vastava tegevuse juurde:
+                                    Välismaal töötamise, õppimise, äriühingu juhatuse liikmeks olemise või füüsilisest isikust ettevõtjana tegutsemise korral, palun tehke märge vastava tegevuse juurde:
                                 </p>
 
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -228,7 +228,6 @@
             // Validate bank account selection
             const bankSelection = document.querySelector('input[name="bank"]:checked');
             if (!bankSelection) {
-                alert('Palun valige pangakonto tüüp.');
                 return;
             }
 
@@ -238,13 +237,11 @@
                 // Basic IBAN validation (Estonia starts with EE)
                 const iban = ibanInput.value.replace(/\s/g, '');
                 if (!/^EE\d{18}$/.test(iban)) {
-                    alert('Palun sisestage kehtiv Eesti IBAN (EE + 18 numbrit).');
                     ibanInput.focus();
                     return;
                 }
             }
 
-            alert('Andmed salvestatud! Liigume järgmise sammu juurde...');
             // Navigate to step 3 - preview and submit
             window.location.href = 'arvelevotmine_eelvaade.html';
         }
