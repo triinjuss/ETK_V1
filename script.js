@@ -1652,6 +1652,12 @@ function openEmploymentOfficeNotifications() {
                             <tr>
                                 <td>08.09.2025 15:16</td>
                                 <td>Mari Maasikas</td>
+                                <td><a href="juhatuse_liige.html" class="notification-link">Juhatuse liige</a></td>
+                                <td><a href="#" class="notification-link">Vasta</a></td>
+                            </tr>
+                            <tr>
+                                <td>08.09.2025 15:16</td>
+                                <td>Mari Maasikas</td>
                                 <td><a href="#" class="notification-link">Koolitus</a></td>
                                 <td>08.09.2025 15:17</td>
                             </tr>
