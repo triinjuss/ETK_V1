@@ -1699,6 +1699,84 @@ function openEmploymentOfficeNotifications() {
         }
     });
 }
+function openEmploymentOfficeNotifications2() {
+    // Create modal for notifications
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay show'; // Add 'show' class
+    modal.innerHTML = `
+        <div class="modal-content" style="max-width: 900px; position: relative;">
+            <button class="modal-close-x" onclick="this.closest('.modal-overlay').remove()">×</button>
+            <div class="modal-header">
+                <h2>Teated töötukassalt</h2>
+            </div>
+            <div class="modal-body">
+                <!-- Minu teated section -->
+                <div class="notifications-section">
+                    <div class="section-header">
+                        <h3>Minu teated</h3>
+                        <button class="btn btn-primary btn-small">Saada uus teade</button>
+                    </div>
+                    
+                    <table class="notifications-table">
+                        <thead>
+                            <tr>
+                                <th>Saadetud</th>
+                                <th>Saatja</th>
+                                <th>Teema</th>
+                                <th>Vastus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>08.09.2025 15:16</td>
+                                <td>Mari Maasikas</td>
+                                <td><a href="juhatuse_liige.html" class="notification-link">Juhatuse liige</a></td>
+                                <td><a href="#" class="notification-link">10.09.2025</a></td>
+                            </tr>
+                            <tr>
+                                <td>08.09.2025 15:16</td>
+                                <td>Mari Maasikas</td>
+                                <td><a href="#" class="notification-link">Koolitus</a></td>
+                                <td>08.09.2025 15:17</td>
+                            </tr>
+                            <tr>
+                                <td>08.09.2025 15:17</td>
+                                <td>Kaisa Karu</td>
+                                <td><a href="#" class="notification-link">E-päevik</a></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Teated section -->
+                <div class="notifications-section">
+                    <h3>Teated</h3>
+                    
+                    <div class="notification-card">
+                        <h4><a href="#" class="notification-title-link">Töövõimetoetuse taotlus (TVT20000000)</a></h4>
+                        <p class="notification-date">Taotlus esitatud: 29.08.2025</p>
+                        <p class="notification-status">Otsus: <span class="status-pending">Puudustega. Puuduste likvideerimise tähtaeg on 09.09.2025.</span></p>
+                    </div>
+                    
+                    <div class="notification-card">
+                        <h4><a href="#" class="notification-title-link">Töövõimetoetuse taotlus (TVT000000)</a></h4>
+                        <p class="notification-date">Taotlus esitatud: 21.04.2025</p>
+                        <p class="notification-status">Otsus: Menetluse lõpetamine (29.08.2025, nr TVT25/00000)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Add click outside to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
 // Documents Modal function
 function openDocumentsModal() {
     // Create modal for submitted documents
