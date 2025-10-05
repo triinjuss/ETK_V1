@@ -10,8 +10,8 @@
 <body>
     <!-- Modal -->
     <div id="benefitModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
-        <div class="modal-content" style="background: white; border-radius: 12px; padding: 32px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            <button onclick="closeModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
+        <div class="modal-content" onclick="event.stopPropagation()" style="background: white; border-radius: 12px; padding: 32px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <button onclick="closeModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='#f0f0f0'" onmouseout="this.style.backgroundColor='transparent'">×</button>
             
             <h2 style="margin: 0 0 24px 0; color: var(--text-color);">Töötuna arvelevõtmise avalduse esitamine</h2>
             
@@ -178,7 +178,7 @@
                     </div>
                     
                     <div style="display: flex; flex-direction: row; gap: 12px; margin-top: 24px; justify-content: flex-end;">
-                        <button class="btn" onclick="testModal()" style="background-color: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 500;">
+                        <button class="btn" onclick="validateAndSubmit()" style="background-color: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 500;">
                             Salvesta ja jätka
                         </button>
                         <button class="btn" style="background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); padding: 12px 24px; border-radius: 25px; font-weight: 500;">
@@ -248,13 +248,43 @@
     </div>
 
     <script>
-        // Simple test function
+        // Modal functionality
+        function closeModal() {
+            alert('closeModal kutsutud!'); // TEST
+            const modal = document.getElementById('benefitModal');
+            console.log('Modal element:', modal); // TEST
+            if (modal) {
+                modal.style.display = 'none';
+                modal.style.visibility = 'hidden';
+                modal.style.opacity = '0';
+                document.body.style.overflow = 'auto';
+                console.log('Modal peaks olema suletud'); // TEST
+            } else {
+                console.log('Modal elementi ei leitud!'); // TEST
+            }
+        }
+
+        // Add event listener for overlay clicks
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalOverlay = document.getElementById('benefitModal');
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', function(event) {
+                    // Close modal only if clicking on the overlay, not the content
+                    if (event.target === modalOverlay) {
+                        closeModal();
+                    }
+                });
+            }
+        });
+
+        // Simple test function - can be removed if not needed
         function testModal() {
             const modal = document.getElementById('benefitModal');
             if (modal) {
                 modal.style.display = 'block';
                 modal.style.visibility = 'visible';
                 modal.style.opacity = '1';
+                modal.style.zIndex = '1000';
                 document.body.style.overflow = 'hidden';
             }
         }
@@ -263,19 +293,35 @@
             const checkbox = document.getElementById('agreementCheckbox');
             const errorMessage = document.getElementById('errorMessage');
             
+            // Kontrolli, kas linnuke on pandud
             if (!checkbox || !checkbox.checked) {
+                // VEATEADE: Näita punast teadet kui linnuke pole pandud
                 if (errorMessage) {
                     errorMessage.style.display = 'block';
+                    errorMessage.style.visibility = 'visible';
                 }
+                // Vii fookus linnukese juurde
                 if (checkbox) {
                     checkbox.focus();
+                    checkbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
                 return false;
             } else {
+                // LUBAB jätkata: Peida veateade ja ava modaalaken
                 if (errorMessage) {
                     errorMessage.style.display = 'none';
                 }
-                openModal();
+                
+                // Ava modaalaken hüvitise valikutega
+                const modal = document.getElementById('benefitModal');
+                if (modal) {
+                    modal.style.display = 'block';
+                    modal.style.visibility = 'visible';
+                    modal.style.opacity = '1';
+                    modal.style.zIndex = '1000';
+                    document.body.style.overflow = 'hidden';
+                }
+                
                 return true;
             }
         }
@@ -284,15 +330,10 @@
             const modal = document.getElementById('benefitModal');
             if (modal) {
                 modal.style.display = 'block';
+                modal.style.visibility = 'visible';
+                modal.style.opacity = '1';
+                modal.style.zIndex = '1000';
                 document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('benefitModal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
             }
         }
 
